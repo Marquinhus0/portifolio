@@ -1,6 +1,8 @@
 # Portfólio de Product Designer — Marcus Ritta
 
-Este projeto é um portfólio profissional de alto padrão projetado especificamente para **Marcus Ritta**, Product Designer especializado em **ERP, SaaS B2B, Discovery & Product Strategy e Sistemas Complexos**.
+> **Portfólio Profissional de Marcus Ritta**  
+> Especialista em Product Design, B2B SaaS, Design Systems e Sistemas Complexos.  
+> Desenvolvido com **Next.js 14 (App Router)**, **TypeScript** e **Tailwind CSS**.
 
 ---
 
