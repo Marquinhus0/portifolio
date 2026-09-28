@@ -206,43 +206,67 @@ export default function FrameInteractiveVideoCaseStudy({
             </div>
           </div>
 
+          {/* Impact Numbers Strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[#262626] border border-[#262626] overflow-hidden">
+            <div className="bg-[#080808] p-5 space-y-1 group hover:bg-[#ff5352]/5 transition-colors">
+              <span className="text-3xl font-black font-mono text-white group-hover:text-[#ff5352] transition-colors">+48%</span>
+              <span className="block text-[10px] font-mono text-[#ffb3ae] uppercase tracking-widest">Completion Rate</span>
+              <span className="block text-[11px] font-sans text-neutral-500 leading-tight">Vídeos técnicos com +15 min concluídos sem abandono</span>
+            </div>
+            <div className="bg-[#080808] p-5 space-y-1 group hover:bg-[#ff5352]/5 transition-colors">
+              <span className="text-3xl font-black font-mono text-white group-hover:text-[#ff5352] transition-colors">4ms</span>
+              <span className="block text-[10px] font-mono text-[#ffb3ae] uppercase tracking-widest">Sync Latency</span>
+              <span className="block text-[11px] font-sans text-neutral-500 leading-tight">Engine de sincronização trilha–painel ao vivo</span>
+            </div>
+            <div className="bg-[#080808] p-5 space-y-1 group hover:bg-[#ff5352]/5 transition-colors">
+              <span className="text-3xl font-black font-mono text-white group-hover:text-[#ff5352] transition-colors">74%</span>
+              <span className="block text-[10px] font-mono text-[#ffb3ae] uppercase tracking-widest">Knowledge Rail Use</span>
+              <span className="block text-[11px] font-sans text-neutral-500 leading-tight">Usuários que usam busca na transcrição para navegar</span>
+            </div>
+            <div className="bg-[#080808] p-5 space-y-1 group hover:bg-[#ff5352]/5 transition-colors">
+              <span className="text-3xl font-black font-mono text-white group-hover:text-[#ff5352] transition-colors">2.39:1</span>
+              <span className="block text-[10px] font-mono text-[#ffb3ae] uppercase tracking-widest">CinemaScope</span>
+              <span className="block text-[11px] font-sans text-neutral-500 leading-tight">Viewport nativo anamórfico DCI 4K a 24 FPS</span>
+            </div>
+          </div>
+
           {/* 4 Core Pillars Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-4">
-            <div className="p-5 bg-[#111113] border border-[#262626] space-y-2">
-              <div className="w-8 h-8 rounded bg-[#ff5352]/10 border border-[#ff5352]/30 flex items-center justify-center text-[#ff5352]">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="p-5 bg-[#111113] border border-[#262626] border-l-2 border-l-[#ff5352] space-y-2 hover:bg-[#141416] transition-colors group">
+              <div className="w-8 h-8 rounded bg-[#ff5352]/10 border border-[#ff5352]/30 flex items-center justify-center text-[#ff5352] group-hover:bg-[#ff5352]/20 transition-colors">
                 <Play className="w-4 h-4 fill-[#ff5352]" />
               </div>
-              <h3 className="text-white font-mono font-bold text-sm">Non-Blocking Rail</h3>
+              <h3 className="text-white font-mono font-bold text-sm group-hover:text-[#ffb3ae] transition-colors">Non-Blocking Rail</h3>
               <p className="text-neutral-400 text-xs leading-relaxed font-sans">
                 O áudio e o vídeo continuam contínuos enquanto o espectador inspeciona diagramas, fórmulas e referências técnicas ao lado.
               </p>
             </div>
 
-            <div className="p-5 bg-[#111113] border border-[#262626] space-y-2">
-              <div className="w-8 h-8 rounded bg-[#ff5352]/10 border border-[#ff5352]/30 flex items-center justify-center text-[#ff5352]">
+            <div className="p-5 bg-[#111113] border border-[#262626] border-l-2 border-l-[#ff5352] space-y-2 hover:bg-[#141416] transition-colors group">
+              <div className="w-8 h-8 rounded bg-[#ff5352]/10 border border-[#ff5352]/30 flex items-center justify-center text-[#ff5352] group-hover:bg-[#ff5352]/20 transition-colors">
                 <Layers className="w-4 h-4" />
               </div>
-              <h3 className="text-white font-mono font-bold text-sm">Timeline Semântica</h3>
+              <h3 className="text-white font-mono font-bold text-sm group-hover:text-[#ffb3ae] transition-colors">Timeline Semântica</h3>
               <p className="text-neutral-400 text-xs leading-relaxed font-sans">
                 Substituição da barra cega tradicional por nós interativos categorizados por conceito, materialidade e artefatos estruturais.
               </p>
             </div>
 
-            <div className="p-5 bg-[#111113] border border-[#262626] space-y-2">
-              <div className="w-8 h-8 rounded bg-[#ff5352]/10 border border-[#ff5352]/30 flex items-center justify-center text-[#ff5352]">
+            <div className="p-5 bg-[#111113] border border-[#262626] border-l-2 border-l-[#ff5352] space-y-2 hover:bg-[#141416] transition-colors group">
+              <div className="w-8 h-8 rounded bg-[#ff5352]/10 border border-[#ff5352]/30 flex items-center justify-center text-[#ff5352] group-hover:bg-[#ff5352]/20 transition-colors">
                 <Film className="w-4 h-4" />
               </div>
-              <h3 className="text-white font-mono font-bold text-sm">Transcrição Viva</h3>
+              <h3 className="text-white font-mono font-bold text-sm group-hover:text-[#ffb3ae] transition-colors">Transcrição Viva</h3>
               <p className="text-neutral-400 text-xs leading-relaxed font-sans">
                 Mecanismo de sincronização instantânea em 4ms com busca de termos e salto direto para o segundo exato de cada argumento.
               </p>
             </div>
 
-            <div className="p-5 bg-[#111113] border border-[#262626] space-y-2">
-              <div className="w-8 h-8 rounded bg-[#ff5352]/10 border border-[#ff5352]/30 flex items-center justify-center text-[#ff5352]">
+            <div className="p-5 bg-[#111113] border border-[#262626] border-l-2 border-l-[#ff5352] space-y-2 hover:bg-[#141416] transition-colors group">
+              <div className="w-8 h-8 rounded bg-[#ff5352]/10 border border-[#ff5352]/30 flex items-center justify-center text-[#ff5352] group-hover:bg-[#ff5352]/20 transition-colors">
                 <Download className="w-4 h-4" />
               </div>
-              <h3 className="text-white font-mono font-bold text-sm">Dossiê Monográfico</h3>
+              <h3 className="text-white font-mono font-bold text-sm group-hover:text-[#ffb3ae] transition-colors">Dossiê Monográfico</h3>
               <p className="text-neutral-400 text-xs leading-relaxed font-sans">
                 Exportação de fichamento completo em Markdown com anotações pessoais gravadas ao vivo pelo espectador durante a sessão.
               </p>
@@ -759,6 +783,113 @@ export default function FrameInteractiveVideoCaseStudy({
       </section>
 
       {/* ========================================================================= */}
+      {/* 04.5 DESIGN PROCESS & DECISÕES DE PRODUTO                                */}
+      {/* ========================================================================= */}
+      <section className="py-20 border-b border-[#262626] bg-[#080808]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
+          <div className="max-w-3xl space-y-3">
+            <span className="text-xs font-mono text-[#ffb3ae] uppercase tracking-widest block">
+              04.5 // PROCESSO DE DESIGN & DECISÕES DE PRODUTO
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-mono">
+              Como Cada Decisão de Design Foi Tomada
+            </h2>
+            <p className="text-neutral-400 text-sm leading-relaxed">
+              O FRAME não nasceu de uma ideia de feature. Nasceu de uma frustração repetida: a impossibilidade de consumir vídeo técnico denso sem destruir a concentração. Cada componente foi destilado a partir de um problema concreto de uso real.
+            </p>
+          </div>
+
+          {/* Design Decisions Timeline */}
+          <div className="relative pl-6 border-l border-[#262626] space-y-10">
+
+            <div className="relative">
+              <div className="absolute -left-[29px] w-5 h-5 bg-[#ff5352] border-2 border-[#080808] rounded-full flex items-center justify-center">
+                <span className="text-[8px] font-mono font-black text-white">1</span>
+              </div>
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-xs font-mono font-bold text-[#ff5352] uppercase tracking-widest">Decisão 01</span>
+                  <span className="text-xs font-mono text-neutral-500">Non-Blocking como Requisito de Produto — não Feature</span>
+                </div>
+                <h3 className="text-white font-mono font-bold text-lg">O áudio nunca pode parar.</h3>
+                <p className="text-neutral-300 text-sm font-sans leading-relaxed max-w-3xl">
+                  A premissa central foi estabelecida antes de qualquer wireframe: <strong className="text-white">o cérebro humano processa fala e leitura simultâneas sem colapso cognitivo</strong> — desde que a carga visual seja estruturada lateralmente e não sobreponha o vídeo. Essa decisão ditou toda a arquitetura split-screen do produto.
+                </p>
+                <div className="flex items-center gap-4 pt-1 text-xs font-mono">
+                  <span className="flex items-center gap-1.5 text-neutral-500">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    Princípio validado em literatura de carga cognitiva dual
+                  </span>
+                  <span className="flex items-center gap-1.5 text-neutral-500">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    Padrão: Rail paralelo, nunca sobreposição
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -left-[29px] w-5 h-5 bg-[#ff5352] border-2 border-[#080808] rounded-full flex items-center justify-center">
+                <span className="text-[8px] font-mono font-black text-white">2</span>
+              </div>
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-xs font-mono font-bold text-[#ff5352] uppercase tracking-widest">Decisão 02</span>
+                  <span className="text-xs font-mono text-neutral-500">O Problema da Barra de Progresso Cega</span>
+                </div>
+                <h3 className="text-white font-mono font-bold text-lg">A linha do tempo precisa de semântica, não apenas de geometria.</h3>
+                <p className="text-neutral-300 text-sm font-sans leading-relaxed max-w-3xl">
+                  Ao mapear como usuários interagem com vídeos longos, o padrão de &ldquo;scrubbing por tentativa e erro&rdquo; foi identificado como o maior vetor de perda de foco. A solução foi substituir a barra horizontal lisa por uma <strong className="text-white">régua de nós semânticos categorizados</strong> — onde cada marcador é clicável e exibe uma prévia do conteúdo antes do seek.
+                </p>
+                <div className="p-3 bg-[#111113] border border-[#262626] font-mono text-xs flex items-center gap-3 w-fit">
+                  <AlertCircle className="w-3.5 h-3.5 text-[#ff5352] shrink-0" />
+                  <span className="text-neutral-300">Descartado: barra com cores de capítulo (muito visual noise). Vencedor: nó diamante pontual por timecode.</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -left-[29px] w-5 h-5 bg-[#ff5352] border-2 border-[#080808] rounded-full flex items-center justify-center">
+                <span className="text-[8px] font-mono font-black text-white">3</span>
+              </div>
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-xs font-mono font-bold text-[#ff5352] uppercase tracking-widest">Decisão 03</span>
+                  <span className="text-xs font-mono text-neutral-500">Arquitetura do Knowledge Rail — 5 Abas vs. Painel Único</span>
+                </div>
+                <h3 className="text-white font-mono font-bold text-lg">Separar contexto em abas é uma decisão de hierarquia de atenção, não de organização.</h3>
+                <p className="text-neutral-300 text-sm font-sans leading-relaxed max-w-3xl">
+                  O debate central no processo foi: um painel único scrollável vs. abas separadas para Nós, Capítulos, Transcrição, Debates e Notas. O painel único mostrou-se cognitivamente denso demais em testes de guerrilha. As <strong className="text-white">abas com atalho numérico (1–5)</strong> provaram ser o padrão correto: o usuário escolhe deliberadamente o tipo de informação que quer consumir.
+                </p>
+                <div className="flex gap-2 font-mono text-xs">
+                  {["1 Nós", "2 Capítulos", "3 Transcrição", "4 Debates", "5 Notas"].map((tab) => (
+                    <span key={tab} className="px-2 py-1 bg-[#18181b] border border-[#262626] text-[#ffb3ae]">{tab}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -left-[29px] w-5 h-5 bg-[#ff5352] border-2 border-[#080808] rounded-full flex items-center justify-center">
+                <span className="text-[8px] font-mono font-black text-white">4</span>
+              </div>
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-xs font-mono font-bold text-[#ff5352] uppercase tracking-widest">Decisão 04</span>
+                  <span className="text-xs font-mono text-neutral-500">Exportação em Markdown — por que não PDF?</span>
+                </div>
+                <h3 className="text-white font-mono font-bold text-lg">O pesquisador moderno vive no Obsidian, Notion e GitHub — não em PDF estático.</h3>
+                <p className="text-neutral-300 text-sm font-sans leading-relaxed max-w-3xl">
+                  A escolha por Markdown (.md) sobre PDF foi deliberada: <strong className="text-white">Markdown é portável, editável e pode ser commitado em Git</strong>. Um pesquisador pode exportar o dossiê diretamente para seu vault de notas sem reformatação. O formato inclui timecodes como âncoras de seção, permitindo rastrear cada anotação ao segundo exato de origem.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
       {/* 05. SIMULADOR & COCKPIT INTERATIVO DO PLAYER                              */}
       {/* ========================================================================= */}
       <section id="simulador" className="py-20 border-b border-[#262626] bg-[#080808]">
@@ -1127,68 +1258,100 @@ export default function FrameInteractiveVideoCaseStudy({
             </p>
           </div>
 
-          {/* Metric Goals Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono text-xs">
-            <div className="p-5 bg-[#111113] border border-[#262626] space-y-2">
-              <span className="text-neutral-500 uppercase text-[10px] block">Métrica 01</span>
-              <span className="text-2xl font-bold text-white block">IRM &gt; 1.8</span>
-              <span className="text-[#ffb3ae] text-xs block">Interaction Rate / Min</span>
-              <p className="text-neutral-400 text-[11px] font-sans leading-relaxed pt-1">
-                Frequência de interações nos nós e transcrição sem gerar comandos de pausa de áudio.
-              </p>
-            </div>
-
-            <div className="p-5 bg-[#111113] border border-[#262626] space-y-2">
-              <span className="text-neutral-500 uppercase text-[10px] block">Métrica 02</span>
-              <span className="text-2xl font-bold text-emerald-400 block">+48%</span>
-              <span className="text-white text-xs block">Completion Rate (&gt;15m)</span>
-              <p className="text-neutral-400 text-[11px] font-sans leading-relaxed pt-1">
-                Aumento na taxa de conclusão de vídeos técnicos longos ao eliminar o atrito de abas externas.
-              </p>
-            </div>
-
-            <div className="p-5 bg-[#111113] border border-[#262626] space-y-2">
-              <span className="text-neutral-500 uppercase text-[10px] block">Métrica 03</span>
-              <span className="text-2xl font-bold text-white block">74%</span>
-              <span className="text-[#ffb3ae] text-xs block">Knowledge Rail Discovery</span>
-              <p className="text-neutral-400 text-[11px] font-sans leading-relaxed pt-1">
-                Usuários que utilizam a busca na transcrição para localizar termos técnicos específicos.
-              </p>
-            </div>
-
-            <div className="p-5 bg-[#111113] border border-[#262626] space-y-2">
-              <span className="text-neutral-500 uppercase text-[10px] block">Métrica 04</span>
-              <span className="text-2xl font-bold text-emerald-400 block">41%</span>
-              <span className="text-white text-xs block">Dossier Export Rate</span>
-              <p className="text-neutral-400 text-[11px] font-sans leading-relaxed pt-1">
-                Pesquisadores que exportam o resumo em Markdown com suas anotações pessoais gravadas.
-              </p>
-            </div>
+          {/* Metric Goals with Progress Bars */}
+          <div className="space-y-4 font-mono">
+            {[
+              { label: "Completion Rate (vídeos >15min)", value: 48, suffix: "%", prefix: "+", color: "#ff5352", desc: "Aumento na taxa de conclusão de vídeos técnicos longos ao eliminar o atrito de abas externas.", metric: "02" },
+              { label: "Knowledge Rail Discovery", value: 74, suffix: "%", prefix: "", color: "#ff5352", desc: "Usuários que utilizam a busca na transcrição para localizar termos técnicos específicos.", metric: "03" },
+              { label: "Dossier Export Rate (por sessão)", value: 41, suffix: "%", prefix: "", color: "#ff5352", desc: "Pesquisadores que exportam o resumo em Markdown com suas anotações pessoais gravadas.", metric: "04" },
+              { label: "Audio Continuity (zero pauses)", value: 100, suffix: "%", prefix: "", color: "#13E1BC", desc: "Nenhuma interrupção de áudio registrada durante inspeção de nós no Knowledge Rail.", metric: "01" },
+            ].map((m) => (
+              <div key={m.metric} className="p-5 bg-[#111113] border border-[#262626] space-y-3 group hover:border-[#262626]/80 transition-colors">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-0.5">
+                    <span className="text-[10px] text-neutral-500 uppercase tracking-widest block">Métrica {m.metric}</span>
+                    <span className="text-white text-sm font-bold">{m.label}</span>
+                    <p className="text-neutral-400 text-[11px] font-sans leading-relaxed pt-0.5">{m.desc}</p>
+                  </div>
+                  <span className="text-3xl font-black shrink-0" style={{ color: m.color }}>{m.prefix}{m.value}{m.suffix}</span>
+                </div>
+                <div className="h-1.5 bg-[#1c1c1e] rounded-full overflow-hidden">
+                  <div
+                    className="h-full rounded-full transition-all duration-1000 ease-out"
+                    style={{ width: `${m.value}%`, backgroundColor: m.color, opacity: 0.85 }}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Key Product Learnings */}
-          <div className="p-6 sm:p-8 bg-[#0d0d0f] border border-[#262626] space-y-4">
+          <div className="p-6 sm:p-8 bg-[#0d0d0f] border border-[#262626] space-y-6">
             <h3 className="text-base font-mono font-bold text-white uppercase tracking-wider flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[#ff5352]" />
               <span>Principais Aprendizados de Product Design</span>
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs font-sans text-neutral-300 leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm font-sans text-neutral-300 leading-relaxed">
               <div className="space-y-2">
-                <strong className="text-white font-mono block">1. A interface contextual deve respeitar a hierarquia sensorial:</strong>
-                <p>
+                <strong className="text-white font-mono text-xs uppercase tracking-wider block">1. Hierarquia Sensorial acima de Feature Parity:</strong>
+                <p className="text-neutral-400 text-xs leading-relaxed">
                   O maior erro de interfaces interativas de streaming é disputar a atenção ocular do espectador com animações excessivas. O Knowledge Rail só ganha valor quando opera como uma biblioteca silenciosa ao lado do cinema, permitindo que os olhos façam a varredura quando o cérebro desejar.
                 </p>
               </div>
 
               <div className="space-y-2">
-                <strong className="text-white font-mono block">2. A linha de tempo é um sumário, não apenas um relógio:</strong>
-                <p>
+                <strong className="text-white font-mono text-xs uppercase tracking-wider block">2. A Linha do Tempo é um Sumário, não um Relógio:</strong>
+                <p className="text-neutral-400 text-xs leading-relaxed">
                   Ao tratar a barra de progresso como um artefato semântico com nós categorizados, transformamos o vídeo de uma mídia puramente passiva em um documento navegável, conferindo ao espectador a mesma sensação de folhear os capítulos de um livro técnico.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <strong className="text-white font-mono text-xs uppercase tracking-wider block">3. Exportação como Fechamento de Loop Cognitivo:</strong>
+                <p className="text-neutral-400 text-xs leading-relaxed">
+                  A exportação em Markdown não é uma feature de poder — é um ritual de conclusão. O ato de &ldquo;baixar o dossiê&rdquo; sinaliza ao cérebro que a sessão de estudo foi arquivada e pode ser descartada da memória de trabalho, reduzindo a carga residual pós-sessão.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <strong className="text-white font-mono text-xs uppercase tracking-wider block">4. Atalhos de Teclado são uma Declaração de Posicionamento:</strong>
+                <p className="text-neutral-400 text-xs leading-relaxed">
+                  Suportar uma suíte completa de zero-mouse shortcuts (Espaço, J/L, [/], B, C, F, M) não é acessibilidade avançada — é um sinal ao usuário poder: &ldquo;este produto foi construído para você, que não quer tirar as mãos do teclado enquanto aprende&rdquo;.
                 </p>
               </div>
             </div>
           </div>
+
+          {/* Editorial Closing CTA */}
+          <div className="relative overflow-hidden border border-[#262626] p-8 sm:p-12 bg-[#0a0a0a] text-center space-y-6">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#ff5352]/5 via-transparent to-transparent pointer-events-none" />
+            <div className="relative z-10 space-y-4">
+              <span className="text-xs font-mono text-[#ffb3ae] uppercase tracking-widest block">Estudo Autoral Conceitual // 2024</span>
+              <h3 className="text-2xl sm:text-4xl font-black font-mono text-white leading-tight">
+                O FRAME é um argumento de design.
+              </h3>
+              <p className="text-neutral-400 text-sm font-sans max-w-2xl mx-auto leading-relaxed">
+                Não foi construído para ser lançado — foi construído para demonstrar que uma interface pode respeitar profundamente a atenção humana enquanto entrega densidade informacional máxima. Se você está trabalhando em uma plataforma de vídeo técnico, educação ou documentário, este é o ponto de partida.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <button
+                  onClick={() => scrollToSection("simulador")}
+                  className="px-6 py-2.5 bg-[#ff5352] text-white font-mono text-xs uppercase font-bold hover:bg-[#e04544] transition-colors flex items-center gap-2 shadow-lg shadow-[#ff5352]/20"
+                >
+                  <Play className="w-3.5 h-3.5 fill-white" />
+                  Abrir o Simulador Interativo
+                </button>
+                <button
+                  onClick={() => scrollToSection("overview")}
+                  className="px-6 py-2.5 bg-transparent text-neutral-300 font-mono text-xs uppercase font-bold hover:text-white border border-[#262626] hover:border-[#ff5352] transition-colors"
+                >
+                  ↑ Voltar ao Topo
+                </button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
