@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PULSE — System States</title>
+<!-- Google Fonts: Space Grotesk & Hanken Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed-variant": "#46464b",
+            "on-background": "#e5e2e1",
+            "on-tertiary-fixed": "#1b1b1d",
+            "tertiary-fixed": "#e4e2e4",
+            "surface-bright": "#3a3939",
+            "on-surface": "#e5e2e1",
+            "primary-fixed-dim": "#c6c6c7",
+            "on-surface-variant": "#c4c7c8",
+            "outline": "#8e9192",
+            "primary-fixed": "#e2e2e2",
+            "secondary-container": "#46464b",
+            "secondary-fixed-dim": "#c6c6cb",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#c8c6c8",
+            "on-secondary-container": "#b5b4ba",
+            "surface-container-low": "#1c1b1b",
+            "surface": "#131313",
+            "secondary": "#c6c6cb",
+            "surface-dim": "#131313",
+            "on-error": "#690005",
+            "surface-container-highest": "#353534",
+            "surface-variant": "#353534",
+            "on-primary-fixed": "#1a1c1c",
+            "inverse-surface": "#e5e2e1",
+            "inverse-on-surface": "#313030",
+            "error": "#ffb4ab",
+            "on-secondary": "#2f3034",
+            "primary": "#ffffff",
+            "on-tertiary": "#303032",
+            "tertiary-container": "#e4e2e4",
+            "on-secondary-fixed": "#1a1b1f",
+            "error-container": "#93000a",
+            "outline-variant": "#444748",
+            "on-tertiary-fixed-variant": "#474649",
+            "background": "#131313",
+            "secondary-fixed": "#e3e2e7",
+            "on-primary-fixed-variant": "#454747",
+            "on-tertiary-container": "#656466",
+            "primary-container": "#e2e2e2",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary": "#2f3131",
+            "tertiary": "#ffffff",
+            "surface-tint": "#c6c6c7",
+            "inverse-primary": "#5d5f5f",
+            "surface-container": "#201f1f",
+            "on-primary-container": "#636565",
+            "surface-container-high": "#2a2a2a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Space Grotesk"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "label-sm": ["Space Grotesk"],
+            "body-lg": ["Hanken Grotesk"],
+            "title-md": ["Hanken Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "display": ["Space Grotesk"],
+            "body-sm": ["Hanken Grotesk"],
+            "body-md": ["Hanken Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+            "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "title-md": ["16px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.025em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Hairline aesthetic */
+    .hairline-b { border-bottom: 1px solid #2C2C2E; }
+    .hairline-t { border-top: 1px solid #2C2C2E; }
+    .hairline-box { border: 1px solid #2C2C2E; }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen antialiased selection:bg-primary selection:text-surface">
+<!-- TopAppBar (JSON Shared Component Anchor) -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-space-md h-14 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-space-sm">
+<button aria-label="Search" class="flex items-center justify-center p-1 text-on-surface-variant hover:text-primary transition-colors duration-150 active:opacity-70">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-primary">PULSE</span>
+<span class="h-3 w-[1px] bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase">STATES</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="flex h-2 w-2 rounded-full bg-error animate-pulse"></span>
+<button aria-label="Notifications" class="flex items-center justify-center p-1 text-on-surface-variant hover:text-primary transition-colors duration-150 active:opacity-70">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+</div>
+</header>
+<!-- Segment Filter Bar / State Switchers -->
+<div class="fixed top-14 left-0 w-full z-40 bg-surface-container-lowest/90 backdrop-blur-md px-space-md py-space-sm border-b border-outline-variant">
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-primary text-surface font-semibold transition-all" id="tab-offline" onclick="switchView('offline')">
+        Offline Node
+      </button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-primary hover:border-outline transition-all" id="tab-search" onclick="switchView('search')">
+        Empty Search
+      </button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-primary hover:border-outline transition-all" id="tab-saved" onclick="switchView('saved')">
+        Empty Library
+      </button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-primary hover:border-outline transition-all" id="tab-all" onclick="switchView('all')">
+        Exhibition View
+      </button>
+</div>
+</div>
+<!-- Main Scrollable Content Canvas -->
+<main class="pt-28 pb-24 px-space-md max-w-lg mx-auto w-full space-y-space-lg">
+<!-- METRIC METADATA STRIP -->
+<div class="flex items-center justify-between py-2 border-b border-outline-variant text-outline font-label-sm text-label-sm tracking-wider">
+<span>DIAGNOSTIC TELEMETRY</span>
+<span class="font-mono text-[10px]">ERR_NODE_DISCONNECTED // #0409</span>
+</div>
+<!-- STATE 1: HERO STATE — Offline / Disconnected Network -->
+<section class="space-y-space-md transition-all duration-200" id="state-offline">
+<div class="bg-surface-container-lowest border border-outline-variant p-space-lg rounded-lg relative overflow-hidden">
+<!-- Minimal Graphic Hairline Representation: Disconnected Node Wave -->
+<div class="flex items-center justify-center py-8">
+<div class="relative w-36 h-24 flex items-center justify-center">
+<!-- Background subtle technical grid line -->
+<div class="absolute inset-0 flex items-center justify-center opacity-20">
+<div class="w-full border-b border-dashed border-outline"></div>
+</div>
+<!-- Stark Hairline Wave Vector with Cut / Gap -->
+<svg class="w-full h-full text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 160 80">
+<!-- Left intact signal wave -->
+<path d="M 10 40 Q 25 15, 40 40 T 70 40" stroke-linecap="round" stroke-linejoin="round"></path>
+<!-- Severed node terminal 1 -->
+<circle cx="70" cy="40" fill="#131313" r="3" stroke="currentColor" stroke-width="1.5"></circle>
+<!-- Broken gap slash line indicator -->
+<path d="M 77 28 L 83 52" stroke="#444748" stroke-linecap="round" stroke-width="1.5"></path>
+<!-- Severed node terminal 2 -->
+<circle cx="90" cy="40" fill="#131313" r="3" stroke="currentColor" stroke-width="1.5"></circle>
+<!-- Flatline severed signal -->
+<path d="M 90 40 L 120 40 M 130 40 L 150 40" stroke-dasharray="2 4" stroke-linecap="round"></path>
+</svg>
+<!-- Minimalist warning badge -->
+<div class="absolute -top-2 -right-2 bg-surface-container-high border border-outline-variant px-2 py-0.5 rounded text-[10px] font-mono text-outline uppercase tracking-wider">
+              Null Signal
+            </div>
+</div>
+</div>
+<!-- Typography Block -->
+<div class="space-y-space-xs text-center">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container border border-outline-variant text-[10px] font-label-sm text-outline tracking-wider uppercase mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+            Socket Terminated
+          </div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">
+            Connection severed.
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mx-auto pt-1 leading-relaxed">
+            PULSE could not sync with live community nodes. Your offline cache remains readable, but real-time discussions are paused.
+          </p>
+</div>
+<!-- Action Matrix -->
+<div class="pt-space-lg space-y-2.5">
+<button class="w-full py-3 px-space-md rounded bg-primary text-surface font-headline-sm text-[14px] font-bold tracking-tight hover:bg-primary-fixed transition-colors active:scale-[0.99] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Retry Handshake</span>
+</button>
+<button class="w-full py-3 px-space-md rounded bg-transparent border border-outline-variant text-primary font-headline-sm text-[14px] font-medium tracking-tight hover:bg-surface-container transition-colors active:scale-[0.99] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+<span>Browse Cached Signal</span>
+</button>
+</div>
+<!-- Node Diagnostics Footer -->
+<div class="mt-6 pt-3 border-t border-outline-variant/50 flex items-center justify-between text-[11px] font-mono text-outline">
+<span>HOST: mesh.pulse.internal</span>
+<span class="text-on-surface-variant">PACKET_LOSS: 100%</span>
+</div>
+</div>
+</section>
+<!-- STATE 2: Empty Search Results Card -->
+<section class="space-y-space-sm transition-all duration-200" id="state-search">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Query Results</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">0 matches</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-space-md rounded-lg space-y-4">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded border border-outline-variant bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-outline text-[20px]">search_off</span>
+</div>
+<div class="space-y-1">
+<h2 class="font-headline-sm text-headline-sm text-primary tracking-tight">
+              No signal found for <span class="text-primary font-mono bg-surface-container-high px-1 py-0.5 rounded text-[14px]">"quantum skeuomorphism"</span>
+</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              The index contains no essays, threads, or curated nodes matching this exact semantic expression.
+            </p>
+</div>
+</div>
+<!-- Suggestion Chips Section -->
+<div class="pt-2 border-t border-outline-variant/60 space-y-2">
+<span class="font-label-sm text-[10px] text-outline tracking-wider uppercase block">Suggested queries</span>
+<div class="flex flex-wrap gap-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface border border-outline-variant font-label-md text-label-md text-on-surface hover:text-primary hover:border-outline transition-colors">
+<span class="text-outline text-[11px]">#</span> GenerativeDesign
+            </button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface border border-outline-variant font-label-md text-label-md text-on-surface hover:text-primary hover:border-outline transition-colors">
+<span class="text-outline text-[11px]">c/</span> BrutalistForm
+            </button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface border border-outline-variant font-label-md text-label-md text-on-surface-variant hover:text-primary hover:border-outline transition-colors">
+              browse trending topics →
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- STATE 3: Zero Saved Items Preview Box -->
+<section class="space-y-space-sm transition-all duration-200" id="state-saved">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Archive &amp; Stacks</span>
+<span class="font-mono text-[10px] text-outline">INDEX: NULL</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-space-md rounded-lg relative">
+<div class="flex flex-col items-center text-center py-4 space-y-3">
+<!-- Bookmark badge icon -->
+<div class="w-11 h-11 rounded-full border border-outline-variant bg-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-[22px]">bookmark_border</span>
+</div>
+<div class="space-y-1 max-w-xs">
+<h3 class="font-headline-sm text-headline-sm text-primary tracking-tight">
+              Your library is empty.
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Bookmark discussions, essays, and salons to reference later. Saved dispatches sync automatically across nodes.
+            </p>
+</div>
+<div class="pt-2 w-full">
+<button class="w-full py-2.5 px-space-md rounded bg-surface-container-high border border-outline-variant text-primary font-headline-sm text-[13px] font-semibold hover:border-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">dynamic_feed</span>
+<span>Explore Feed</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- System Status Micro-Footer -->
+<div class="py-4 text-center border-t border-outline-variant/40 text-outline space-y-1">
+<div class="flex items-center justify-center gap-2 font-mono text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+<span>PULSE OPERATIONAL KERNEL V2.4.1</span>
+</div>
+<p class="font-label-sm text-[10px] tracking-widest text-outline uppercase">
+        Editorial Monochromatic Architecture
+      </p>
+</div>
+</main>
+<!-- Bottom Navigation Bar (JSON Shared Component Anchor) -->
+<!-- Mapped destination: 'Discover' or 'Home' depending on browse context; 'Home' is active as primary root view -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around px-space-sm h-16 bg-surface border-t border-outline-variant">
+<button class="flex flex-col items-center justify-center text-primary font-bold hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[20px]">dynamic_feed</span>
+<span class="font-label-sm text-label-sm mt-0.5">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[20px]">explore</span>
+<span class="font-label-sm text-label-sm mt-0.5">Discover</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[20px]">add_box</span>
+<span class="font-label-sm text-label-sm mt-0.5">Create</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+<span class="font-label-sm text-label-sm mt-0.5">Communities</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span class="font-label-sm text-label-sm mt-0.5">Profile</span>
+</button>
+</nav>
+<!-- Interactive State Switcher Logic -->
+<script>
+    function switchView(stateKey) {
+      const secOffline = document.getElementById('state-offline');
+      const secSearch = document.getElementById('state-search');
+      const secSaved = document.getElementById('state-saved');
+
+      const tabs = ['offline', 'search', 'saved', 'all'];
+      tabs.forEach(key => {
+        const btn = document.getElementById('tab-' + key);
+        if (key === stateKey) {
+          btn.className = "whitespace-nowrap px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-primary text-surface font-semibold transition-all";
+        } else {
+          btn.className = "whitespace-nowrap px-3 py-1.5 rounded-full font-label-sm text-label-sm bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-primary hover:border-outline transition-all";
+        }
+      });
+
+      if (stateKey === 'offline') {
+        secOffline.classList.remove('hidden');
+        secSearch.classList.add('hidden');
+        secSaved.classList.add('hidden');
+      } else if (stateKey === 'search') {
+        secOffline.classList.add('hidden');
+        secSearch.classList.remove('hidden');
+        secSaved.classList.add('hidden');
+      } else if (stateKey === 'saved') {
+        secOffline.classList.add('hidden');
+        secSearch.classList.add('hidden');
+        secSaved.classList.remove('hidden');
+      } else {
+        // Exhibition mode: Show all states in vertical exhibition layout
+        secOffline.classList.remove('hidden');
+        secSearch.classList.remove('hidden');
+        secSaved.classList.remove('hidden');
+      }
+    }
+  </script>
+</body></html>

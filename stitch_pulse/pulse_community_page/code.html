@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>c/BrutalistForm — PULSE Community</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=Space+Grotesk:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed-variant": "#46464b",
+            "on-background": "#e5e2e1",
+            "on-tertiary-fixed": "#1b1b1d",
+            "tertiary-fixed": "#e4e2e4",
+            "surface-bright": "#3a3939",
+            "on-surface": "#e5e2e1",
+            "primary-fixed-dim": "#c6c6c7",
+            "on-surface-variant": "#c4c7c8",
+            "outline": "#8e9192",
+            "primary-fixed": "#e2e2e2",
+            "secondary-container": "#46464b",
+            "secondary-fixed-dim": "#c6c6cb",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#c8c6c8",
+            "on-secondary-container": "#b5b4ba",
+            "surface-container-low": "#1c1b1b",
+            "surface": "#131313",
+            "secondary": "#c6c6cb",
+            "surface-dim": "#131313",
+            "on-error": "#690005",
+            "surface-container-highest": "#353534",
+            "surface-variant": "#353534",
+            "on-primary-fixed": "#1a1c1c",
+            "inverse-surface": "#e5e2e1",
+            "inverse-on-surface": "#313030",
+            "error": "#ffb4ab",
+            "on-secondary": "#2f3034",
+            "primary": "#ffffff",
+            "on-tertiary": "#303032",
+            "tertiary-container": "#e4e2e4",
+            "on-secondary-fixed": "#1a1b1f",
+            "error-container": "#93000a",
+            "outline-variant": "#444748",
+            "on-tertiary-fixed-variant": "#474649",
+            "background": "#131313",
+            "secondary-fixed": "#e3e2e7",
+            "on-primary-fixed-variant": "#454747",
+            "on-tertiary-container": "#656466",
+            "primary-container": "#e2e2e2",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary": "#2f3131",
+            "tertiary": "#ffffff",
+            "surface-tint": "#c6c6c7",
+            "inverse-primary": "#5d5f5f",
+            "surface-container": "#201f1f",
+            "on-primary-container": "#636565",
+            "surface-container-high": "#2a2a2a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Space Grotesk"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "label-sm": ["Space Grotesk"],
+            "body-lg": ["Hanken Grotesk"],
+            "title-md": ["Hanken Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "display": ["Space Grotesk"],
+            "body-sm": ["Hanken Grotesk"],
+            "body-md": ["Hanken Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+            "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "title-md": ["16px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.025em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased selection:bg-primary selection:text-surface">
+<!-- TOP APP BAR -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-space-md h-14 bg-surface border-b border-outline-variant">
+<div class="flex items-center space-x-space-sm">
+<button aria-label="Search" class="flex items-center justify-center w-8 h-8 rounded text-on-surface-variant hover:text-primary transition-colors duration-150 active:opacity-70">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-primary">
+      PULSE
+    </div>
+<div class="flex items-center space-x-space-sm">
+<button aria-label="Notifications" class="flex items-center justify-center w-8 h-8 rounded text-on-surface-variant hover:text-primary transition-colors duration-150 active:opacity-70">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- MAIN SCROLLABLE CONTENT CANVAS -->
+<main class="pt-14 pb-24 max-w-xl mx-auto w-full min-h-screen">
+<!-- COMMUNITY BANNER -->
+<div class="relative w-full h-44 bg-surface-container-low overflow-hidden border-b border-outline-variant">
+<div class="w-full h-full bg-cover bg-center grayscale contrast-125 opacity-70" data-alt="Monochrome architectural study featuring massive textured raw concrete slabs and sharp angular geometric intersections under overcast sky. The image has an ultra-minimal editorial contrast with deep black shadows, stark greys, and crisp white edges. The composition evokes structural discipline, monumental brutalism, and quiet institutional permanence." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZqUo_kVERzCgHuaa9e5YePDfutsTZ3wk-BNUFAdabVcp0mkFgixE4kpVoYFWXeYnHyOUKZFIDYLyE280WJBAKx7JNMLXXT0JSQnk72u9YrRrROnR2pEKq2EEgVWcMhnfAoyBekZXAW_hhiU24urE6UPgiPITcdMvYnpVC4KnO9iChraO09CxJgnrjQCGdRu2YCFa0DVu3mf2i2LR-dCMeVFis80XvEHlmpsv6zvL4Z_J7XnaPIEbP')">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/40 to-transparent"></div>
+<!-- Monolithic Category Stamp -->
+<div class="absolute top-4 left-4">
+<span class="px-2 py-1 bg-surface/90 border border-outline-variant font-label-sm text-label-sm text-on-surface uppercase tracking-widest backdrop-blur-sm">
+          INDEX // ARCH-01
+        </span>
+</div>
+<!-- Quick Action Controls Top Right -->
+<div class="absolute top-4 right-4 flex items-center space-x-2">
+<button aria-label="Community options" class="w-8 h-8 flex items-center justify-center rounded bg-surface/80 border border-outline-variant text-on-surface hover:text-primary transition-colors duration-150 active:opacity-70 backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- COMMUNITY PROFILE IDENTIFIER -->
+<div class="px-space-md pt-4 pb-6 bg-surface border-b border-outline-variant">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-3">
+<!-- Community Symbol Icon Tile -->
+<div class="w-14 h-14 bg-surface-container-high border border-outline-variant rounded flex items-center justify-center text-primary font-headline-md font-bold tracking-tighter">
+<span class="material-symbols-outlined text-2xl" data-icon="apartment">apartment</span>
+</div>
+<div>
+<div class="flex items-center space-x-1.5">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-primary">
+                c/BrutalistForm
+              </h1>
+<span class="material-symbols-outlined text-sm text-primary" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-label-sm text-label-sm text-outline tracking-wider uppercase">
+              EST. 2021 · MONOLITHIC DISCOURSE
+            </p>
+</div>
+</div>
+<!-- Membership & Alert Controls -->
+<div class="flex items-center space-x-2 mt-1">
+<button aria-label="Notification alerts" class="w-9 h-9 flex items-center justify-center rounded border border-outline-variant bg-surface-container-low text-on-surface hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="notifications_active">notifications_active</span>
+</button>
+<button class="h-9 px-4 rounded border border-outline-variant bg-surface-container-low text-primary font-label-md text-label-md flex items-center space-x-1.5 hover:border-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="check">check</span>
+<span>Joined</span>
+</button>
+</div>
+</div>
+<!-- Editorial Community Subtitle -->
+<p class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        Architectural minimalism, raw concrete, heavy typography, and geometric discipline. A dedicated registry for modular systems and structural honesty.
+      </p>
+<!-- Key Quantitative Metrics -->
+<div class="mt-5 grid grid-cols-3 gap-2 border-t border-outline-variant pt-4">
+<div>
+<div class="font-headline-sm text-headline-sm text-primary font-bold">42.8k</div>
+<div class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Members</div>
+</div>
+<div>
+<div class="flex items-center space-x-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">1.2k</span>
+</div>
+<div class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Online Now</div>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-primary font-bold">#1 Arch</div>
+<div class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Ranked Tier</div>
+</div>
+</div>
+<!-- Curators & Moderators Strip -->
+<div class="mt-5 pt-3 border-t border-outline-variant flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Curators:</span>
+<div class="flex items-center space-x-3">
+<div class="flex items-center space-x-1">
+<div class="w-5 h-5 rounded-full bg-surface-bright border border-outline-variant flex items-center justify-center font-label-sm text-primary">K</div>
+<span class="font-body-sm text-body-sm text-on-surface">K. Sorenson</span>
+</div>
+<span class="text-outline-variant font-label-sm">/</span>
+<div class="flex items-center space-x-1">
+<div class="w-5 h-5 rounded-full bg-surface-bright border border-outline-variant flex items-center justify-center font-label-sm text-primary">M</div>
+<span class="font-body-sm text-body-sm text-on-surface">M. Vance</span>
+</div>
+<span class="text-outline-variant font-label-sm hidden sm:inline">/</span>
+<div class="hidden sm:flex items-center space-x-1">
+<div class="w-5 h-5 rounded-full bg-surface-bright border border-outline-variant flex items-center justify-center font-label-sm text-primary">S</div>
+<span class="font-body-sm text-body-sm text-on-surface">Studio Noir</span>
+</div>
+</div>
+</div>
+<button class="font-label-sm text-label-sm text-outline hover:text-primary transition-colors duration-150 uppercase tracking-widest">
+          View All
+        </button>
+</div>
+</div>
+<!-- COMMUNITY NAVIGATION TABS -->
+<div class="sticky top-14 z-40 bg-surface border-b border-outline-variant">
+<nav aria-label="Community Subtabs" class="flex items-center px-space-md overflow-x-auto no-scrollbar">
+<button class="py-3.5 px-3 border-b-2 border-primary text-primary font-label-md text-label-md whitespace-nowrap tracking-wider uppercase transition-colors duration-150">
+          Featured
+        </button>
+<button class="py-3.5 px-3 border-b-2 border-transparent text-on-surface-variant hover:text-primary font-label-md text-label-md whitespace-nowrap tracking-wider uppercase transition-colors duration-150">
+          Discussions
+        </button>
+<button class="py-3.5 px-3 border-b-2 border-transparent text-on-surface-variant hover:text-primary font-label-md text-label-md whitespace-nowrap tracking-wider uppercase transition-colors duration-150">
+          Visuals
+        </button>
+<button class="py-3.5 px-3 border-b-2 border-transparent text-on-surface-variant hover:text-primary font-label-md text-label-md whitespace-nowrap tracking-wider uppercase transition-colors duration-150">
+          Rules & Manifesto
+        </button>
+</nav>
+</div>
+<!-- CONTENT FEED STREAM -->
+<div class="px-space-md py-space-md space-y-space-md">
+<!-- PINNED EDITORIAL MANIFESTO CARD -->
+<article class="p-space-md bg-surface border border-outline-variant rounded relative group hover:border-primary transition-colors duration-200">
+<div class="flex items-center justify-between pb-3 mb-3 border-b border-outline-variant">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="push_pin" data-weight="fill" style="font-variation-settings: 'FILL' 1;">push_pin</span>
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-widest">
+              PINNED EDITORIAL MANIFESTO
+            </span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">EDITION 09</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary tracking-tight leading-snug">
+          On the permanence of raw materials: Why digital design is experiencing its own brutalist resurgence.
+        </h2>
+<p class="mt-2.5 font-body-md text-body-md text-on-surface-variant line-clamp-3">
+          Saturated gradients and artificial gloss have produced cognitive fatigue. Just as mid-century architecture resisted ornamental Victorian frivolity with exposed aggregate, the current vanguard of spatial design returns to cold hairlines, pure monochrome tonalities, and unabashed structural integrity.
+        </p>
+<!-- Manifesto Visual Asset -->
+<div class="mt-4 w-full h-48 bg-surface-container-low border border-outline-variant rounded overflow-hidden">
+<div class="w-full h-full bg-cover bg-center grayscale hover:scale-105 transition-transform duration-300" data-alt="High contrast editorial black and white photograph of an imposing brutalist library interior with cast concrete staircase geometries and filtered natural daylight beams. The composition emphasizes texture, deep shadow contrasts, and sharp architectural symmetry with zero chromatic saturation." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-FQg7qbWANjeZz2Drct1KdATMNIp4fylnVx0cRdQCOrfEAPMCTMquqfY7L7_ZMZAgH11bF73SdqGK6yMGta6xIUevRI7UwbLczV6DqOxhs3n2sGbLPiZfo9A0e5U98190uTz0b7bvhDJQD0pcnav3Rhv9KuEYmACjJnbylsW2hmWY4zLlULbDbdM4aTFI3XH3PxZyjPUvmrEDFpOV60K7ua5FBnPZKO4T5tEsVc5pzm2aQI25mV8j')">
+</div>
+</div>
+<!-- Manifesto Metrics Footer -->
+<div class="mt-4 pt-3 flex items-center justify-between border-t border-outline-variant text-outline font-label-sm text-label-sm">
+<div class="flex items-center space-x-4">
+<span class="flex items-center space-x-1 hover:text-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="mode_comment">mode_comment</span>
+<span>184 comments</span>
+</span>
+<span class="flex items-center space-x-1 hover:text-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="workspace_premium">workspace_premium</span>
+<span>24 community awards</span>
+</span>
+</div>
+<button aria-label="Share manifesto" class="flex items-center space-x-1 text-on-surface-variant hover:text-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="ios_share">ios_share</span>
+</button>
+</div>
+</article>
+<!-- SECTION SEPARATOR: RECENT DISCOURSE -->
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 bg-primary rounded-full"></span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">LATEST DISCOURSE</span>
+</div>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary tracking-wider uppercase flex items-center space-x-1 transition-colors duration-150">
+<span>Sort: Top</span>
+<span class="material-symbols-outlined text-xs" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+<!-- RECENT POST UNIT: FIELD STUDY -->
+<article class="p-space-md bg-surface border border-outline-variant rounded space-y-3">
+<!-- Post Header / Author Meta -->
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-7 h-7 rounded-full bg-surface-bright border border-outline-variant flex items-center justify-center font-label-sm font-bold text-primary">
+              BV
+            </div>
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="font-title-md text-title-md text-primary font-bold">b_vance</span>
+<span class="font-label-sm text-label-sm text-outline uppercase">· Arch. Fellow</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">3 hours ago</span>
+</div>
+</div>
+<button aria-label="Post actions" class="text-outline hover:text-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-base" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Post Headline & Context -->
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-primary">
+            Field study: High-density modular structures in Berlin (1968–1974)
+          </h3>
+<p class="mt-1 font-body-md text-body-md text-on-surface-variant">
+            Documenting the structural joints of the Märkisches Viertel. Notice the deliberate lack of exterior cladding, framing the concrete precast panel seams as primary rhythmic ornamentation.
+          </p>
+</div>
+<!-- Inline Media Asset Grid -->
+<div class="grid grid-cols-2 gap-2 pt-1">
+<div class="h-36 bg-surface-container-low border border-outline-variant rounded overflow-hidden">
+<div class="w-full h-full bg-cover bg-center grayscale hover:scale-105 transition-transform duration-200" data-alt="Editorial black and white architectural detail of modular precast concrete facade panels with geometric balconies and rhythmic structural grid patterns in Berlin. Overcast flat diffuse lighting highlighting cold aggregate texture and pristine geometric alignment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBESU5LVN2zaZpxDuFIg7FYNQMeBtLfnqRpYn7BY8jUc6is9wd__Tq9vljr2Ezqy6wDiOiqlSlzuZdR4xxDQ0MvUU93Z5JGG3n4M2j4Q5PGaFwrIuoJ53eA6vdSq_wDCGIRB7teCGl3DAyqMWT_GVCre-FIedaaOGmQ_knVcOqD8CWTisjBZDMGEyIcICM4L7i0f8IiGcRXSQJgsr9yCzveVwazWZ_WRPgkR7-TwsQ4y-5AnCGpY2lH')">
+</div>
+</div>
+<div class="h-36 bg-surface-container-low border border-outline-variant rounded overflow-hidden">
+<div class="w-full h-full bg-cover bg-center grayscale hover:scale-105 transition-transform duration-200" data-alt="Sharp monochrome macro close-up of a raw concrete construction joint and steel bolt bracket displaying tactile surface imperfections and clean modernist lines. Monochromatic editorial lighting with harsh shadows and industrial clarity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCU7X2yMdElXQMO66cr8oPdTq70ehZywFH-S-hJRqdGZ6djiGjIYO02KngSNCtaeOcKG8bpUdDKGAAiX3n-53grzci3sMdHsOwvh1Z_GBFjCCb0NdQ-Z01t4x-5sR2ocW1-iqpL8JjSZkYckAguQitHzunXdXgyKAXIO6R9y0vA0kwrUR2jmts7Z50_PKvWtUP2hegaD89lhZ0xucXBE2VNScQwPggiQKb8q-Jn1zCun6VvAczU8STa')">
+</div>
+</div>
+</div>
+<!-- Inline Comments Preview Pod -->
+<div class="bg-surface-container-lowest p-3 rounded border border-outline-variant space-y-2 mt-2">
+<div class="flex items-start space-x-2">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">j_krebs:</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              The aggregate used in block B was sourced locally from the Spree riverbed. Truly site-specific engineering.
+            </p>
+</div>
+<div class="flex items-start space-x-2 border-t border-outline-variant pt-2">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">arch_mono:</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Notice how the recessed window lintels act as passive water runoffs without interrupting the facade silhouette.
+            </p>
+</div>
+</div>
+<!-- Post Reactions & Interaction Bar -->
+<div class="pt-2 flex items-center justify-between border-t border-outline-variant text-outline font-label-sm text-label-sm">
+<div class="flex items-center space-x-5">
+<button class="flex items-center space-x-1.5 hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-base" data-icon="north">north</span>
+<span class="font-headline-sm text-headline-sm text-primary">412</span>
+</button>
+<button class="flex items-center space-x-1.5 hover:text-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-base" data-icon="mode_comment">mode_comment</span>
+<span>48</span>
+</button>
+<button class="flex items-center space-x-1.5 hover:text-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-base" data-icon="bookmark_border">bookmark_border</span>
+<span>Save</span>
+</button>
+</div>
+<button aria-label="Share post" class="hover:text-primary transition-colors duration-150">
+<span class="material-symbols-outlined text-base" data-icon="share">share</span>
+</button>
+</div>
+</article>
+<!-- SECONDARY DISCUSSION PROMPT -->
+<article class="p-space-md bg-surface border border-outline-variant rounded">
+<div class="flex items-center justify-between pb-2">
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center font-label-sm text-primary">
+              T
+            </div>
+<span class="font-title-md text-title-md text-primary font-bold">t_weber</span>
+<span class="font-label-sm text-label-sm text-outline">· 6h ago</span>
+</div>
+<span class="px-2 py-0.5 rounded border border-outline-variant text-outline font-label-sm text-label-sm uppercase">Poll</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-primary mt-1">
+          Are chamfered edges an ideological compromise to strict geometric brutalism?
+        </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">
+          294 votes recorded across the collective over 24 hours.
+        </p>
+</article>
+</div>
+<!-- FLOATING CREATE POST ACTION BUTTON -->
+<div class="fixed bottom-20 right-4 z-40 max-w-xl mx-auto">
+<button aria-label="Create Community Post" class="flex items-center space-x-2 px-4 py-3 rounded bg-primary text-surface font-headline-sm text-headline-sm font-bold shadow-lg hover:bg-primary-fixed transition-all duration-150 active:scale-95">
+<span class="material-symbols-outlined text-xl" data-icon="edit_square">edit_square</span>
+<span class="tracking-tight">Create Post</span>
+</button>
+</div>
+</main>
+<!-- BOTTOM NAV BAR -->
+<!-- Contextual State: Communities tab active based on Screen 4 community identity -->
+<nav aria-label="Primary Mobile Navigation" class="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around px-space-sm h-16 bg-surface border-t border-outline-variant">
+<!-- Item 1: Home (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="dynamic_feed">dynamic_feed</span>
+<span class="font-label-sm text-label-sm mt-0.5">Home</span>
+</a>
+<!-- Item 2: Discover (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="explore">explore</span>
+<span class="font-label-sm text-label-sm mt-0.5">Discover</span>
+</a>
+<!-- Item 3: Create (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="add_box">add_box</span>
+<span class="font-label-sm text-label-sm mt-0.5">Create</span>
+</a>
+<!-- Item 4: Communities (ACTIVE TAB) -->
+<a aria-current="page" class="flex flex-col items-center justify-center text-primary font-bold hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="hub" data-weight="fill" style="font-variation-settings: 'FILL' 1;">hub</span>
+<span class="font-label-sm text-label-sm mt-0.5">Communities</span>
+</a>
+<!-- Item 5: Profile (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm mt-0.5">Profile</span>
+</a>
+</nav>
+</body></html>

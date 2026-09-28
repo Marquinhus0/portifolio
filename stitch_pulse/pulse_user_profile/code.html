@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PULSE — Curator Profile</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..700;1,300..700&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed-variant": "#46464b",
+            "on-background": "#e5e2e1",
+            "on-tertiary-fixed": "#1b1b1d",
+            "tertiary-fixed": "#e4e2e4",
+            "surface-bright": "#3a3939",
+            "on-surface": "#e5e2e1",
+            "primary-fixed-dim": "#c6c6c7",
+            "on-surface-variant": "#c4c7c8",
+            "outline": "#8e9192",
+            "primary-fixed": "#e2e2e2",
+            "secondary-container": "#46464b",
+            "secondary-fixed-dim": "#c6c6cb",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#c8c6c8",
+            "on-secondary-container": "#b5b4ba",
+            "surface-container-low": "#1c1b1b",
+            "surface": "#131313",
+            "secondary": "#c6c6cb",
+            "surface-dim": "#131313",
+            "on-error": "#690005",
+            "surface-container-highest": "#353534",
+            "surface-variant": "#353534",
+            "on-primary-fixed": "#1a1c1c",
+            "inverse-surface": "#e5e2e1",
+            "inverse-on-surface": "#313030",
+            "error": "#ffb4ab",
+            "on-secondary": "#2f3034",
+            "primary": "#ffffff",
+            "on-tertiary": "#303032",
+            "tertiary-container": "#e4e2e4",
+            "on-secondary-fixed": "#1a1b1f",
+            "error-container": "#93000a",
+            "outline-variant": "#444748",
+            "on-tertiary-fixed-variant": "#474649",
+            "background": "#131313",
+            "secondary-fixed": "#e3e2e7",
+            "on-primary-fixed-variant": "#454747",
+            "on-tertiary-container": "#656466",
+            "primary-container": "#e2e2e2",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary": "#2f3131",
+            "tertiary": "#ffffff",
+            "surface-tint": "#c6c6c7",
+            "inverse-primary": "#5d5f5f",
+            "surface-container": "#201f1f",
+            "on-primary-container": "#636565",
+            "surface-container-high": "#2a2a2a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Space Grotesk"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "label-sm": ["Space Grotesk"],
+            "body-lg": ["Hanken Grotesk"],
+            "title-md": ["Hanken Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "display": ["Space Grotesk"],
+            "body-sm": ["Hanken Grotesk"],
+            "body-md": ["Hanken Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["26px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500"}],
+            "body-lg": ["17px", {"lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+            "title-md": ["16px", {"lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "600"}],
+            "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "display": ["44px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+            "body-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400"}],
+            "body-md": ["15px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600"}],
+            "headline-lg": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.025em", "fontWeight": "700"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary selection:text-background">
+<!-- TOP APP BAR -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-space-md h-14 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant">
+<button aria-label="Settings" class="text-on-surface hover:text-primary dark:hover:text-primary transition-colors duration-150 active:opacity-70 flex items-center justify-center p-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+</button>
+<div class="flex items-center space-x-1.5">
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight">@kaelenvance</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary" title="Signal Active"></span>
+</div>
+<button aria-label="Share Profile" class="text-on-surface hover:text-primary dark:hover:text-primary transition-colors duration-150 active:opacity-70 flex items-center justify-center p-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="ios_share">ios_share</span>
+</button>
+</header>
+<!-- MAIN SCROLLABLE CONTENT CANVAS -->
+<main class="flex-1 w-full max-w-[640px] mx-auto pt-14 pb-20 px-space-md">
+<!-- PROFILE HEADER BLOCK -->
+<section class="pt-space-lg pb-space-md">
+<div class="flex items-start justify-between">
+<!-- Avatar with Hairline Outline -->
+<div class="relative">
+<div class="w-20 h-20 rounded-full border border-primary p-0.5 bg-surface-container-lowest overflow-hidden flex items-center justify-center">
+<img alt="Kaelen Vance" class="w-full h-full object-cover rounded-full filter grayscale contrast-125" data-alt="A striking high-contrast black and white editorial studio portrait of a refined architect with sharp lighting and clean shadows against an obsidian graphite gallery wall. The subject has an intellectual, focused gaze, framed in minimalist monochrome tones of pure white and deep charcoal with sleek brutalist studio framing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtEQafDuZ-YLZXLIWnbZBinAXgHGOKXkRh5-Lb9P_uYQJ8a6lHUez3IhF7UiWkCu9pCu0KEbLXYClIajDuct6c6XyMBHY2iHD2KSbNcV30UPg1I2pGuQ9tSe2golHWz4rV5TIcnWafd4G7f1Otj1FffU71v7yGh8PiSlwL3osy_2bZkbOlE_erzlyn_YrKNgPEdDetBNBFXc2HXXVrYB9IR0XP7XLbnNrFl1pDSiz-FsUn_wSHGdge"/>
+</div>
+<span class="absolute bottom-0 right-0 p-1 bg-surface border border-outline-variant rounded-full flex items-center justify-center text-primary" title="Curator Verified">
+<span class="material-symbols-outlined text-[13px]" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+</span>
+</div>
+<!-- Metric Signal Counter (Bento Tile Style) -->
+<div class="flex flex-col items-end pt-1">
+<div class="px-2.5 py-1 rounded bg-surface-container border border-outline-variant flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary uppercase">SIGNAL NODE</span>
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight">14.2k</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline mt-1 tracking-wider uppercase">Tier 01 Archival</span>
+</div>
+</div>
+<!-- Identity & Title -->
+<div class="mt-space-md">
+<div class="flex items-center space-x-2">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">Kaelen Vance</h1>
+</div>
+<p class="font-label-md text-label-md text-outline mt-0.5">Berlin / London · Fellow at Architectural Association</p>
+</div>
+<!-- Bio -->
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm leading-relaxed">
+        Architect &amp; Computational Theorist. Investigating monolithic structures, generative typography, and sovereign offline data protocols.
+      </p>
+<!-- Key Data Points / Metrics Grid -->
+<div class="grid grid-cols-4 gap-2 mt-space-md py-space-sm px-space-sm bg-surface-container-lowest border border-outline-variant rounded-lg">
+<div class="flex flex-col items-center justify-center text-center">
+<span class="font-headline-sm text-headline-sm text-primary">14.2k</span>
+<span class="font-label-sm text-label-sm text-outline">Signal</span>
+</div>
+<div class="flex flex-col items-center justify-center text-center border-l border-outline-variant">
+<span class="font-headline-sm text-headline-sm text-primary">18</span>
+<span class="font-label-sm text-label-sm text-outline">Nodes</span>
+</div>
+<div class="flex flex-col items-center justify-center text-center border-l border-outline-variant">
+<span class="font-headline-sm text-headline-sm text-primary">842</span>
+<span class="font-label-sm text-label-sm text-outline">Curations</span>
+</div>
+<div class="flex flex-col items-center justify-center text-center border-l border-outline-variant">
+<span class="font-headline-sm text-headline-sm text-primary">3.1k</span>
+<span class="font-label-sm text-label-sm text-outline">Followers</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center space-x-space-sm mt-space-md">
+<button class="flex-1 py-2 px-space-md rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-surface transition-all duration-150 active:scale-95 text-center flex items-center justify-center space-x-1.5">
+<span class="material-symbols-outlined text-[15px]" data-icon="edit">edit</span>
+<span>Edit Profile</span>
+</button>
+<button class="flex-1 py-2 px-space-md rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-secondary-fixed transition-all duration-150 active:scale-95 text-center flex items-center justify-center space-x-1.5">
+<span class="material-symbols-outlined text-[15px]" data-icon="send">send</span>
+<span>Share Signal</span>
+</button>
+</div>
+</section>
+<!-- PINNED INTERESTS & TOPIC CHIPS -->
+<section class="py-space-md border-t border-outline-variant">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Focus Vectors</span>
+<span class="material-symbols-outlined text-outline text-[16px]" data-icon="tune">tune</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container border border-outline-variant rounded-full font-label-sm text-label-sm text-primary tracking-wide">
+          Brutalist Architecture
+        </span>
+<span class="px-3 py-1 bg-surface-container border border-outline-variant rounded-full font-label-sm text-label-sm text-primary tracking-wide">
+          Generative Typography
+        </span>
+<span class="px-3 py-1 bg-surface-container border border-outline-variant rounded-full font-label-sm text-label-sm text-primary tracking-wide">
+          Distributed Systems
+        </span>
+<span class="px-3 py-1 bg-surface-container border border-outline-variant rounded-full font-label-sm text-label-sm text-primary tracking-wide">
+          Ambient Sound
+        </span>
+</div>
+</section>
+<!-- PROFILE CONTENT TABS -->
+<nav aria-label="Profile Sections" class="border-y border-outline-variant flex items-center overflow-x-auto no-scrollbar">
+<button class="py-3 px-3 font-label-md text-label-md text-primary border-b-2 border-primary whitespace-nowrap flex items-center space-x-1.5">
+<span>Discussions</span>
+<span class="font-label-sm text-label-sm opacity-70">(42)</span>
+</button>
+<button class="py-3 px-3 font-label-md text-label-md text-outline hover:text-primary transition-colors whitespace-nowrap flex items-center space-x-1.5">
+<span>Curated Nodes</span>
+<span class="font-label-sm text-label-sm opacity-50">(18)</span>
+</button>
+<button class="py-3 px-3 font-label-md text-label-md text-outline hover:text-primary transition-colors whitespace-nowrap flex items-center space-x-1.5">
+<span>Saved</span>
+<span class="font-label-sm text-label-sm opacity-50">(128)</span>
+</button>
+<button class="py-3 px-3 font-label-md text-label-md text-outline hover:text-primary transition-colors whitespace-nowrap">
+<span>Echoes</span>
+</button>
+</nav>
+<!-- FEED LIST OF USER'S POSTS -->
+<div class="divide-y divide-outline-variant">
+<!-- ITEM 1: Barbican Architectural Discourse -->
+<article class="py-space-md group">
+<header class="flex items-center justify-between text-outline text-label-sm font-label-sm mb-2">
+<div class="flex items-center space-x-2">
+<span class="text-primary font-label-md">ARCH_NODE // 09</span>
+<span>·</span>
+<time>4h ago</time>
+</div>
+<button aria-label="Actions" class="text-outline hover:text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="more_horiz">more_horiz</span>
+</button>
+</header>
+<h2 class="font-headline-sm text-headline-sm text-primary tracking-tight leading-snug group-hover:text-secondary-fixed transition-colors">
+          Spatial hierarchy inside the concrete vaults of London's Barbican estate
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 line-clamp-2">
+          Observing how raw aggregate bush-hammered concrete orchestrates sound containment and visual severance from the financial core. The transition between the highwalks and subterranean podiums remains a masterclass in monumental zoning.
+        </p>
+<!-- Monochromatic Editorial Media Thumbnail -->
+<div class="mt-3 relative rounded-lg overflow-hidden border border-outline-variant bg-surface-container-lowest">
+<img alt="Barbican Concrete Vaults" class="w-full h-44 object-cover filter grayscale contrast-125" data-alt="Monochromatic high-contrast architectural photograph capturing the monumental concrete vaults and soaring bush-hammered pillars of the Barbican Estate in London. Dramatic natural shadows slice through the structural symmetry, rendered entirely in deep blacks, silvery concrete tones, and crisp white highlights in an editorial journal style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQuRodxKWu8xaSjOJvx-csRjsfcMg83iwDgcb3DIIQBEOpadyAZgOlvPKfGf1EHk1HDb7UThwS6XXeR52x_QiefHOwYgchnlghH0uNQGFYCUal2HjHdo8JaeSRhLSQw5eZpqasW0as3rZliaw1UbpD4axcmIeEt4PniSpLA3MVdbJZN7pmjCjQBvCtYkxrjcQu8RwbH2Bqp6CIcWwdI0DbH9uNK_YpDy0_rAmuBQk673GHdlECFgGF"/>
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-surface/80 backdrop-blur-sm border border-outline-variant text-[10px] font-label-sm tracking-wider uppercase text-primary">
+            Archival Plates // Plate 04
+          </div>
+</div>
+<!-- Footer Stats Bar -->
+<footer class="flex items-center justify-between mt-space-md pt-space-xs text-outline font-label-sm text-label-sm">
+<div class="flex items-center space-x-6">
+<button class="flex items-center space-x-1.5 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="autorenew">autorenew</span>
+<span>891 echoes</span>
+</button>
+<button class="flex items-center space-x-1.5 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="chat_bubble_outline">chat_bubble_outline</span>
+<span>64 replies</span>
+</button>
+</div>
+<button aria-label="Bookmark" class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="bookmark_border">bookmark_border</span>
+</button>
+</footer>
+</article>
+<!-- ITEM 2: Post-War Swiss Typography Micro-Essay -->
+<article class="py-space-md group">
+<header class="flex items-center justify-between text-outline text-label-sm font-label-sm mb-2">
+<div class="flex items-center space-x-2">
+<span class="text-primary font-label-md">TYPOGRAPHIC_DISCOURSE</span>
+<span>·</span>
+<time>Yesterday</time>
+</div>
+<button aria-label="Actions" class="text-outline hover:text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="more_horiz">more_horiz</span>
+</button>
+</header>
+<h2 class="font-headline-sm text-headline-sm text-primary tracking-tight leading-snug group-hover:text-secondary-fixed transition-colors">
+          On the typography of brutalist posters in post-war Switzerland
+        </h2>
+<!-- Micro-Essay Quote Block -->
+<div class="mt-2.5 p-3 rounded-lg bg-surface-container border-l-2 border-primary border-outline-variant">
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+            "The grid was not treated as a cage, but rather as an engineered tension field where unyielding sans-serif letterforms held absolute kinetic stillness."
+          </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2.5">
+          Examining Müller-Brockmann and Armin Hofmann's structural rigidity. The stark black letterforms provided an architectural counterweight to the political ambiguity of the 1950s reconstruction era.
+        </p>
+<!-- Footer Stats Bar -->
+<footer class="flex items-center justify-between mt-space-md pt-space-xs text-outline font-label-sm text-label-sm">
+<div class="flex items-center space-x-6">
+<button class="flex items-center space-x-1.5 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="autorenew">autorenew</span>
+<span>540 echoes</span>
+</button>
+<button class="flex items-center space-x-1.5 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="chat_bubble_outline">chat_bubble_outline</span>
+<span>38 replies</span>
+</button>
+</div>
+<button aria-label="Bookmark" class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="bookmark_border">bookmark_border</span>
+</button>
+</footer>
+</article>
+</div>
+</main>
+<!-- SHARED COMPONENT: BottomNavBar (Profile Destination Active) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around px-space-sm h-16 bg-surface dark:bg-surface border-t border-outline-variant dark:border-outline-variant">
+<!-- Home -->
+<button aria-label="Home" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[22px]" data-icon="dynamic_feed">dynamic_feed</span>
+<span class="font-label-sm text-label-sm mt-0.5">Home</span>
+</button>
+<!-- Discover -->
+<button aria-label="Discover" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[22px]" data-icon="explore">explore</span>
+<span class="font-label-sm text-label-sm mt-0.5">Discover</span>
+</button>
+<!-- Create -->
+<button aria-label="Create" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[22px]" data-icon="add_box">add_box</span>
+<span class="font-label-sm text-label-sm mt-0.5">Create</span>
+</button>
+<!-- Communities -->
+<button aria-label="Communities" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[22px]" data-icon="hub">hub</span>
+<span class="font-label-sm text-label-sm mt-0.5">Communities</span>
+</button>
+<!-- Profile (ACTIVE STRICT LOCK) -->
+<button aria-current="page" aria-label="Profile" class="flex flex-col items-center justify-center text-primary dark:text-primary font-bold hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[22px]" data-icon="person" data-weight="fill" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm mt-0.5">Profile</span>
+</button>
+</nav>
+</body></html>

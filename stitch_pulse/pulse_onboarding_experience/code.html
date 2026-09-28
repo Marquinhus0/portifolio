@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PULSE — Curate Your Pulse</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed-variant": "#46464b",
+            "on-background": "#e5e2e1",
+            "on-tertiary-fixed": "#1b1b1d",
+            "tertiary-fixed": "#e4e2e4",
+            "surface-bright": "#3a3939",
+            "on-surface": "#e5e2e1",
+            "primary-fixed-dim": "#c6c6c7",
+            "on-surface-variant": "#c4c7c8",
+            "outline": "#8e9192",
+            "primary-fixed": "#e2e2e2",
+            "secondary-container": "#46464b",
+            "secondary-fixed-dim": "#c6c6cb",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#c8c6c8",
+            "on-secondary-container": "#b5b4ba",
+            "surface-container-low": "#1c1b1b",
+            "surface": "#131313",
+            "secondary": "#c6c6cb",
+            "surface-dim": "#131313",
+            "on-error": "#690005",
+            "surface-container-highest": "#353534",
+            "surface-variant": "#353534",
+            "on-primary-fixed": "#1a1c1c",
+            "inverse-surface": "#e5e2e1",
+            "inverse-on-surface": "#313030",
+            "error": "#ffb4ab",
+            "on-secondary": "#2f3034",
+            "primary": "#ffffff",
+            "on-tertiary": "#303032",
+            "tertiary-container": "#e4e2e4",
+            "on-secondary-fixed": "#1a1b1f",
+            "error-container": "#93000a",
+            "outline-variant": "#444748",
+            "on-tertiary-fixed-variant": "#474649",
+            "background": "#131313",
+            "secondary-fixed": "#e3e2e7",
+            "on-primary-fixed-variant": "#454747",
+            "on-tertiary-container": "#656466",
+            "primary-container": "#e2e2e2",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary": "#2f3131",
+            "tertiary": "#ffffff",
+            "surface-tint": "#c6c6c7",
+            "inverse-primary": "#5d5f5f",
+            "surface-container": "#201f1f",
+            "on-primary-container": "#636565",
+            "surface-container-high": "#2a2a2a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Space Grotesk"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "label-sm": ["Space Grotesk"],
+            "body-lg": ["Hanken Grotesk"],
+            "title-md": ["Hanken Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "display": ["Space Grotesk"],
+            "body-sm": ["Hanken Grotesk"],
+            "body-md": ["Hanken Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+            "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "title-md": ["16px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.025em", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    /* Hide scrollbar for gallery aesthetics */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    * {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen selection:bg-primary selection:text-surface-container-lowest font-body-md text-body-md flex justify-center">
+<!-- Mobile Viewport Container constrained to editorial reading column -->
+<div class="w-full max-w-md min-h-screen bg-surface-container-lowest flex flex-col relative pb-32">
+<!-- Minimalist Segmented Onboarding Progress Anchor -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest/95 backdrop-blur-md px-margin pt-space-md pb-space-sm border-b border-outline-variant/30">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center space-x-space-xs">
+<span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">PULSE</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase">Curation Phase</span>
+</div>
+<div class="font-label-sm text-label-sm text-primary tracking-widest">
+          STEP <span class="text-primary font-bold">03</span> / 04
+        </div>
+</div>
+<!-- 4-Stage Segmented Progress Line Indicator -->
+<div class="grid grid-cols-4 gap-1.5 py-1">
+<div class="h-[2px] bg-primary rounded-full transition-all"></div>
+<div class="h-[2px] bg-primary rounded-full transition-all"></div>
+<div class="h-[2px] bg-primary rounded-full transition-all shadow-[0_0_8px_rgba(255,255,255,0.4)]"></div>
+<div class="h-[2px] bg-outline-variant/40 rounded-full transition-all"></div>
+</div>
+</header>
+<!-- Scrollable Onboarding Content Canvas -->
+<main class="flex-1 px-margin pt-space-lg space-y-space-xl">
+<!-- Editorial Headline Cluster -->
+<div class="space-y-space-xs">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-outline-variant/50 bg-surface-container-low mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase">Signal Configuration</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight font-bold">
+          Tune your signal.
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant font-light leading-relaxed">
+          Select at least 4 communities and topics to shape your personalized feed. Every choice modulates your algorithmic baseline.
+        </p>
+</div>
+<!-- Search Input Module -->
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]">search</span>
+</div>
+<input class="w-full bg-surface-container-low text-primary placeholder-outline border border-outline-variant rounded-lg pl-10 pr-4 py-3 font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-0 transition-colors duration-150" placeholder="Search architecture, philosophy, generative code..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+<span class="font-label-sm text-label-sm text-outline border border-outline-variant/60 rounded px-1.5 py-0.5 tracking-tighter">⌘K</span>
+</div>
+</div>
+<!-- Selected Topics Matrix (Chips / Pills) -->
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Primary Interests</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">4 SELECTED</span>
+</div>
+<div class="flex flex-wrap gap-2 pt-1" id="topic-container">
+<!-- Selected Chip 1 -->
+<button class="group flex items-center gap-1.5 px-3 py-2 rounded-full bg-primary text-surface-container-lowest font-headline-sm text-label-md font-bold transition-transform active:scale-95 duration-150 shadow-sm" type="button">
+<span>Architecture &amp; Brutalism</span>
+<span class="material-symbols-outlined text-[15px] font-bold">check</span>
+</button>
+<!-- Selected Chip 2 -->
+<button class="group flex items-center gap-1.5 px-3 py-2 rounded-full bg-primary text-surface-container-lowest font-headline-sm text-label-md font-bold transition-transform active:scale-95 duration-150 shadow-sm" type="button">
+<span>Generative Systems</span>
+<span class="material-symbols-outlined text-[15px] font-bold">check</span>
+</button>
+<!-- Selected Chip 3 -->
+<button class="group flex items-center gap-1.5 px-3 py-2 rounded-full bg-primary text-surface-container-lowest font-headline-sm text-label-md font-bold transition-transform active:scale-95 duration-150 shadow-sm" type="button">
+<span>Typography &amp; Print</span>
+<span class="material-symbols-outlined text-[15px] font-bold">check</span>
+</button>
+<!-- Selected Chip 4 -->
+<button class="group flex items-center gap-1.5 px-3 py-2 rounded-full bg-primary text-surface-container-lowest font-headline-sm text-label-md font-bold transition-transform active:scale-95 duration-150 shadow-sm" type="button">
+<span>Sound Design &amp; Ambient</span>
+<span class="material-symbols-outlined text-[15px] font-bold">check</span>
+</button>
+<!-- Unselected Chip 1 -->
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-surface-container-low text-secondary border border-outline-variant hover:border-outline hover:text-primary font-headline-sm text-label-md transition-all active:scale-95 duration-150" type="button">
+<span>Cognitive Science</span>
+<span class="material-symbols-outlined text-[15px] text-outline">add</span>
+</button>
+<!-- Unselected Chip 2 -->
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-surface-container-low text-secondary border border-outline-variant hover:border-outline hover:text-primary font-headline-sm text-label-md transition-all active:scale-95 duration-150" type="button">
+<span>Computational Photography</span>
+<span class="material-symbols-outlined text-[15px] text-outline">add</span>
+</button>
+<!-- Unselected Chip 3 -->
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-surface-container-low text-secondary border border-outline-variant hover:border-outline hover:text-primary font-headline-sm text-label-md transition-all active:scale-95 duration-150" type="button">
+<span>Philosophy of Tech</span>
+<span class="material-symbols-outlined text-[15px] text-outline">add</span>
+</button>
+<!-- Unselected Chip 4 -->
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-surface-container-low text-secondary border border-outline-variant hover:border-outline hover:text-primary font-headline-sm text-label-md transition-all active:scale-95 duration-150" type="button">
+<span>Industrial Hardware</span>
+<span class="material-symbols-outlined text-[15px] text-outline">add</span>
+</button>
+<!-- Unselected Chip 5 -->
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-surface-container-low text-secondary border border-outline-variant hover:border-outline hover:text-primary font-headline-sm text-label-md transition-all active:scale-95 duration-150" type="button">
+<span>Cinema &amp; Moving Image</span>
+<span class="material-symbols-outlined text-[15px] text-outline">add</span>
+</button>
+</div>
+</div>
+<!-- Recommended Communities Preview Cards -->
+<div class="space-y-space-md pt-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Curated Nodes</span>
+<span class="font-headline-sm text-title-md text-primary font-semibold">Recommended Communities</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">AUTO-MATCHED</span>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<!-- Community Card 1: Brutalism Archive -->
+<div class="p-space-md rounded-lg bg-surface border border-outline-variant hover:border-outline transition-colors duration-200 flex items-center justify-between group">
+<div class="flex items-center gap-3.5">
+<div class="relative w-12 h-12 rounded-lg overflow-hidden border border-outline-variant/60 bg-surface-container-high flex-shrink-0">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="A monochrome black and white architectural photograph capturing the sharp angular concrete geometry of a brutalist facade with dramatic cast shadows and pristine sky lighting, matching an editorial monochromatic gallery aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4-rUWw8OkSkinHUP24tJ6a38ZgxgIsJ9my-Zr0EOrgarr62P8omxdTfTyXtRXhG5NzByXU-pE9hasJy545_1mN4ee08kqgg63W1Ux7pMTZoGWp5p2YqHRU1giA18i9i8W_JklUkxwpduHxIo8nmi-qAlF0LH6IQQqGJ7rZYBOZYpYPIVHzjuKaqftUJdx4_sfowY3w6BDn1fk9Xk5DLgoaw81zkfDt1_wLy10IgzcrbMZTqHnbgSW"/>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-title-md text-primary font-bold leading-tight">c/brutalism-core</h3>
+<span class="w-1.5 h-1.5 rounded-full bg-primary" title="Active discourse burst"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Monolithic forms, cast concrete analysis, and archival critique.</p>
+<div class="flex items-center gap-2 pt-0.5 text-outline font-label-sm text-label-sm">
+<span>18.4k members</span>
+<span>•</span>
+<span>42 live dispatches</span>
+</div>
+</div>
+</div>
+<!-- Joined Toggle State -->
+<button class="w-9 h-9 flex-shrink-0 rounded-lg bg-primary text-surface-container-lowest flex items-center justify-center transition-transform active:scale-90 duration-150">
+<span class="material-symbols-outlined text-[20px] font-bold">check</span>
+</button>
+</div>
+<!-- Community Card 2: Generative Form -->
+<div class="p-space-md rounded-lg bg-surface border border-outline-variant hover:border-outline transition-colors duration-200 flex items-center justify-between group">
+<div class="flex items-center gap-3.5">
+<div class="relative w-12 h-12 rounded-lg overflow-hidden border border-outline-variant/60 bg-surface-container-high flex-shrink-0">
+<img class="w-full h-full object-cover grayscale" data-alt="Abstract black and white algorithmic lattice rendering, with stark mathematical vector curves and generative point cloud structures rendered on a deep obsidian backdrop, expressing pure computational precision and monochromatic balance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr97ltKyRPmVR3QHZOKnWJPi_bPyqtqNJQ67x0TlrGCj9zFUwwek1Lmf2N3hlnVoBeP6_ojdY5SMuIcN7XCDB9jkbO2BqQzLQ5qr82XJgoLdcoPz4rmPr8Il58VVT7_2I8XFLKmeVMfmYBdea8TlIiy8UYOj3UY7SEE_rJOWVC8FW-BMpibr6pclRM9Ci7EvUL2y6z88t5nviJyDyp_i8TVx4pJ1VlXsl8vzeLpDocw2jaT80ARF4X"/>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-title-md text-primary font-bold leading-tight">c/generative-lab</h3>
+<span class="w-1.5 h-1.5 rounded-full bg-primary" title="Active discourse burst"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">GLSL, mathematical tessellation, creative coding notebooks.</p>
+<div class="flex items-center gap-2 pt-0.5 text-outline font-label-sm text-label-sm">
+<span>34.1k members</span>
+<span>•</span>
+<span>108 live dispatches</span>
+</div>
+</div>
+</div>
+<!-- Joined Toggle State -->
+<button class="w-9 h-9 flex-shrink-0 rounded-lg bg-primary text-surface-container-lowest flex items-center justify-center transition-transform active:scale-90 duration-150">
+<span class="material-symbols-outlined text-[20px] font-bold">check</span>
+</button>
+</div>
+<!-- Community Card 3: Monolith Audio -->
+<div class="p-space-md rounded-lg bg-surface border border-outline-variant hover:border-outline transition-colors duration-200 flex items-center justify-between group">
+<div class="flex items-center gap-3.5">
+<div class="relative w-12 h-12 rounded-lg overflow-hidden border border-outline-variant/60 bg-surface-container-high flex-shrink-0">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="Editorial close up of a high-end analog synthesizer panel showing brushed aluminum rotary dials, mechanical toggle switches, and discrete monochrome indicators in a dark moody studio setting with crisp hairline lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTKp3jHishxvanqa9fJiGRWuuk8eDsFeOeHM3kjcS4aRJfHG80U99OAbR9W6fCquDuZ5hJq-RXqSulZWbg4yQ2aNGMfr7OfW9GbA8tQ8wMrzYhPZYNn-lmX9yQYi4v1_6Qinbtb01ezOBWy0JFXKLkI-x68_J-EkdHrxkWkJjxGd5Weiw3pJApAd61k8s642N4eT3OMhs_edWhwuZSG9p7CdE6CVypouQRPPib4PcHyx4DnEUWOu0t"/>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-title-md text-primary font-bold leading-tight">c/ambient-topology</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Hardware synthesis, drone composition, and tape degradation.</p>
+<div class="flex items-center gap-2 pt-0.5 text-outline font-label-sm text-label-sm">
+<span>9.2k members</span>
+<span>•</span>
+<span>19 live dispatches</span>
+</div>
+</div>
+</div>
+<!-- Add Toggle State -->
+<button class="w-9 h-9 flex-shrink-0 rounded-lg bg-surface-container-low border border-outline-variant text-primary hover:border-primary flex items-center justify-center transition-transform active:scale-90 duration-150">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Docked Final Onboarding Readiness Card & Primary Action Module -->
+<div class="fixed bottom-0 left-0 w-full flex justify-center z-50 pointer-events-none">
+<div class="w-full max-w-md bg-surface/95 backdrop-blur-xl border-t border-outline-variant/80 p-margin space-y-space-md shadow-[0_-8px_32px_rgba(0,0,0,0.75)] pointer-events-auto">
+<!-- Completion Feedback Banner / Modal State -->
+<div class="flex items-start gap-3 p-3 rounded-lg bg-surface-container border border-outline-variant/50">
+<div class="w-7 h-7 rounded-full bg-primary text-surface-container-lowest flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px] font-bold">tune</span>
+</div>
+<div class="space-y-0.5 flex-1">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-title-md text-primary font-bold leading-tight">Your feed is ready.</span>
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">CALIBRATED</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              We calibrated 12 discussions and 4 communities for your initial stream.
+            </p>
+</div>
+</div>
+<!-- Primary Action Trigger & Frequency Link -->
+<div class="space-y-2">
+<button class="w-full py-3.5 px-space-md bg-primary text-surface-container-lowest font-headline-sm text-headline-sm font-bold tracking-tight rounded-lg hover:bg-primary-fixed active:opacity-90 active:scale-[0.99] transition-all flex items-center justify-center gap-2 group" type="button">
+<span>Enter PULSE</span>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+<div class="text-center pt-1">
+<button class="font-body-sm text-body-sm text-outline hover:text-primary transition-colors tracking-normal underline decoration-outline-variant underline-offset-4 active:text-primary" type="button">
+              Customize notification frequency
+            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PULSE — Discover Hub</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..700;1,300..700&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed-variant": "#46464b",
+            "on-background": "#e5e2e1",
+            "on-tertiary-fixed": "#1b1b1d",
+            "tertiary-fixed": "#e4e2e4",
+            "surface-bright": "#3a3939",
+            "on-surface": "#e5e2e1",
+            "primary-fixed-dim": "#c6c6c7",
+            "on-surface-variant": "#c4c7c8",
+            "outline": "#8e9192",
+            "primary-fixed": "#e2e2e2",
+            "secondary-container": "#46464b",
+            "secondary-fixed-dim": "#c6c6cb",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#c8c6c8",
+            "on-secondary-container": "#b5b4ba",
+            "surface-container-low": "#1c1b1b",
+            "surface": "#131313",
+            "secondary": "#c6c6cb",
+            "surface-dim": "#131313",
+            "on-error": "#690005",
+            "surface-container-highest": "#353534",
+            "surface-variant": "#353534",
+            "on-primary-fixed": "#1a1c1c",
+            "inverse-surface": "#e5e2e1",
+            "inverse-on-surface": "#313030",
+            "error": "#ffb4ab",
+            "on-secondary": "#2f3034",
+            "primary": "#ffffff",
+            "on-tertiary": "#303032",
+            "tertiary-container": "#e4e2e4",
+            "on-secondary-fixed": "#1a1b1f",
+            "error-container": "#93000a",
+            "outline-variant": "#444748",
+            "on-tertiary-fixed-variant": "#474649",
+            "background": "#131313",
+            "secondary-fixed": "#e3e2e7",
+            "on-primary-fixed-variant": "#454747",
+            "on-tertiary-container": "#656466",
+            "primary-container": "#e2e2e2",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary": "#2f3131",
+            "tertiary": "#ffffff",
+            "surface-tint": "#c6c6c7",
+            "inverse-primary": "#5d5f5f",
+            "surface-container": "#201f1f",
+            "on-primary-container": "#636565",
+            "surface-container-high": "#2a2a2a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Space Grotesk"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "label-sm": ["Space Grotesk"],
+            "body-lg": ["Hanken Grotesk"],
+            "title-md": ["Hanken Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "display": ["Space Grotesk"],
+            "body-sm": ["Hanken Grotesk"],
+            "body-md": ["Hanken Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+            "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "title-md": ["16px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.025em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased selection:bg-primary selection:text-surface min-h-screen flex justify-center">
+<!-- Main Container constrained for mobile/narrow viewport column discipline -->
+<div class="w-full max-w-[480px] min-h-screen bg-surface flex flex-col relative pb-24 shadow-2xl border-x border-outline-variant/30">
+<!-- TopAppBar Component (from Shared Components JSON) -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-space-md h-14 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant max-w-[480px] mx-auto right-0">
+<button aria-label="Search" class="flex items-center justify-center text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:opacity-70 transition-opacity duration-150">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</button>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-primary dark:text-primary select-none">
+        PULSE
+      </span>
+<button aria-label="Notifications" class="flex items-center justify-center text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:opacity-70 transition-opacity duration-150 relative">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-1.5 h-1.5 bg-primary rounded-full ring-2 ring-surface"></span>
+</button>
+</header>
+<!-- Content Canvas Area -->
+<main class="flex-1 mt-14 px-margin pt-space-lg flex flex-col space-y-space-xl">
+<!-- Header & Search Experience -->
+<section class="space-y-space-md">
+<div class="flex items-baseline justify-between">
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-primary">
+            DISCOVER
+          </h1>
+<span class="font-label-sm text-label-sm text-outline tracking-wider">
+            EDITION 09.24
+          </span>
+</div>
+<!-- Search Bar Input Field -->
+<div class="relative flex items-center">
+<div class="absolute left-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]" data-icon="search">search</span>
+</div>
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-outline font-body-md text-body-md pl-10 pr-10 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-0 focus:outline-none transition-colors duration-150" placeholder="Search topics, communities, people, essays..." type="text"/>
+<div class="absolute right-3.5 flex items-center text-outline">
+<span class="font-label-sm text-label-sm text-outline border border-outline-variant/60 rounded px-1.5 py-0.5">⌘K</span>
+</div>
+</div>
+<!-- Quick Filter Tags / Chips -->
+<div class="flex items-center space-x-space-xs overflow-x-auto no-scrollbar pt-1">
+<button class="bg-primary text-surface-container-lowest font-label-md text-label-md px-3 py-1.5 rounded-full whitespace-nowrap font-bold transition-transform active:scale-95">
+            ALL
+          </button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant border border-outline-variant font-label-md text-label-md px-3 py-1.5 rounded-full whitespace-nowrap transition-colors">
+            COMMUNITIES
+          </button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant border border-outline-variant font-label-md text-label-md px-3 py-1.5 rounded-full whitespace-nowrap transition-colors">
+            ESSAYS
+          </button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant border border-outline-variant font-label-md text-label-md px-3 py-1.5 rounded-full whitespace-nowrap transition-colors">
+            SALONS
+          </button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface-variant border border-outline-variant font-label-md text-label-md px-3 py-1.5 rounded-full whitespace-nowrap transition-colors">
+            CURATORS
+          </button>
+</div>
+</section>
+<!-- Section 1: Trending In Your Topics -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between border-b border-outline-variant/40 pb-space-xs">
+<div class="flex items-center space-x-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<h2 class="font-label-sm text-label-sm tracking-widest text-on-surface-variant font-bold">
+              TRENDING IN YOUR TOPICS
+            </h2>
+</div>
+<span class="font-label-sm text-label-sm text-outline">LIVE FLOW</span>
+</div>
+<div class="divide-y divide-outline-variant/30 border border-outline-variant rounded-lg bg-surface-container-lowest overflow-hidden">
+<!-- 01 Item -->
+<a class="flex items-start justify-between p-space-md hover:bg-surface-container-low transition-colors duration-150 group" href="#">
+<div class="flex items-start space-x-space-md">
+<span class="font-headline-sm text-headline-sm text-outline group-hover:text-primary transition-colors font-mono pt-0.5">
+                01
+              </span>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary tracking-tight group-hover:underline underline-offset-4 decoration-1">
+                  #ComputationalType
+                </p>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">
+                  4.2k discussions today
+                </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[18px] mt-1" data-icon="north_east">north_east</span>
+</a>
+<!-- 02 Item -->
+<a class="flex items-start justify-between p-space-md hover:bg-surface-container-low transition-colors duration-150 group" href="#">
+<div class="flex items-start space-x-space-md">
+<span class="font-headline-sm text-headline-sm text-outline group-hover:text-primary transition-colors font-mono pt-0.5">
+                02
+              </span>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary tracking-tight group-hover:underline underline-offset-4 decoration-1">
+                  #NeuromorphicChipsets
+                </p>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">
+                  1.8k discussions
+                </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[18px] mt-1" data-icon="north_east">north_east</span>
+</a>
+<!-- 03 Item -->
+<a class="flex items-start justify-between p-space-md hover:bg-surface-container-low transition-colors duration-150 group" href="#">
+<div class="flex items-start space-x-space-md">
+<span class="font-headline-sm text-headline-sm text-outline group-hover:text-primary transition-colors font-mono pt-0.5">
+                03
+              </span>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary tracking-tight group-hover:underline underline-offset-4 decoration-1">
+                  #AnalogPrintPreservation
+                </p>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">
+                  950 discussions
+                </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[18px] mt-1" data-icon="north_east">north_east</span>
+</a>
+</div>
+</section>
+<!-- Section 2: Curated Communities -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between border-b border-outline-variant/40 pb-space-xs">
+<h2 class="font-label-sm text-label-sm tracking-widest text-on-surface-variant font-bold">
+            CURATED COMMUNITIES
+          </h2>
+<span class="font-label-sm text-label-sm text-outline">SWIPE HORIZONTAL</span>
+</div>
+<!-- Horizontal scroll tray -->
+<div class="flex space-x-space-md overflow-x-auto no-scrollbar pb-2 -mx-margin px-margin">
+<!-- Card A -->
+<div class="flex-shrink-0 w-[280px] bg-surface-container-low rounded-lg border border-outline-variant p-space-md flex flex-col justify-between space-y-space-md hover:border-outline transition-colors">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline border border-outline-variant/60 rounded px-1.5 py-0.5">GUILD</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono">18.4k members</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary font-bold tracking-tight">
+                c/MinimalInterface
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Crafting frictionless software with high typographic discipline.
+              </p>
+</div>
+<div class="pt-space-xs border-t border-outline-variant/40 flex items-center justify-between">
+<div class="flex -space-x-1.5 overflow-hidden">
+<div class="w-6 h-6 rounded-full border border-surface bg-surface-container-highest flex items-center justify-center text-[10px] font-mono text-outline">MI</div>
+<div class="w-6 h-6 rounded-full border border-surface bg-surface-bright flex items-center justify-center text-[10px] font-mono text-primary">+8</div>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-[13px] px-3.5 py-1 rounded font-bold transition-all active:scale-95">
+                Join
+              </button>
+</div>
+</div>
+<!-- Card B -->
+<div class="flex-shrink-0 w-[280px] bg-surface-container-low rounded-lg border border-outline-variant p-space-md flex flex-col justify-between space-y-space-md hover:border-outline transition-colors">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline border border-outline-variant/60 rounded px-1.5 py-0.5">AUDIO LAB</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono">9.2k members</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary font-bold tracking-tight">
+                c/AlgorithmicMusic
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Generative audio patches, Max/MSP, and modular hardware.
+              </p>
+</div>
+<div class="pt-space-xs border-t border-outline-variant/40 flex items-center justify-between">
+<div class="flex -space-x-1.5 overflow-hidden">
+<div class="w-6 h-6 rounded-full border border-surface bg-surface-container-highest flex items-center justify-center text-[10px] font-mono text-outline">AM</div>
+<div class="w-6 h-6 rounded-full border border-surface bg-surface-bright flex items-center justify-center text-[10px] font-mono text-primary">+4</div>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-[13px] px-3.5 py-1 rounded font-bold transition-all active:scale-95">
+                Join
+              </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Upcoming Events & Live Salons -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between border-b border-outline-variant/40 pb-space-xs">
+<div class="flex items-center space-x-space-xs">
+<span class="material-symbols-outlined text-primary text-[16px]" data-icon="event">event</span>
+<h2 class="font-label-sm text-label-sm tracking-widest text-on-surface-variant font-bold">
+              UPCOMING EVENTS &amp; LIVE SALONS
+            </h2>
+</div>
+<span class="font-label-sm text-label-sm text-outline">OCTOBER</span>
+</div>
+<!-- Editorial Event Card -->
+<div class="relative bg-surface-container-low rounded-lg border border-outline-variant p-space-md overflow-hidden hover:border-outline transition-colors">
+<div class="flex flex-col space-y-space-md">
+<!-- Badge row -->
+<div class="flex items-center justify-between flex-wrap gap-2">
+<span class="inline-flex items-center space-x-1 font-label-sm text-label-sm tracking-wider bg-surface-container-highest text-primary px-2 py-0.5 rounded font-mono border border-outline-variant/60">
+<span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span>
+<span>THU, OCT 24 · 19:00 UTC</span>
+</span>
+<span class="font-label-sm text-label-sm text-outline">
+                Hosted by <span class="text-on-surface font-semibold">c/DistributedSystems</span>
+</span>
+</div>
+<!-- Title & description -->
+<div class="space-y-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-primary tracking-tight font-bold">
+                PULSE Salon 04: The Future of Offline-First Social Architecture
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                An intimate discourse on peer-to-peer gossip protocols, CRDTs in mobile storage, and maintaining sovereign identities without central cloud hubs.
+              </p>
+</div>
+<!-- Attending & RSVP -->
+<div class="pt-space-sm border-t border-outline-variant/40 flex items-center justify-between">
+<div class="flex items-center space-x-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-outline" data-icon="group">group</span>
+<span class="font-body-sm text-body-sm font-mono">312 attending</span>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-[13px] px-5 py-2 rounded-lg font-bold transition-transform active:scale-95 flex items-center space-x-1.5">
+<span>RSVP</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: People Shaping the Dialogue -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between border-b border-outline-variant/40 pb-space-xs">
+<h2 class="font-label-sm text-label-sm tracking-widest text-on-surface-variant font-bold">
+            PEOPLE SHAPING THE DIALOGUE
+          </h2>
+<span class="font-label-sm text-label-sm text-outline">CONTRIBUTORS</span>
+</div>
+<div class="space-y-space-sm">
+<!-- Person 1 -->
+<div class="flex items-center justify-between p-space-md bg-surface-container-low rounded-lg border border-outline-variant hover:border-outline transition-colors">
+<div class="flex items-center space-x-space-md">
+<img class="w-11 h-11 rounded-full object-cover border border-outline-variant grayscale" data-alt="Monochromatic high-contrast portrait of a thoughtful female researcher in modern architecture studio. Studio lighting with deep obsidian shadows and crisp white highlights. Editorial monograph aesthetic with immaculate focus and geometric framing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbvydwnp5OUHFCeyXJ1zo4qYzpI2UIwql6QkQrcvNG4yQaLqUxonFGV8HNGdsjHIuqxL9XGLyLuLgT1fU0jNIaHTFhUP3CUblZwm0Ar5gVJk-FbLwuBqgwAqFNx1qFpILVWddxWn5h9tAkXRojUfDFsSQLYGwtHTmbtJtG5RSCkZV5ehqErU09pR0ayDZOt1_reBTa5prG9CIBHtNdF5e45zt4avY7WBeX25RuMko4gpNrv--uIcNR"/>
+<div>
+<div class="flex items-center space-x-1.5">
+<h4 class="font-title-md text-title-md text-primary font-semibold">Dr. Elena Rostova</h4>
+<span class="material-symbols-outlined text-outline text-[16px]" data-icon="verified">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline font-mono">@rostova.eth</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant/80 mt-0.5">4 mutual communities</p>
+</div>
+</div>
+<button class="border border-outline-variant hover:border-primary text-primary font-headline-sm text-[13px] px-4 py-1.5 rounded-full font-bold transition-colors active:scale-95">
+              Follow
+            </button>
+</div>
+<!-- Person 2 -->
+<div class="flex items-center justify-between p-space-md bg-surface-container-low rounded-lg border border-outline-variant hover:border-outline transition-colors">
+<div class="flex items-center space-x-space-md">
+<img class="w-11 h-11 rounded-full object-cover border border-outline-variant grayscale" data-alt="Editorial portrait in dramatic chiaroscuro of a minimalist product designer looking thoughtfully away from the camera. Strict monochromatic black, graphite, and white tones. Clean architectural backdrop with sleek straight lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQoV5ZkGp1BZ3O7wit9zKc-LXJRggZjCGQNA1K6mQxTre2ebCkqv2D0LoGecyCnw0Tg9UuzIBBzB9pyG7pcFrZwBXm8voPgtTXq-Mx5WeXEFKkPF6yeKF_SjGpoV7hiurBewT7NB5gLNLREk2oS2UTHSOE0YXLIOgHctxf5bHWFUkbChKKGVlsrFJQgkiDsEMlVjeRU2-lK4w84zVysEkzsU7oxXjVTUuwi73b6fd_0FlHHETp2Ndw"/>
+<div>
+<div class="flex items-center space-x-1.5">
+<h4 class="font-title-md text-title-md text-primary font-semibold">Kaelen Vance</h4>
+</div>
+<p class="font-body-sm text-body-sm text-outline font-mono">@kvance</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant/80 mt-0.5">7 mutual communities</p>
+</div>
+</div>
+<button class="border border-outline-variant hover:border-primary text-primary font-headline-sm text-[13px] px-4 py-1.5 rounded-full font-bold transition-colors active:scale-95">
+              Follow
+            </button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Component (from Shared Components JSON with Discover Active) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around px-space-sm h-16 bg-surface dark:bg-surface border-t border-outline-variant dark:border-outline-variant max-w-[480px] mx-auto right-0">
+<!-- Home (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-150 py-1 flex-1" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="dynamic_feed">dynamic_feed</span>
+<span class="font-label-sm text-label-sm mt-0.5">Home</span>
+</a>
+<!-- Discover (ACTIVE based on screen intent) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary font-bold hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-150 py-1 flex-1" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="explore" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-label-sm text-label-sm mt-0.5">Discover</span>
+</a>
+<!-- Create (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-150 py-1 flex-1" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="add_box">add_box</span>
+<span class="font-label-sm text-label-sm mt-0.5">Create</span>
+</a>
+<!-- Communities (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-150 py-1 flex-1" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="hub">hub</span>
+<span class="font-label-sm text-label-sm mt-0.5">Communities</span>
+</a>
+<!-- Profile (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-150 py-1 flex-1" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm mt-0.5">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>

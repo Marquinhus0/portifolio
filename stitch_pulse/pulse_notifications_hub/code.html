@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PULSE — Notifications</title>
+<!-- Google Fonts: Space Grotesk & Hanken Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed-variant": "#46464b",
+            "on-background": "#e5e2e1",
+            "on-tertiary-fixed": "#1b1b1d",
+            "tertiary-fixed": "#e4e2e4",
+            "surface-bright": "#3a3939",
+            "on-surface": "#e5e2e1",
+            "primary-fixed-dim": "#c6c6c7",
+            "on-surface-variant": "#c4c7c8",
+            "outline": "#8e9192",
+            "primary-fixed": "#e2e2e2",
+            "secondary-container": "#46464b",
+            "secondary-fixed-dim": "#c6c6cb",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#c8c6c8",
+            "on-secondary-container": "#b5b4ba",
+            "surface-container-low": "#1c1b1b",
+            "surface": "#131313",
+            "secondary": "#c6c6cb",
+            "surface-dim": "#131313",
+            "on-error": "#690005",
+            "surface-container-highest": "#353534",
+            "surface-variant": "#353534",
+            "on-primary-fixed": "#1a1c1c",
+            "inverse-surface": "#e5e2e1",
+            "inverse-on-surface": "#313030",
+            "error": "#ffb4ab",
+            "on-secondary": "#2f3034",
+            "primary": "#ffffff",
+            "on-tertiary": "#303032",
+            "tertiary-container": "#e4e2e4",
+            "on-secondary-fixed": "#1a1b1f",
+            "error-container": "#93000a",
+            "outline-variant": "#444748",
+            "on-tertiary-fixed-variant": "#474649",
+            "background": "#131313",
+            "secondary-fixed": "#e3e2e7",
+            "on-primary-fixed-variant": "#454747",
+            "on-tertiary-container": "#656466",
+            "primary-container": "#e2e2e2",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary": "#2f3131",
+            "tertiary": "#ffffff",
+            "surface-tint": "#c6c6c7",
+            "inverse-primary": "#5d5f5f",
+            "surface-container": "#201f1f",
+            "on-primary-container": "#636565",
+            "surface-container-high": "#2a2a2a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Space Grotesk"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "label-sm": ["Space Grotesk"],
+            "body-lg": ["Hanken Grotesk"],
+            "title-md": ["Hanken Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "display": ["Space Grotesk"],
+            "body-sm": ["Hanken Grotesk"],
+            "body-md": ["Hanken Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+            "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "title-md": ["16px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.025em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Hide horizontal scrollbar while preserving functionality */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen selection:bg-primary selection:text-surface-container-lowest">
+<!-- TopAppBar Module -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-space-md h-14 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant">
+<div class="flex items-center space-x-space-sm">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tight text-primary dark:text-primary">
+        NOTIFICATIONS
+      </h1>
+<span class="inline-flex items-center justify-center px-1.5 py-0.5 rounded-full text-[10px] font-label-sm font-bold bg-surface-container-highest text-primary border border-outline-variant">
+        4 NEW
+      </span>
+</div>
+<div class="flex items-center space-x-space-md">
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-150 active:opacity-70" id="markReadBtn">
+        Mark all as read
+      </button>
+<button aria-label="Notification Settings" class="text-on-surface-variant hover:text-primary transition-colors duration-150 active:opacity-70 p-1">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+</header>
+<!-- Main Viewport Canvas -->
+<main class="pt-14 pb-20 max-w-xl mx-auto px-space-md flex flex-col space-y-space-md">
+<!-- Filter Categories (Segmented Pills Strip) -->
+<div class="pt-space-md pb-space-xs overflow-x-auto no-scrollbar flex items-center space-x-2">
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm uppercase bg-primary text-surface-container-lowest font-bold transition-transform duration-150 active:scale-95 flex-shrink-0">
+        All
+      </button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm uppercase bg-surface-container-low text-on-surface-variant border border-outline-variant hover:border-outline hover:text-primary transition-colors duration-150 active:scale-95 flex-shrink-0">
+        Mentions
+      </button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm uppercase bg-surface-container-low text-on-surface-variant border border-outline-variant hover:border-outline hover:text-primary transition-colors duration-150 active:scale-95 flex-shrink-0">
+        Interactions
+      </button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm uppercase bg-surface-container-low text-on-surface-variant border border-outline-variant hover:border-outline hover:text-primary transition-colors duration-150 active:scale-95 flex-shrink-0">
+        Communities
+      </button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm uppercase bg-surface-container-low text-on-surface-variant border border-outline-variant hover:border-outline hover:text-primary transition-colors duration-150 active:scale-95 flex-shrink-0">
+        Events
+      </button>
+</div>
+<!-- Grouped Notification Feed: TODAY -->
+<section class="flex flex-col space-y-3 pt-1">
+<div class="flex items-center justify-between pb-1 border-b border-outline-variant/50">
+<h2 class="font-label-sm text-label-sm tracking-wider uppercase text-outline">
+          Today
+        </h2>
+<span class="font-label-sm text-label-sm text-outline">
+          26 OCT
+        </span>
+</div>
+<!-- Item 1: Community Discussion Alert (Unread) -->
+<article class="relative p-space-md rounded-lg bg-surface-container-low border border-outline-variant hover:border-outline transition-colors duration-150 flex items-start space-x-space-md">
+<!-- Unread indicator dot -->
+<span class="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-primary ring-2 ring-surface"></span>
+<div class="flex-shrink-0 w-9 h-9 rounded-lg bg-surface-container-highest border border-outline-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</div>
+<div class="flex-1 min-w-0 pr-3">
+<div class="flex items-center space-x-2 mb-1">
+<span class="font-label-md text-label-md text-primary font-semibold tracking-tight">c/BrutalistForm</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-label-sm text-label-sm text-outline">45m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-snug">
+            pinned a new manifesto: <span class="text-primary italic font-medium">"On the permanence of raw materials inside digital typography"</span>
+</p>
+<div class="mt-2.5 flex items-center space-x-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider bg-surface px-2 py-0.5 rounded border border-outline-variant">
+              Manifesto #09
+            </span>
+</div>
+</div>
+</article>
+<!-- Item 2: Interaction / Upvote Milestones -->
+<article class="p-space-md rounded-lg bg-surface-container-low border border-outline-variant hover:border-outline transition-colors duration-150 flex items-start space-x-space-md">
+<div class="flex-shrink-0 w-9 h-9 rounded-lg bg-surface-container-highest border border-outline-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center space-x-2 mb-1">
+<span class="font-label-md text-label-md text-primary font-semibold tracking-tight">ECHO MILESTONE</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-label-sm text-label-sm text-outline">2h ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-snug">
+            Your essay <span class="text-primary font-medium">"Spatial hierarchy inside concrete vaults"</span> surpassed 500 echoes.
+          </p>
+<div class="mt-2 flex items-center space-x-4 text-outline font-label-sm text-label-sm">
+<span class="flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px]">share</span>
+<span>528</span>
+</span>
+<span class="flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px]">bookmark</span>
+<span>112</span>
+</span>
+</div>
+</div>
+</article>
+<!-- Item 3: Mention & Comment -->
+<article class="p-space-md rounded-lg bg-surface-container-low border border-outline-variant hover:border-outline transition-colors duration-150 flex items-start space-x-space-md">
+<div class="flex-shrink-0 relative">
+<img class="w-9 h-9 rounded-lg object-cover border border-outline-variant grayscale brightness-95" data-alt="Monochromatic high-contrast editorial portrait photograph of Dr Elena Rostova in dramatic chiaroscuro lighting, looking with contemplative intensity into the lens. Deep blacks, crisp white highlights, stark minimal studio setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZqHjYHHYQjG-VrRFuWJdU5Tp_gq3nFdW6WYcsVkwESDVypq7Jp8dug6kc8unxgqcBAdUEPHIFFgaxKMOhrw23ZilXSk75qIycYDRkg4rMZtOsFU8ZjpCN0g0mCNc78KG5DiEkReRgoORjm1MM57U1tI3l6qlyd-bg-XsJb5XQbzgtrAJzPlEKg45Zu0c9aKlMzK9c0fVKKp4Bsj0mYs6t1LsPDSbEPP5XUv7dQsHWdWhKOhbk8CAd"/>
+<span class="absolute -bottom-1 -right-1 w-4 h-4 bg-surface-container-highest border border-outline-variant rounded-full flex items-center justify-center text-[10px] text-primary">
+            @
+          </span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center space-x-2 mb-1">
+<span class="font-label-md text-label-md text-primary font-semibold tracking-tight">Dr. Elena Rostova</span>
+<span class="font-label-sm text-label-sm text-outline">@rostova.eth</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-label-sm text-label-sm text-outline">3h ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-snug">
+            replied to your comment in <span class="text-primary font-medium">c/DesignEthics</span>:
+          </p>
+<div class="mt-2 pl-3 border-l-2 border-outline py-0.5">
+<blockquote class="font-body-sm text-body-sm text-on-surface-variant italic">
+              "Frictionless tooling creates aesthetic convergence. By resisting seamless interfaces, we preserve idiosyncratic craftsmanship."
+            </blockquote>
+</div>
+</div>
+</article>
+<!-- Item 4: Event Invitation -->
+<article class="p-space-md rounded-lg bg-surface-container-low border border-outline-variant hover:border-outline transition-colors duration-150 flex items-start space-x-space-md">
+<div class="flex-shrink-0 w-9 h-9 rounded-lg bg-surface-container-highest border border-outline-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">event</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center space-x-2 mb-1">
+<span class="font-label-md text-label-md text-primary font-semibold tracking-tight">SALON CALENDAR</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-label-sm text-label-sm text-outline">5h ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-snug">
+            Upcoming Live Salon: <span class="text-primary font-semibold">PULSE Salon 04</span> starts in 24 hours. You are registered.
+          </p>
+<div class="mt-3 flex items-center justify-between pt-2 border-t border-outline-variant/60">
+<div class="flex items-center space-x-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>Tomorrow · 19:00 UTC</span>
+</div>
+<button class="px-3 py-1 bg-primary text-surface-container-lowest font-label-sm text-label-sm font-semibold rounded hover:bg-on-background active:scale-95 transition-all duration-150">
+              View salon pass
+            </button>
+</div>
+</div>
+</article>
+</section>
+<!-- Grouped Notification Feed: EARLIER THIS WEEK -->
+<section class="flex flex-col space-y-3 pt-4">
+<div class="flex items-center justify-between pb-1 border-b border-outline-variant/50">
+<h2 class="font-label-sm text-label-sm tracking-wider uppercase text-outline">
+          Earlier This Week
+        </h2>
+<span class="font-label-sm text-label-sm text-outline">
+          PAST 7 DAYS
+        </span>
+</div>
+<!-- Item 5: Follow Alert -->
+<article class="p-space-md rounded-lg bg-surface-container-low border border-outline-variant hover:border-outline transition-colors duration-150 flex items-start space-x-space-md">
+<div class="flex-shrink-0 w-9 h-9 rounded-lg bg-surface-container-highest border border-outline-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center space-x-2 mb-1">
+<span class="font-label-md text-label-md text-primary font-semibold tracking-tight">CURATION NETWORK</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-label-sm text-label-sm text-outline">2d ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-snug">
+<span class="text-primary font-medium">Marcus Vance</span> started following your curations and reading archives.
+          </p>
+<div class="mt-2 flex items-center space-x-2">
+<button class="px-2.5 py-1 text-xs font-label-sm rounded border border-outline-variant hover:border-primary text-on-surface transition-colors duration-150">
+              View Collection
+            </button>
+</div>
+</div>
+</article>
+<!-- Item 6: Editorial Publication Dispatch -->
+<article class="p-space-md rounded-lg bg-surface-container-low border border-outline-variant hover:border-outline transition-colors duration-150 flex items-start space-x-space-md">
+<div class="flex-shrink-0 w-9 h-9 rounded-lg bg-surface-container-highest border border-outline-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">auto_stories</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center space-x-2 mb-1">
+<span class="font-label-md text-label-md text-primary font-semibold tracking-tight">PULSE JOURNAL</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-label-sm text-label-sm text-outline">4d ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-snug">
+            Issue #28: <span class="text-primary font-medium">"Monolithic Monoprints &amp; Concrete Formwork"</span> is now archived in your reading list.
+          </p>
+</div>
+</article>
+</section>
+<!-- Quiet End Of Stream Indicator -->
+<div class="py-8 flex flex-col items-center justify-center space-y-2 opacity-60">
+<div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">
+        All activity caught up
+      </p>
+</div>
+</main>
+<!-- BottomNavBar Module (Strictly adhering to Shared Components JSON) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around px-space-sm h-16 bg-surface dark:bg-surface border-t border-outline-variant dark:border-outline-variant">
+<!-- Home Destination -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">dynamic_feed</span>
+<span class="font-label-sm text-label-sm mt-0.5">Home</span>
+</a>
+<!-- Discover Destination -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">explore</span>
+<span class="font-label-sm text-label-sm mt-0.5">Discover</span>
+</a>
+<!-- Create Destination -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">add_box</span>
+<span class="font-label-sm text-label-sm mt-0.5">Create</span>
+</a>
+<!-- Communities Destination -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">hub</span>
+<span class="font-label-sm text-label-sm mt-0.5">Communities</span>
+</a>
+<!-- Profile Destination -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="font-label-sm text-label-sm mt-0.5">Profile</span>
+</a>
+</nav>
+<!-- Micro-interactions Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const markBtn = document.getElementById('markReadBtn');
+      if (markBtn) {
+        markBtn.addEventListener('click', () => {
+          const indicators = document.querySelectorAll('.ring-2.ring-surface');
+          indicators.forEach(dot => dot.classList.add('hidden'));
+          markBtn.textContent = 'All caught up';
+          markBtn.classList.add('opacity-50', 'pointer-events-none');
+        });
+      }
+    });
+  </script>
+</body></html>

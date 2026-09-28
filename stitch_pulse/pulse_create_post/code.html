@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PULSE — Create Post</title>
+<!-- Fonts: Space Grotesk & Hanken Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed-variant": "#46464b",
+            "on-background": "#e5e2e1",
+            "on-tertiary-fixed": "#1b1b1d",
+            "tertiary-fixed": "#e4e2e4",
+            "surface-bright": "#3a3939",
+            "on-surface": "#e5e2e1",
+            "primary-fixed-dim": "#c6c6c7",
+            "on-surface-variant": "#c4c7c8",
+            "outline": "#8e9192",
+            "primary-fixed": "#e2e2e2",
+            "secondary-container": "#46464b",
+            "secondary-fixed-dim": "#c6c6cb",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#c8c6c8",
+            "on-secondary-container": "#b5b4ba",
+            "surface-container-low": "#1c1b1b",
+            "surface": "#131313",
+            "secondary": "#c6c6cb",
+            "surface-dim": "#131313",
+            "on-error": "#690005",
+            "surface-container-highest": "#353534",
+            "surface-variant": "#353534",
+            "on-primary-fixed": "#1a1c1c",
+            "inverse-surface": "#e5e2e1",
+            "inverse-on-surface": "#313030",
+            "error": "#ffb4ab",
+            "on-secondary": "#2f3034",
+            "primary": "#ffffff",
+            "on-tertiary": "#303032",
+            "tertiary-container": "#e4e2e4",
+            "on-secondary-fixed": "#1a1b1f",
+            "error-container": "#93000a",
+            "outline-variant": "#444748",
+            "on-tertiary-fixed-variant": "#474649",
+            "background": "#131313",
+            "secondary-fixed": "#e3e2e7",
+            "on-primary-fixed-variant": "#454747",
+            "on-tertiary-container": "#656466",
+            "primary-container": "#e2e2e2",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary": "#2f3131",
+            "tertiary": "#ffffff",
+            "surface-tint": "#c6c6c7",
+            "inverse-primary": "#5d5f5f",
+            "surface-container": "#201f1f",
+            "on-primary-container": "#636565",
+            "surface-container-high": "#2a2a2a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Space Grotesk"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "label-sm": ["Space Grotesk"],
+            "body-lg": ["Hanken Grotesk"],
+            "title-md": ["Hanken Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "display": ["Space Grotesk"],
+            "body-sm": ["Hanken Grotesk"],
+            "body-md": ["Hanken Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+            "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "title-md": ["16px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display": ["44px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.025em", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+    }
+    textarea:focus, input:focus {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    /* Hairline scrollbar hiding */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md selection:bg-primary selection:text-background min-h-screen flex justify-center">
+<!-- Mobile Screen Container (Constrained reading column) -->
+<div class="w-full max-w-[640px] min-h-screen flex flex-col bg-surface pb-32 relative">
+<!-- TASK/MODAL TOP BAR: 'Cancel' | 'New Post' | 'Publish' -->
+<header class="sticky top-0 z-40 w-full h-14 px-space-md bg-surface border-b border-outline-variant flex items-center justify-between">
+<button class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-150 active:opacity-70" type="button">
+        Cancel
+      </button>
+<h1 class="font-headline-sm text-headline-sm text-primary tracking-tight">
+        New Post
+      </h1>
+<button class="bg-primary text-background font-headline-sm text-[13px] tracking-tight px-space-md py-1.5 rounded-full font-bold hover:bg-surface-bright hover:text-primary transition-colors duration-150 active:scale-95" type="button">
+        Publish
+      </button>
+</header>
+<!-- MAIN SCROLLABLE CONTENT CANVAS -->
+<main class="flex-1 px-space-md pt-space-md space-y-space-lg">
+<!-- DESTINATION & TOPIC SELECTORS -->
+<section class="flex flex-wrap items-center gap-space-xs border-b border-surface-container pb-space-sm">
+<!-- Community Selector -->
+<button class="inline-flex items-center gap-1.5 px-space-sm py-1 bg-surface-container-low border border-outline-variant rounded-lg text-primary hover:border-primary transition-colors duration-150" type="button">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+<span class="font-headline-sm text-[13px] tracking-tight">Posting to c/DesignEthics</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant leading-none" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+<!-- Topic Pill -->
+<button class="inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-low border border-outline-variant rounded-lg text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-150" type="button">
+<span class="font-label-sm text-label-sm">#GenerativeDesign</span>
+<span class="material-symbols-outlined text-[14px] leading-none" data-icon="expand_more">expand_more</span>
+</button>
+</section>
+<!-- CONTENT BODY AREA -->
+<section class="space-y-space-md">
+<!-- Title Field with Clean Hairline Underline -->
+<div class="relative border-b border-outline-variant focus-within:border-primary transition-colors pb-1">
+<input class="w-full bg-transparent border-0 px-0 py-1.5 text-primary placeholder:text-on-secondary-container font-headline-sm text-headline-sm focus:ring-0" placeholder="Title (optional)" type="text"/>
+</div>
+<!-- Text Area -->
+<div>
+<textarea class="w-full bg-transparent border-0 px-0 py-1 text-on-surface placeholder:text-outline font-body-lg text-body-lg resize-none focus:ring-0 leading-relaxed" placeholder="Share a thesis, spark a debate, or document an experiment..." rows="5"></textarea>
+</div>
+</section>
+<!-- FORMAT SWITCHER TABS -->
+<section class="border-t border-b border-surface-container py-2">
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+<!-- Text Active -->
+<button class="px-3 py-1 rounded-lg bg-primary text-background font-headline-sm text-[12px] font-bold tracking-tight" type="button">
+            Text
+          </button>
+<!-- Image -->
+<button class="px-3 py-1 rounded-lg bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-primary font-headline-sm text-[12px] tracking-tight" type="button">
+            Image
+          </button>
+<!-- Poll -->
+<button class="px-3 py-1 rounded-lg bg-surface-container border border-outline-variant text-primary font-headline-sm text-[12px] tracking-tight flex items-center gap-1" type="button">
+<span>Poll</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+</button>
+<!-- Link -->
+<button class="px-3 py-1 rounded-lg bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-primary font-headline-sm text-[12px] tracking-tight" type="button">
+            Link
+          </button>
+<!-- Code -->
+<button class="px-3 py-1 rounded-lg bg-surface-container-low border border-outline-variant text-on-surface-variant hover:text-primary font-headline-sm text-[12px] tracking-tight" type="button">
+            Code
+          </button>
+</div>
+</section>
+<!-- ATTACHED MODULE: POLL CREATOR PREVIEW -->
+<section class="bg-surface-container-low border border-outline-variant rounded-xl p-space-md space-y-space-md">
+<div class="flex items-center justify-between border-b border-outline-variant pb-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="ballot">ballot</span>
+<span class="font-headline-sm text-[13px] text-primary tracking-tight">Poll Creator</span>
+</div>
+<!-- Duration selector -->
+<div class="flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded border border-outline-variant">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Duration:</span>
+<select class="bg-transparent text-primary font-headline-sm text-[11px] border-none p-0 focus:ring-0 cursor-pointer">
+<option class="bg-surface-container-high text-primary">1 Day</option>
+<option class="bg-surface-container-high text-primary" selected="">3 Days</option>
+<option class="bg-surface-container-high text-primary">7 Days</option>
+</select>
+</div>
+</div>
+<!-- Question input -->
+<div>
+<input class="w-full bg-surface-container border border-outline-variant focus:border-primary rounded-lg px-3 py-2 text-primary font-body-md text-body-md placeholder:text-outline transition-colors duration-150" placeholder="Add question..." type="text" value="Should algorithmic curation enforce opposing philosophical viewpoints?"/>
+</div>
+<!-- Option 1 & Option 2 fields -->
+<div class="space-y-space-xs">
+<div class="relative flex items-center">
+<span class="absolute left-3 font-label-sm text-label-sm text-outline">1</span>
+<input class="w-full bg-surface-container border border-outline-variant focus:border-primary rounded-lg pl-7 pr-3 py-1.5 text-on-surface font-body-sm text-body-sm transition-colors duration-150" placeholder="Option 1" type="text" value="Yes, cognitive friction is vital."/>
+</div>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-label-sm text-label-sm text-outline">2</span>
+<input class="w-full bg-surface-container border border-outline-variant focus:border-primary rounded-lg pl-7 pr-3 py-1.5 text-on-surface font-body-sm text-body-sm transition-colors duration-150" placeholder="Option 2" type="text" value="No, affinity clustering creates safer spaces."/>
+</div>
+</div>
+<!-- Add option button -->
+<button class="w-full py-1.5 bg-surface-container border border-dashed border-outline-variant hover:border-primary rounded-lg text-on-surface-variant hover:text-primary font-headline-sm text-[12px] flex items-center justify-center gap-1 transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+<span>Add option</span>
+</button>
+</section>
+<!-- ATTACHED MODULE: IMAGE PREVIEW TILE -->
+<section class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline tracking-wider">MEDIA ATTACHMENT</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1/4</span>
+</div>
+<div class="relative w-full h-44 rounded-xl overflow-hidden border border-outline-variant group bg-surface-container-low">
+<!-- Monochromatic architectural image -->
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="A striking minimalist monochrome photograph of stark concrete brutalist architecture under overcast gray atmospheric light. The composition features sharp mathematical lines, deep jet-black geometric shadows, and pristine off-white concrete facades, framed in strict editorial contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWhgf90gLKba9CBxRd6palQEpZBqr-TUNy-l5JkigcpadZB-XTU7PmiXi9thIY4Vd9sMHU3XK0zrGjXEsIixzLPZG82mPhQM_kgZX8Rk8o_XK87dW4etxg06yS_ctz2ebxNvClKPHQ6dUHwFQJz1QWvG2jBe4Xf2NY5s8fCkT6dvrqusvfmle6a1_a7Pp4D1ERGhbH8nYBAIed4BuTRws2Kh4HutS2ZK-OHy6Z8FEvc4464UZ_AtBh"/>
+<!-- Subtle hairline dark overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+<!-- Remove (X) Button -->
+<button class="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-surface/90 border border-outline-variant hover:border-primary text-primary flex items-center justify-center transition-colors active:scale-95 shadow-md" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="close">close</span>
+</button>
+<!-- File details tag -->
+<div class="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 border border-outline-variant text-[11px] font-label-sm text-on-surface-variant">
+            specimen_brutalist_04.png · 2.4 MB
+          </div>
+</div>
+</section>
+<!-- SETTINGS TOGGLES -->
+<section class="bg-surface-container-low border border-outline-variant rounded-xl p-space-md divide-y divide-surface-container space-y-space-sm">
+<!-- Toggle 1 -->
+<div class="flex items-center justify-between pt-space-xs first:pt-0">
+<div class="space-y-0.5">
+<div class="font-headline-sm text-[13px] text-primary tracking-tight">Allow cross-posting to personal profile</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Mirrors publication to your individual timeline</div>
+</div>
+<!-- Mechanical Switch: Checked -->
+<label class="relative inline-flex items-center cursor-pointer ml-3 flex-shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:bg-primary transition-colors"></div>
+<div class="absolute left-0.5 top-0.5 bg-surface peer-checked:bg-surface-container-lowest w-4 h-4 rounded-full transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+<!-- Toggle 2 -->
+<div class="flex items-center justify-between pt-space-sm">
+<div class="space-y-0.5">
+<div class="font-headline-sm text-[13px] text-primary tracking-tight">Enable community notifications</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Alert subscribed moderators on reply threads</div>
+</div>
+<!-- Mechanical Switch: Inactive -->
+<label class="relative inline-flex items-center cursor-pointer ml-3 flex-shrink-0">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:bg-primary transition-colors"></div>
+<div class="absolute left-0.5 top-0.5 bg-on-surface-variant peer-checked:bg-surface-container-lowest w-4 h-4 rounded-full transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+</section>
+</main>
+<!-- FIXED DOCKED BOTTOM TOOLBAR (ABOVE KEYBOARD DOCK) -->
+<div class="fixed bottom-0 left-0 right-0 z-50 flex justify-center bg-transparent pointer-events-none">
+<div class="w-full max-w-[640px] pointer-events-auto bg-surface border-t border-outline-variant shadow-2xl flex flex-col">
+<!-- Metadata Info Counter Strip -->
+<div class="px-space-md py-1.5 flex items-center justify-between border-b border-surface-container text-outline font-label-sm text-label-sm">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+<span>280 words · 1.5 min read</span>
+</span>
+<span class="text-on-surface-variant font-label-sm">Markdown Supported</span>
+</div>
+<!-- Toolbar Action Bar -->
+<div class="px-space-md h-12 flex items-center justify-between">
+<!-- Left Tool Icons -->
+<div class="flex items-center gap-1 sm:gap-2">
+<!-- Camera / Upload -->
+<button class="p-2 text-on-surface-variant hover:text-primary active:scale-95 transition-all" title="Upload Media" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="photo_camera">photo_camera</span>
+</button>
+<!-- Poll Chart -->
+<button class="p-2 text-primary active:scale-95 transition-all" title="Add Poll" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="bar_chart">bar_chart</span>
+</button>
+<!-- Hashtag -->
+<button class="p-2 text-on-surface-variant hover:text-primary active:scale-95 transition-all" title="Tag Topic" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="tag">tag</span>
+</button>
+<!-- Mention -->
+<button class="p-2 text-on-surface-variant hover:text-primary active:scale-95 transition-all" title="Mention Author" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="alternate_email">alternate_email</span>
+</button>
+</div>
+<!-- Vertical Divider -->
+<div class="h-5 w-[1px] bg-outline-variant"></div>
+<!-- Formatting Tools -->
+<div class="flex items-center gap-1 sm:gap-2">
+<!-- Bold -->
+<button class="p-2 text-on-surface-variant hover:text-primary active:scale-95 transition-all font-headline-sm font-bold text-[14px]" type="button">
+              B
+            </button>
+<!-- Italic -->
+<button class="p-2 text-on-surface-variant hover:text-primary active:scale-95 transition-all font-headline-sm italic text-[14px]" type="button">
+              I
+            </button>
+<!-- Quote -->
+<button class="p-2 text-on-surface-variant hover:text-primary active:scale-95 transition-all" title="Blockquote" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="format_quote">format_quote</span>
+</button>
+<!-- Code Inline -->
+<button class="p-2 text-on-surface-variant hover:text-primary active:scale-95 transition-all" title="Code Block" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="code">code</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
