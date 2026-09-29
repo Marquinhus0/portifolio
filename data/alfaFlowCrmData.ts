@@ -30,7 +30,7 @@ export type LeadSource =
   | "Site Orgânico"
   | "Representante Comercial";
 
-export type AlfaErpModule =
+export type EnterpriseModule =
   | "ERP Gestão (Core)"
   | "PDV & Faturamento Rápido"
   | "Estoque & Armazenagem"
@@ -40,6 +40,8 @@ export type AlfaErpModule =
   | "BI & Métricas Gerenciais"
   | "Fiscal & SPED Corporativo"
   | "CRM Flow Integrado";
+
+export type AlfaErpModule = EnterpriseModule;
 
 export interface CrmLead {
   id: string;
@@ -502,7 +504,7 @@ export const INITIAL_DEALS: CrmDeal[] = [
   },
   {
     id: "deal-03",
-    title: "ALFA ERP Completo — Rede 6 Lojas",
+    title: "Plataforma Enterprise — Rede 6 Lojas",
     company: "Auto Center Brasil",
     contactName: "Ricardo Costa",
     contactRole: "Diretor de Operações",
@@ -657,7 +659,7 @@ export const INITIAL_DEALS: CrmDeal[] = [
     campaign: "Campanha Distribuidoras",
     daysInStage: 16,
     lastActivity: "Hoje, 11:00",
-    nextAction: "Início do onboarding técnico ALFA ERP",
+    nextAction: "Início do onboarding técnico corporativo",
     nextActionDate: "Concluído",
     health: "on-track",
     interestModules: ["ERP Gestão (Core)", "Estoque & Armazenagem", "Portal B2B de Pedidos", "Fiscal & SPED Corporativo"],
@@ -728,7 +730,7 @@ export const INITIAL_TASKS: CrmTask[] = [
   },
   {
     id: "task-06",
-    title: "Enviar comparação técnica ALFA ERP vs Software Legado",
+    title: "Enviar comparação técnica vs Software Legado",
     company: "Auto Peças Gaúcha",
     contact: "Eduardo Lima",
     dueTime: "Sexta-feira, 10:00",
@@ -956,12 +958,12 @@ export const INITIAL_AUTOMATIONS: CrmAutomationRule[] = [
   },
   {
     id: "auto-04",
-    title: "Sincronização Automática Lead Ganho → ALFA ERP",
+    title: "Sincronização Automática Lead Ganho → ERP Corporativo",
     trigger: "Oportunidade movida para o estágio 'Ganho'",
     conditions: "Contrato assinado e CNPJ validado na Receita Federal",
     actions: [
       "Converter Lead em Cliente Ativo na base unificada",
-      "Criar cadastro da empresa no ALFA ERP com filiais e parâmetros fiscais",
+      "Criar cadastro da empresa no ERP com filiais e parâmetros fiscais",
       "Notificar equipe de Onboarding Técnico e Implantação de Balcão",
     ],
     active: true,
@@ -998,6 +1000,6 @@ export const WHATSAPP_TEMPLATES = [
   {
     id: "reativacao",
     title: "Follow-up / Reativação",
-    text: "Olá {nome}, como estão os negócios na {empresa}? Conseguiram avaliar a proposta do ALFA ERP? Lançamos uma nova condição de parcelamento da implantação válida para este mês.",
+    text: "Olá {nome}, como estão os negócios na {empresa}? Conseguiram avaliar nossa proposta corporativa? Lançamos uma nova condição de parcelamento da implantação válida para este mês.",
   },
 ];

@@ -71,7 +71,7 @@ import {
   CrmStageId,
   AutomotiveSegment,
   LeadSource,
-  AlfaErpModule,
+  EnterpriseModule,
   INITIAL_LEADS,
   INITIAL_DEALS,
   INITIAL_TASKS,
@@ -162,7 +162,7 @@ const STAGES: StageConfig[] = [
   },
 ];
 
-const ALL_ALFA_MODULES: AlfaErpModule[] = [
+const ALL_ENTERPRISE_MODULES: EnterpriseModule[] = [
   "ERP Gestão (Core)",
   "PDV & Faturamento Rápido",
   "Estoque & Armazenagem",
@@ -428,7 +428,7 @@ export default function FlowCrmShowcase() {
     campaign: "Campanha Comercial B2B",
     owner: "João Silva",
     dealValue: 15000,
-    interestModules: ["ERP Gestão (Core)", "PDV & Faturamento Rápido"] as AlfaErpModule[],
+    interestModules: ["ERP Gestão (Core)", "PDV & Faturamento Rápido"] as EnterpriseModule[],
     notes: "",
   });
 
@@ -475,7 +475,7 @@ export default function FlowCrmShowcase() {
     // Also create corresponding deal in pipeline
     const createdDeal: CrmDeal = {
       id: `deal-${Date.now()}`,
-      title: `Implantação ALFA ERP — ${createdLead.company}`,
+      title: `Implantação Enterprise — ${createdLead.company}`,
       company: createdLead.company,
       contactName: createdLead.name,
       contactRole: createdLead.role,
@@ -642,7 +642,7 @@ export default function FlowCrmShowcase() {
           <div className="px-4 py-2 bg-[#F8FAFC] border-b border-[#E4E7EC] flex items-center justify-between text-[11px]">
             <div className="flex items-center gap-2 text-[#667085]">
               <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse"></span>
-              <span className="font-medium">ALFA ERP Conectado</span>
+              <span className="font-medium">ERP Conectado</span>
             </div>
             <span className="text-[10px] font-mono text-[#1683E8] font-semibold bg-[#EAF4FF] px-1.5 py-0.5 rounded">
               v3.4
@@ -766,7 +766,7 @@ export default function FlowCrmShowcase() {
               }`}
             >
               <FileText className={`w-4 h-4 ${activeTab === "propostas" ? "text-[#1683E8]" : "text-[#98A2B3]"}`} />
-              <span className="flex-1">Propostas ALFA ERP</span>
+              <span className="flex-1">Propostas Comerciais</span>
             </button>
 
             <div className="pt-3 px-3 pb-1 text-[10px] font-bold uppercase tracking-wider text-[#98A2B3]">
@@ -975,7 +975,7 @@ export default function FlowCrmShowcase() {
 
               {/* Help Button */}
               <button
-                onClick={() => showToast("Central de Suporte & Treinamento ALFA ERP: 0800 400 9000")}
+                onClick={() => showToast("Central de Suporte & Treinamento: 0800 400 9000")}
                 className="w-9 h-9 border border-[#E4E7EC] hover:bg-[#F5F7FA] bg-white rounded-xl flex items-center justify-center text-[#667085] hover:text-[#172033] transition-colors"
                 title="Ajuda & Base de Conhecimento"
               >
@@ -2146,7 +2146,7 @@ export default function FlowCrmShowcase() {
                     Agenda Comercial
                   </h1>
                   <p className="text-xs text-[#667085] mt-1">
-                    Demonstrações agendadas do ALFA ERP, reuniões presenciais e visitas técnicas.
+                    Demonstrações agendadas de software, reuniões presenciais e visitas técnicas.
                   </p>
                 </div>
                 <div className="flex gap-2 text-xs">
@@ -2249,7 +2249,7 @@ export default function FlowCrmShowcase() {
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div>
                 <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
-                  Propostas Comerciais ALFA ERP
+                  Propostas Comerciais Enterprise
                 </h1>
                 <p className="text-xs text-[#667085] mt-1">
                   Orçamentos de implantação, licenças por filial e contratos de software.
@@ -2421,7 +2421,7 @@ export default function FlowCrmShowcase() {
                     Automações Comerciais B2B
                   </h1>
                   <p className="text-xs text-[#667085] mt-1">
-                    Workflows para distribuição de leads, follow-ups de SLA e sincronização com o ALFA ERP.
+                    Workflows para distribuição de leads, follow-ups de SLA e sincronização com o ERP corporativo.
                   </p>
                 </div>
                 <button
@@ -2614,7 +2614,7 @@ export default function FlowCrmShowcase() {
                     : "border-transparent text-[#667085] hover:text-[#172033]"
                 }`}
               >
-                Módulos ALFA ERP
+                Módulos Corporativos
               </button>
             </div>
 
@@ -2694,9 +2694,9 @@ export default function FlowCrmShowcase() {
 
               {drawerTab === "modulos" && (
                 <div className="space-y-4 text-xs">
-                  <h3 className="font-bold text-[#172033] text-sm">Módulos de Interesse ALFA ERP</h3>
+                  <h3 className="font-bold text-[#172033] text-sm">Módulos Corporativos de Interesse</h3>
                   <div className="grid grid-cols-1 gap-2">
-                    {ALL_ALFA_MODULES.map((mod) => {
+                    {ALL_ENTERPRISE_MODULES.map((mod) => {
                       const isSelected = selectedLead.interestModules.includes(mod);
                       return (
                         <div

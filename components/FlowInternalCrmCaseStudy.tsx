@@ -88,7 +88,7 @@ export default function FlowInternalCrmCaseStudy({
     { id: "workspace", label: "04. Aplicação Interativa" },
     { id: "personas", label: "05. Personas & Rotina" },
     { id: "arquitetura", label: "06. Arquitetura & UX" },
-    { id: "designsystem", label: "07. Design System ALFA ERP" },
+    { id: "designsystem", label: "07. Design System & Tokens" },
     { id: "metricas", label: "08. Métricas & Resultados" },
     { id: "aprendizados", label: "09. Aprendizados" },
   ];
@@ -342,7 +342,7 @@ export default function FlowInternalCrmCaseStudy({
               { num: "04", name: "OPORTUNIDADE", desc: "Demo ERP & Curva ABC", color: "border-amber-500 text-amber-400" },
               { num: "05", name: "PROPOSTA", desc: "Orçamento de software", color: "border-purple-500 text-purple-400" },
               { num: "06", name: "NEGOCIAÇÃO", desc: "Ajuste de alçadas & prazos", color: "border-orange-500 text-orange-400" },
-              { num: "07", name: "CLIENTE", desc: "Onboarding no ALFA ERP", color: "border-emerald-500 text-emerald-400" },
+              { num: "07", name: "CLIENTE", desc: "Onboarding & Ativação", color: "border-emerald-500 text-emerald-400" },
             ].map((step, idx) => (
               <div
                 key={step.num}
@@ -558,14 +558,14 @@ export default function FlowInternalCrmCaseStudy({
             </div>
             <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-2">
               <span className="text-[#1683E8] font-bold block text-sm">08. Sincronização ERP</span>
-              <p className="text-neutral-400">Conversão de lead ganho diretamente em cliente cadastrado no ecossistema ALFA ERP.</p>
+              <p className="text-neutral-400">Conversão de lead ganho diretamente em cliente cadastrado no ERP da empresa.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 07. DESIGN SYSTEM ALFA ERP & ERGONOMIA COGNITIVA                          */}
+      {/* 07. DESIGN SYSTEM CORPORATIVO & ERGONOMIA COGNITIVA                       */}
       {/* ========================================================================= */}
       <section id="designsystem" className="py-20 border-b border-neutral-800 bg-[#080808]">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
@@ -574,7 +574,7 @@ export default function FlowInternalCrmCaseStudy({
               07 — IDENTIDADE VISUAL & DESIGN SYSTEM
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Harmonia Cromática com o ALFA ERP
+              Harmonia Cromática & Design System Corporativo
             </h2>
             <p className="text-base text-neutral-300 leading-relaxed font-normal">
               A paleta de cores foi desenhada respeitando a premissa de não transformar a tela em um bloco azul cansativo. O fundo é neutro e leve (#F5F7FA), e o azul (#1683E8) atua exclusivamente como vetor de ação e navegação.
@@ -585,12 +585,12 @@ export default function FlowInternalCrmCaseStudy({
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs font-mono">
             <div className="p-3 bg-neutral-900 border border-neutral-800 rounded-sm space-y-2">
               <div className="h-10 rounded-sm bg-[#1683E8]"></div>
-              <span className="font-bold text-white block">ALFA BLUE</span>
+              <span className="font-bold text-white block">FLOW BLUE</span>
               <span className="text-[10px] text-neutral-400 block">#1683E8 · Ação & CTA</span>
             </div>
             <div className="p-3 bg-neutral-900 border border-neutral-800 rounded-sm space-y-2">
               <div className="h-10 rounded-sm bg-[#123B63]"></div>
-              <span className="font-bold text-white block">ALFA DARK</span>
+              <span className="font-bold text-white block">DEEP NAVY</span>
               <span className="text-[10px] text-neutral-400 block">#123B63 · Header & Estrutura</span>
             </div>
             <div className="p-3 bg-neutral-900 border border-neutral-800 rounded-sm space-y-2">
@@ -689,7 +689,7 @@ export default function FlowInternalCrmCaseStudy({
             <div className="p-6 bg-neutral-900/40 border border-neutral-800 rounded-sm space-y-2">
               <h3 className="font-bold text-white text-sm">3. Design Neutro com Azul Estratégico</h3>
               <p className="text-neutral-400">
-                A neutralidade das superfícies dá protagonismo aos dados das empresas e evita o cansaço visual. O azul ALFA atua com clareza nos momentos de decisão.
+                A neutralidade das superfícies dá protagonismo aos dados das empresas e evita o cansaço visual. O azul primário atua com clareza nos momentos de decisão.
               </p>
             </div>
           </div>
