@@ -660,48 +660,49 @@ export default function AlfaErpWorkspace() {
 
   return (
     <div
-      className={`w-full rounded-xl border border-[#E4E7EC] bg-[#F5F7FA] text-[#172033] font-sans overflow-hidden shadow-2xl transition-all duration-300 select-none ${
+      className={`w-full rounded-xl border border-[#1e2230] bg-[#0d0f16] text-[#e2e8f0] font-sans overflow-hidden shadow-2xl transition-all duration-300 select-none ${
         isFullscreen ? "fixed inset-2 z-50 rounded-xl shadow-2xl max-h-[98vh]" : "relative min-h-[840px]"
       }`}
     >
       {/* ===================================================================== */}
       {/* 1. TOP WINDOW BAR (OS STYLE CLOUD HEADER)                             */}
       {/* ===================================================================== */}
-      <div className="bg-[#123B63] text-white px-4 py-2 flex items-center justify-between text-xs font-mono border-b border-[#0F3255]">
+      <div className="bg-[#080b12] text-white px-4 py-2 flex items-center justify-between text-xs font-mono border-b border-[#1e2230]">
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#1683E8] animate-pulse" />
-          <strong className="text-white font-bold tracking-wider">ALFA ERP v8.4 CLOUD</strong>
-          <span className="text-[#98A2B3] hidden sm:inline">•</span>
-          <span className="text-[#EAF4FF] text-[11px] hidden sm:inline">
+          <span className="w-2 h-2 rounded-full bg-[#13E1BC] animate-pulse" />
+          <strong className="text-white font-black tracking-wider font-mono">ALFA ERP</strong>
+          <span className="text-[#13E1BC] font-mono text-[10px] bg-[#13E1BC]/10 px-1.5 py-0.5 rounded border border-[#13E1BC]/30">v8.4 CLOUD</span>
+          <span className="text-neutral-600 hidden sm:inline">•</span>
+          <span className="text-neutral-400 text-[11px] hidden sm:inline">
             Sprint 3 — Protótipo Funcional de Alta Fidelidade (Gestão de Compras)
           </span>
         </div>
 
         <div className="flex items-center gap-3">
           {/* UI State Selector for UX Testing / QA */}
-          <div className="hidden md:flex items-center gap-1.5 bg-[#0F3255] px-2 py-0.5 rounded text-[11px]">
-            <span className="text-[#98A2B3]">Estado UI:</span>
+          <div className="hidden md:flex items-center gap-1.5 bg-[#13151e] border border-[#1e2230] px-2 py-0.5 rounded text-[11px]">
+            <span className="text-neutral-500">Estado UI:</span>
             <select
               value={uiState}
               onChange={(e) => setUiState(e.target.value as any)}
               className="bg-transparent text-white font-bold text-[11px] outline-none cursor-pointer"
               title="Alternar estado de interface para auditoria de UX"
             >
-              <option value="normal" className="bg-[#123B63] text-white">Normal</option>
-              <option value="skeleton" className="bg-[#123B63] text-white">Skeleton (Loading)</option>
-              <option value="empty" className="bg-[#123B63] text-white">Empty State</option>
-              <option value="error" className="bg-[#123B63] text-white">Error State</option>
-              <option value="no_permission" className="bg-[#123B63] text-white">Sem Permissão</option>
+              <option value="normal" className="bg-[#13151e] text-white">Normal</option>
+              <option value="skeleton" className="bg-[#13151e] text-white">Skeleton (Loading)</option>
+              <option value="empty" className="bg-[#13151e] text-white">Empty State</option>
+              <option value="error" className="bg-[#13151e] text-white">Error State</option>
+              <option value="no_permission" className="bg-[#13151e] text-white">Sem Permissão</option>
             </select>
           </div>
 
-          <span className="text-[#EAF4FF] text-[11px] hidden lg:inline">
-            Filial: <strong>{activeBranch}</strong> • Operador: <strong>Marcus Ritta (MH)</strong>
+          <span className="text-neutral-400 text-[11px] hidden lg:inline">
+            Filial: <strong className="text-white">{activeBranch}</strong> • Operador: <strong className="text-white">Marcus Ritta (MH)</strong>
           </span>
 
           <button
             onClick={() => setShortcutsModalOpen(true)}
-            className="p-1 hover:bg-[#0F3255] rounded text-white/80 hover:text-white transition-colors"
+            className="p-1 hover:bg-white/10 rounded text-neutral-400 hover:text-white transition-colors"
             title="Atalhos do Teclado (F1 / ?)"
           >
             <HelpCircle className="w-3.5 h-3.5" />
@@ -709,7 +710,7 @@ export default function AlfaErpWorkspace() {
 
           <button
             onClick={() => setIsFullscreen(!isFullscreen)}
-            className="p-1 hover:bg-[#0F3255] rounded text-white transition-colors"
+            className="p-1 hover:bg-white/10 rounded text-white transition-colors"
             title={isFullscreen ? "Restaurar" : "Maximizar"}
           >
             {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
@@ -719,61 +720,61 @@ export default function AlfaErpWorkspace() {
 
       <div className="flex min-h-[760px]">
         {/* =================================================================== */}
-        {/* 2. SIDEBAR (ORGANIZAÇÃO SPRINT 3 COM FLUXO DE COMPRAS)              */}
+        {/* 2. SIDEBAR — DARK MODERN                                            */}
         {/* =================================================================== */}
         <aside
-          style={{ width: sidebarCollapsed ? "72px" : "240px" }}
-          className="bg-white border-r border-[#E4E7EC] flex flex-col justify-between shrink-0 transition-all duration-200"
+          style={{ width: sidebarCollapsed ? "60px" : "220px" }}
+          className="bg-[#090c14] border-r border-[#1a1f2e] flex flex-col justify-between shrink-0 transition-all duration-200"
         >
           <div>
-            {/* Brand Logo Header */}
-            <div className="h-[64px] border-b border-[#E4E7EC] px-4 flex items-center justify-between">
-              <div
-                onClick={() => setActiveSection("inicio")}
-                className="flex items-center gap-3 cursor-pointer overflow-hidden"
-              >
-                <div className="w-9 h-9 rounded-[10px] bg-[#1683E8] text-white font-bold text-base flex items-center justify-center shrink-0 shadow-sm">
-                  A
-                </div>
-                {!sidebarCollapsed && (
-                  <div className="min-w-0">
-                    <span className="font-bold text-sm text-[#172033] block tracking-tight leading-none">
-                      ALFA
-                    </span>
-                    <span className="text-[10px] text-[#667085] font-semibold block tracking-tight uppercase mt-0.5">
-                      Software AutoPeças
-                    </span>
-                  </div>
-                )}
+          {/* Brand Logo Header */}
+          <div className="h-[56px] border-b border-[#1a1f2e] px-3 flex items-center justify-between">
+            <div
+              onClick={() => setActiveSection("inicio")}
+              className="flex items-center gap-2.5 cursor-pointer overflow-hidden"
+            >
+              <div className="w-8 h-8 rounded-lg bg-[#13E1BC]/15 border border-[#13E1BC]/40 text-[#13E1BC] font-black text-sm flex items-center justify-center shrink-0">
+                A
               </div>
-              <button
-                onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-                className="w-7 h-7 rounded hover:bg-[#F2F4F7] text-[#667085] flex items-center justify-center text-xs"
-                title={sidebarCollapsed ? "Expandir Menu" : "Recolher Menu"}
-              >
-                {sidebarCollapsed ? "→" : "←"}
-              </button>
+              {!sidebarCollapsed && (
+                <div className="min-w-0">
+                  <span className="font-black text-sm text-white block tracking-tight leading-none font-mono">
+                    ALFA
+                  </span>
+                  <span className="text-[10px] text-neutral-500 font-semibold block tracking-tight uppercase mt-0.5">
+                    Software AutoPeças
+                  </span>
+                </div>
+              )}
             </div>
+            <button
+              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+              className="w-6 h-6 rounded hover:bg-white/10 text-neutral-500 hover:text-white flex items-center justify-center text-xs transition-colors"
+              title={sidebarCollapsed ? "Expandir Menu" : "Recolher Menu"}
+            >
+              {sidebarCollapsed ? "→" : "←"}
+            </button>
+          </div>
 
             {/* Navigation Groups */}
-            <nav className="p-3 space-y-4 text-xs overflow-y-auto max-h-[calc(100vh-200px)]">
+            <nav className="p-2 space-y-4 text-xs overflow-y-auto max-h-[calc(100vh-200px)]">
               {/* Grupo: Principal */}
               <div>
                 {!sidebarCollapsed && (
-                  <span className="px-2 text-[10px] uppercase font-bold text-[#98A2B3] tracking-wider block mb-1">
+                  <span className="px-2 text-[9px] uppercase font-bold text-neutral-600 tracking-widest block mb-1">
                     Principal
                   </span>
                 )}
                 <button
                   onClick={() => setActiveSection("inicio")}
-                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                  className={`w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left transition-colors ${
                     activeSection === "inicio"
-                      ? "bg-[#EAF4FF] text-[#1683E8] font-bold shadow-xs"
-                      : "text-[#475467] hover:bg-[#F2F4F7]"
+                      ? "bg-[#13E1BC]/15 text-[#13E1BC] font-bold border border-[#13E1BC]/30"
+                      : "text-neutral-400 hover:bg-white/5 hover:text-white"
                   }`}
                   title="Visão Geral / Dashboard"
                 >
-                  <BarChart3 className="w-4 h-4 shrink-0 text-inherit" />
+                  <BarChart3 className="w-3.5 h-3.5 shrink-0" />
                   {!sidebarCollapsed && <span>Command Center</span>}
                 </button>
               </div>
@@ -781,26 +782,26 @@ export default function AlfaErpWorkspace() {
               {/* Grupo: Cadastros */}
               <div>
                 {!sidebarCollapsed && (
-                  <span className="px-2 text-[10px] uppercase font-bold text-[#98A2B3] tracking-wider block mb-1">
+                  <span className="px-2 text-[9px] uppercase font-bold text-neutral-600 tracking-widest block mb-1">
                     Cadastros
                   </span>
                 )}
                 <div className="space-y-0.5">
                   <button
                     onClick={() => setActiveSection("itens")}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors ${
+                    className={`w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-left transition-colors ${
                       activeSection === "itens" || activeSection === "item_cadastro"
-                        ? "bg-[#EAF4FF] text-[#1683E8] font-bold"
-                        : "text-[#475467] hover:bg-[#F2F4F7]"
+                        ? "bg-[#13E1BC]/15 text-[#13E1BC] font-bold border border-[#13E1BC]/30"
+                        : "text-neutral-400 hover:bg-white/5 hover:text-white"
                     }`}
                     title="Itens de Estoque & Peças"
                   >
-                    <div className="flex items-center gap-3">
-                      <Package className="w-4 h-4 shrink-0 text-inherit" />
+                    <div className="flex items-center gap-2.5">
+                      <Package className="w-3.5 h-3.5 shrink-0" />
                       {!sidebarCollapsed && <span>Itens</span>}
                     </div>
                     {!sidebarCollapsed && (
-                      <span className="text-[10px] px-1.5 py-0.2 rounded bg-neutral-100 text-neutral-600 font-mono">
+                      <span className="text-[10px] px-1.5 rounded bg-white/10 text-neutral-400 font-mono">
                         {itemsDatabase.length}
                       </span>
                     )}
@@ -808,19 +809,19 @@ export default function AlfaErpWorkspace() {
 
                   <button
                     onClick={() => setActiveSection("pessoas")}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors ${
+                    className={`w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-left transition-colors ${
                       activeSection === "pessoas" || activeSection === "pessoa_cadastro"
-                        ? "bg-[#EAF4FF] text-[#1683E8] font-bold"
-                        : "text-[#475467] hover:bg-[#F2F4F7]"
+                        ? "bg-[#13E1BC]/15 text-[#13E1BC] font-bold border border-[#13E1BC]/30"
+                        : "text-neutral-400 hover:bg-white/5 hover:text-white"
                     }`}
                     title="Clientes, Fornecedores & Mecânicas"
                   >
-                    <div className="flex items-center gap-3">
-                      <Users className="w-4 h-4 shrink-0 text-inherit" />
+                    <div className="flex items-center gap-2.5">
+                      <Users className="w-3.5 h-3.5 shrink-0" />
                       {!sidebarCollapsed && <span>Pessoas</span>}
                     </div>
                     {!sidebarCollapsed && (
-                      <span className="text-[10px] px-1.5 py-0.2 rounded bg-neutral-100 text-neutral-600 font-mono">
+                      <span className="text-[10px] px-1.5 rounded bg-white/10 text-neutral-400 font-mono">
                         {personsDatabase.length}
                       </span>
                     )}
@@ -828,62 +829,62 @@ export default function AlfaErpWorkspace() {
                 </div>
               </div>
 
-              {/* Grupo: Operações & Gestão de Compras (Destaque Sprint 3) */}
+              {/* Grupo: Operações & Gestão de Compras */}
               <div>
                 {!sidebarCollapsed && (
-                  <span className="px-2 text-[10px] uppercase font-bold text-[#98A2B3] tracking-wider block mb-1">
+                  <span className="px-2 text-[9px] uppercase font-bold text-neutral-600 tracking-widest block mb-1">
                     Operações
                   </span>
                 )}
                 <div className="space-y-0.5">
-                  {/* Compras Submenu Expandido */}
+                  {/* Compras Submenu */}
                   <div className="space-y-0.5">
                     <button
                       onClick={() => setActiveSection("sugestao")}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors ${
+                      className={`w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-left transition-colors ${
                         activeSection === "sugestao" ||
                         activeSection === "cotacao" ||
                         activeSection === "ordem_detalhe" ||
                         activeSection === "recebimento" ||
                         activeSection === "compras"
-                          ? "bg-[#EAF4FF] text-[#1683E8] font-bold"
-                          : "text-[#475467] hover:bg-[#F2F4F7]"
+                          ? "bg-[#13E1BC]/15 text-[#13E1BC] font-bold border border-[#13E1BC]/30"
+                          : "text-neutral-400 hover:bg-white/5 hover:text-white"
                       }`}
                       title="Gestão de Compras (Fluxo Principal)"
                     >
-                      <div className="flex items-center gap-3">
-                        <Truck className="w-4 h-4 shrink-0 text-inherit" />
+                      <div className="flex items-center gap-2.5">
+                        <Truck className="w-3.5 h-3.5 shrink-0" />
                         {!sidebarCollapsed && <span>Gestão de Compras</span>}
                       </div>
-                      {!sidebarCollapsed && <ChevronDown className="w-3.5 h-3.5 text-neutral-400" />}
+                      {!sidebarCollapsed && <ChevronDown className="w-3 h-3 text-neutral-500" />}
                     </button>
 
                     {!sidebarCollapsed && (
-                      <div className="pl-7 pr-1 space-y-0.5 border-l-2 border-[#1683E8]/30 ml-4 my-1">
+                      <div className="pl-6 pr-1 space-y-0.5 border-l border-[#13E1BC]/20 ml-3.5 my-1">
                         <button
                           onClick={() => setActiveSection("sugestao")}
-                          className={`w-full text-left py-1 text-[11px] flex justify-between items-center transition-colors ${
-                            activeSection === "sugestao" ? "font-bold text-[#1683E8]" : "text-[#667085] hover:text-[#172033]"
+                          className={`w-full text-left py-1.5 px-2 text-[11px] flex justify-between items-center rounded transition-colors ${
+                            activeSection === "sugestao" ? "font-bold text-[#13E1BC]" : "text-neutral-500 hover:text-white"
                           }`}
                         >
                           <span>1. Sugestões de Compra</span>
-                          <span className="text-[9px] px-1 rounded bg-[#FEF3F2] text-[#B42318] font-bold">Crítico</span>
+                          <span className="text-[9px] px-1 rounded bg-red-500/20 text-red-400 font-bold border border-red-500/30">Crítico</span>
                         </button>
 
                         <button
                           onClick={() => setActiveSection("cotacao")}
-                          className={`w-full text-left py-1 text-[11px] flex justify-between items-center transition-colors ${
-                            activeSection === "cotacao" ? "font-bold text-[#1683E8]" : "text-[#667085] hover:text-[#172033]"
+                          className={`w-full text-left py-1.5 px-2 text-[11px] flex justify-between items-center rounded transition-colors ${
+                            activeSection === "cotacao" ? "font-bold text-[#13E1BC]" : "text-neutral-500 hover:text-white"
                           }`}
                         >
                           <span>2. Cotação #00091</span>
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#1683E8]" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC]" />
                         </button>
 
                         <button
                           onClick={() => setActiveSection("ordem_detalhe")}
-                          className={`w-full text-left py-1 text-[11px] flex justify-between items-center transition-colors ${
-                            activeSection === "ordem_detalhe" ? "font-bold text-[#1683E8]" : "text-[#667085] hover:text-[#172033]"
+                          className={`w-full text-left py-1.5 px-2 text-[11px] flex justify-between items-center rounded transition-colors ${
+                            activeSection === "ordem_detalhe" ? "font-bold text-[#13E1BC]" : "text-neutral-500 hover:text-white"
                           }`}
                         >
                           <span>3. Ordem OC #00183</span>
@@ -891,12 +892,12 @@ export default function AlfaErpWorkspace() {
 
                         <button
                           onClick={() => setActiveSection("recebimento")}
-                          className={`w-full text-left py-1 text-[11px] flex justify-between items-center transition-colors ${
-                            activeSection === "recebimento" ? "font-bold text-[#1683E8]" : "text-[#667085] hover:text-[#172033]"
+                          className={`w-full text-left py-1.5 px-2 text-[11px] flex justify-between items-center rounded transition-colors ${
+                            activeSection === "recebimento" ? "font-bold text-[#13E1BC]" : "text-neutral-500 hover:text-white"
                           }`}
                         >
                           <span>4. Receber Mercadoria</span>
-                          <span className="text-[9px] px-1 rounded bg-[#FEF7E6] text-[#B54708] font-bold">Divergência</span>
+                          <span className="text-[9px] px-1 rounded bg-amber-500/20 text-amber-400 font-bold border border-amber-500/30">Divergência</span>
                         </button>
                       </div>
                     )}
@@ -905,19 +906,19 @@ export default function AlfaErpWorkspace() {
                   {/* Estoque */}
                   <button
                     onClick={() => setActiveSection("estoque")}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors ${
+                    className={`w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-left transition-colors ${
                       activeSection === "estoque"
-                        ? "bg-[#EAF4FF] text-[#1683E8] font-bold"
-                        : "text-[#475467] hover:bg-[#F2F4F7]"
+                        ? "bg-[#13E1BC]/15 text-[#13E1BC] font-bold border border-[#13E1BC]/30"
+                        : "text-neutral-400 hover:bg-white/5 hover:text-white"
                     }`}
                     title="Controle Físico, Mínimo & Kardex"
                   >
-                    <div className="flex items-center gap-3">
-                      <Boxes className="w-4 h-4 shrink-0 text-inherit" />
+                    <div className="flex items-center gap-2.5">
+                      <Boxes className="w-3.5 h-3.5 shrink-0" />
                       {!sidebarCollapsed && <span>Estoque</span>}
                     </div>
                     {!sidebarCollapsed && entryConfirmed && (
-                      <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#EAF7EE] text-[#16A34A] font-bold">
+                      <span className="text-[9px] px-1.5 rounded bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30">
                         Atualizado!
                       </span>
                     )}
@@ -926,19 +927,19 @@ export default function AlfaErpWorkspace() {
                   {/* Vendas (Balcão Rápido) */}
                   <button
                     onClick={() => setActiveSection("vendas")}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors ${
+                    className={`w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-left transition-colors ${
                       activeSection === "vendas"
-                        ? "bg-[#EAF4FF] text-[#1683E8] font-bold"
-                        : "text-[#475467] hover:bg-[#F2F4F7]"
+                        ? "bg-[#13E1BC]/15 text-[#13E1BC] font-bold border border-[#13E1BC]/30"
+                        : "text-neutral-400 hover:bg-white/5 hover:text-white"
                     }`}
                     title="Balcão Rápido & PDV Autopeças"
                   >
-                    <div className="flex items-center gap-3">
-                      <ShoppingCart className="w-4 h-4 shrink-0 text-inherit" />
+                    <div className="flex items-center gap-2.5">
+                      <ShoppingCart className="w-3.5 h-3.5 shrink-0" />
                       {!sidebarCollapsed && <span>Vendas Balcão</span>}
                     </div>
                     {!sidebarCollapsed && (
-                      <kbd className="text-[10px] px-1 py-0.5 rounded bg-neutral-100 text-neutral-500 font-mono">
+                      <kbd className="text-[10px] px-1 py-0.5 rounded bg-white/10 text-neutral-500 font-mono">
                         F2
                       </kbd>
                     )}
@@ -947,28 +948,28 @@ export default function AlfaErpWorkspace() {
                   {/* Financeiro */}
                   <button
                     onClick={() => setActiveSection("financeiro")}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                    className={`w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left transition-colors ${
                       activeSection === "financeiro"
-                        ? "bg-[#EAF4FF] text-[#1683E8] font-bold"
-                        : "text-[#475467] hover:bg-[#F2F4F7]"
+                        ? "bg-[#13E1BC]/15 text-[#13E1BC] font-bold border border-[#13E1BC]/30"
+                        : "text-neutral-400 hover:bg-white/5 hover:text-white"
                     }`}
                     title="Contas a Pagar / Receber"
                   >
-                    <DollarSign className="w-4 h-4 shrink-0 text-inherit" />
+                    <DollarSign className="w-3.5 h-3.5 shrink-0" />
                     {!sidebarCollapsed && <span>Financeiro</span>}
                   </button>
 
                   {/* Fiscal */}
                   <button
                     onClick={() => setActiveSection("fiscal")}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                    className={`w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left transition-colors ${
                       activeSection === "fiscal"
-                        ? "bg-[#EAF4FF] text-[#1683E8] font-bold"
-                        : "text-[#475467] hover:bg-[#F2F4F7]"
+                        ? "bg-[#13E1BC]/15 text-[#13E1BC] font-bold border border-[#13E1BC]/30"
+                        : "text-neutral-400 hover:bg-white/5 hover:text-white"
                     }`}
                     title="NF-e, NFC-e & Entrada XML"
                   >
-                    <FileCheck className="w-4 h-4 shrink-0 text-inherit" />
+                    <FileCheck className="w-3.5 h-3.5 shrink-0" />
                     {!sidebarCollapsed && <span>Fiscal / XML</span>}
                   </button>
                 </div>
@@ -977,31 +978,31 @@ export default function AlfaErpWorkspace() {
               {/* Grupo: Análise */}
               <div>
                 {!sidebarCollapsed && (
-                  <span className="px-2 text-[10px] uppercase font-bold text-[#98A2B3] tracking-wider block mb-1">
+                  <span className="px-2 text-[9px] uppercase font-bold text-neutral-600 tracking-widest block mb-1">
                     Análise & Ajustes
                   </span>
                 )}
                 <div className="space-y-0.5">
                   <button
                     onClick={() => setActiveSection("relatorios")}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                    className={`w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left transition-colors ${
                       activeSection === "relatorios"
-                        ? "bg-[#EAF4FF] text-[#1683E8] font-bold"
-                        : "text-[#475467] hover:bg-[#F2F4F7]"
+                        ? "bg-[#13E1BC]/15 text-[#13E1BC] font-bold border border-[#13E1BC]/30"
+                        : "text-neutral-400 hover:bg-white/5 hover:text-white"
                     }`}
                     title="Relatórios de Faturamento e Estoque"
                   >
-                    <FileSpreadsheet className="w-4 h-4 shrink-0 text-inherit" />
+                    <FileSpreadsheet className="w-3.5 h-3.5 shrink-0" />
                     {!sidebarCollapsed && <span>Relatórios</span>}
                   </button>
 
                   <button
                     onClick={() => setDesignSystemModalOpen(true)}
-                    className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[#475467] hover:bg-[#F2F4F7] transition-colors"
+                    className="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-left text-[#13E1BC]/70 hover:text-[#13E1BC] hover:bg-[#13E1BC]/10 transition-colors"
                     title="Inspecionar tokens e componentes do Design System"
                   >
-                    <Layers className="w-4 h-4 shrink-0 text-[#1683E8]" />
-                    {!sidebarCollapsed && <span className="text-[#1683E8] font-semibold">Design System</span>}
+                    <Layers className="w-3.5 h-3.5 shrink-0" />
+                    {!sidebarCollapsed && <span className="font-semibold">Design System</span>}
                   </button>
                 </div>
               </div>
@@ -1009,22 +1010,22 @@ export default function AlfaErpWorkspace() {
           </div>
 
           {/* User Profile in Sidebar Footer */}
-          <div className="p-3 border-t border-[#E4E7EC] flex items-center justify-between">
-            <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-8 h-8 rounded-full bg-[#1683E8] text-white font-bold text-xs flex items-center justify-center shrink-0">
+          <div className="p-3 border-t border-[#1a1f2e] flex items-center justify-between">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-7 h-7 rounded-full bg-[#13E1BC]/20 border border-[#13E1BC]/40 text-[#13E1BC] font-bold text-[10px] flex items-center justify-center shrink-0">
                 MR
               </div>
               {!sidebarCollapsed && (
                 <div className="min-w-0">
-                  <span className="font-bold text-xs text-[#172033] block truncate">Marcus Ritta</span>
-                  <span className="text-[10px] text-[#667085] block truncate">Administrador ERP</span>
+                  <span className="font-bold text-xs text-white block truncate">Marcus Ritta</span>
+                  <span className="text-[10px] text-neutral-500 block truncate">Administrador ERP</span>
                 </div>
               )}
             </div>
             {!sidebarCollapsed && (
               <button
                 onClick={() => setDesignSystemModalOpen(true)}
-                className="text-[#667085] hover:text-[#1683E8] p-1"
+                className="text-neutral-600 hover:text-[#13E1BC] p-1 transition-colors"
                 title="Tokens do Sistema"
               >
                 <SlidersVertical className="w-3.5 h-3.5" />
@@ -1036,12 +1037,12 @@ export default function AlfaErpWorkspace() {
         {/* =================================================================== */}
         {/* 3. MAIN APPLICATION VIEWPORT                                        */}
         {/* =================================================================== */}
-        <div className="flex-1 flex flex-col min-w-0 bg-[#F5F7FA]">
-          {/* HEADER (~64px) */}
-          <header className="h-[64px] bg-white border-b border-[#E4E7EC] px-6 flex items-center justify-between gap-4 sticky top-0 z-20">
+        <div className="flex-1 flex flex-col min-w-0 bg-[#0d1017]">
+          {/* HEADER (~56px) */}
+          <header className="h-[56px] bg-[#090c14] border-b border-[#1a1f2e] px-5 flex items-center justify-between gap-4 sticky top-0 z-20">
             {/* Global Search Input with Shortcut Ctrl+K */}
-            <div className="flex-1 max-w-[480px] relative">
-              <Search className="absolute left-3 top-2.5 w-4 h-4 text-[#98A2B3]" />
+            <div className="flex-1 max-w-[460px] relative">
+              <Search className="absolute left-3 top-2.5 w-3.5 h-3.5 text-neutral-600" />
               <input
                 type="text"
                 value={globalSearch}
@@ -1050,10 +1051,10 @@ export default function AlfaErpWorkspace() {
                   setGlobalSearch(e.target.value);
                   setGlobalSearchOpen(true);
                 }}
-                placeholder="Buscar no ALFA... (peças, OEM, clientes, OC #00183, cotações) [Ctrl + K]"
-                className="w-full h-[38px] bg-[#F9FAFB] focus:bg-white border border-[#E4E7EC] focus:border-[#1683E8] rounded-lg pl-9 pr-14 text-xs text-[#172033] placeholder:text-[#98A2B3] outline-none transition-colors"
+                placeholder="Buscar no ALFA... (peças, OEM, clientes, OC #00183) [Ctrl + K]"
+                className="w-full h-[34px] bg-[#13151e] border border-[#1e2230] focus:border-[#13E1BC]/60 rounded-lg pl-9 pr-12 text-xs text-neutral-200 placeholder:text-neutral-600 outline-none transition-colors"
               />
-              <kbd className="absolute right-3 top-2.5 text-[10px] font-mono text-[#98A2B3] border border-[#E4E7EC] rounded px-1.5 py-0.5">
+              <kbd className="absolute right-3 top-2 text-[10px] font-mono text-neutral-600 border border-[#1e2230] rounded px-1.5 py-0.5">
                 Ctrl K
               </kbd>
 
@@ -1294,7 +1295,7 @@ export default function AlfaErpWorkspace() {
           {/* ================================================================= */}
           {/* 4. MAIN CONTENT AREA & UI STATES SWITCHER                         */}
           {/* ================================================================= */}
-          <div className="p-6 flex-1 space-y-6 overflow-y-auto">
+          <div className="p-5 flex-1 space-y-5 overflow-y-auto">
             {/* UI State: Skeleton Loading */}
             {uiState === "skeleton" && (
               <div className="space-y-4">
@@ -1349,37 +1350,36 @@ export default function AlfaErpWorkspace() {
             {/* TELA 1: COMMAND CENTER / DASHBOARD COM ATENÇÃO & ATIVIDADE      */}
             {/* =============================================================== */}
             {uiState === "normal" && activeSection === "inicio" && (
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                   <div>
-                    <div className="text-xs text-[#667085] mb-1 font-mono">Início / Monitor</div>
-                    <h1 className="text-2xl font-bold text-[#172033] tracking-tight">Command Center Operacional</h1>
-                    <p className="text-xs text-[#667085] mt-0.5">
+                    <div className="text-[10px] text-neutral-600 mb-1 font-mono uppercase tracking-widest">Início / Monitor</div>
+                    <h1 className="text-xl font-black text-white tracking-tight font-mono">Command Center Operacional</h1>
+                    <p className="text-xs text-neutral-500 mt-0.5">
                       Monitoramento em tempo real de suprimentos, faturamento e pendências de armazém.
                     </p>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <AlfaButton
-                      variant="primary"
-                      size="md"
+                    <button
                       onClick={() => setActiveSection("sugestao")}
-                      icon={<Truck className="w-3.5 h-3.5" />}
+                      className="flex items-center gap-2 px-4 py-2 bg-[#13E1BC] text-[#080808] font-bold text-xs rounded-lg hover:bg-[#13E1BC]/90 transition-colors font-mono"
                     >
+                      <Truck className="w-3.5 h-3.5" />
                       Abrir Gestão de Compras →
-                    </AlfaButton>
+                    </button>
                   </div>
                 </div>
 
-                {/* SPRINT 3 ITEM 12: "O que precisa da sua atenção?" (Cards Clicáveis) */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#1683E8]" />
-                    <h3 className="text-sm font-bold text-[#172033]">O que precisa da sua atenção?</h3>
+                {/* Attention Cards */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC] animate-pulse" />
+                    <h3 className="text-xs font-bold text-neutral-300 uppercase tracking-widest font-mono">O que precisa da sua atenção?</h3>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
                     {ATTENTION_CARDS.map((card) => (
                       <div
                         key={card.id}
@@ -1387,32 +1387,32 @@ export default function AlfaErpWorkspace() {
                           setActiveSection(card.secaoDestino as any);
                           addToast("info", `Navegando para: ${card.texto}`);
                         }}
-                        className={`p-4 rounded-xl border bg-white cursor-pointer hover:shadow-md transition-all flex flex-col justify-between space-y-3 ${
+                        className={`p-3.5 bg-[#13151e] border cursor-pointer hover:shadow-lg transition-all flex flex-col justify-between space-y-2.5 group rounded-lg ${
                           card.tipo === "critico"
-                            ? "border-l-4 border-l-[#DC2626] border-[#E4E7EC] hover:border-l-[#DC2626]"
+                            ? "border-l-2 border-l-red-500 border-[#1e2230] hover:border-l-red-400"
                             : card.tipo === "aviso"
-                            ? "border-l-4 border-l-[#F59E0B] border-[#E4E7EC] hover:border-l-[#F59E0B]"
-                            : "border-l-4 border-l-[#1683E8] border-[#E4E7EC] hover:border-l-[#1683E8]"
+                            ? "border-l-2 border-l-amber-500 border-[#1e2230] hover:border-l-amber-400"
+                            : "border-l-2 border-l-[#13E1BC] border-[#1e2230] hover:border-l-[#13E1BC]"
                         }`}
                       >
                         <div className="space-y-1">
                           <span
-                            className={`text-[10px] font-bold px-2 py-0.5 rounded font-mono uppercase inline-block ${
+                            className={`text-[10px] font-bold px-1.5 py-0.5 rounded font-mono uppercase inline-block ${
                               card.tipo === "critico"
-                                ? "bg-[#FEF3F2] text-[#B42318]"
+                                ? "bg-red-500/15 text-red-400 border border-red-500/30"
                                 : card.tipo === "aviso"
-                                ? "bg-[#FEF7E6] text-[#B54708]"
-                                : "bg-[#EAF4FF] text-[#1683E8]"
+                                ? "bg-amber-500/15 text-amber-400 border border-amber-500/30"
+                                : "bg-[#13E1BC]/10 text-[#13E1BC] border border-[#13E1BC]/30"
                             }`}
                           >
                             {card.contador}
                           </span>
-                          <strong className="block text-xs text-[#172033] font-semibold leading-tight pt-1">
+                          <strong className="block text-xs text-neutral-200 font-semibold leading-tight pt-1 group-hover:text-white">
                             {card.texto}
                           </strong>
                         </div>
 
-                        <div className="flex items-center justify-between text-xs text-[#1683E8] font-bold pt-2 border-t border-[#F2F4F7]">
+                        <div className="flex items-center justify-between text-[11px] text-[#13E1BC]/70 font-bold pt-2 border-t border-[#1e2230] group-hover:text-[#13E1BC]">
                           <span>{card.linkTexto}</span>
                           <span>→</span>
                         </div>
@@ -1422,61 +1422,53 @@ export default function AlfaErpWorkspace() {
                 </div>
 
                 {/* 4 KPIs Cards Principais */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <div className="bg-white border border-[#E4E7EC] rounded-xl p-5 shadow-xs space-y-2">
-                    <span className="text-xs text-[#667085] block font-semibold">Faturamento / Vendas</span>
-                    <div className="text-2xl font-bold text-[#172033] tracking-tight tabular-nums">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
+                  <div className="bg-[#13151e] border border-[#1e2230] rounded-lg p-4 space-y-2 hover:border-[#13E1BC]/30 transition-colors group">
+                    <span className="text-[10px] text-neutral-500 block font-mono uppercase tracking-widest">Faturamento / Vendas</span>
+                    <div className="text-xl font-black text-white tracking-tight tabular-nums font-mono group-hover:text-[#13E1BC] transition-colors">
                       R$ 284.086,88
                     </div>
-                    <span className="text-[11px] font-bold text-[#16A34A] block">
-                      ↑ 12,4% no período
-                    </span>
+                    <span className="text-[11px] font-bold text-emerald-400 block">↑ 12,4% no período</span>
                   </div>
 
-                  <div className="bg-white border border-[#E4E7EC] rounded-xl p-5 shadow-xs space-y-2">
-                    <span className="text-xs text-[#667085] block font-semibold">Compras / Aquisições</span>
-                    <div className="text-2xl font-bold text-[#172033] tracking-tight tabular-nums">
+                  <div className="bg-[#13151e] border border-[#1e2230] rounded-lg p-4 space-y-2 hover:border-[#13E1BC]/30 transition-colors group">
+                    <span className="text-[10px] text-neutral-500 block font-mono uppercase tracking-widest">Compras / Aquisições</span>
+                    <div className="text-xl font-black text-white tracking-tight tabular-nums font-mono group-hover:text-[#13E1BC] transition-colors">
                       R$ 145.315,98
                     </div>
-                    <span className="text-[11px] font-bold text-[#DC2626] block">
-                      ↓ 3,2% no período
-                    </span>
+                    <span className="text-[11px] font-bold text-red-400 block">↓ 3,2% no período</span>
                   </div>
 
-                  <div className="bg-white border border-[#E4E7EC] rounded-xl p-5 shadow-xs space-y-2">
-                    <span className="text-xs text-[#667085] block font-semibold">Ticket Médio Balcão</span>
-                    <div className="text-2xl font-bold text-[#172033] tracking-tight tabular-nums">
+                  <div className="bg-[#13151e] border border-[#1e2230] rounded-lg p-4 space-y-2 hover:border-[#13E1BC]/30 transition-colors group">
+                    <span className="text-[10px] text-neutral-500 block font-mono uppercase tracking-widest">Ticket Médio Balcão</span>
+                    <div className="text-xl font-black text-white tracking-tight tabular-nums font-mono group-hover:text-[#13E1BC] transition-colors">
                       R$ 211,37
                     </div>
-                    <span className="text-[11px] font-bold text-[#16A34A] block">
-                      ↑ 5,7% vs. média anual
-                    </span>
+                    <span className="text-[11px] font-bold text-emerald-400 block">↑ 5,7% vs. média anual</span>
                   </div>
 
-                  <div className="bg-white border border-[#E4E7EC] rounded-xl p-5 shadow-xs space-y-2">
-                    <span className="text-xs text-[#667085] block font-semibold">Devoluções / Garantias</span>
-                    <div className="text-2xl font-bold text-[#172033] tracking-tight tabular-nums">
+                  <div className="bg-[#13151e] border border-[#1e2230] rounded-lg p-4 space-y-2 hover:border-[#13E1BC]/30 transition-colors group">
+                    <span className="text-[10px] text-neutral-500 block font-mono uppercase tracking-widest">Devoluções / Garantias</span>
+                    <div className="text-xl font-black text-white tracking-tight tabular-nums font-mono group-hover:text-[#13E1BC] transition-colors">
                       7,73%
                     </div>
-                    <span className="text-[11px] text-[#667085] block">
-                      18 ocorrências no mês
-                    </span>
+                    <span className="text-[11px] text-neutral-500 block">18 ocorrências no mês</span>
                   </div>
                 </div>
 
                 {/* Gráfico de Vendas + Atividades Recentes */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                   {/* Gráfico de Vendas */}
-                  <div className="lg:col-span-2 bg-white border border-[#E4E7EC] rounded-xl p-5 shadow-xs space-y-4">
+                  <div className="lg:col-span-2 bg-[#13151e] border border-[#1e2230] rounded-lg p-4 space-y-4">
                     <div className="flex justify-between items-center">
                       <div>
-                        <h3 className="font-bold text-sm text-[#172033]">Faturamento Diário Consolidado</h3>
-                        <span className="text-[11px] text-[#667085]">Volume de vendas balcão e atacado</span>
+                        <h3 className="font-bold text-sm text-white">Faturamento Diário Consolidado</h3>
+                        <span className="text-[11px] text-neutral-500">Volume de vendas balcão e atacado</span>
                       </div>
-                      <span className="text-xs font-mono text-[#1683E8] font-bold">Média: R$ 9.460/dia</span>
+                      <span className="text-xs font-mono text-[#13E1BC] font-bold">Média: R$ 9.460/dia</span>
                     </div>
 
-                    <div className="h-[210px] flex items-end gap-3 pt-6 border-b border-[#E4E7EC] pb-2">
+                    <div className="h-[180px] flex items-end gap-2.5 pt-4 border-b border-[#1e2230] pb-2">
                       {[
                         { dia: "01", h: "40%", val: "R$ 6.2k" },
                         { dia: "05", h: "58%", val: "R$ 9.1k" },
@@ -1487,36 +1479,36 @@ export default function AlfaErpWorkspace() {
                         { dia: "30", h: "72%", val: "R$ 11.3k" },
                       ].map((bar, idx) => (
                         <div key={idx} className="flex-1 flex flex-col justify-end items-center h-full group">
-                          <span className="text-[9px] text-[#667085] opacity-0 group-hover:opacity-100 transition-opacity mb-1 font-mono">
+                          <span className="text-[9px] text-[#13E1BC] opacity-0 group-hover:opacity-100 transition-opacity mb-1 font-mono">
                             {bar.val}
                           </span>
                           <div
                             style={{ height: bar.h }}
-                            className={`w-full max-w-[42px] rounded-t-md transition-all cursor-pointer ${
-                              bar.active ? "bg-[#1683E8]" : "bg-[#EAF4FF] hover:bg-[#1683E8]/80"
+                            className={`w-full max-w-[36px] rounded-t transition-all cursor-pointer ${
+                              bar.active ? "bg-[#13E1BC]" : "bg-[#1e2a1f] hover:bg-[#13E1BC]/60"
                             }`}
                           />
-                          <span className="text-[10px] text-[#98A2B3] mt-2 font-medium">Dia {bar.dia}</span>
+                          <span className="text-[10px] text-neutral-600 mt-1.5 font-mono">{bar.dia}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* SPRINT 3 ITEM 12: Atividade Recente */}
-                  <div className="bg-white border border-[#E4E7EC] rounded-xl p-5 shadow-xs space-y-4">
+                  {/* Atividade Recente */}
+                  <div className="bg-[#13151e] border border-[#1e2230] rounded-lg p-4 space-y-3">
                     <div className="flex justify-between items-center">
-                      <h3 className="font-bold text-sm text-[#172033]">Atividade Recente</h3>
-                      <Clock className="w-4 h-4 text-[#98A2B3]" />
+                      <h3 className="font-bold text-sm text-white">Atividade Recente</h3>
+                      <Clock className="w-3.5 h-3.5 text-neutral-600" />
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="space-y-2.5">
                       {RECENT_ACTIVITIES.map((act) => (
-                        <div key={act.id} className="flex items-start gap-2.5 text-xs">
-                          <span className="font-mono text-[11px] font-bold text-[#1683E8] bg-[#EAF4FF] px-1.5 py-0.5 rounded shrink-0">
+                        <div key={act.id} className="flex items-start gap-2 text-xs">
+                          <span className="font-mono text-[10px] font-bold text-[#13E1BC] bg-[#13E1BC]/10 px-1.5 py-0.5 rounded border border-[#13E1BC]/20 shrink-0">
                             {act.hora}
                           </span>
                           <div className="min-w-0">
-                            <span className="text-[#344054] block leading-snug">{act.texto}</span>
+                            <span className="text-neutral-400 block leading-snug text-[11px]">{act.texto}</span>
                           </div>
                         </div>
                       ))}
