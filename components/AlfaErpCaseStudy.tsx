@@ -399,7 +399,7 @@ export default function AlfaErpCaseStudy({
               onClick={() => scrollToSection(item.id)}
               className={`px-2.5 py-1 rounded-sm transition-all ${
                 activeNav === item.id
-                  ? "bg-[#1683D8] text-white font-semibold shadow-sm"
+                  ? "bg-[#13E1BC] text-[#080808] font-bold shadow-sm"
                   : "text-neutral-400 hover:text-white hover:bg-neutral-900"
               }`}
             >
@@ -412,80 +412,113 @@ export default function AlfaErpCaseStudy({
       {/* ========================================================================= */}
       {/* 01 & 02. CASE POSITIONING & EDITORIAL HERO                                */}
       {/* ========================================================================= */}
-      <section id="overview" className="pt-16 pb-20 border-b border-neutral-800 bg-[#080808]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
-          {/* Top Label & Title */}
-          <div className="space-y-6 max-w-4xl">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="px-2.5 py-1 text-xs font-mono font-bold tracking-widest uppercase bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 rounded-sm">
-                [REAL PRODUCT]
-              </span>
-              <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
-                EXPERIÊNCIA PROFISSIONAL COMPROVADA // NÃO É PROJETO FICTÍCIO
-              </span>
+      <section id="overview" className="pt-14 pb-0 border-b border-neutral-800 bg-[#080808] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+
+          {/* ── SPLIT HERO ────────────────────────────────────────────── */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[420px]">
+
+            {/* Left Column – Editorial Copy */}
+            <div className="py-14 pr-0 lg:pr-12 space-y-8 flex flex-col justify-between">
+              <div className="space-y-5">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="px-2.5 py-1 text-[10px] font-mono font-black tracking-widest uppercase bg-[#13E1BC]/15 border border-[#13E1BC]/40 text-[#13E1BC] rounded-sm flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC] animate-pulse" />
+                    REAL PRODUCT
+                  </span>
+                  <span className="px-2.5 py-1 text-[10px] font-mono tracking-widest uppercase border border-neutral-700 text-neutral-400 rounded-sm">
+                    B2B SaaS · ERP · AUTO PARTS
+                  </span>
+                </div>
+
+                <div>
+                  <h1 className="text-5xl sm:text-7xl font-black tracking-tighter text-white leading-[0.9] font-mono">
+                    ALFA
+                  </h1>
+                  <h1 className="text-5xl sm:text-7xl font-black tracking-tighter leading-[0.9] font-mono" style={{ color: "#13E1BC" }}>
+                    ERP
+                  </h1>
+                </div>
+
+                <p className="text-base text-neutral-300 leading-relaxed font-sans max-w-md">
+                  Redesigning complex B2B workflows for an ERP specialized in Auto Parts — transformando a complexidade operacional em experiências claras, previsíveis e eficientes.
+                </p>
+              </div>
+
+              {/* Quick role tags */}
+              <div className="flex flex-wrap gap-2 font-mono text-[11px]">
+                {["Product Designer", "UX Discovery", "Design System", "UX QA", "Automotive Aftermarket"].map(t => (
+                  <span key={t} className="px-2.5 py-1 border border-neutral-700 text-neutral-400 rounded-sm bg-neutral-900/40">{t}</span>
+                ))}
+              </div>
             </div>
 
-            <div className="space-y-2">
-              <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-tight">
-                ALFA ERP
-              </h1>
-              <p className="text-lg sm:text-xl font-mono text-[#1683D8]">
-                Redesigning complex B2B workflows for an ERP specialized in Auto Parts.
-              </p>
-              <p className="text-sm font-mono text-slate-400">
-                &ldquo;Redesign de experiências complexas em um ERP B2B para AutoPeças&rdquo;
-              </p>
+            {/* Right Column – Impact Numbers */}
+            <div className="hidden lg:grid grid-rows-2 grid-cols-2 gap-px bg-neutral-800 border-l border-neutral-800">
+              <div className="bg-[#080808] p-8 flex flex-col justify-between hover:bg-[#13E1BC]/5 transition-colors group">
+                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Módulos redesenhados</span>
+                <div>
+                  <span className="text-5xl font-black font-mono text-white group-hover:text-[#13E1BC] transition-colors">10+</span>
+                  <span className="block text-xs font-mono text-neutral-400 mt-1">Vendas, Compras, Estoque, Financeiro...</span>
+                </div>
+              </div>
+              <div className="bg-[#080808] p-8 flex flex-col justify-between hover:bg-[#13E1BC]/5 transition-colors group">
+                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Telas auditadas em produção</span>
+                <div>
+                  <span className="text-5xl font-black font-mono text-white group-hover:text-[#13E1BC] transition-colors">20+</span>
+                  <span className="block text-xs font-mono text-neutral-400 mt-1">Evidências visuais reais do sistema</span>
+                </div>
+              </div>
+              <div className="bg-[#080808] p-8 flex flex-col justify-between hover:bg-[#13E1BC]/5 transition-colors group">
+                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Heurísticas mapeadas</span>
+                <div>
+                  <span className="text-5xl font-black font-mono text-white group-hover:text-[#13E1BC] transition-colors">47</span>
+                  <span className="block text-xs font-mono text-neutral-400 mt-1">Problemas de UX identificados</span>
+                </div>
+              </div>
+              <div className="bg-[#080808] p-8 flex flex-col justify-between hover:bg-[#13E1BC]/5 transition-colors group">
+                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Produto real em produção</span>
+                <div>
+                  <span className="text-5xl font-black font-mono" style={{ color: "#13E1BC" }}>B2B</span>
+                  <span className="block text-xs font-mono text-neutral-400 mt-1">SaaS · AutoPeças Aftermarket</span>
+                </div>
+              </div>
             </div>
 
-            {/* Editorial Statement */}
-            <div className="p-6 border-l-4 border-[#1683D8] bg-neutral-900/60 border-y border-r border-neutral-800 rounded-r-sm space-y-3 shadow-lg">
-              <blockquote className="text-xl sm:text-2xl text-white font-light leading-relaxed">
-                &ldquo;Transformando a complexidade operacional de um ERP em experiências mais claras, previsíveis e eficientes.&rdquo;
-              </blockquote>
-              <p className="text-sm text-neutral-300 leading-relaxed font-normal">
-                Uma experiência de Product Design em um ERP especializado no setor de AutoPeças, envolvendo operações de vendas, compras, estoque, cadastro, financeiro, cotações, documentos fiscais e análise.
-              </p>
-            </div>
           </div>
 
-          {/* Metadata Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-neutral-800 text-xs font-mono">
-            <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-1">
-              <span className="text-neutral-500 block uppercase tracking-wider font-semibold">ROLE</span>
-              <p className="text-white font-semibold text-sm">Product Designer</p>
-              <span className="text-[11px] text-neutral-400">Marcus Ritta</span>
-            </div>
-            <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-1">
-              <span className="text-neutral-500 block uppercase tracking-wider font-semibold">FOCUS</span>
-              <p className="text-white font-semibold text-sm">Discovery · UX/UI</p>
-              <span className="text-[11px] text-neutral-400">Flows · Validation · UX QA</span>
-            </div>
-            <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-1">
-              <span className="text-neutral-500 block uppercase tracking-wider font-semibold">PRODUCT</span>
-              <p className="text-white font-semibold text-sm">B2B SaaS / ERP</p>
-              <span className="text-[11px] text-neutral-400">Desktop & Web Workflows</span>
-            </div>
-            <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-1">
-              <span className="text-neutral-500 block uppercase tracking-wider font-semibold">INDUSTRY</span>
-              <p className="text-white font-semibold text-sm">Auto Parts</p>
-              <span className="text-[11px] text-neutral-400">Automotive Aftermarket</span>
-            </div>
+          {/* ── MOBILE IMPACT STRIP ──────────────────────────────────── */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-neutral-800 border-t border-neutral-800 lg:hidden">
+            {[
+              { num: "10+", label: "Módulos" },
+              { num: "20+", label: "Telas Auditadas" },
+              { num: "47", label: "Heurísticas" },
+              { num: "B2B", label: "SaaS Real" },
+            ].map(s => (
+              <div key={s.num} className="bg-[#080808] p-4 space-y-1">
+                <span className="text-2xl font-black font-mono text-white block">{s.num}</span>
+                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">{s.label}</span>
+              </div>
+            ))}
           </div>
 
-          {/* Scope & Role Disclaimer */}
-          <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm text-xs font-mono text-neutral-400 flex items-start space-x-3">
-            <CheckCircle2 className="w-4 h-4 text-[#1683D8] shrink-0 mt-0.5" />
+          {/* ── SCOPE DISCLAIMER ─────────────────────────────────────── */}
+          <div className="py-5 border-t border-neutral-800 text-xs font-mono text-neutral-400 flex items-start gap-3">
+            <CheckCircle2 className="w-4 h-4 text-[#13E1BC] shrink-0 mt-0.5" />
             <div>
               <strong className="text-white">Escopo Profissional: </strong>
               Marcus trabalhou dentro de um ecossistema existente de ERP corporativo, atuando ativamente na evolução da interface, mapeamento de fluxos críticos, desenho do design system e governança contínua de UX QA junto à equipe de desenvolvimento.
             </div>
           </div>
 
-          {/* ========================================================================= */}
-          {/* 03. VISUAL HERO BANNER: REDESIGN SAAS 2024 vs LEGACY PRODUÇÃO             */}
-          {/* ========================================================================= */}
-          <div className="space-y-4 pt-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
+        </div>
+      </section>
+      {/* ========================================================================= */}
+      {/* 03. VISUAL HERO BANNER: REDESIGN SAAS 2024 vs LEGACY PRODUÇÃO             */}
+      {/* ========================================================================= */}
+      <section className="border-b border-neutral-800 bg-[#080808]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 py-10 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
               <div className="flex items-center space-x-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#1683D8] animate-pulse"></span>
                 <span className="text-white font-bold uppercase tracking-wider">
@@ -618,7 +651,6 @@ export default function AlfaErpCaseStudy({
                 )}
               </div>
             </div>
-          </div>
         </div>
       </section>
 
@@ -628,7 +660,7 @@ export default function AlfaErpCaseStudy({
       <section id="contexto" className="py-20 border-b border-neutral-800 bg-[#080808]">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-10">
           <div className="space-y-4 max-w-3xl">
-            <span className="text-xs font-mono text-[#1683D8] uppercase tracking-widest font-semibold block">
+            <span className="text-xs font-mono text-[#13E1BC] uppercase tracking-widest font-semibold block">
               04 — CONTEXTO OPERACIONAL
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
@@ -639,7 +671,6 @@ export default function AlfaErpCaseStudy({
             </p>
           </div>
 
-          {/* Visual Map of the 10 Observable Product Areas */}
           <div className="space-y-4">
             <div className="flex items-center justify-between text-xs font-mono border-b border-neutral-800 pb-2">
               <span className="text-neutral-400 font-bold uppercase tracking-wider">
@@ -654,17 +685,14 @@ export default function AlfaErpCaseStudy({
                 return (
                   <div
                     key={idx}
-                    className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm hover:border-[#1683D8]/50 transition-all space-y-2 group"
+                    className="p-4 bg-[#0e0e10] border border-neutral-800 border-l-2 border-l-[#13E1BC]/40 hover:border-l-[#13E1BC] hover:bg-[#13E1BC]/5 transition-all space-y-3 group cursor-default"
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-[10px] text-neutral-500 font-bold">0{idx + 1}</span>
-                      <AreaIcon className="w-4 h-4 text-[#1683D8] group-hover:scale-110 transition-transform" />
+                      <AreaIcon className="w-4 h-4 text-[#13E1BC] group-hover:scale-110 transition-transform" />
                     </div>
-                    <h3 className="font-bold text-white text-sm tracking-tight">{area.name}</h3>
-                    <p className="text-[11px] text-neutral-400 leading-relaxed font-sans">{area.desc}</p>
-                    <div className="pt-2 border-t border-neutral-800 text-[10px] text-neutral-500">
-                      Evidência: {area.screens[0]}
-                    </div>
+                    <h3 className="font-bold text-white text-xs tracking-tight group-hover:text-[#13E1BC] transition-colors">{area.name}</h3>
+                    <p className="text-[11px] text-neutral-500 leading-relaxed font-sans">{area.desc}</p>
                   </div>
                 );
               })}
@@ -679,7 +707,7 @@ export default function AlfaErpCaseStudy({
       <section id="complexidade" className="py-20 border-b border-neutral-800 bg-[#080808]">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
           <div className="space-y-4 max-w-3xl">
-            <span className="text-xs font-mono text-[#1683D8] uppercase tracking-widest font-semibold block">
+            <span className="text-xs font-mono text-[#13E1BC] uppercase tracking-widest font-semibold block">
               05 — A REALIDADE DO SOFTWARE ENTERPRISE
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
@@ -732,11 +760,11 @@ export default function AlfaErpCaseStudy({
             ].map((item, i) => (
               <div
                 key={i}
-                className="p-5 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-2 hover:border-[#1683D8]/40 transition-colors"
+                className="p-5 bg-[#0e0e10] border border-neutral-800 border-l-2 border-l-[#13E1BC]/30 hover:border-l-[#13E1BC] hover:bg-[#13E1BC]/5 transition-all space-y-2 group"
               >
-                <div className="flex items-center space-x-2 text-[#1683D8]">
-                  <Check className="w-3.5 h-3.5" />
-                  <span className="font-bold text-white text-xs">{item.title}</span>
+                <div className="flex items-center space-x-2">
+                  <Check className="w-3.5 h-3.5 text-[#13E1BC] shrink-0" />
+                  <span className="font-bold text-white text-xs group-hover:text-[#13E1BC] transition-colors">{item.title}</span>
                 </div>
                 <p className="text-neutral-400 text-[11px] leading-relaxed font-sans">{item.desc}</p>
               </div>
