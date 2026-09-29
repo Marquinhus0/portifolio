@@ -63,7 +63,7 @@ export default function Home() {
                 </span>
               </div>
               <p className="text-xs font-mono text-neutral-400">
-                Experiência prática em ambiente real de produção no setor de ERP e B2B
+                Soluções validadas com operadores, regras fiscais ativas e impacto direto no negócio
               </p>
             </div>
 
@@ -90,7 +90,7 @@ export default function Home() {
                 </span>
               </div>
               <p className="text-xs font-mono text-neutral-400">
-                Estudos autorais de Product Design com foco em usabilidade, arquitetura e fluxos densos
+                Explorações aprofundadas em arquitetura de informação, interfaces contextuais e produtos escaláveis
               </p>
             </div>
 

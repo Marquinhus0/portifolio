@@ -5,7 +5,7 @@ export default function ProcessFlow() {
       name: "Discovery & Regras de Negócio B2B",
       focus: "Imersão & Operação Real",
       description:
-        "Mergulho profundo na rotina de quem opera o sistema na ponta: balconistas de autopeças, compradores e operadores comerciais. Mapeamento de regras fiscais, alçadas de desconto e gargalos antes de rabiscar qualquer tela.",
+        "Mergulho profundo na rotina de quem opera o sistema na ponta: operadores de sistemas corporativos, compradores e equipes comerciais. Mapeamento de regras fiscais, alçadas de desconto e gargalos antes de rabiscar qualquer tela.",
       deliverables:
         "Mapeamento de jornada de alta complexidade, matriz de regras de negócio, fluxogramas de aprovação e requisitos técnicos.",
       methods: "Entrevistas em ambiente operacional • Shadowing de usuários • Matriz de Regras & Alçadas",

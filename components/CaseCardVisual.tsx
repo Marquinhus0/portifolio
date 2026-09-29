@@ -44,8 +44,8 @@ const CASE_COVERS: Record<
     src: "/cases/flow-crm-cover.jpg",
     badge: "CONCEPT",
     badgeColor: "bg-[#1683E8]/20 text-[#1683E8] border-[#1683E8]/40",
-    tag: "FLOW CRM // AUTOPEÇAS B2B",
-    caption: "Funil Comercial • Pipeline Kanban • Ecossistema ALFA ERP",
+    tag: "FLOW CRM // PIPELINE B2B",
+    caption: "Funil Comercial B2B • Pipeline Kanban • Operações de Vendas",
   },
   "supplyhub-procurement-b2b": {
     src: "/cases/supplyhub-cover.jpg",

@@ -40,7 +40,7 @@ export default function AboutPage() {
               Marcus Ritta
             </h1>
             <p className="text-xl sm:text-2xl text-neutral-300 font-light leading-relaxed">
-              Product Designer focado em softwares de gestão, ERPs e plataformas B2B. Meu objetivo é transformar sistemas densos e processos burocráticos em ferramentas rápidas, intuitivas e eficientes para o dia a dia corporativo.
+              Product Designer com sólida experiência em sistemas transacionais, arquitetura de informação complexa e produtos enterprise. Conecto a realidade operacional de quem usa o software à estratégia de negócio e à viabilidade técnica da engenharia.
             </p>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function AboutPage() {
 
             <div className="lg:col-span-8 space-y-6 text-neutral-300 leading-relaxed text-base sm:text-lg font-light">
               <p>
-                Minha experiência em produtos não nasceu desenhando telas conceituais isoladas, mas sim entendendo o cotidiano de empresas reais: balcões de autopeças movimentados, rotinas de compras sob pressão de prazos, conciliações financeiras e equipes de vendas que não têm tempo a perder com cliques desnecessários.
+                Minha experiência em produtos não nasceu desenhando telas conceituais isoladas, mas sim entendendo o cotidiano de operações complexas: centros de distribuição dinâmicos, rotinas de compras sob pressão de prazos, conciliações fiscais e equipes comerciais que não podem perder tempo com burocracia ou interfaces confusas.
               </p>
               <p>
                 Acredito que em software de missão crítica, a melhor interface é aquela que quase desaparece: responde instantaneamente a atalhos de teclado, antecipa erros com clareza, organiza milhares de registros sem poluição visual e respeita as regras de negócio sem engessar a operação.

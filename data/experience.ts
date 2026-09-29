@@ -3,7 +3,7 @@ import { ExperienceItem } from "@/types";
 export const experienceData: ExperienceItem[] = [
   {
     period: "2023 — Presente",
-    company: "ALFA Software AutoPeças",
+    company: "ALFA Software",
     role: "Product Designer",
     domain: "ERP / B2B / SaaS",
     description: "Responsável pelo design do ERP da empresa, atuando desde a pesquisa com clientes até a validação com desenvolvedores. Crio fluxos, protótipos interativos e acompanho a entrega em produção.",
@@ -17,13 +17,13 @@ export const experienceData: ExperienceItem[] = [
     impacts: [
       "Integração de testes com usuários na rotina ágil de desenvolvimento",
       "Padronização de componentes para acelerar a criação de novas telas",
-      "Redução no tempo de aprendizado dos balconistas e caixas ao usar o sistema"
+      "Redução na curva de aprendizado de equipes operacionais ao utilizar fluxos críticos do sistema"
     ],
     technologies: ["Figma", "Product Discovery", "UX Research", "Design Systems", "Usability Testing", "QA & Criteria", "B2B ERP", "JIRA"]
   },
   {
     period: "2020 — 2023",
-    company: "ALFA Software AutoPeças",
+    company: "ALFA Software",
     role: "Analista de Negócios / Business Analyst",
     domain: "ERP / Business / Product",
     description: "Atuação na ponte estratégica entre clientes corporativos, desenvolvimento e design. Responsável por levantamento de processos, validação de regras de negócio de ERP e condução de implantações completas.",

@@ -163,14 +163,14 @@ const STAGES: StageConfig[] = [
 ];
 
 const ALL_ALFA_MODULES: AlfaErpModule[] = [
-  "ERP AutoPeças (Core)",
-  "Balcão PDV Rápido",
-  "Estoque & Curva ABC",
-  "Compras Inteligentes",
+  "ERP Gestão (Core)",
+  "PDV & Faturamento Rápido",
+  "Estoque & Armazenagem",
+  "Compras & Suprimentos",
   "Financeiro Avançado",
-  "B2B E-commerce de Peças",
+  "Portal B2B de Pedidos",
   "BI & Métricas Gerenciais",
-  "Fiscal & SPED Automotivo",
+  "Fiscal & SPED Corporativo",
   "CRM Flow Integrado",
 ];
 
@@ -422,13 +422,13 @@ export default function FlowCrmShowcase() {
     email: "",
     city: "",
     state: "SP",
-    segment: "Varejo de Autopeças" as AutomotiveSegment,
+    segment: "Varejo & Franquias" as AutomotiveSegment,
     storesCount: 1,
     source: "Google Ads" as LeadSource,
-    campaign: "Campanha Balcão Rápido ERP",
+    campaign: "Campanha Comercial B2B",
     owner: "João Silva",
     dealValue: 15000,
-    interestModules: ["ERP AutoPeças (Core)", "Balcão PDV Rápido"] as AlfaErpModule[],
+    interestModules: ["ERP Gestão (Core)", "PDV & Faturamento Rápido"] as AlfaErpModule[],
     notes: "",
   });
 
@@ -552,7 +552,7 @@ export default function FlowCrmShowcase() {
       id: `act-${Date.now()}`,
       type: "call",
       title: "Ligação comercial registrada",
-      description: `Resultado: ${callOutcome === "reuniao" ? "Demonstração agendada com sucesso" : callOutcome === "atendido" ? "Contato produtivo realizado" : "Tentativa sem resposta"}. Detalhes: ${callNotes || "Alinhamento com decisor da loja de autopeças."}`,
+      description: `Resultado: ${callOutcome === "reuniao" ? "Demonstração agendada com sucesso" : callOutcome === "atendido" ? "Contato produtivo realizado" : "Tentativa sem resposta"}. Detalhes: ${callNotes || "Alinhamento com decisor da empresa B2B."}`,
       company: activeCallLead.company,
       contact: activeCallLead.name,
       author: "Marcus Henrique",
@@ -632,7 +632,7 @@ export default function FlowCrmShowcase() {
                   </span>
                 </div>
                 <p className="text-[11px] text-[#667085] font-medium leading-none mt-0.5">
-                  ALFA ERP AutoPeças
+                  FLOW CRM // ENTERPRISE
                 </p>
               </div>
             </div>
@@ -869,7 +869,7 @@ export default function FlowCrmShowcase() {
               >
                 <div className="flex items-center gap-2.5">
                   <Search className="w-4 h-4 text-[#98A2B3] group-hover:text-[#1683E8]" />
-                  <span>Buscar lead, empresa de autopeças ou oportunidade...</span>
+                  <span>Buscar lead, empresa ou oportunidade...</span>
                 </div>
                 <kbd className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono font-bold bg-white text-[#667085] border border-[#E4E7EC] rounded-md shadow-2xs">
                   ⌘ K
@@ -962,7 +962,7 @@ export default function FlowCrmShowcase() {
                       </div>
                       <div className="p-2 bg-emerald-50/70 border border-emerald-200/60 rounded-lg">
                         <p className="font-semibold text-emerald-900 text-[11px]">Proposta Aprovada</p>
-                        <p className="text-[11px] text-emerald-800">Distribuidora Real Autopeças aprovou setup de R$ 72.000!</p>
+                        <p className="text-[11px] text-emerald-800">Distribuidora Real B2B aprovou proposta de R$ 72.000!</p>
                       </div>
                       <div className="p-2 bg-blue-50/70 border border-blue-200/60 rounded-lg">
                         <p className="font-semibold text-blue-900 text-[11px]">Novo Lead Qualificado</p>
@@ -1010,7 +1010,7 @@ export default function FlowCrmShowcase() {
                   <div className="text-[11px] font-bold text-[#1683E8] uppercase tracking-wider mb-1 flex items-center gap-1.5">
                     <span>FLOW CRM</span>
                     <span>•</span>
-                    <span className="text-[#667085]">ECOSSISTEMA AUTOPEÇAS</span>
+                    <span className="text-[#667085]">ECOSSISTEMA B2B</span>
                   </div>
                   <h1 className="text-3xl font-extrabold text-[#172033] tracking-tight">
                     Visão comercial
@@ -1499,7 +1499,7 @@ export default function FlowCrmShowcase() {
                           Origem dos Leads
                         </h2>
                         <p className="text-xs text-[#667085]">
-                          Canais que mais geram clientes de autopeças
+                          Canais que mais geram clientes corporativos
                         </p>
                       </div>
                       <span className="text-[10px] bg-blue-50 text-[#1683E8] px-2 py-0.5 rounded font-bold">
@@ -1520,7 +1520,7 @@ export default function FlowCrmShowcase() {
 
                       <div>
                         <div className="flex justify-between font-medium mb-1.5">
-                          <span className="text-[#172033] font-semibold">WhatsApp Balcão & Catálogo</span>
+                          <span className="text-[#172033] font-semibold">WhatsApp Comercial & Catálogo</span>
                           <strong className="text-[#16A34A] font-bold">28% (69)</strong>
                         </div>
                         <div className="h-2 w-full bg-[#F2F4F7] rounded-full overflow-hidden">
@@ -1530,7 +1530,7 @@ export default function FlowCrmShowcase() {
 
                       <div>
                         <div className="flex justify-between font-medium mb-1.5">
-                          <span className="text-[#172033] font-semibold">Indicação de Lojas Parceiras</span>
+                          <span className="text-[#172033] font-semibold">Indicação de Clientes Parceiros</span>
                           <strong className="text-[#7C3AED] font-bold">18% (45)</strong>
                         </div>
                         <div className="h-2 w-full bg-[#F2F4F7] rounded-full overflow-hidden">
@@ -1540,7 +1540,7 @@ export default function FlowCrmShowcase() {
 
                       <div>
                         <div className="flex justify-between font-medium mb-1.5">
-                          <span className="text-[#172033] font-semibold">Eventos / Feiras (Automec)</span>
+                          <span className="text-[#172033] font-semibold">Eventos / Feiras Corporativas</span>
                           <strong className="text-[#F59E0B] font-bold">12% (30)</strong>
                         </div>
                         <div className="h-2 w-full bg-[#F2F4F7] rounded-full overflow-hidden">
@@ -1565,7 +1565,7 @@ export default function FlowCrmShowcase() {
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
                   <div className="text-[11px] font-bold text-[#1683E8] uppercase tracking-wider mb-1">
-                    PIPELINE COMERCIAL AUTOPEÇAS
+                    PIPELINE COMERCIAL B2B
                   </div>
                   <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                     Funil de Vendas (Kanban)
@@ -1742,7 +1742,7 @@ export default function FlowCrmShowcase() {
                     BASE DE PROSPECÇÃO B2B
                   </div>
                   <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
-                    Leads de Autopeças
+                    Leads & Contas B2B
                   </h1>
                   <p className="text-xs text-[#667085] mt-1">
                     Gerencie entradas de campanhas, WhatsApp, balcão e indicações de mercado.
@@ -1800,11 +1800,12 @@ export default function FlowCrmShowcase() {
                     className="px-3 py-1.5 bg-[#F5F7FA] border border-[#E4E7EC] rounded-xl text-[#172033] font-medium outline-none cursor-pointer"
                   >
                     <option value="all">Todos os Segmentos</option>
-                    <option value="Varejo de Autopeças">Varejo de Autopeças</option>
+                    <option value="Varejo & Franquias">Varejo & Franquias</option>
                     <option value="Distribuidora Atacadista">Distribuidora Atacadista</option>
-                    <option value="Rede de Auto Center">Rede de Auto Center</option>
-                    <option value="Motopeças & Acessórios">Motopeças & Acessórios</option>
-                    <option value="Linha Pesada & Diesel">Linha Pesada & Diesel</option>
+                    <option value="Rede de Serviços Corporativos">Rede de Serviços Corporativos</option>
+                    <option value="Equipamentos & Suprimentos">Equipamentos & Suprimentos</option>
+                    <option value="Logística & Cargas">Logística & Cargas</option>
+                    <option value="Manufatura & Indústria">Manufatura & Indústria</option>
                   </select>
                 </div>
               </div>
@@ -2031,7 +2032,7 @@ export default function FlowCrmShowcase() {
                     Central de Follow-ups & Tarefas
                   </h1>
                   <p className="text-xs text-[#667085] mt-1">
-                    Garantia de que nenhum lead ou negociação de autopeças fique sem próximo contato.
+                    Garantia de que nenhum lead ou negociação corporativa fique sem próximo contato.
                   </p>
                 </div>
                 <button
@@ -2209,10 +2210,10 @@ export default function FlowCrmShowcase() {
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div>
                 <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
-                  Empresas de Autopeças Cadastradas
+                  Empresas & Contas B2B
                 </h1>
                 <p className="text-xs text-[#667085] mt-1">
-                  Redes de lojas, distribuidores e centros automotivos integrados à base comercial.
+                  Redes de lojas, distribuidores e empresas integradas à base comercial.
                 </p>
               </div>
 
@@ -2304,7 +2305,7 @@ export default function FlowCrmShowcase() {
                   Clientes Convertidos (Pós-Fechamento)
                 </h1>
                 <p className="text-xs text-[#667085] mt-1">
-                  Empresas de autopeças ganhas que migraram do CRM para a base ativa do ALFA ERP.
+                  Empresas ganhas que migraram do CRM para a base ativa de clientes.
                 </p>
               </div>
 
@@ -2315,7 +2316,7 @@ export default function FlowCrmShowcase() {
                       ✓
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-emerald-950">Distribuidora Real Autopeças S.A.</h4>
+                      <h4 className="text-xs font-bold text-emerald-950">Distribuidora Real B2B S.A.</h4>
                       <p className="text-[11px] text-emerald-800">
                         Fechamento: 24/03/2024 · Contrato R$ 72.000 (Setup) + R$ 4.800/mês
                       </p>
@@ -2337,7 +2338,7 @@ export default function FlowCrmShowcase() {
                   Relatórios Comerciais & Motivos de Perda
                 </h1>
                 <p className="text-xs text-[#667085] mt-1">
-                  Métricas de conversão por etapa, performance por vendedor e análise de perdas de autopeças.
+                  Métricas de conversão por etapa, performance por vendedor e análise de motivos de perda.
                 </p>
               </div>
 
@@ -2481,7 +2482,7 @@ export default function FlowCrmShowcase() {
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6">
               <h1 className="text-2xl font-bold text-[#172033]">Contatos & Compradores</h1>
               <div className="bg-white p-6 rounded-2xl border border-[#E4E7EC]">
-                <p className="text-xs text-[#667085]">Base de compradores de autopeças e contatos operacionais.</p>
+                <p className="text-xs text-[#667085]">Base de tomadores de decisão corporativos e contatos operacionais.</p>
               </div>
             </div>
           )}
@@ -2729,7 +2730,7 @@ export default function FlowCrmShowcase() {
             <div className="p-5 border-b border-[#E4E7EC] flex items-center justify-between">
               <div>
                 <h3 className="text-base font-extrabold text-[#172033]">Cadastrar Novo Lead</h3>
-                <p className="text-xs text-[#667085]">Insira os dados da empresa de autopeças e do contato principal.</p>
+                <p className="text-xs text-[#667085]">Insira os dados da empresa e do contato principal.</p>
               </div>
               <button onClick={() => setIsNewLeadModalOpen(false)} className="p-1.5 text-[#667085] hover:text-[#172033]">
                 <X className="w-5 h-5" />
@@ -2818,11 +2819,12 @@ export default function FlowCrmShowcase() {
                     onChange={(e) => setNewLeadForm({ ...newLeadForm, segment: e.target.value as AutomotiveSegment })}
                     className="w-full bg-[#F8FAFC] border border-[#E4E7EC] rounded-xl p-2.5 outline-none"
                   >
-                    <option value="Varejo de Autopeças">Varejo de Autopeças</option>
+                    <option value="Varejo & Franquias">Varejo & Franquias</option>
                     <option value="Distribuidora Atacadista">Distribuidora Atacadista</option>
-                    <option value="Rede de Auto Center">Rede de Auto Center</option>
-                    <option value="Motopeças & Acessórios">Motopeças & Acessórios</option>
-                    <option value="Linha Pesada & Diesel">Linha Pesada & Diesel</option>
+                    <option value="Rede de Serviços Corporativos">Rede de Serviços Corporativos</option>
+                    <option value="Equipamentos & Suprimentos">Equipamentos & Suprimentos</option>
+                    <option value="Logística & Cargas">Logística & Cargas</option>
+                    <option value="Manufatura & Indústria">Manufatura & Indústria</option>
                   </select>
                 </div>
                 <div>
@@ -2846,10 +2848,10 @@ export default function FlowCrmShowcase() {
                     className="w-full bg-[#F8FAFC] border border-[#E4E7EC] rounded-xl p-2.5 outline-none"
                   >
                     <option value="Google Ads">Google Ads</option>
-                    <option value="WhatsApp Balcão">WhatsApp Balcão</option>
-                    <option value="Indicação de Loja">Indicação de Loja</option>
-                    <option value="Evento / Automec">Evento / Automec</option>
-                    <option value="Outbound / Balconista">Outbound / Balconista</option>
+                    <option value="WhatsApp Comercial">WhatsApp Comercial</option>
+                    <option value="Indicação Comercial">Indicação Comercial</option>
+                    <option value="Feiras & Eventos B2B">Feiras & Eventos B2B</option>
+                    <option value="Outbound / Prospecção">Outbound / Prospecção</option>
                   </select>
                 </div>
                 <div>
@@ -2868,10 +2870,10 @@ export default function FlowCrmShowcase() {
               </div>
 
               <div>
-                <label className="font-bold text-[#172033] block mb-1">Observações da Operação de Autopeças</label>
+                <label className="font-bold text-[#172033] block mb-1">Observações da Conta B2B</label>
                 <textarea
                   rows={2}
-                  placeholder="Ex: Possui furos de estoque em pastilhas e software atual é muito lento no balcão..."
+                  placeholder="Ex: Foco em faturamento corporativo e integração fiscal rápida..."
                   value={newLeadForm.notes}
                   onChange={(e) => setNewLeadForm({ ...newLeadForm, notes: e.target.value })}
                   className="w-full bg-[#F8FAFC] border border-[#E4E7EC] rounded-xl p-2.5 outline-none"
@@ -3134,7 +3136,7 @@ export default function FlowCrmShowcase() {
               <input
                 type="text"
                 autoFocus
-                placeholder="Pesquise por empresa de autopeças, lead, contato ou oportunidade..."
+                placeholder="Pesquise por empresa, lead, contato ou oportunidade..."
                 value={globalSearchQuery}
                 onChange={(e) => setGlobalSearchQuery(e.target.value)}
                 className="w-full bg-transparent outline-none text-sm font-medium text-[#172033] placeholder:text-[#98A2B3]"
@@ -3147,7 +3149,7 @@ export default function FlowCrmShowcase() {
             <div className="max-h-80 overflow-y-auto p-2">
               {globalSearchQuery.trim() === "" ? (
                 <div className="p-6 text-center text-xs text-[#98A2B3]">
-                  Digite o nome de uma autopeça (ex: &quot;Silva&quot;, &quot;Motor Sul&quot;, &quot;Paulista&quot;)
+                  Digite o nome de uma empresa (ex: &quot;Silva&quot;, &quot;Atlas&quot;, &quot;Paulista&quot;)
                 </div>
               ) : globalSearchResults.length === 0 ? (
                 <div className="p-6 text-center text-xs text-[#98A2B3]">

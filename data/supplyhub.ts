@@ -571,7 +571,7 @@ export const supplyHubData = {
       ],
       mockupData: {
         badge: "HOMOLOGAÇÃO",
-        title: "AutoMax Distribuição Automotiva",
+        title: "Apex Distribuição Industrial",
         subtitle: "Fornecedor Homologado Tier 1 • Desde 2021",
         details: [
           { label: "Índice de Pontualidade", value: "98.4% no prazo" },

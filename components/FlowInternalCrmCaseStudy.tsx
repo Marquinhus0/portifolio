@@ -110,7 +110,7 @@ export default function FlowInternalCrmCaseStudy({
           <div className="flex items-center space-x-3 text-neutral-500">
             <span className="hidden sm:inline">MARCUS RITTA // PORTFOLIO</span>
             <span>•</span>
-            <span className="text-[#1683E8] font-semibold">FLOW CRM // B2B AUTOPEÇAS</span>
+            <span className="text-[#1683E8] font-semibold">FLOW CRM // PIPELINE B2B</span>
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@ export default function FlowInternalCrmCaseStudy({
                 [CONCEPTUAL PRODUCT DESIGN PROJECT]
               </span>
               <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
-                ESTUDO AUTORAL DE PRODUTO B2B // CRM COMERCIAL AUTOPEÇAS
+                ESTUDO AUTORAL DE PRODUTO B2B // GESTÃO COMERCIAL ENTERPRISE
               </span>
             </div>
 
@@ -159,14 +159,14 @@ export default function FlowInternalCrmCaseStudy({
                   FLOW CRM
                 </h1>
                 <span className="px-3 py-1 bg-[#1683E8] text-white font-mono font-black text-xs sm:text-sm rounded shadow-lg shadow-[#1683E8]/20">
-                  ALFA ERP B2B
+                  B2B PIPELINE
                 </span>
               </div>
               <p className="text-lg sm:text-2xl font-mono text-[#1683E8] font-medium">
-                Central de Operações Comerciais para Distribuidoras e Redes de Autopeças.
+                Central de Operações Comerciais para Distribuidoras, Indústrias e Negócios B2B.
               </p>
               <p className="text-sm font-mono text-neutral-400">
-                &ldquo;Transformando a rotina do time comercial de autopeças em uma operação previsível, veloz e sem leads esquecidos.&rdquo;
+                &ldquo;Transformando a rotina do time comercial B2B em uma operação previsível, veloz e sem oportunidades esquecidas.&rdquo;
               </p>
             </div>
 
@@ -176,7 +176,7 @@ export default function FlowInternalCrmCaseStudy({
                 &ldquo;Um CRM não deve ser apenas um depósito burocrático de contatos. Ele precisa funcionar como a central de comando da venda: o vendedor deve abrir o sistema e saber instantaneamente quem atender primeiro, qual é o próximo passo e quanto há em jogo no pipeline.&rdquo;
               </blockquote>
               <p className="text-sm text-neutral-300 leading-relaxed font-normal">
-                Projetado como módulo comercial nativo do ecossistema <strong>ALFA ERP AutoPeças</strong>, o Flow CRM une a simplicidade tática para quem vende no balcão e no WhatsApp à profundidade analítica exigida por gestores comerciais de alta performance.
+                Projetado para vendas consultivas e operações B2B de alto volume, o Flow CRM une a simplicidade tática para quem fecha negócios via WhatsApp e telefone à profundidade analítica exigida por gestores comerciais de alta performance.
               </p>
             </div>
           </div>
@@ -195,12 +195,12 @@ export default function FlowInternalCrmCaseStudy({
             </div>
             <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-1">
               <span className="text-neutral-500 block uppercase tracking-wider font-semibold">ECOSYSTEM</span>
-              <p className="text-white font-semibold text-sm">ALFA ERP AutoPeças</p>
-              <span className="text-[11px] text-neutral-400">Distribuição & Balcão PDV</span>
+              <p className="text-white font-semibold text-sm">Plataforma Comercial B2B</p>
+              <span className="text-[11px] text-neutral-400">Vendas Consultivas & Atacado</span>
             </div>
             <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-1">
               <span className="text-neutral-500 block uppercase tracking-wider font-semibold">DESIGN SYSTEM</span>
-              <p className="text-[#1683E8] font-semibold text-sm">ALFA Blue & Neutral</p>
+              <p className="text-[#1683E8] font-semibold text-sm">Precision Blue & Neutral</p>
               <span className="text-[11px] text-neutral-400">#1683E8, #123B63 & #F5F7FA</span>
             </div>
           </div>
@@ -210,10 +210,10 @@ export default function FlowInternalCrmCaseStudy({
             <div className="flex items-center gap-2.5">
               <span className="w-2 h-2 rounded-full bg-[#1683E8]" />
               <strong className="text-white">Projeto Autoral &amp; Engenharia Front-End:</strong>
-              <span className="text-neutral-400">Design System ALFA Blue, Pipeline Kanban Drag &amp; Drop e Sandbox Funcional</span>
+              <span className="text-neutral-400">Design System Corporativo, Pipeline Kanban Drag &amp; Drop e Sandbox Funcional</span>
             </div>
             <span className="text-[11px] text-neutral-500 uppercase tracking-wider">
-              Ecossistema ALFA ERP • CRM Autopeças • React TS
+              CRM B2B Enterprise • Pipeline Kanban • React TS
             </span>
           </div>
         </div>
@@ -226,13 +226,13 @@ export default function FlowInternalCrmCaseStudy({
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-10">
           <div className="space-y-4 max-w-3xl">
             <span className="text-xs font-mono text-[#1683E8] uppercase tracking-widest font-semibold block">
-              02 — O CENÁRIO REAL DE VENDAS B2B EM AUTOPEÇAS
+              02 — O CENÁRIO REAL DE VENDAS COMPLEXAS B2B
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              A Fricção entre Balcão, WhatsApp e Planilhas Paralelas
+              A Fricção entre Vendas, WhatsApp e Planilhas Paralelas
             </h2>
             <p className="text-base text-neutral-300 leading-relaxed font-normal">
-              No mercado de reposição automotiva, a velocidade é o fator decisivo. Uma oficina mecânica ou varejista de autopeças que solicita cotação de pastilhas de freio ou amortecedores fecha com o primeiro fornecedor que responder com preço e disponibilidade de estoque. Quando a equipe comercial opera com ferramentas genéricas ou planilhas soltas, três gargalos graves acontecem:
+              Em vendas consultivas B2B e distribuição, a velocidade de atendimento é decisiva. Compradores corporativos que solicitam cotações de grande volume fecham com o fornecedor que responder primeiro com precisão de estoque, condições comerciais claras e agilidade no contato. Quando a equipe comercial opera com ferramentas genéricas ou planilhas soltas, três gargalos graves acontecem:
             </p>
           </div>
 
@@ -244,7 +244,7 @@ export default function FlowInternalCrmCaseStudy({
               </div>
               <h3 className="text-lg font-bold text-white">Leads Dispersos Sem Próximo Passo</h3>
               <p className="text-xs text-neutral-400 leading-relaxed">
-                Contatos chegam via Google Ads, WhatsApp Balcão, feiras (Automec) e indicações de representantes, mas se perdem sem registro centralizado. O vendedor abre o dia sem saber qual cliente priorizar.
+                Contatos chegam via Google Ads, WhatsApp comercial, feiras setoriais e indicações, mas se perdem sem registro centralizado. O vendedor abre o dia sem saber qual cliente priorizar.
               </p>
             </div>
 
@@ -254,7 +254,7 @@ export default function FlowInternalCrmCaseStudy({
               </div>
               <h3 className="text-lg font-bold text-white">Oportunidades Estagnadas (Sem Follow-up)</h3>
               <p className="text-xs text-neutral-400 leading-relaxed">
-                Orçamentos de implantação e propostas de software ficam mais de 3 dias sem contato por falta de alerta de SLA, permitindo que concorrentes ocupem o espaço e fechem com a rede de autopeças.
+                Propostas comerciais e contratos corporativos ficam mais de 3 dias sem contato por falta de alerta de SLA, permitindo que concorrentes ocupem o espaço e fechem com o cliente.
               </p>
             </div>
 
@@ -264,7 +264,7 @@ export default function FlowInternalCrmCaseStudy({
               </div>
               <h3 className="text-lg font-bold text-white">Cegueira nos Motivos de Perda</h3>
               <p className="text-xs text-neutral-400 leading-relaxed">
-                Negócios são marcados como perdidos sem motivo registrado. A gestão não sabe se perdeu por preço, concorrente (Linx/Totvs), timing ou falta de funcionalidade de catálogo de peças.
+                Negócios são marcados como perdidos sem motivo registrado. A gestão não sabe se perdeu por preço, concorrente direto, timing ou falta de atendimento aos requisitos do cliente.
               </p>
             </div>
           </div>
@@ -280,7 +280,7 @@ export default function FlowInternalCrmCaseStudy({
                   <tr className="border-b border-neutral-800 text-neutral-400 font-mono">
                     <th className="py-2.5 px-3">Critério Operacional</th>
                     <th className="py-2.5 px-3 text-rose-400">Operação Comum / CRM Genérico</th>
-                    <th className="py-2.5 px-3 text-[#1683E8]">Operação Flow CRM (ALFA ERP)</th>
+                    <th className="py-2.5 px-3 text-[#1683E8]">Operação Flow CRM (B2B SaaS)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-800/60 text-neutral-300 font-mono text-[11px]">
@@ -292,7 +292,7 @@ export default function FlowInternalCrmCaseStudy({
                   <tr>
                     <td className="py-3 px-3 font-semibold text-white">Comunicação Rápida</td>
                     <td className="py-3 px-3 text-neutral-400">Troca manual de abas com WhatsApp Web pessoal</td>
-                    <td className="py-3 px-3 text-emerald-400 font-bold">Simulador com modelos prontos de autopeças em 1 clique</td>
+                    <td className="py-3 px-3 text-emerald-400 font-bold">Simulador com modelos prontos de mensagem B2B em 1 clique</td>
                   </tr>
                   <tr>
                     <td className="py-3 px-3 font-semibold text-white">SLA de Estagnação</td>
@@ -302,7 +302,7 @@ export default function FlowInternalCrmCaseStudy({
                   <tr>
                     <td className="py-3 px-3 font-semibold text-white">Módulos de Interesse</td>
                     <td className="py-3 px-3 text-neutral-400">Campos de texto livres e inconsistentes</td>
-                    <td className="py-3 px-3 text-emerald-400 font-bold">Tags oficiais do ERP (Balcão PDV, Curva ABC, Fiscal)</td>
+                    <td className="py-3 px-3 text-emerald-400 font-bold">Tags corporativas estruturadas (Core, Faturamento, Fiscal, Logística)</td>
                   </tr>
                   <tr>
                     <td className="py-3 px-3 font-semibold text-white">Pós-Fechamento</td>
@@ -363,7 +363,7 @@ export default function FlowInternalCrmCaseStudy({
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-mono">
               <div className="p-3 bg-neutral-900/70 border border-neutral-800 rounded-sm">
                 <span className="text-[#1683E8] font-bold block mb-1">01. Quem são meus leads?</span>
-                <p className="text-neutral-300">Base filtrada por segmento (Varejo, Distribuidora, Auto Center, Motopeças).</p>
+                <p className="text-neutral-300">Base filtrada por segmento (Distribuição, Indústria, Serviços Corporativos, Logística).</p>
               </div>
               <div className="p-3 bg-neutral-900/70 border border-neutral-800 rounded-sm">
                 <span className="text-[#1683E8] font-bold block mb-1">02. De onde eles vieram?</span>
@@ -408,7 +408,7 @@ export default function FlowInternalCrmCaseStudy({
               Flow CRM em Ação (Protótipo Funcional)
             </h2>
             <p className="text-sm text-neutral-300 font-normal leading-relaxed">
-              Interaja diretamente com a aplicação comercial. Navegue entre as abas na barra lateral, arraste cards no Kanban, filtre a tabela de leads, abra o perfil 360° com histórico, teste o simulador de WhatsApp de autopeças e pressione <kbd className="px-1.5 py-0.5 bg-neutral-800 text-white rounded font-mono text-xs border border-neutral-700">Ctrl + K</kbd> para acionar a busca global.
+              Interaja diretamente com a aplicação comercial. Navegue entre as abas na barra lateral, arraste cards no Kanban, filtre a tabela de leads, abra o perfil 360° com histórico, teste o simulador de WhatsApp comercial B2B e pressione <kbd className="px-1.5 py-0.5 bg-neutral-800 text-white rounded font-mono text-xs border border-neutral-700">Ctrl + K</kbd> para acionar a busca global.
             </p>
           </div>
 
@@ -421,7 +421,7 @@ export default function FlowInternalCrmCaseStudy({
                 <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
                 <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
                 <span className="ml-2 font-bold tracking-wide">
-                  FLOW CRM B2B // ECOSSISTEMA ALFA ERP AUTOPEÇAS
+                  FLOW CRM B2B // CENTRAL DE OPERAÇÕES COMERCIAIS ENTERPRISE
                 </span>
               </div>
               <div className="flex items-center gap-3">
@@ -494,12 +494,12 @@ export default function FlowInternalCrmCaseStudy({
                 </div>
                 <div>
                   <h3 className="font-bold text-white text-sm">Carlos Silva (44)</h3>
-                  <p className="text-[11px] text-neutral-400 font-mono">Sócio de Loja de Autopeças (Cliente)</p>
+                  <p className="text-[11px] text-neutral-400 font-mono">Diretor de Operações B2B (Cliente Comprador)</p>
                 </div>
               </div>
               <div className="space-y-2 text-xs text-neutral-300">
-                <p><strong>Necessidades:</strong> Proposta clara com módulos de Curva ABC, Balcão PDV e Fiscal para suas lojas, com parcelamento da implantação.</p>
-                <p><strong>Comportamento:</strong> Avalia fornecedores de software que entendam a dor de furos de estoque em pastilhas e amortecedores.</p>
+                <p><strong>Necessidades:</strong> Proposta comercial transparente com módulos de gestão de pedidos, faturamento e integração fiscal para sua operação corporativa.</p>
+                <p><strong>Comportamento:</strong> Avalia fornecedores que garantam confiabilidade, suporte técnico ágil e implantação sem parada da operação.</p>
               </div>
             </div>
           </div>
@@ -519,7 +519,7 @@ export default function FlowInternalCrmCaseStudy({
               Os 8 Pilares Estruturais do Flow CRM
             </h2>
             <p className="text-base text-neutral-300 leading-relaxed font-normal">
-              Para atender à exigência de não ser um CRM genérico, cada tela foi desenhada com funcionalidades específicas para o negócio de autopeças:
+              Para atender à exigência de não ser um CRM genérico, cada tela foi desenhada com funcionalidades específicas para operações comerciais B2B:
             </p>
           </div>
 
@@ -538,15 +538,15 @@ export default function FlowInternalCrmCaseStudy({
             </div>
             <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-2">
               <span className="text-[#1683E8] font-bold block text-sm">04. Gestão de Leads</span>
-              <p className="text-neutral-400">Filtros por segmento automotivo, lojas e modal de cadastro com abertura automática do perfil.</p>
+              <p className="text-neutral-400">Filtros por segmento comercial, empresas e modal de cadastro com abertura automática do perfil.</p>
             </div>
             <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-2">
               <span className="text-[#1683E8] font-bold block text-sm">05. Drawer 360° do Lead</span>
               <p className="text-neutral-400">Linha do tempo cronológica com notas, histórico e ações diretas de ligação e WhatsApp.</p>
             </div>
             <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-2">
-              <span className="text-[#1683E8] font-bold block text-sm">06. Módulos ALFA ERP</span>
-              <p className="text-neutral-400">Associação das oportunidades aos módulos reais (Balcão PDV, Curva ABC, Fiscal e B2B).</p>
+              <span className="text-[#1683E8] font-bold block text-sm">06. Módulos de Interesse</span>
+              <p className="text-neutral-400">Associação das oportunidades aos módulos corporativos (Gestão Core, Faturamento, Fiscal e Operações).</p>
             </div>
             <div className="p-4 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-2">
               <span className="text-[#1683E8] font-bold block text-sm">07. Motivos de Perda</span>
@@ -673,7 +673,7 @@ export default function FlowInternalCrmCaseStudy({
             <div className="p-6 bg-neutral-900/40 border border-neutral-800 rounded-sm space-y-2">
               <h3 className="font-bold text-white text-sm">1. Especialização Vence a Generalidade</h3>
               <p className="text-neutral-400">
-                CRMs genéricos falham em autopeças porque não entendem filiais, reposição por giro ou busca de peças. O produto precisa falar a língua do balcão e da oficina mecânica.
+                CRMs genéricos falham no B2B porque tratam vendas complexas como compras de balcão comum. O produto precisa refletir a realidade de faturamento faturado, prazos de entrega e follow-ups com tomadores de decisão corporativos.
               </p>
             </div>
             <div className="p-6 bg-neutral-900/40 border border-neutral-800 rounded-sm space-y-2">

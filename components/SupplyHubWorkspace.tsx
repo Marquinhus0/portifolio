@@ -276,7 +276,7 @@ export default function SupplyHubWorkspace() {
             </div>
             <div className="min-w-0">
               <span className="block font-bold text-xs text-[#15201c] truncate">Marcus Ritta</span>
-              <span className="block text-[10px] text-[#71807a] truncate">Alfa AutoPeças (Admin)</span>
+              <span className="block text-[10px] text-[#71807a] truncate">Nexus Supply (Admin)</span>
             </div>
           </div>
         </aside>
@@ -322,7 +322,7 @@ export default function SupplyHubWorkspace() {
                 </div>
                 <div className="hidden sm:block text-left text-xs leading-tight">
                   <span className="font-bold text-[#15201c] block">Marcus Ritta</span>
-                  <span className="text-[10px] text-[#71807a]">Alfa AutoPeças</span>
+                  <span className="text-[10px] text-[#71807a]">Nexus Enterprise</span>
                 </div>
               </div>
             </div>
@@ -882,10 +882,10 @@ export default function SupplyHubWorkspace() {
                     <div className="space-y-2">
                       <label className="text-[11px] font-semibold text-[#5e6965]">Categoria</label>
                       <select className="w-full p-2 bg-[#f8faf9] border border-[#e4ebe7] rounded text-xs">
-                        <option>Freios e Pastilhas (34)</option>
-                        <option>Lubrificantes e Fluidos (18)</option>
-                        <option>Suspensão e Amortecedores (22)</option>
-                        <option>Filtros Automotivos (41)</option>
+                        <option>Componentes Eletromecânicos (34)</option>
+                        <option>Fluidos e Lubrificantes Industriais (18)</option>
+                        <option>Válvulas e Conexões de Alta Pressão (22)</option>
+                        <option>Filtros e Equipamentos Industriais (41)</option>
                       </select>
                     </div>
 
@@ -1106,7 +1106,7 @@ export default function SupplyHubWorkspace() {
                         <span className="text-xs font-bold text-[#16845a] uppercase tracking-wider">
                           Mesa de Negociação em Tempo Real
                         </span>
-                        <h3 className="text-lg font-bold text-[#15201c]">AutoMax Distribuição Automotiva</h3>
+                        <h3 className="text-lg font-bold text-[#15201c]">Apex Distribuição Industrial</h3>
                         <p className="text-xs text-[#71807a]">RFQ #2024-089 • Proposta original: R$ 4.250,00</p>
                       </div>
                       <span className="px-2 py-0.5 rounded bg-[#e8f7ef] text-[#116c49] font-bold text-xs">
@@ -1443,7 +1443,7 @@ export default function SupplyHubWorkspace() {
               <div className="bg-white border border-[#e4ebe7] rounded-xl p-6 space-y-6 max-w-2xl animate-fadeIn">
                 <div>
                   <h2 className="text-xl font-bold text-[#15201c]">Configurações da Empresa & Alçadas</h2>
-                  <p className="text-xs text-[#71807a]">Definição de tetos de aprovação e governança de compras da Alfa AutoPeças.</p>
+                  <p className="text-xs text-[#71807a]">Definição de tetos de aprovação e governança de compras corporativas.</p>
                 </div>
 
                 <div className="space-y-4 text-xs">

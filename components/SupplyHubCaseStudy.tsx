@@ -711,7 +711,7 @@ export default function SupplyHubCaseStudy({
                 <div className="space-y-3">
                   <h3 className="text-base font-bold text-white">Pesquisa de Produtos & Catálogo</h3>
                   <p className="text-neutral-300 text-xs leading-relaxed">
-                    Motor de busca por código OEM, fabricante, aplicação automotiva e especificações técnicas. Suporta filtros laterais rápidos por prazo de entrega (pronta entrega vs lote industrial) e modalidade de frete (CIF/FOB).
+                    Motor de busca por código SKU/OEM, fabricante, aplicação técnica e especificações industriais. Suporta filtros laterais rápidos por prazo de entrega (pronta entrega vs lote industrial) e modalidade de frete (CIF/FOB).
                   </p>
                   <div className="p-3 bg-black/40 rounded border border-neutral-800 space-y-1 text-[11px] text-neutral-400">
                     <strong className="text-white block">Subtelas do Módulo:</strong>

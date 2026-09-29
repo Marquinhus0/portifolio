@@ -1,6 +1,6 @@
 // ============================================================================
-// ALFA FLOW CRM — Data & Type Definitions
-// Ecossistema ALFA ERP AutoPeças — Módulo Comercial B2B
+// FLOW CRM — Data & Type Definitions
+// Central de Operações Comerciais B2B — Módulo de Vendas
 // ============================================================================
 
 export type CrmStageId =
@@ -14,31 +14,31 @@ export type CrmStageId =
   | "perdido";
 
 export type AutomotiveSegment =
-  | "Varejo de Autopeças"
+  | "Varejo & Franquias"
   | "Distribuidora Atacadista"
-  | "Rede de Auto Center"
-  | "Motopeças & Acessórios"
-  | "Linha Pesada & Diesel"
-  | "Auto Elétrica & Baterias";
+  | "Rede de Serviços Corporativos"
+  | "Equipamentos & Suprimentos"
+  | "Logística & Cargas"
+  | "Manufatura & Indústria";
 
 export type LeadSource =
   | "Google Ads"
-  | "WhatsApp Balcão"
-  | "Indicação de Loja"
-  | "Evento / Automec"
-  | "Outbound / Balconista"
+  | "WhatsApp Comercial"
+  | "Indicação Comercial"
+  | "Feiras & Eventos B2B"
+  | "Outbound / Prospecção"
   | "Site Orgânico"
   | "Representante Comercial";
 
 export type AlfaErpModule =
-  | "ERP AutoPeças (Core)"
-  | "Balcão PDV Rápido"
-  | "Estoque & Curva ABC"
-  | "Compras Inteligentes"
+  | "ERP Gestão (Core)"
+  | "PDV & Faturamento Rápido"
+  | "Estoque & Armazenagem"
+  | "Compras & Suprimentos"
   | "Financeiro Avançado"
-  | "B2B E-commerce de Peças"
+  | "Portal B2B de Pedidos"
   | "BI & Métricas Gerenciais"
-  | "Fiscal & SPED Automotivo"
+  | "Fiscal & SPED Corporativo"
   | "CRM Flow Integrado";
 
 export interface CrmLead {
@@ -184,20 +184,20 @@ export const INITIAL_LEADS: CrmLead[] = [
     email: "carlos@autopecassilva.com.br",
     city: "São Paulo",
     state: "SP",
-    segment: "Varejo de Autopeças",
+    segment: "Varejo & Franquias",
     storesCount: 3,
     source: "Google Ads",
-    campaign: "ERP AutoPeças — Balcão Rápido",
+    campaign: "Campanha ERP Gestão Corporativa",
     owner: "João Silva",
     ownerAvatar: "JS",
     status: "Oportunidade",
-    interestModules: ["ERP AutoPeças (Core)", "Balcão PDV Rápido", "Estoque & Curva ABC"],
+    interestModules: ["ERP Gestão (Core)", "PDV & Faturamento Rápido", "Estoque & Armazenagem"],
     dealValue: 18500,
     lastContact: "Hoje, 10:32",
     nextAction: "Ligar para confirmar módulos de curva ABC",
     nextActionDate: "Hoje, 14:30",
     priority: "Alta",
-    notes: "Possuem 3 lojas na Zona Leste de SP. Sofrem com furos de estoque em pastilhas e amortecedores.",
+    notes: "Possuem 3 filiais na Grande SP. Sofrem com falta de controle de inventário e pedidos dispersos.",
     createdAt: "2024-03-20",
   },
   {
@@ -213,12 +213,12 @@ export const INITIAL_LEADS: CrmLead[] = [
     state: "PR",
     segment: "Distribuidora Atacadista",
     storesCount: 2,
-    source: "WhatsApp Balcão",
+    source: "WhatsApp Comercial",
     campaign: "WhatsApp — Catálogo & B2B",
     owner: "Ana Souza",
     ownerAvatar: "AS",
     status: "Qualificação",
-    interestModules: ["ERP AutoPeças (Core)", "B2B E-commerce de Peças", "Compras Inteligentes"],
+    interestModules: ["ERP Gestão (Core)", "Portal B2B de Pedidos", "Compras & Suprimentos"],
     dealValue: 28000,
     lastContact: "Hoje, 09:10",
     nextAction: "Enviar proposta comercial com catálogo B2B",
@@ -238,14 +238,14 @@ export const INITIAL_LEADS: CrmLead[] = [
     email: "ricardo.costa@autocenterbrasil.com",
     city: "Campinas",
     state: "SP",
-    segment: "Rede de Auto Center",
+    segment: "Rede de Serviços Corporativos",
     storesCount: 6,
-    source: "Indicação de Loja",
+    source: "Indicação Comercial",
     campaign: "Indicação Direta — Rede Toledo",
     owner: "João Silva",
     ownerAvatar: "JS",
     status: "Oportunidade",
-    interestModules: ["ERP AutoPeças (Core)", "Financeiro Avançado", "Balcão PDV Rápido", "Fiscal & SPED Automotivo"],
+    interestModules: ["ERP Gestão (Core)", "Financeiro Avançado", "PDV & Faturamento Rápido", "Fiscal & SPED Corporativo"],
     dealValue: 24000,
     lastContact: "Ontem, 16:42",
     nextAction: "Apresentar demonstração do PDV integrado à ordem de serviço",
@@ -265,14 +265,14 @@ export const INITIAL_LEADS: CrmLead[] = [
     email: "fernando@paulistamotopecas.com.br",
     city: "Ribeirão Preto",
     state: "SP",
-    segment: "Motopeças & Acessórios",
+    segment: "Equipamentos & Suprimentos",
     storesCount: 4,
     source: "Google Ads",
     campaign: "Google Ads — Motopeças & Gestão",
     owner: "Carlos Ferreira",
     ownerAvatar: "CF",
     status: "Oportunidade",
-    interestModules: ["ERP AutoPeças (Core)", "Estoque & Curva ABC", "B2B E-commerce de Peças"],
+    interestModules: ["ERP Gestão (Core)", "Estoque & Armazenagem", "Portal B2B de Pedidos"],
     dealValue: 32000,
     lastContact: "Ontem, 11:20",
     nextAction: "Validar integração de curva ABC com fornecedores de motopeças",
@@ -292,14 +292,14 @@ export const INITIAL_LEADS: CrmLead[] = [
     email: "eduardo@autopecasgaucha.com.br",
     city: "Porto Alegre",
     state: "RS",
-    segment: "Varejo de Autopeças",
+    segment: "Varejo & Franquias",
     storesCount: 2,
     source: "Google Ads",
     campaign: "Google Ads — Varejo Automotivo",
     owner: "Mariana Lima",
     ownerAvatar: "ML",
     status: "Oportunidade",
-    interestModules: ["ERP AutoPeças (Core)", "Financeiro Avançado", "Balcão PDV Rápido"],
+    interestModules: ["ERP Gestão (Core)", "Financeiro Avançado", "PDV & Faturamento Rápido"],
     dealValue: 21500,
     lastContact: "Há 2 dias",
     nextAction: "Enviar simulação de parcelamento de implantação",
@@ -319,14 +319,14 @@ export const INITIAL_LEADS: CrmLead[] = [
     email: "paulo@redeautosul.com.br",
     city: "Joinville",
     state: "SC",
-    segment: "Varejo de Autopeças",
+    segment: "Varejo & Franquias",
     storesCount: 5,
-    source: "Evento / Automec",
+    source: "Feiras & Eventos B2B",
     campaign: "Feira Automec 2024",
     owner: "João Silva",
     ownerAvatar: "JS",
     status: "Oportunidade",
-    interestModules: ["ERP AutoPeças (Core)", "BI & Métricas Gerenciais", "Estoque & Curva ABC", "Compras Inteligentes"],
+    interestModules: ["ERP Gestão (Core)", "BI & Métricas Gerenciais", "Estoque & Armazenagem", "Compras & Suprimentos"],
     dealValue: 16800,
     lastContact: "Há 3 dias",
     nextAction: "Fazer follow-up da proposta de 5 lojas",
@@ -346,14 +346,14 @@ export const INITIAL_LEADS: CrmLead[] = [
     email: "andre@masterautopecas.com.br",
     city: "Belo Horizonte",
     state: "MG",
-    segment: "Linha Pesada & Diesel",
+    segment: "Logística & Cargas",
     storesCount: 2,
-    source: "Indicação de Loja",
+    source: "Indicação Comercial",
     campaign: "Indicação de Clientes MG",
     owner: "Carlos Ferreira",
     ownerAvatar: "CF",
     status: "Oportunidade",
-    interestModules: ["ERP AutoPeças (Core)", "Fiscal & SPED Automotivo", "Balcão PDV Rápido"],
+    interestModules: ["ERP Gestão (Core)", "Fiscal & SPED Corporativo", "PDV & Faturamento Rápido"],
     dealValue: 12500,
     lastContact: "Há 4 dias",
     nextAction: "Confirmar reunião técnica com time fiscal",
@@ -366,21 +366,21 @@ export const INITIAL_LEADS: CrmLead[] = [
     id: "lead-08",
     name: "Juliana Rocha",
     role: "Gerente Administrativa",
-    company: "Catarina Autopeças & Acessórios",
+    company: "Catarina Distribuidora & Suprimentos",
     cnpj: "19.332.901/0001-11",
     phone: "(48) 3244-1000",
     whatsapp: "(48) 99182-3344",
     email: "juliana@catarinaautopecas.com.br",
     city: "Florianópolis",
     state: "SC",
-    segment: "Varejo de Autopeças",
+    segment: "Varejo & Franquias",
     storesCount: 3,
-    source: "WhatsApp Balcão",
+    source: "WhatsApp Comercial",
     campaign: "WhatsApp Ativo",
     owner: "Ana Souza",
     ownerAvatar: "AS",
     status: "Contato Realizado",
-    interestModules: ["ERP AutoPeças (Core)", "Balcão PDV Rápido"],
+    interestModules: ["ERP Gestão (Core)", "PDV & Faturamento Rápido"],
     dealValue: 19800,
     lastContact: "Hoje, 11:45",
     nextAction: "Agendar demonstração do sistema para sócios",
@@ -400,14 +400,14 @@ export const INITIAL_LEADS: CrmLead[] = [
     email: "roberto@realpecaspesada.com.br",
     city: "Goiânia",
     state: "GO",
-    segment: "Linha Pesada & Diesel",
+    segment: "Logística & Cargas",
     storesCount: 2,
-    source: "Outbound / Balconista",
+    source: "Outbound / Prospecção",
     campaign: "Prospecção Linha Diesel Centro-Oeste",
     owner: "Mariana Lima",
     ownerAvatar: "ML",
     status: "Novo",
-    interestModules: ["ERP AutoPeças (Core)", "Compras Inteligentes", "Estoque & Curva ABC", "B2B E-commerce de Peças"],
+    interestModules: ["ERP Gestão (Core)", "Compras & Suprimentos", "Estoque & Armazenagem", "Portal B2B de Pedidos"],
     dealValue: 35000,
     lastContact: "Ontem, 14:00",
     nextAction: "Fazer qualificação com o sócio-proprietário",
@@ -427,14 +427,14 @@ export const INITIAL_LEADS: CrmLead[] = [
     email: "marcos@nacionalautoeletrica.com.br",
     city: "Londrina",
     state: "PR",
-    segment: "Auto Elétrica & Baterias",
+    segment: "Manufatura & Indústria",
     storesCount: 2,
-    source: "Indicação de Loja",
+    source: "Indicação Comercial",
     campaign: "Parceria Moura / Heliar",
     owner: "João Silva",
     ownerAvatar: "JS",
     status: "Contato Realizado",
-    interestModules: ["ERP AutoPeças (Core)", "Balcão PDV Rápido", "Financeiro Avançado"],
+    interestModules: ["ERP Gestão (Core)", "PDV & Faturamento Rápido", "Financeiro Avançado"],
     dealValue: 14200,
     lastContact: "Hoje, 08:30",
     nextAction: "Enviar proposta de 2 terminais PDV",
@@ -448,13 +448,13 @@ export const INITIAL_LEADS: CrmLead[] = [
 export const INITIAL_DEALS: CrmDeal[] = [
   {
     id: "deal-01",
-    title: "Implantação ERP AutoPeças — 3 Lojas",
+    title: "Implantação ERP Corporativo — 3 Filiais",
     company: "Auto Peças Silva",
     contactName: "Carlos Silva",
     contactRole: "Gerente de Compras",
     contactPhone: "(11) 98412-3344",
     contactEmail: "carlos@autopecassilva.com.br",
-    segment: "Varejo de Autopeças",
+    segment: "Varejo & Franquias",
     storesCount: 3,
     city: "São Paulo",
     state: "SP",
@@ -465,13 +465,13 @@ export const INITIAL_DEALS: CrmDeal[] = [
     owner: "João Silva",
     ownerAvatar: "JS",
     source: "Google Ads",
-    campaign: "ERP AutoPeças — Balcão Rápido",
+    campaign: "Campanha ERP Gestão Corporativa",
     daysInStage: 1,
     lastActivity: "Hoje, 10:32",
     nextAction: "Ligar para alinhar módulos de curva ABC",
     nextActionDate: "Hoje, 14:30",
     health: "on-track",
-    interestModules: ["ERP AutoPeças (Core)", "Balcão PDV Rápido", "Estoque & Curva ABC"],
+    interestModules: ["ERP Gestão (Core)", "PDV & Faturamento Rápido", "Estoque & Armazenagem"],
   },
   {
     id: "deal-02",
@@ -491,14 +491,14 @@ export const INITIAL_DEALS: CrmDeal[] = [
     stageId: "novo_lead",
     owner: "Ana Souza",
     ownerAvatar: "AS",
-    source: "WhatsApp Balcão",
+    source: "WhatsApp Comercial",
     campaign: "WhatsApp — Catálogo & B2B",
     daysInStage: 2,
     lastActivity: "Hoje, 09:10",
     nextAction: "Enviar proposta de portal B2B",
     nextActionDate: "Hoje, 16:00",
     health: "on-track",
-    interestModules: ["ERP AutoPeças (Core)", "B2B E-commerce de Peças"],
+    interestModules: ["ERP Gestão (Core)", "Portal B2B de Pedidos"],
   },
   {
     id: "deal-03",
@@ -508,7 +508,7 @@ export const INITIAL_DEALS: CrmDeal[] = [
     contactRole: "Diretor de Operações",
     contactPhone: "(19) 98765-4321",
     contactEmail: "ricardo.costa@autocenterbrasil.com",
-    segment: "Rede de Auto Center",
+    segment: "Rede de Serviços Corporativos",
     storesCount: 6,
     city: "Campinas",
     state: "SP",
@@ -518,14 +518,14 @@ export const INITIAL_DEALS: CrmDeal[] = [
     stageId: "qualificacao",
     owner: "João Silva",
     ownerAvatar: "JS",
-    source: "Indicação de Loja",
+    source: "Indicação Comercial",
     campaign: "Indicação Direta",
     daysInStage: 3,
     lastActivity: "Ontem, 16:42",
     nextAction: "Demonstração do Balcão PDV integrado a OS",
     nextActionDate: "Hoje, 15:00",
     health: "on-track",
-    interestModules: ["ERP AutoPeças (Core)", "Balcão PDV Rápido", "Financeiro Avançado", "Fiscal & SPED Automotivo"],
+    interestModules: ["ERP Gestão (Core)", "PDV & Faturamento Rápido", "Financeiro Avançado", "Fiscal & SPED Corporativo"],
   },
   {
     id: "deal-04",
@@ -535,7 +535,7 @@ export const INITIAL_DEALS: CrmDeal[] = [
     contactRole: "Gerente Geral",
     contactPhone: "(16) 99811-2233",
     contactEmail: "fernando@paulistamotopecas.com.br",
-    segment: "Motopeças & Acessórios",
+    segment: "Equipamentos & Suprimentos",
     storesCount: 4,
     city: "Ribeirão Preto",
     state: "SP",
@@ -552,7 +552,7 @@ export const INITIAL_DEALS: CrmDeal[] = [
     nextAction: "Validar integração de curva ABC com fornecedores",
     nextActionDate: "Amanhã, 10:00",
     health: "on-track",
-    interestModules: ["ERP AutoPeças (Core)", "Estoque & Curva ABC", "B2B E-commerce de Peças"],
+    interestModules: ["ERP Gestão (Core)", "Estoque & Armazenagem", "Portal B2B de Pedidos"],
   },
   {
     id: "deal-05",
@@ -562,7 +562,7 @@ export const INITIAL_DEALS: CrmDeal[] = [
     contactRole: "Gerente Comercial",
     contactPhone: "(51) 98112-9900",
     contactEmail: "eduardo@autopecasgaucha.com.br",
-    segment: "Varejo de Autopeças",
+    segment: "Varejo & Franquias",
     storesCount: 2,
     city: "Porto Alegre",
     state: "RS",
@@ -579,7 +579,7 @@ export const INITIAL_DEALS: CrmDeal[] = [
     nextAction: "Enviar proposta formal revisada",
     nextActionDate: "Amanhã, 14:00",
     health: "attention",
-    interestModules: ["ERP AutoPeças (Core)", "Financeiro Avançado", "Balcão PDV Rápido"],
+    interestModules: ["ERP Gestão (Core)", "Financeiro Avançado", "PDV & Faturamento Rápido"],
   },
   {
     id: "deal-06",
@@ -589,7 +589,7 @@ export const INITIAL_DEALS: CrmDeal[] = [
     contactRole: "Sócio-Proprietário",
     contactPhone: "(47) 99778-1122",
     contactEmail: "paulo@redeautosul.com.br",
-    segment: "Varejo de Autopeças",
+    segment: "Varejo & Franquias",
     storesCount: 5,
     city: "Joinville",
     state: "SC",
@@ -599,14 +599,14 @@ export const INITIAL_DEALS: CrmDeal[] = [
     stageId: "negociacao",
     owner: "João Silva",
     ownerAvatar: "JS",
-    source: "Evento / Automec",
+    source: "Feiras & Eventos B2B",
     campaign: "Feira Automec",
     daysInStage: 9,
     lastActivity: "Há 3 dias",
     nextAction: "Reunião de alinhamento com financeiro",
     nextActionDate: "Hoje, 16:30",
     health: "urgent",
-    interestModules: ["ERP AutoPeças (Core)", "BI & Métricas Gerenciais", "Estoque & Curva ABC", "Compras Inteligentes"],
+    interestModules: ["ERP Gestão (Core)", "BI & Métricas Gerenciais", "Estoque & Armazenagem", "Compras & Suprimentos"],
   },
   {
     id: "deal-07",
@@ -616,7 +616,7 @@ export const INITIAL_DEALS: CrmDeal[] = [
     contactRole: "Supervisor de Compras",
     contactPhone: "(31) 98445-6677",
     contactEmail: "andre@masterautopecas.com.br",
-    segment: "Linha Pesada & Diesel",
+    segment: "Logística & Cargas",
     storesCount: 2,
     city: "Belo Horizonte",
     state: "MG",
@@ -626,19 +626,19 @@ export const INITIAL_DEALS: CrmDeal[] = [
     stageId: "negociacao",
     owner: "Carlos Ferreira",
     ownerAvatar: "CF",
-    source: "Indicação de Loja",
+    source: "Indicação Comercial",
     campaign: "Indicação Clientes",
     daysInStage: 11,
     lastActivity: "Há 4 dias",
     nextAction: "Confirmar minuta contratual",
     nextActionDate: "Amanhã, 11:30",
     health: "attention",
-    interestModules: ["ERP AutoPeças (Core)", "Fiscal & SPED Automotivo", "Balcão PDV Rápido"],
+    interestModules: ["ERP Gestão (Core)", "Fiscal & SPED Corporativo", "PDV & Faturamento Rápido"],
   },
   {
     id: "deal-08",
     title: "Implantação Completa Matriz + 2 Filiais",
-    company: "Distribuidora Real Autopeças",
+    company: "Distribuidora Real B2B",
     contactName: "Gustavo Borges",
     contactRole: "Diretor Comercial",
     contactPhone: "(11) 99876-1234",
@@ -660,7 +660,7 @@ export const INITIAL_DEALS: CrmDeal[] = [
     nextAction: "Início do onboarding técnico ALFA ERP",
     nextActionDate: "Concluído",
     health: "on-track",
-    interestModules: ["ERP AutoPeças (Core)", "Estoque & Curva ABC", "B2B E-commerce de Peças", "Fiscal & SPED Automotivo"],
+    interestModules: ["ERP Gestão (Core)", "Estoque & Armazenagem", "Portal B2B de Pedidos", "Fiscal & SPED Corporativo"],
     closedAt: "2024-03-24",
   },
 ];
@@ -810,7 +810,7 @@ export const INITIAL_COMPANIES: CrmCompany[] = [
     cnpj: "18.492.301/0001-44",
     city: "São Paulo",
     state: "SP",
-    segment: "Varejo de Autopeças",
+    segment: "Varejo & Franquias",
     storesCount: 3,
     owner: "João Silva",
     status: "Em Negociação",
@@ -818,7 +818,7 @@ export const INITIAL_COMPANIES: CrmCompany[] = [
     contactPhone: "(11) 98412-3344",
     contactEmail: "carlos@autopecassilva.com.br",
     totalDealsValue: 18500,
-    activeModules: ["ERP AutoPeças (Core)", "Balcão PDV Rápido"],
+    activeModules: ["ERP Gestão (Core)", "PDV & Faturamento Rápido"],
   },
   {
     id: "comp-02",
@@ -834,7 +834,7 @@ export const INITIAL_COMPANIES: CrmCompany[] = [
     contactPhone: "(41) 99123-5566",
     contactEmail: "marcelo@motorsulpecas.com.br",
     totalDealsValue: 28000,
-    activeModules: ["ERP AutoPeças (Core)", "B2B E-commerce de Peças"],
+    activeModules: ["ERP Gestão (Core)", "Portal B2B de Pedidos"],
   },
   {
     id: "comp-03",
@@ -842,7 +842,7 @@ export const INITIAL_COMPANIES: CrmCompany[] = [
     cnpj: "23.948.110/0001-32",
     city: "Campinas",
     state: "SP",
-    segment: "Rede de Auto Center",
+    segment: "Rede de Serviços Corporativos",
     storesCount: 6,
     owner: "João Silva",
     status: "Em Negociação",
@@ -850,11 +850,11 @@ export const INITIAL_COMPANIES: CrmCompany[] = [
     contactPhone: "(19) 98765-4321",
     contactEmail: "ricardo.costa@autocenterbrasil.com",
     totalDealsValue: 24000,
-    activeModules: ["ERP AutoPeças (Core)", "Financeiro Avançado"],
+    activeModules: ["ERP Gestão (Core)", "Financeiro Avançado"],
   },
   {
     id: "comp-04",
-    name: "Distribuidora Real Autopeças",
+    name: "Distribuidora Real B2B",
     cnpj: "12.876.543/0001-90",
     city: "Guarulhos",
     state: "SP",
@@ -866,7 +866,7 @@ export const INITIAL_COMPANIES: CrmCompany[] = [
     contactPhone: "(11) 99876-1234",
     contactEmail: "gustavo@realautopecas.com.br",
     totalDealsValue: 72000,
-    activeModules: ["ERP AutoPeças (Core)", "Estoque & Curva ABC", "B2B E-commerce de Peças", "Fiscal & SPED Automotivo"],
+    activeModules: ["ERP Gestão (Core)", "Estoque & Armazenagem", "Portal B2B de Pedidos", "Fiscal & SPED Corporativo"],
   },
 ];
 
@@ -879,7 +879,7 @@ export const INITIAL_PROPOSALS: CrmProposal[] = [
     setupValue: 6500,
     monthlyValue: 1200,
     storesCovered: 3,
-    modules: ["ERP AutoPeças (Core)", "Balcão PDV Rápido", "Estoque & Curva ABC"],
+    modules: ["ERP Gestão (Core)", "PDV & Faturamento Rápido", "Estoque & Armazenagem"],
     status: "Enviada",
     sentDate: "2024-03-26",
     validUntil: "2024-04-10",
@@ -893,7 +893,7 @@ export const INITIAL_PROPOSALS: CrmProposal[] = [
     setupValue: 12000,
     monthlyValue: 2200,
     storesCovered: 4,
-    modules: ["ERP AutoPeças (Core)", "Estoque & Curva ABC", "B2B E-commerce de Peças"],
+    modules: ["ERP Gestão (Core)", "Estoque & Armazenagem", "Portal B2B de Pedidos"],
     status: "Em Revisão",
     sentDate: "2024-03-24",
     validUntil: "2024-04-08",
@@ -902,12 +902,12 @@ export const INITIAL_PROPOSALS: CrmProposal[] = [
   {
     id: "prop-03",
     proposalNumber: "PROP-2024-085",
-    company: "Distribuidora Real Autopeças",
+    company: "Distribuidora Real B2B",
     contact: "Gustavo Borges",
     setupValue: 24000,
     monthlyValue: 4800,
     storesCovered: 3,
-    modules: ["ERP AutoPeças (Core)", "Estoque & Curva ABC", "B2B E-commerce de Peças", "Fiscal & SPED Automotivo"],
+    modules: ["ERP Gestão (Core)", "Estoque & Armazenagem", "Portal B2B de Pedidos", "Fiscal & SPED Corporativo"],
     status: "Aprovada",
     sentDate: "2024-03-10",
     validUntil: "2024-03-25",
@@ -937,7 +937,7 @@ export const INITIAL_AUTOMATIONS: CrmAutomationRule[] = [
     actions: [
       "Gerar tarefa de follow-up prioritário com badge 'URGENTE'",
       "Notificar o vendedor responsável e gestor comercial no Header",
-      "Sugerir modelo de mensagem 'Reativação de Orçamento de Autopeças'",
+      "Sugerir modelo de mensagem 'Reativação de Orçamento Corporativo'",
     ],
     active: true,
     category: "followup_sla",
@@ -982,13 +982,13 @@ export const LOSS_REASONS = [
 export const WHATSAPP_TEMPLATES = [
   {
     id: "apresentacao",
-    title: "Apresentação ALFA ERP AutoPeças",
-    text: "Olá {nome}, tudo bem? Aqui é o {vendedor} da ALFA Sistemas. Vi que você busca modernizar o controle de estoque e balcão da {empresa}. Temos uma solução especializada para autopeças com busca por placa e curva ABC automática. Podemos conversar 10 minutos hoje?",
+    title: "Apresentação Flow CRM B2B",
+    text: "Olá {nome}, tudo bem? Aqui é o {vendedor} da Flow CRM. Vi que você busca modernizar o controle de pipeline e gestão comercial da {empresa}. Temos uma central de vendas desenvolvida para operações B2B que acelera o ciclo de fechamento. Podemos conversar 10 minutos hoje?",
   },
   {
     id: "reuniao",
     title: "Confirmação de Demonstração",
-    text: "Olá {nome}, confirmando nossa demonstração online do ALFA ERP para a {empresa} hoje às {horario}. Vou te mostrar como funciona a emissão de NFC-e em menos de 3 segundos no balcão!",
+    text: "Olá {nome}, confirmando nossa demonstração online da plataforma comercial para a {empresa} hoje às {horario}. Vou te mostrar como funciona a gestão visual de pipeline e o controle de follow-ups!",
   },
   {
     id: "proposta",

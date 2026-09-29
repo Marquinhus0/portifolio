@@ -13,7 +13,7 @@ export const casesData: CaseStudy[] = [
     subtitle: "Redesigning complex B2B workflows for an ERP specialized in Auto Parts.",
     category: "PRODUCT DESIGN / UX/UI / DISCOVERY / QA",
     year: "2023 — Presente",
-    company: "ALFA Software AutoPeças",
+    company: "ALFA Software",
     role: "Product Designer",
     duration: "Atuação Contínua em Produto",
     tags: [
@@ -870,7 +870,7 @@ export const casesData: CaseStudy[] = [
     ],
   },
 
-  // 03 — Flow CRM: B2B Commercial Operations (AutoPeças & ALFA ERP)
+  // 03 — Flow CRM: B2B Commercial Operations & Sales Pipeline
   {
     id: "case-03",
     slug: "flow-crm-b2b",
@@ -878,41 +878,40 @@ export const casesData: CaseStudy[] = [
     number: "03",
     title: "Flow CRM",
     subtitle:
-      "CRM comercial B2B para o ecossistema ALFA ERP AutoPeças: gestão visual do funil, acompanhamento de leads, follow-ups de alta prioridade e visão 360° da operação.",
+      "CRM comercial B2B para vendas consultivas e distribuição: gestão visual do funil, acompanhamento de leads, follow-ups de alta prioridade e visão 360° da operação.",
     category: "B2B SaaS / CRM Comercial",
     year: "2024 — Estudo Autoral",
     company: "Projeto Conceitual / Autoral",
-    role: "Product Designer & Front-End Engineer (Product Discovery, Design System ALFA ERP, UI/UX & React Implementation)",
+    role: "Product Designer & Front-End Engineer (Product Discovery, Design System, UI/UX & React Implementation)",
     duration: "4 semanas (Arquitetura de CRM B2B, Funil Comercial, Pipeline Kanban & React)",
     tags: [
       "Flow CRM",
       "CRM B2B",
-      "AutoPeças",
       "Pipeline Kanban",
-      "ALFA ERP",
       "Lead Management",
       "Sales Operations",
+      "B2B SaaS",
     ],
     featured: true,
     isConcept: true,
-    conceptBadge: "B2B SAAS / AUTOPEÇAS",
+    conceptBadge: "B2B SAAS / SALES PIPELINE",
 
     overview:
-      "O Flow CRM é a central de operação comercial B2B desenvolvida para empresas do setor de autopeças (distribuidores, redes de lojas e auto centers), integrada conceitualmente ao ecossistema ALFA ERP. O produto elimina planilhas paralelas e perda de negócios através de um funil comercial estruturado (Lead → Qualificação → Oportunidade → Negociação → Proposta → Fechamento → Cliente).",
+      "O Flow CRM é a central de operação comercial desenvolvida para empresas B2B com vendas consultivas e complexas (distribuidores, indústrias e serviços corporativos). O produto elimina planilhas paralelas e perda de negócios através de um funil estruturado (Lead → Qualificação → Oportunidade → Negociação → Proposta → Fechamento → Cliente).",
     context:
-      "No mercado de distribuição e varejo de autopeças, o processo de vendas envolve múltiplos canais (Google Ads, WhatsApp Balcão, representantes externos, indicações de lojas e feiras automotivas). Sem um CRM integrado ao ERP, as equipes comerciais sofrem com leads parados, falta de follow-up estruturado, indefinição do próximo passo e desconhecimento dos reais motivos de perda de negócios.",
+      "Em operações comerciais B2B, o processo de vendas envolve múltiplos canais (inbound, prospecção ativa, WhatsApp comercial e indicações). Sem um CRM estruturado, as equipes comerciais sofrem com leads parados, falta de follow-up estruturado, indefinição do próximo passo e desconhecimento dos reais motivos de perda de negócios.",
     problem:
-      "Como estruturar um CRM comercial que responda instantaneamente quem são os leads, quanto há em negociação, quais negócios estão estagnados e o que precisa ser feito hoje, reduzindo o esforço manual do vendedor e integrando-se nativamente ao ALFA ERP?",
+      "Como estruturar um CRM comercial que responda instantaneamente quem são os leads, quanto há em negociação, quais negócios estão estagnados e o que precisa ser feito hoje, reduzindo o esforço manual do vendedor e acelerando o fechamento?",
 
     users: [
       {
-        target: "Persona 01 — Vendedor Comercial & Balconista Especializado (João, 31)",
+        target: "Persona 01 — Vendedor Consultivo & Inside Sales (João, 31)",
         needs:
           "Saber exatamente quem atender primeiro no dia, histórico de WhatsApp e ligações na mesma tela, envio ágil de orçamentos e registro rápido de follow-up sem burocracia.",
         behaviors:
           "Trabalha em ritmo acelerado com múltiplos chats de WhatsApp e ligações simultâneas; precisa de destaque visual imediato para 'Próxima ação'.",
         painPoints:
-          "Esquecer de retornar contatos de lojas parceiras e perder tempo preenchendo formulários lentos.",
+          "Esquecer de retornar contatos de clientes corporativos e perder tempo preenchendo formulários lentos.",
       },
       {
         target: "Persona 02 — Gestor Comercial & Head de Vendas B2B (Marcus, 35)",
@@ -924,32 +923,32 @@ export const casesData: CaseStudy[] = [
           "Falta de visibilidade sobre o motivo de perda de negócios (preço, concorrente, falta de orçamento ou timing).",
       },
       {
-        target: "Persona 03 — Diretor de Rede de Autopeças / Cliente Comprador (Carlos, 44)",
+        target: "Persona 03 — Diretor de Operações B2B / Cliente Comprador (Carlos, 44)",
         needs:
-          "Proposta comercial clara com implantação, módulos inclusos (Curva ABC, Balcão PDV, Fiscal) e suporte ágil na migração de catálogo.",
+          "Proposta comercial clara com implantação, módulos inclusos (Gestão de Pedidos, Faturamento, Fiscal) e suporte ágil na integração.",
         behaviors:
-          "Compara custos de setup e mensalidades SaaS por quantidade de filiais e lojas.",
+          "Compara custos de setup e mensalidades SaaS por quantidade de licenças e filiais.",
         painPoints:
-          "Sistemas legados lentos que travam no balcão e causam filas de mecânicos e clientes.",
+          "Sistemas legados lentos que travam na emissão de pedidos e causam atrasos operacionais.",
       },
     ],
 
     research: {
       approach:
-        "Análise aprofundada da jornada comercial de vendas B2B no setor de autopeças, benchmarking de CRMs de alta densidade (Pipedrive, HubSpot, Salesforce e Attio) e entrevistas com equipes de televendas e representantes comerciais de peças automotivas.",
+        "Análise aprofundada da jornada comercial de vendas B2B, benchmarking de CRMs de alta densidade (Pipedrive, HubSpot, Salesforce e Attio) e entrevistas com equipes de inside sales e representantes comerciais corporativos.",
       keyQuestions: [
-        "Quais informações o vendedor de autopeças precisa enxergar em menos de 2 segundos ao abrir o sistema?",
+        "Quais informações o vendedor B2B precisa enxergar em menos de 2 segundos ao abrir o sistema?",
         "Como garantir que nenhum lead fique mais de 3 dias sem contato no estágio?",
-        "De que forma associar os módulos reais do ALFA ERP (Balcão PDV, Curva ABC, Fiscal) à oportunidade comercial?",
+        "De que forma associar os módulos corporativos à oportunidade comercial?",
       ],
       activities: [
         "Mapeamento do funil comercial: Novo Lead → Qualificação → Contato Realizado → Oportunidade → Proposta → Negociação → Fechamento (Ganho)",
-        "Desenvolvimento do design system com tokens oficiais ALFA ERP (#1683E8, #123B63, #F5F7FA, #E4E7EC)",
+        "Desenvolvimento do design system com tokens corporativos (#1683E8, #123B63, #F5F7FA, #E4E7EC)",
         "Criação de componentes ricos: Pipeline Kanban com drag-and-drop, Drawer 360° do Lead, Call Logger e Simulador de WhatsApp Comercial",
       ],
       benchmarkingNotes: [
-        "CRMs genéricos exigem dezenas de campos irrelevantes para o mercado automotivo e não compreendem unidades de filial, catálogo de peças ou integração ERP.",
-        "A clareza da 'Próxima Ação' é o fator número 1 de aumento de taxa de conversão em vendas B2B de autopeças.",
+        "CRMs genéricos exigem dezenas de campos irrelevantes e não compreendem regras comerciais de faturamento corporativo.",
+        "A clareza da 'Próxima Ação' é o fator número 1 de aumento de taxa de conversão em vendas B2B.",
       ],
     },
 
@@ -960,9 +959,9 @@ export const casesData: CaseStudy[] = [
           "O vendedor nunca deve entrar em uma oportunidade sem saber o próximo passo. Destacar visualmente 'O que fazer' e 'Quando' reduz em 40% a taxa de negócios estagnados.",
       },
       {
-        hypothesis: "Integração Conceitual com Módulos ALFA ERP",
+        hypothesis: "Integração Conceitual com Módulos Corporativos",
         rationale:
-          "Vincular módulos específicos (Curva ABC, Balcão PDV, Fiscal) desde a qualificação acelera a elaboração da proposta e o onboarding técnico pós-fechamento.",
+          "Vincular módulos específicos (Core, Faturamento, Fiscal) desde a qualificação acelera a elaboração da proposta e o onboarding técnico pós-fechamento.",
       },
     ],
 
@@ -970,7 +969,7 @@ export const casesData: CaseStudy[] = [
       {
         title: "Insight 01 — O vendedor precisa de velocidade tática",
         description:
-          "Botões de ação direta (Ligar com 1 clique, disparar template de WhatsApp automotivo) mantêm o vendedor operando dentro da mesma tela sem alternar abas.",
+          "Botões de ação direta (Ligar com 1 clique, disparar template de WhatsApp comercial) mantêm o vendedor operando dentro da mesma tela sem alternar abas.",
       },
       {
         title: "Insight 02 — Motivo de Perda é ativo estratégico",
@@ -978,20 +977,20 @@ export const casesData: CaseStudy[] = [
           "Tornar obrigatória a seleção do motivo de perda ao fechar um negócio perdido alimenta relatórios que orientam a política de preços e desenvolvimento de produto.",
       },
       {
-        title: "Insight 03 — Design predominantemente neutro com acentos em azul ALFA",
+        title: "Insight 03 — Design predominantemente neutro com acentos estratégicos em azul",
         description:
-          "Fundo neutro claro (#F5F7FA) com cartões brancos (#FFFFFF) e azul ALFA (#1683E8) como cor de ação gera alto conforto visual e autoridade corporativa.",
+          "Fundo neutro claro (#F5F7FA) com cartões brancos (#FFFFFF) e azul corporativo (#1683E8) como cor de ação gera alto conforto visual e autoridade corporativa.",
       },
     ],
 
     opportunity:
-      "Construir o CRM comercial definitivo para empresas de autopeças, unindo simplicidade operacional para o vendedor, controle analítico para o gestor e sincronização com o ALFA ERP.",
+      "Construir o CRM comercial definitivo para empresas e distribuidores B2B, unindo simplicidade operacional para o vendedor, controle analítico para o gestor e visibilidade completa do pipeline.",
     goals: [
       "Criar visão comercial executiva com 8 KPIs em tempo real e funil progressivo",
       "Implementar pipeline Kanban interativo com drag-and-drop e destaque de próxima ação",
-      "Estruturar gestão de leads com filtros automotivos e drawer 360° com timeline",
+      "Estruturar gestão de leads com filtros por segmento de mercado e drawer 360° com timeline",
       "Integrar templates comerciais de WhatsApp e registro de ligações com resultados",
-      "Consolidar a linguagem visual alinhada ao novo ALFA ERP",
+      "Consolidar a linguagem visual alinhada a padrões modernos de B2B SaaS",
     ],
     constraints: [
       "Evitar excesso de azul: a interface deve ser predominantemente neutra e profissional",
@@ -999,25 +998,25 @@ export const casesData: CaseStudy[] = [
     ],
 
     process: [
-      "01. Imersão na rotina comercial de distribuidores e varejistas de autopeças",
+      "01. Imersão na rotina comercial de distribuidores e empresas B2B",
       "02. Definição das etapas do funil comercial B2B (Lead → Fechamento)",
-      "03. Estruturação do Design System baseado nas cores e tokens do ALFA ERP",
+      "03. Estruturação do Design System baseado em tokens corporativos neutros e azul primário",
       "04. Desenvolvimento da arquitetura de componentes em React e TypeScript",
       "05. Implementação do Kanban com Drag & Drop, modais de perda e drawer 360°",
       "06. Validação dos fluxos de rotina diária (Tarefas, Follow-ups, Ligações e WhatsApp)",
     ],
 
     flows: {
-      title: "Fluxo Comercial B2B: Lead → Qualificação → Ganho → ALFA ERP",
+      title: "Fluxo Comercial B2B: Lead → Qualificação → Negociação → Fechamento",
       description:
-        "Da entrada multicanal até a qualificação de lojas, emissão da proposta e sincronização com o cadastro de clientes do ERP.",
+        "Da entrada multicanal até a qualificação de contas, emissão da proposta e onboarding do novo cliente.",
       diagramSteps: [
-        "Entrada do Lead: Google Ads, WhatsApp Balcão, Indicação de Loja ou Evento",
-        "Qualificação: Checagem de quantidade de lojas, segmento de autopeças e software legado",
-        "Oportunidade & Demonstração: Apresentação dos módulos de Balcão PDV e Curva ABC",
-        "Proposta Comercial: Orçamento de implantação e mensalidade SaaS por filial",
+        "Entrada do Lead: Inbound, Prospecção Ativa, WhatsApp Comercial ou Indicação",
+        "Qualificação: Checagem de porte da empresa, segmento de atuação e software legado",
+        "Oportunidade & Demonstração: Apresentação da solução e alinhamento de escopo",
+        "Proposta Comercial: Orçamento de implantação e plano de assinatura",
         "Negociação & Alinhamento: Follow-ups ativos de alta prioridade",
-        "Fechamento & Ganho: Sincronização automática para onboarding no ALFA ERP",
+        "Fechamento & Ganho: Sincronização automática para onboarding e faturamento",
       ],
     },
 
@@ -1033,13 +1032,13 @@ export const casesData: CaseStudy[] = [
     },
 
     ui: {
-      title: "Linguagem Visual: ALFA ERP Design Tokens",
+      title: "Linguagem Visual: Enterprise B2B Design Tokens",
       description:
-        "Design sóbrio, limpo e corporativo. Superfícies brancas com bordas sutis (#E4E7EC), tipografia Inter com hierarquia precisa, azul ALFA (#1683E8) para ações primárias e azul escuro (#123B63) para ancoragem estrutural.",
+        "Design sóbrio, limpo e corporativo. Superfícies brancas com bordas sutis (#E4E7EC), tipografia Inter com hierarquia precisa, azul corporativo (#1683E8) para ações primárias e azul escuro (#123B63) para ancoragem estrutural.",
       systemHighlights: [
         "Funil comercial horizontal com percentuais de conversão progressiva",
         "Kanban com colunas informativas de volume total e contadores em tempo real",
-        "Tabela de leads com ordenação e filtros multifacetados por segmento automotivo",
+        "Tabela de leads com ordenação e filtros multifacetados por segmento de mercado",
         "Drawer 360° com timeline cronológica e ações de comunicação integradas",
       ],
     },
@@ -1073,7 +1072,7 @@ export const casesData: CaseStudy[] = [
       interactionPoints: [
         "Arraste e solte de oportunidades entre as 7 colunas do Kanban",
         "Cadastro de lead com abertura instantânea do perfil 360°",
-        "Simulação de envio de mensagem comercial no WhatsApp com modelos de autopeças",
+        "Simulação de envio de mensagem comercial no WhatsApp com templates B2B prontos",
         "Conclusão e reagendamento de tarefas de follow-up",
         "Busca global de leads, empresas e oportunidades com atalho de teclado",
       ],
@@ -1092,7 +1091,7 @@ export const casesData: CaseStudy[] = [
 
     solution: {
       summary:
-        "O Flow CRM transforma a equipe de vendas de autopeças em uma central de alta produtividade, eliminando negócios esquecidos e garantindo integração fluida com o ALFA ERP.",
+        "O Flow CRM transforma a equipe de vendas B2B em uma central de alta produtividade, eliminando negócios esquecidos e garantindo clareza em cada etapa do funil.",
       keyFeatures: [
         {
           title: "Pipeline Kanban com Drag & Drop",
@@ -1102,7 +1101,7 @@ export const casesData: CaseStudy[] = [
         {
           title: "Drawer 360° com Ações Rápidas",
           description:
-            "Perfil completo com ligação, WhatsApp, histórico cronológico e módulos ERP de interesse.",
+            "Perfil completo com ligação, WhatsApp, histórico cronológico e módulos corporativos de interesse.",
         },
         {
           title: "Central de Follow-up & Alertas de SLA",
@@ -1114,7 +1113,7 @@ export const casesData: CaseStudy[] = [
 
     results: {
       summary:
-        "Impacto projetado da implantação do Flow CRM em distribuidoras e redes de autopeças:",
+        "Impacto projetado da implantação do Flow CRM em distribuidoras e empresas B2B:",
       metrics: [
         {
           label: "Negócios Estagnados",
@@ -1140,8 +1139,8 @@ export const casesData: CaseStudy[] = [
     },
 
     learnings: [
-      "Em vendas B2B de autopeças, um CRM não pode parecer burocrático; ele precisa ser a ferramenta que economiza tempo do vendedor.",
-      "A integração conceitual com os módulos do ERP (Curva ABC, Balcão PDV) cria sinergia imediata entre o comercial e a operação da loja.",
+      "Em vendas B2B consultivas, um CRM não pode parecer burocrático; ele precisa ser a ferramenta que economiza tempo do vendedor.",
+      "A associação clara com os módulos corporativos cria sinergia imediata entre o time comercial e a operação da empresa.",
       "O uso do design system com tokens neutros e acentos pontuais em azul gera autoridade e foco no que realmente importa: fechar negócios.",
     ],
 
