@@ -220,7 +220,7 @@ export default function FlowInternalCrmCaseStudy({
       </section>
 
       {/* ========================================================================= */}
-      {/* 02. O DESAFIO COMERCIAL DO SETOR DE AUTOPEÇAS                             */}
+      {/* 02. O DESAFIO COMERCIAL DE VENDAS COMPLEXAS B2B                           */}
       {/* ========================================================================= */}
       <section id="problema" className="py-20 border-b border-neutral-800 bg-[#080808]">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-10">
@@ -384,6 +384,10 @@ export default function FlowInternalCrmCaseStudy({
               <div className="p-3 bg-neutral-900/70 border border-neutral-800 rounded-sm">
                 <span className="text-[#1683E8] font-bold block mb-1">06. Por que perdemos negócios?</span>
                 <p className="text-neutral-300">Classificação compulsória do motivo (Preço, Concorrente, Timing).</p>
+              </div>
+              <div className="p-3 bg-neutral-900/70 border border-neutral-800 rounded-sm">
+                <span className="text-[#1683E8] font-bold block mb-1">07. Como avançar após o ganho?</span>
+                <p className="text-neutral-300">Sincronização imediata com a base do ERP sem retrabalho manual de digitação.</p>
               </div>
             </div>
           </div>

@@ -921,7 +921,7 @@ export const supplyHubData = {
 
   nextProject: {
     title: "ALFA ERP — Automotive Redesign",
-    subtitle: "Modernização de um ERP corporativo para o setor de autopeças.",
+    subtitle: "Modernização de um ERP corporativo de alta complexidade operacional.",
     slug: "alfa-erp-automotive-redesign",
     buttonText: "Explorar Case ALFA ERP →",
   },

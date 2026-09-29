@@ -343,30 +343,30 @@ export const casesData: CaseStudy[] = [
     conceptBadge: "CONCEPT",
 
     overview:
-      "PULSE é um projeto conceitual de rede social que repensa como consumimos conteúdo na internet. Em vez de depender de seguidores e métricas de vaidade, o feed é organizado por temas e interesses: Pessoas, Comunidades, Assuntos e Eventos.",
+      "PULSE é um projeto conceitual de rede social orientada a tópicos e comunidades. A interface substitui a dinâmica de influenciadores e algoritmos virais por uma taxonomia clara de curadoria temática: Pessoas, Assuntos, Comunidades e Eventos.",
     context:
-      "As redes sociais atuais priorizam conteúdos virais e posts criados para gerar polêmica. Quem busca boas leituras, tecnologia ou discussões úteis acaba perdendo tempo em um feed barulhento.",
+      "As plataformas sociais convencionais otimizam para retenção por impulsos de curto prazo e polêmicas rápidas. Leitores, designers e pesquisadores que buscam discussões de profundidade enfrentam alta dispersão em feeds generalistas.",
     problem:
-      "Como desenhar uma rede social focada em interesses e aprendizado, sem transformar o feed em uma rolagem infinita de conteúdos vazios?",
+      "Como desenhar uma interface social móvel focada em interesses e leitura reflexiva, garantindo descoberta orgânica sem recorrer a gatilhos de rolagem infinita?",
 
     users: [
       {
-        target: "Persona Conceitual 01 — O Explorador Curioso (Lara, 28)",
+        target: "Persona Conceitual 01 — A Pesquisadora & Curadora (Lara, 28)",
         needs:
-          "Busca aprofundar conhecimentos em Design de Sistemas, Filosofia e Tecnologia sem precisar rolar por dezenas de memes e polêmicas.",
+          "Acompanhar discussões técnicas sobre Design Systems, IA e Filosofia com filtros temáticos precisos e salvamento em coleções.",
         behaviors:
-          "Consome muito mais do que publica; valoriza curadoria temática, leitura longa e arquivamento de referências em coleções pessoais.",
+          "Consome ensaios longos, arquiva referências e prioriza leitura assíncrona sem interrupções de notificações ruidosas.",
         painPoints:
-          "Sente frustração com feeds 'Para Você' que mudam bruscamente de assunto a cada swipe e forçam engajamento reativo.",
+          "Feeds algorítmicos que misturam assuntos desconexos a cada atualização e forçam consumo reativo.",
       },
       {
-        target: "Persona Conceitual 02 — O Criador de Conhecimento (Rodrigo, 34)",
+        target: "Persona Conceitual 02 — O Autor Técnico (Rodrigo, 34)",
         needs:
-          "Deseja compartilhar ensaios, sínteses de livros e análises técnicas para quem realmente tem interesse no tópico, e não apenas para quem já é seu seguidor.",
+          "Distribuir análises técnicas e sínteses conceituais diretamente para pessoas interessadas na temática tratada.",
         behaviors:
-          "Escreve textos estruturados; prioriza respostas e debates aprofundados em vez de números brutos de 'corações' vazios.",
+          "Publica artigos estruturados e valoriza comentários aprofundados em vez de volume bruto de reações superficiais.",
         painPoints:
-          "Dificuldade de distribuição em redes convencionais sem recorrer a táticas agressivas de 'clickbait' ou postagens diárias exaustivas.",
+          "Penalização por algoritmos de redes tradicionais que exigem postagens diárias e títulos sensacionalistas para entrega.",
       },
     ],
 
@@ -392,27 +392,27 @@ export const casesData: CaseStudy[] = [
 
     hypotheses: [
       {
-        hypothesis: "Hipótese de Descoberta por Tópicos",
+        hypothesis: "Descoberta Temática Direta",
         rationale:
-          "Se o feed permitir alternância direta entre abas temáticas ('Design', 'SaaS', 'Eventos'), o usuário encontrará valor imediato sem precisar seguir centenas de contas individuais.",
+          "Permitir alternância imediata entre abas temáticas entrega valor desde a primeira sessão, sem exigir que o usuário monte uma lista prévia de contatos.",
       },
       {
-        hypothesis: "Hipótese da Descentralização de Vaidade",
+        hypothesis: "Foco em Diálogo vs. Curtidas",
         rationale:
-          "Ao ocultar contadores públicos de curtidas e destacar o número de reflexões/discussões ativas, o incentivo para criação de posts rasos diminui consideravelmente.",
+          "Substituir contadores de curtidas por volume de reflexões aninhadas incentiva comentários substantivos e reduz o comportamento caça-cliques.",
       },
     ],
 
     insights: [
       {
-        title: "Insight 01 — A tirania do grafo estritamente social",
+        title: "Insight 01 — Grafo Temático vs. Grafo de Personalidades",
         description:
-          "Seguir amigos ou colegas nem sempre reflete os interesses intelectuais do usuário no dia a dia. Uma rede deve permitir seguir o conhecimento, não apenas as personalidades.",
+          "O interesse intelectual do usuário se organiza por temas de estudo, e não apenas por círculos de amizade ou celebridades da internet.",
       },
       {
-        title: "Insight 02 — Métricas de vaidade criam um ciclo de ansiedade",
+        title: "Insight 02 — Arquitetura de Fricção Construtiva",
         description:
-          "Contadores públicos de seguidores e likes geram paralisia de postagem em usuários casuais e incentivam conteúdos voltados a reações emocionais imediatas.",
+          "Exigir a marcação do tópico principal antes de postar melhora a indexação e estimula o autor a estruturar sua contribuição com clareza.",
       },
     ],
 

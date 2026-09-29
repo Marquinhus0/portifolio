@@ -355,23 +355,23 @@ export default function FrameInteractiveVideoCaseStudy({
             <div className="p-6 bg-[#111113] border border-[#262626] space-y-3 border-l-4 border-l-red-500">
               <div className="flex items-center justify-between font-mono text-xs text-neutral-400">
                 <span className="text-red-400 font-bold uppercase">Gargalo 01</span>
-                <span>A Caixa Preta da Linha de Tempo</span>
+                <span>Navegação Temporal Cega</span>
               </div>
               <h3 className="text-white text-lg font-semibold font-mono">
-                A Linha do Tempo sem Semântica (Scrubber Cego)
+                Linha do Tempo sem Semântica (Scrubber Linear)
               </h3>
               <p className="text-neutral-300 text-sm leading-relaxed font-sans">
-                Players tradicionais tratam 60 minutos de vídeo como uma linha geométrica vazia de segundos. O espectador não sabe onde ocorrem mudanças conceituais, introdução de dados técnicos ou referências a artigos, sendo forçado a fazer scrubbing por tentativa e erro.
+                Players tradicionais tratam 60 minutos de vídeo como uma linha geométrica vazia. O espectador não sabe onde ocorrem mudanças conceituais, introdução de dados técnicos ou referências a artigos, sendo forçado a fazer scrubbing por tentativa e erro.
               </p>
             </div>
 
             <div className="p-6 bg-[#111113] border border-[#262626] space-y-3 border-l-4 border-l-red-500">
               <div className="flex items-center justify-between font-mono text-xs text-neutral-400">
                 <span className="text-red-400 font-bold uppercase">Gargalo 02</span>
-                <span>O Sepultamento Abaixo da Dobra</span>
+                <span>Conteúdo Crítico Ocultado</span>
               </div>
               <h3 className="text-white text-lg font-semibold font-mono">
-                O Cemitério de Links na Descrição do Vídeo
+                Links e Referências Enterrados Abaixo da Dobra
               </h3>
               <p className="text-neutral-300 text-sm leading-relaxed font-sans">
                 Materiais complementares, fontes bibliográficas e downloads de PDFs ficam sepultados na caixa de texto abaixo do player. Quem assiste em tela cheia precisa quebrar a imersão, minimizar o player e rolar a página para encontrar o que o palestrante citou.
@@ -381,10 +381,10 @@ export default function FrameInteractiveVideoCaseStudy({
             <div className="p-6 bg-[#111113] border border-[#262626] space-y-3 border-l-4 border-l-red-500">
               <div className="flex items-center justify-between font-mono text-xs text-neutral-400">
                 <span className="text-red-400 font-bold uppercase">Gargalo 03</span>
-                <span>O Efeito Tab-Hell</span>
+                <span>Dispersão em Abas</span>
               </div>
               <h3 className="text-white text-lg font-semibold font-mono">
-                Fricção Cognitiva e Dispersão em Abas Externas
+                Fricção Cognitiva por Alternância Externa
               </h3>
               <p className="text-neutral-300 text-sm leading-relaxed font-sans">
                 Ao clicar em um link citado, o usuário é jogado em uma nova aba do navegador. A probabilidade de distração com e-mails, redes sociais ou feeds de notícias salta em mais de 65%, transformando uma sessão de estudo focado em navegação fragmentada.
@@ -394,13 +394,13 @@ export default function FrameInteractiveVideoCaseStudy({
             <div className="p-6 bg-[#111113] border border-[#262626] space-y-3 border-l-4 border-l-red-500">
               <div className="flex items-center justify-between font-mono text-xs text-neutral-400">
                 <span className="text-red-400 font-bold uppercase">Gargalo 04</span>
-                <span>A Parada Cardíaca da Atenção</span>
+                <span>Quebra de Fluxo</span>
               </div>
               <h3 className="text-white text-lg font-semibold font-mono">
-                A Interrupção do Áudio como Vetor de Desistência
+                Interrupção Contínua do Raciocínio por Pausa Forçada
               </h3>
               <p className="text-neutral-300 text-sm leading-relaxed font-sans">
-                Pausar a fala do palestrante para ler um gráfico gera uma quebra abrupta na cadência de raciocínio. Estudos de retenção audiovisual mostram que vídeos técnicos com mais de 20 minutos sofrem quedas severas de audiência (cliff de 58% aos 6 minutos) por causa do cansaço gerado por pausas constantes.
+                Pausar a fala do palestrante para ler um gráfico gera uma quebra abrupta na cadência de raciocínio. Estudos de retenção audiovisual mostram que vídeos técnicos com mais de 20 minutos sofrem quedas severas de audiência quando a interface exige pausas constantes.
               </p>
             </div>
           </div>

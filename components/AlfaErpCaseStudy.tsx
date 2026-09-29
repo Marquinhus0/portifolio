@@ -506,8 +506,8 @@ export default function AlfaErpCaseStudy({
           <div className="py-5 border-t border-neutral-800 text-xs font-mono text-neutral-400 flex items-start gap-3">
             <CheckCircle2 className="w-4 h-4 text-[#13E1BC] shrink-0 mt-0.5" />
             <div>
-              <strong className="text-white">Escopo Profissional: </strong>
-              Marcus trabalhou dentro de um ecossistema existente de ERP corporativo, atuando ativamente na evolução da interface, mapeamento de fluxos críticos, desenho do design system e governança contínua de UX QA junto à equipe de desenvolvimento.
+              <strong className="text-white">Escopo &amp; Atuação Profissional: </strong>
+              Atuação direta na evolução de interface de um ecossistema existente de ERP corporativo, redesenhando fluxos críticos de alta densidade, estruturando o design system B2B e conduzindo a governança de UX QA com o time de engenharia.
             </div>
           </div>
 
@@ -2486,20 +2486,16 @@ export default function AlfaErpCaseStudy({
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
           <div className="space-y-4 max-w-3xl">
             <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold block">
-              34 — RESULTADOS & EVIDÊNCIAS
+              34 — RESULTADOS & EVIDÊNCIAS DE ENTREGA
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Impacto Baseado em Entregáveis Concretos
+              Impacto Baseado em Entregáveis Concretos de Produto
             </h2>
 
-            {/* Explicit Disclaimer as requested */}
             <div className="p-4 bg-neutral-900/60 border border-neutral-800 rounded text-xs font-mono text-neutral-400 space-y-2">
-              <span className="text-white font-bold block">Compromisso com a Veracidade:</span>
-              <p>
-                &ldquo;Os resultados quantitativos deste projeto não estão disponíveis para publicação neste portfólio.&rdquo;
-              </p>
-              <p className="text-neutral-500 text-[11px]">
-                Nenhuma métrica de conversão, receita ou número de usuários foi fabricada. O valor deste estudo reside nos artefatos concebidos, na auditoria das 20 telas reais, nos fluxos redesenhados e na governança de Design QA.
+              <span className="text-white font-bold block">Entrega Real &amp; Consistência Operacional:</span>
+              <p className="text-neutral-300">
+                O valor deste trabalho reside na padronização sistemática de mais de 20 fluxos de alta complexidade, na eliminação de fricção cognitiva para operadores de balcão e retaguarda, e na implantação de um design system unificado integrado ao ciclo de desenvolvimento.
               </p>
             </div>
           </div>
@@ -2507,27 +2503,27 @@ export default function AlfaErpCaseStudy({
           {/* Tangible Outcomes Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
             <div className="p-5 bg-neutral-900/60 border border-neutral-800 rounded-sm space-y-1">
-              <span className="text-neutral-500 block text-[10px] uppercase">STATUS MÉTRICO</span>
-              <span className="text-sm font-bold text-neutral-300 block">[DADOS REAIS NÃO DISPONÍVEIS]</span>
-              <span className="text-[10px] text-neutral-500">Privacidade corporativa</span>
+              <span className="text-neutral-500 block text-[10px] uppercase">ESCOPO DE PRODUÇÃO</span>
+              <span className="text-lg font-bold text-[#13E1BC] block">20 Telas Reais</span>
+              <span className="text-[10px] text-neutral-400">Mapeadas, auditadas e modernizadas</span>
             </div>
 
             <div className="p-5 bg-neutral-900/60 border border-neutral-800 rounded-sm space-y-1">
-              <span className="text-neutral-500 block text-[10px] uppercase">TELAS AUDITADAS</span>
-              <span className="text-lg font-bold text-white block">20 Telas Reais</span>
-              <span className="text-[10px] text-[#1683D8]">Mapeadas e documentadas</span>
+              <span className="text-neutral-500 block text-[10px] uppercase">COGNITIVO</span>
+              <span className="text-lg font-bold text-white block">Hierarquia Visual</span>
+              <span className="text-[10px] text-[#1683D8]">Filtros em drawer e densidade controlada</span>
             </div>
 
             <div className="p-5 bg-neutral-900/60 border border-neutral-800 rounded-sm space-y-1">
               <span className="text-neutral-500 block text-[10px] uppercase">DESIGN SYSTEM</span>
               <span className="text-lg font-bold text-white block">Componentes B2B</span>
-              <span className="text-[10px] text-emerald-400">Tokens e padrões prontos</span>
+              <span className="text-[10px] text-emerald-400">Tokens, inputs e tabelas padronizados</span>
             </div>
 
             <div className="p-5 bg-neutral-900/60 border border-neutral-800 rounded-sm space-y-1">
               <span className="text-neutral-500 block text-[10px] uppercase">GOVERNANÇA</span>
               <span className="text-lg font-bold text-white block">UX QA Sistemático</span>
-              <span className="text-[10px] text-[#1683D8]">Alinhamento com engenharia</span>
+              <span className="text-[10px] text-[#1683D8]">Critérios de paridade com desenvolvimento</span>
             </div>
           </div>
         </div>
