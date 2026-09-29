@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react";
 import Hero from "@/components/Hero";
 import IntroStatement from "@/components/IntroStatement";
 import CaseCard from "@/components/CaseCard";
-import ProcessFlow from "@/components/ProcessFlow";
 import SkillsGrid from "@/components/SkillsGrid";
 import PhilosophyBlock from "@/components/PhilosophyBlock";
 import ContactBlock from "@/components/ContactBlock";
@@ -122,9 +121,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* 05. Como Eu Trabalho (Process Flow) */}
-      <ProcessFlow />
 
       {/* 06. Competências */}
       <SkillsGrid />
