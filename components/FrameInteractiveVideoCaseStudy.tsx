@@ -39,6 +39,8 @@ import {
 } from "lucide-react";
 import { CaseStudy } from "@/types";
 import FramePlayerShowcase from "./FramePlayerShowcase";
+import FrameLatencyBenchmarkLab from "./frame/FrameLatencyBenchmarkLab";
+import FrameCognitiveCalculator from "./frame/FrameCognitiveCalculator";
 
 interface FrameInteractiveVideoCaseStudyProps {
   caseStudy: CaseStudy;
@@ -779,6 +781,11 @@ export default function FrameInteractiveVideoCaseStudy({
               )}
             </div>
           </div>
+
+          {/* Interactive Benchmark Lab Embed */}
+          <div className="pt-8 border-t border-[#262626]">
+            <FrameLatencyBenchmarkLab />
+          </div>
         </div>
       </section>
 
@@ -855,14 +862,14 @@ export default function FrameInteractiveVideoCaseStudy({
               <div className="space-y-3">
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="text-xs font-mono font-bold text-[#ff5352] uppercase tracking-widest">Decisão 03</span>
-                  <span className="text-xs font-mono text-neutral-500">Arquitetura do Knowledge Rail — 5 Abas vs. Painel Único</span>
+                  <span className="text-xs font-mono text-neutral-500">Arquitetura do Knowledge Rail — 6 Abas Especializadas vs. Painel Único</span>
                 </div>
                 <h3 className="text-white font-mono font-bold text-lg">Separar contexto em abas é uma decisão de hierarquia de atenção, não de organização.</h3>
                 <p className="text-neutral-300 text-sm font-sans leading-relaxed max-w-3xl">
-                  O debate central no processo foi: um painel único scrollável vs. abas separadas para Nós, Capítulos, Transcrição, Debates e Notas. O painel único mostrou-se cognitivamente denso demais em testes de guerrilha. As <strong className="text-white">abas com atalho numérico (1–5)</strong> provaram ser o padrão correto: o usuário escolhe deliberadamente o tipo de informação que quer consumir.
+                  O debate central no processo foi: um painel único scrollável vs. abas dedicadas para Nós, Planta Técnica/Blueprint, Capítulos, Transcrição, Debates Críticos e Anotações Pessoais. O painel único mostrou-se cognitivamente denso demais em testes de guerrilha. As <strong className="text-white">abas com atalho numérico (1–6)</strong> provaram ser o padrão correto: o usuário escolhe deliberadamente o tipo de informação que quer consumir.
                 </p>
-                <div className="flex gap-2 font-mono text-xs">
-                  {["1 Nós", "2 Capítulos", "3 Transcrição", "4 Debates", "5 Notas"].map((tab) => (
+                <div className="flex flex-wrap gap-2 font-mono text-xs">
+                  {["1 Nós", "2 Planta Técnica", "3 Capítulos", "4 Transcrição", "5 Debates", "6 Notas"].map((tab) => (
                     <span key={tab} className="px-2 py-1 bg-[#18181b] border border-[#262626] text-[#ffb3ae]">{tab}</span>
                   ))}
                 </div>
@@ -919,54 +926,64 @@ export default function FrameInteractiveVideoCaseStudy({
           </div>
 
           {/* Interactive Guide / Cheat Sheet Below Player */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-4 font-mono text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-4 font-mono text-xs">
             <div className="p-3.5 bg-[#0d0d0f] border border-[#262626] space-y-1">
               <div className="flex items-center gap-1.5 text-[#ffb3ae]">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span className="font-bold uppercase text-[10px]">Masterclass Monográfica</span>
+                <span className="font-bold uppercase text-[10px]">3 Masterclasses Monográficas</span>
               </div>
               <p className="text-neutral-400 text-[11px] font-sans">
-                Estudo tectônico da <strong>Igreja da Luz</strong> de Tadao Ando (Ibaraki, 1989) com fenda cruciforme e concreto monolítico.
+                Alterne no topo do player entre <strong>Tadao Ando</strong> (Ibaraki), <strong>Stanley Kubrick</strong> (2001) e <strong>Lina Bo Bardi</strong> (MASP).
               </p>
             </div>
 
             <div className="p-3.5 bg-[#0d0d0f] border border-[#262626] space-y-1">
               <div className="flex items-center gap-1.5 text-[#ffb3ae]">
-                <Film className="w-3.5 h-3.5" />
-                <span className="font-bold uppercase text-[10px]">Timeline Scrubber Tooltip</span>
+                <Layers className="w-3.5 h-3.5" />
+                <span className="font-bold uppercase text-[10px]">Blueprint Vetorial com Hotspots</span>
               </div>
               <p className="text-neutral-400 text-[11px] font-sans">
-                Passe o cursor sobre a timeline para inspecionar o <strong>preview de nó</strong> e a <strong>onda de densidade</strong>.
+                Aba <strong>Planta (2)</strong> com plantas arquitetônicas SVG interativas e hotspots de corte que sincronizam o vídeo em tempo real.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-[#0d0d0f] border border-[#262626] space-y-1">
+              <div className="flex items-center gap-1.5 text-[#ffb3ae]">
+                <Sliders className="w-3.5 h-3.5" />
+                <span className="font-bold uppercase text-[10px]">Filtros Ópticos de Inspeção</span>
+              </div>
+              <p className="text-neutral-400 text-[11px] font-sans">
+                Inspecione luz e contraste com <strong>Tri-X B&W</strong>, mapa <strong>Térmico</strong> e grid composicional <strong>2.39:1 CinemaScope</strong>.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-[#0d0d0f] border border-[#262626] space-y-1">
+              <div className="flex items-center gap-1.5 text-[#ffb3ae]">
+                <Activity className="w-3.5 h-3.5" />
+                <span className="font-bold uppercase text-[10px]">Monitor de Ressonância Acústica</span>
+              </div>
+              <p className="text-neutral-400 text-[11px] font-sans">
+                Analisador FFT de 16 bandas em tempo real calculando tempo de reverberação <strong>RT60</strong>, volume cúbico e pressão sonora (SPL).
               </p>
             </div>
 
             <div className="p-3.5 bg-[#0d0d0f] border border-[#262626] space-y-1">
               <div className="flex items-center gap-1.5 text-[#ffb3ae]">
                 <FileText className="w-3.5 h-3.5" />
-                <span className="font-bold uppercase text-[10px]">Dossiê de Estudos .MD</span>
+                <span className="font-bold uppercase text-[10px]">Cards de Citação &amp; Dossiê .MD</span>
               </div>
               <p className="text-neutral-400 text-[11px] font-sans">
-                Clique em <strong>Exportar Dossiê .MD</strong> para salvar o resumo com capítulos, notas pessoais e especificações.
+                Gere cards de citação compartilháveis ou exporte em 1-clique o dossiê com notas pessoais, transcrições e carimbos de tempo.
               </p>
             </div>
 
             <div className="p-3.5 bg-[#0d0d0f] border border-[#262626] space-y-1">
               <div className="flex items-center gap-1.5 text-[#ffb3ae]">
                 <Keyboard className="w-3.5 h-3.5" />
-                <span className="font-bold uppercase text-[10px]">Atalhos Zero-Mouse</span>
+                <span className="font-bold uppercase text-[10px]">Zero-Mouse Keyboard Suite</span>
               </div>
               <p className="text-neutral-400 text-[11px] font-sans">
-                <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">Espaço</kbd> tocar, <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">J / L</kbd> ±10s, <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">[ / ]</kbd> nós.
-              </p>
-            </div>
-
-            <div className="p-3.5 bg-[#0d0d0f] border border-[#262626] space-y-1">
-              <div className="flex items-center gap-1.5 text-[#ffb3ae]">
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span className="font-bold uppercase text-[10px]">Modo Cinema &amp; Fullscreen</span>
-              </div>
-              <p className="text-neutral-400 text-[11px] font-sans">
-                Pressione <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">C</kbd> para Modo Cinema ou <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">F</kbd> para Tela Cheia.
+                <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">Espaço</kbd> play, <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">J/L</kbd> ±10s, <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">[/]</kbd> nós, <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">1-6</kbd> abas, <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">B</kbd> planta.
               </p>
             </div>
           </div>
@@ -1283,6 +1300,11 @@ export default function FrameInteractiveVideoCaseStudy({
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Interactive Cognitive Load Calculator */}
+          <div className="pt-2">
+            <FrameCognitiveCalculator />
           </div>
 
           {/* Key Product Learnings */}

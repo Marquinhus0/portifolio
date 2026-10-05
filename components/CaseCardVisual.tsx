@@ -19,13 +19,6 @@ const CASE_COVERS: Record<
     caption: string;
   }
 > = {
-  "alfa-erp-automotive-redesign": {
-    src: "/cases/alfa-erp-cover.jpg",
-    badge: "REAL PRODUCT",
-    badgeColor: "bg-[#13E1BC]/20 text-[#13E1BC] border-[#13E1BC]/40 font-semibold",
-    tag: "ALFA ERP // B2B AUTOPEÇAS",
-    caption: "Catálogo de Peças • PDV Balcão • Zero-Mouse Speed",
-  },
   "pulse-social-network": {
     src: "/cases/pulse-cover.jpg",
     badge: "CONCEPT",
@@ -74,7 +67,7 @@ export default function CaseCardVisual({
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
         className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-        priority={slug === "alfa-erp-automotive-redesign"}
+        priority={slug === "pulse-social-network"}
       />
 
       {/* Atmospheric overlays for editorial feel and high text contrast */}

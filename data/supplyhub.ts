@@ -1,4 +1,4 @@
-export interface SupplyHubFeature {
+﻿export interface SupplyHubFeature {
   icon: string;
   title: string;
   description: string;
@@ -919,10 +919,4 @@ export const supplyHubData = {
     },
   ],
 
-  nextProject: {
-    title: "ALFA ERP — Automotive Redesign",
-    subtitle: "Modernização de um ERP corporativo de alta complexidade operacional.",
-    slug: "alfa-erp-automotive-redesign",
-    buttonText: "Explorar Case ALFA ERP →",
-  },
 };

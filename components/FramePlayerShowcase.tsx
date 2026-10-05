@@ -37,297 +37,42 @@ import {
   PictureInPicture2,
   Loader2,
   Sparkles,
+  Share2,
+  SlidersHorizontal,
+  Grid,
+  Activity,
+  Tag,
+  Radio,
 } from "lucide-react";
 
-export interface TimelineBead {
-  id: string;
-  time: string;
-  seconds: number;
-  type: "CONCEITO" | "NÓ ATIVO" | "ARTEFATO" | "CAPÍTULO" | "FILOSOFIA";
-  title: string;
-  subtitle: string;
-  category: string;
-  transcriptSnippet: string;
-  specData: Record<string, string>;
-}
-
-export interface Chapter {
-  time: string;
-  seconds: number;
-  title: string;
-  duration: string;
-  summary: string;
-}
-
-export interface TranscriptLine {
-  id: string;
-  timeRange: string;
-  startSec: number;
-  endSec: number;
-  speaker: string;
-  text: string;
-  highlightTerm?: string;
-}
-
-export interface CriticalDiscourse {
-  author: string;
-  role: string;
-  time: string;
-  text: string;
-}
-
-export interface MasterclassDataset {
-  badge: string;
-  title: string;
-  subtitle: string;
-  category: string;
-  lecturer: string;
-  location: string;
-  videoSrc: string;
-  fallbackDurationSec: number;
-  initialTimeSec: number;
-  densityWaveform: number[];
-  beads: TimelineBead[];
-  chapters: Chapter[];
-  transcript: TranscriptLine[];
-  discourse: CriticalDiscourse[];
-}
-
-// =========================================================================
-// ENSAIO MONOGRÁFICO DEFINITIVO: TADAO ANDO (THE CHURCH OF THE LIGHT)
-// Baseado no estudo detalhado da obra (Ibaraki, Osaka, 1989)
-// =========================================================================
-const MASTERCLASS_DATA: MasterclassDataset = {
-  badge: "ARQUITETURA & CINEMA // ENSAIO MONOGRÁFICO",
-  title: "TADAO ANDO: The Church of the Light (茨木春日丘教会)",
-  subtitle: "A Tensão Sagrada entre o Concreto Monolítico, a Fenda Cruciforme e o Silêncio Tectônico",
-  category: "Tectônica & Filosofia Zen",
-  lecturer: "Tadao Ando (Pritzker Architecture Prize 1995)",
-  location: "Ibaraki, Osaka, Japão • Inauguração: 1989",
-  videoSrc: "/videos/CHURCH.mp4",
-  fallbackDurationSec: 605, // 10:05
-  initialTimeSec: 222, // 03:42 (Cruciform Slit)
-  densityWaveform: [
-    18, 26, 42, 68, 85, 52, 38, 48, 92, 88, 98, 72, 58, 42, 32, 48, 78, 90,
-    95, 62, 48, 52, 74, 88, 62, 42, 52, 78, 82, 68, 42, 28,
-  ],
-  beads: [
-    {
-      id: "node-1",
-      time: "01:45",
-      seconds: 105,
-      type: "CONCEITO" as const,
-      title: "Tectônica Monolítica & Concreto Autoportante",
-      subtitle: "Concreto moldado in-loco sem reboco decorativo e com modulação tatami",
-      category: "Tectônica & Materialidade",
-      transcriptSnippet:
-        "O concreto monolítico não possui reboco ou pintura. As fôrmas de cedro bipartidas deixam marcas rítmicas milimetricamente calculadas que atuam como o único ornamento tectônico permitido...",
-      specData: {
-        "Resistência à Compressão": "27.6 MPa (4000 PSI)",
-        "Módulo das Fôrmas": "Cedro 180 × 90 cm (Padrão Tatami)",
-        "Furos dos Tirantes": "Ø 25mm ritmados a cada 450mm",
-        "Acabamento": "Zero Pintura / Cura a Vapor 72h",
-      },
-    },
-    {
-      id: "node-2",
-      time: "03:42",
-      seconds: 222,
-      type: "NÓ ATIVO" as const,
-      title: "A Fenda Cruciforme & Anisotropia Solar",
-      subtitle: "Abertura de 200mm que rasga a parede leste com luz zenital e azimute 94°",
-      category: "Geometria Sagrada & Luz",
-      transcriptSnippet:
-        "Tadao Ando concebe a fenda cruciforme não como mero símbolo litúrgico pendurado, mas como um transdutor óptico que rasga a parede de 500mm para que o próprio tempo entre no santuário...",
-      specData: {
-        "Largura da Fenda": "200 mm uniforme e contínua",
-        "Espessura da Parede": "500 mm em concreto armado maciço",
-        "Vidro Estrutural": "Float Laminado 12+12mm sem caixilho visível",
-        "Orientação Solar": "Azimute 94° Leste (Aurora Equinocial)",
-      },
-    },
-    {
-      id: "node-3",
-      time: "05:42",
-      seconds: 342,
-      type: "ARTEFATO" as const,
-      title: "A Parede Oblíqua a 15 Graus (O Limiar Sagrado)",
-      subtitle: "Muro diagonal autoportante que intersecta o volume e desacelera o visitante",
-      category: "Espaço Fenomenológico",
-      transcriptSnippet:
-        "A parede diagonal corta o cubo perfeito em um ângulo de 15 graus. Ela obriga o visitante a mudar de direção corporal, desacelerando os passos e separando a rua profana da câmara de oração...",
-      specData: {
-        "Ângulo de Intersecção": "15° em relação ao eixo da nave",
-        "Espessura do Muro": "400 mm de concreto aparente",
-        "Vão de Acesso": "Rasgo vertical de 1.80m de largura",
-        "Luz Tangencial": "Feixe rasante que banha o piso rebaixado",
-      },
-    },
-    {
-      id: "node-4",
-      time: "07:30",
-      seconds: 450,
-      type: "CAPÍTULO" as const,
-      title: "Topologia Acústica & Silêncio Mineral",
-      subtitle: "Decaimento sonoro de 2.41s a 500 Hz transformando a nave em caixa de ressonância",
-      category: "Acústica & Ressonância",
-      transcriptSnippet:
-        "O decaimento de reverberação de 2.41 segundos amplifica harmônicos graves. O mobiliário e o piso foram feitos com as próprias tábuas de cedro reaproveitadas dos andaimes da obra...",
-      specData: {
-        "Decaimento RT60": "2.41 segundos a 500 Hz",
-        "Coeficiente de Absorção": "α = 0.02 (Concreto Bruto)",
-        "Volume da Nave": "1.120 m³ de câmara pura",
-        "Mobiliário": "Bancos em cedro escurecido reciclado",
-      },
-    },
-    {
-      id: "node-5",
-      time: "09:00",
-      seconds: 540,
-      type: "FILOSOFIA" as const,
-      title: "O Vazio Fecundo: O Conceito Zen de 'Ma' (間)",
-      subtitle: "Tensão insolúvel entre a imutabilidade do concreto bruto e a efemeridade da luz",
-      category: "Filosofia Zen & Wabi-Sabi",
-      transcriptSnippet:
-        "No Japão entendemos 'Ma' não como ausência oca, mas como um silêncio fecundo onde o espírito humano finalmente pode repousar sem ruído exterior. A luz não existe sem a escuridão prévia...",
-      specData: {
-        "Relação Cheio/Vazio": "89% Concreto / 11% Fenda de Luz",
-        "Refletância Superficial": "18% Cinza Mineral Natural",
-        "Princípio Estético": "Wabi-Sabi & Redução Absoluta",
-        "Convecção Passiva": "Circulação natural por frestas inferiores",
-      },
-    },
-  ],
-  chapters: [
-    {
-      time: "00:00",
-      seconds: 0,
-      title: "01. Prólogo: A Escuridão Primordial que Origina a Luz",
-      duration: "01:45",
-      summary: "Introdução à cosmologia de Tadao Ando: o concreto como moldura geométrica para o silêncio.",
-    },
-    {
-      time: "01:45",
-      seconds: 105,
-      title: "02. Tectônica do Concreto e Modulação Tatami",
-      duration: "01:57",
-      summary: "Fôrmas de cedro bipartidas de 180x90cm e furos cônicos de tirantes a cada 45cm como ornamentos honestos.",
-    },
-    {
-      time: "03:42",
-      seconds: 222,
-      title: "03. A Fenda Cruciforme e a Anisotropia Solar",
-      duration: "02:00",
-      summary: "Abertura de 200mm na parede leste que transfigura a luz solar matinal em objeto litúrgico vivo.",
-    },
-    {
-      time: "05:42",
-      seconds: 342,
-      title: "04. A Parede Oblíqua a 15°: O Limiar do Sagrado",
-      duration: "01:48",
-      summary: "O muro diagonal que fura o cubo retangular e reorienta o corpo antes de entrar na câmara.",
-    },
-    {
-      time: "07:30",
-      seconds: 450,
-      title: "05. Ressonância Acústica e Mobiliário em Madeira de Andaime",
-      duration: "01:30",
-      summary: "Tempo de decaimento RT60 de 2.41s e a reutilização poética das tábuas de canteiro nos bancos escurecidos.",
-    },
-    {
-      time: "09:00",
-      seconds: 540,
-      title: "06. Epílogo: O Espaço Negativo 'Ma' e o Silêncio Cósmico",
-      duration: "01:05",
-      summary: "Conclusão fenomenológica sobre o vazio como matéria-prima da transcendência moderna.",
-    },
-  ],
-  transcript: [
-    {
-      id: "tr-1",
-      timeRange: "00:15 - 01:10",
-      startSec: 15,
-      endSec: 70,
-      speaker: "Tadao Ando (Arquiteto)",
-      text: "A luz por si só não gera a luz. É necessária a escuridão sobre a qual ela possa dançar. Criar arquitetura é criar aberturas conscientes no silêncio e na massa.",
-      highlightTerm: "escuridão sobre a qual ela possa dançar",
-    },
-    {
-      id: "tr-2",
-      timeRange: "01:45 - 02:40",
-      startSec: 105,
-      endSec: 160,
-      speaker: "Curador Tectônico",
-      text: "O concreto monolítico não possui reboco ou pintura. As fôrmas de cedro bipartidas deixam marcas rítmicas milimetricamente calculadas que atuam como ornamento tectônico puro.",
-      highlightTerm: "concreto monolítico",
-    },
-    {
-      id: "tr-3",
-      timeRange: "03:42 - 04:45",
-      startSec: 222,
-      endSec: 285,
-      speaker: "Tadao Ando (Arquiteto)",
-      text: "Quando a fenda cruciforme rasga a parede leste de 500 milímetros, o tempo entra no templo. A cruz não é um adorno pendurado; é a própria luz exterior desmaterializando o concreto sólido.",
-      highlightTerm: "fenda cruciforme rasga a parede",
-    },
-    {
-      id: "tr-4",
-      timeRange: "05:42 - 06:40",
-      startSec: 342,
-      endSec: 400,
-      speaker: "Engenharia de Estruturas",
-      text: "A parede a 15 graus não possui vigas perimetrais ou pilares aparentes. As cargas de compressão transmitem-se inteiramente pela massa contínua de 4000 PSI até as sapatas corridas.",
-      highlightTerm: "parede a 15 graus",
-    },
-    {
-      id: "tr-5",
-      timeRange: "07:30 - 08:35",
-      startSec: 450,
-      endSec: 515,
-      speaker: "Dra. S. Hélène (Acústica Arquitetônica)",
-      text: "O decaimento de reverberação de 2.41 segundos amplifica os harmônicos graves na nave de 1.120 metros cúbicos, preservando a gravidade solene que o concreto nu exige.",
-      highlightTerm: "reverberação de 2.41 segundos",
-    },
-    {
-      id: "tr-6",
-      timeRange: "09:00 - 09:55",
-      startSec: 540,
-      endSec: 595,
-      speaker: "Crítica Arquitetônica (Pritzker Jury)",
-      text: "Na Igreja da Luz em Ibaraki, o sagrado não advém de mármores ou ouro, mas da tensão poética entre a imutabilidade do concreto bruto e a efemeridade do feixe de luz matinal.",
-      highlightTerm: "imutabilidade do concreto bruto",
-    },
-  ],
-  discourse: [
-    {
-      author: "Kenneth Frampton",
-      role: "Historiador & Autor de 'Tectônica Crítica'",
-      time: "01:45",
-      text: "A precisão milimétrica das juntas das fôrmas em Ibaraki reflete a carpintaria tradicional japonesa transposta para o concreto armado moderno com integridade total.",
-    },
-    {
-      author: "Peter Zumthor",
-      role: "Arquiteto & Pritzker Laureate",
-      time: "03:42",
-      text: "O que Ando alcança na fenda leste é pura fenomenologia: a luz tem densidade tátil, parece quase viscosa ao entrar na penumbra da câmara.",
-    },
-    {
-      author: "Pritzker Architecture Jury",
-      role: "Citação Oficial de Premiação (1995)",
-      time: "09:00",
-      text: "Ando domina o espaço através do despojamento. A cruz não é adicionada ao edifício; ela é a subtração da matéria, invertendo o dogma e restituindo o sublime.",
-    },
-  ],
-};
+import {
+  MASTERCLASSES,
+  MasterclassDataset,
+  TimelineBead,
+  Chapter,
+  TranscriptLine,
+  CriticalDiscourse,
+  BlueprintHotspot,
+} from "./frame/FrameMasterclassesData";
+import FrameBlueprintViewer from "./frame/FrameBlueprintViewer";
+import FrameAcousticSpectrum from "./frame/FrameAcousticSpectrum";
+import FrameQuoteCardModal from "./frame/FrameQuoteCardModal";
 
 export default function FramePlayerShowcase() {
+  // Masterclass Selector: Tadao Ando vs Stanley Kubrick vs Lina Bo Bardi
+  const [selectedMasterclassId, setSelectedMasterclassId] = useState<"ando" | "kubrick" | "bo-bardi">("ando");
+  const currentMasterclass = MASTERCLASSES[selectedMasterclassId] || MASTERCLASSES.ando;
+
   // Device view: desktop cinema vs mobile bottom-sheet vs chapters grid
   const [deviceView, setDeviceView] = useState<"desktop" | "mobile" | "catalog">("desktop");
 
   // Cinema Mode (Theater Mode) & Aspect Ratio
   const [isCinemaMode, setIsCinemaMode] = useState(false);
-  const [cinemaAspect, setCinemaAspect] = useState<"16:9" | "21:9">("16:9");
+  const [cinemaAspect, setCinemaAspect] = useState<"16:9" | "21:9">("21:9");
   const [isAmbientGlow, setIsAmbientGlow] = useState(true);
+
+  // Viewport Optics / Inspection Filter: "none" | "monochrome" | "solar" | "grid"
+  const [inspectionFilter, setInspectionFilter] = useState<"none" | "monochrome" | "solar" | "grid">("none");
 
   // Video element ref & container ref
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -336,8 +81,8 @@ export default function FramePlayerShowcase() {
   // Playback state
   const [isPlaying, setIsPlaying] = useState(false);
   const [isBuffering, setIsBuffering] = useState(false);
-  const [currentSeconds, setCurrentSeconds] = useState(MASTERCLASS_DATA.initialTimeSec);
-  const [totalDuration, setTotalDuration] = useState(MASTERCLASS_DATA.fallbackDurationSec);
+  const [currentSeconds, setCurrentSeconds] = useState(currentMasterclass.initialTimeSec);
+  const [totalDuration, setTotalDuration] = useState(currentMasterclass.fallbackDurationSec);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1.0);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -346,9 +91,9 @@ export default function FramePlayerShowcase() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isCcActive, setIsCcActive] = useState(true);
 
-  // Active knowledge bead & tabs
-  const [activeBeadId, setActiveBeadId] = useState<string>("node-2");
-  const [activeRailTab, setActiveRailTab] = useState<"nodes" | "chapters" | "transcript" | "discourse" | "notes">("nodes");
+  // Active knowledge bead & tabs (Now with 6 tabs including "blueprint"!)
+  const [activeBeadId, setActiveBeadId] = useState<string>(currentMasterclass.beads[1]?.id || currentMasterclass.beads[0]?.id || "node-1");
+  const [activeRailTab, setActiveRailTab] = useState<"nodes" | "blueprint" | "chapters" | "transcript" | "discourse" | "notes">("nodes");
   const [isSavedDossier, setIsSavedDossier] = useState(false);
 
   // Modals & HUD
@@ -358,6 +103,19 @@ export default function FramePlayerShowcase() {
   const [keyboardToast, setKeyboardToast] = useState<string | null>(null);
   const [copiedNotes, setCopiedNotes] = useState(false);
 
+  // Quote Card Generator Modal State
+  const [quoteCardModal, setQuoteCardModal] = useState<{
+    isOpen: boolean;
+    speaker: string;
+    text: string;
+    time: string;
+  }>({
+    isOpen: false,
+    speaker: "",
+    text: "",
+    time: "",
+  });
+
   // Timeline Scrubber Hover Tooltip & Dragging state
   const [timelineHover, setTimelineHover] = useState<{
     pct: number;
@@ -366,20 +124,24 @@ export default function FramePlayerShowcase() {
   } | null>(null);
   const [isDraggingScrubber, setIsDraggingScrubber] = useState(false);
 
-  // User interactive notes
-  const [userNotes, setUserNotes] = useState<Array<{ id: string; time: string; text: string }>>([
+  // User interactive notes with optional tags
+  const [userNotes, setUserNotes] = useState<Array<{ id: string; time: string; text: string; tag?: string }>>([
     {
       id: "note-1",
       time: "03:42",
-      text: "Fenda cruciforme orientada a 94° leste: o feixe de luz matinal rasga o chão sem necessitar de luminárias artificiais no altar.",
+      text: "Fenda cruciforme orientada a 94° leste: o feixe de luz matinal rasga o chão sem luminárias artificiais no altar.",
+      tag: "#Luz",
     },
     {
       id: "note-2",
       time: "01:45",
-      text: "Modulação tatami (180x90cm) nos painéis de cedro: o módulo residencial japonês traz intimidade humana para o concreto monumental.",
+      text: "Modulação tatami (180x90cm) nos painéis de cedro: o módulo residencial traz intimidade humana para o concreto.",
+      tag: "#Tectônica",
     },
   ]);
   const [newNoteText, setNewNoteText] = useState("");
+  const [newNoteTag, setNewNoteTag] = useState("#Tectônica");
+  const [dossierTagFilter, setDossierTagFilter] = useState<string | null>(null);
 
   // Live search in drawer / transcript
   const [searchQuery, setSearchQuery] = useState("");
@@ -390,6 +152,20 @@ export default function FramePlayerShowcase() {
     setTimeout(() => {
       setKeyboardToast((curr) => (curr === msg ? null : curr));
     }, 1600);
+  };
+
+  // Switch Masterclass Handler
+  const handleSelectMasterclass = (id: "ando" | "kubrick" | "bo-bardi") => {
+    if (id === selectedMasterclassId) return;
+    const nextMasterclass = MASTERCLASSES[id];
+    setSelectedMasterclassId(id);
+    setCurrentSeconds(nextMasterclass.initialTimeSec);
+    setTotalDuration(nextMasterclass.fallbackDurationSec);
+    setActiveBeadId(nextMasterclass.beads[1]?.id || nextMasterclass.beads[0]?.id);
+    if (videoRef.current) {
+      videoRef.current.currentTime = nextMasterclass.initialTimeSec;
+    }
+    triggerHudToast(`🎬 Masterclass Selecionada: ${nextMasterclass.title.split(":")[0]}`);
   };
 
   // Play / Pause unified handler
@@ -404,7 +180,6 @@ export default function FramePlayerShowcase() {
           triggerHudToast("▶ Reproduzindo");
         })
         .catch(() => {
-          // Fallback to muted playback if browser policy blocks unmuted audio
           v.muted = true;
           setIsMuted(true);
           v.play()
@@ -534,13 +309,13 @@ export default function FramePlayerShowcase() {
       setCurrentSeconds(cur);
 
       // Auto-identify nearest active bead
-      let nearestBead = MASTERCLASS_DATA.beads[0];
-      for (const bead of MASTERCLASS_DATA.beads) {
+      let nearestBead = currentMasterclass.beads[0];
+      for (const bead of currentMasterclass.beads) {
         if (cur >= bead.seconds - 15) {
           nearestBead = bead;
         }
       }
-      if (nearestBead.id !== activeBeadId) {
+      if (nearestBead && nearestBead.id !== activeBeadId) {
         setActiveBeadId(nearestBead.id);
       }
     }
@@ -553,7 +328,6 @@ export default function FramePlayerShowcase() {
       if (dur && !isNaN(dur) && isFinite(dur)) {
         setTotalDuration(dur);
       }
-      // Preserve current position if already navigated, or set initial
       if (videoRef.current.currentTime === 0) {
         videoRef.current.currentTime = currentSeconds;
       }
@@ -574,6 +348,7 @@ export default function FramePlayerShowcase() {
       id: `note-${Date.now()}`,
       time: formatTime(currentSeconds),
       text: newNoteText.trim(),
+      tag: newNoteTag,
     };
     setUserNotes((prev) => [newNote, ...prev]);
     setNewNoteText("");
@@ -593,6 +368,7 @@ export default function FramePlayerShowcase() {
       id: `note-${Date.now()}`,
       time: timeStr,
       text: `Marcador de estudo: ${chap} (${activeBead.title})`,
+      tag: activeBead.tag || "#Tectônica",
     };
     setUserNotes((prev) => [newNote, ...prev]);
     setIsSavedDossier(true);
@@ -726,6 +502,7 @@ export default function FramePlayerShowcase() {
         if (showSpeedMenu) setShowSpeedMenu(false);
         if (showShortcutsModal) setShowShortcutsModal(false);
         if (showExportModal) setShowExportModal(false);
+        if (quoteCardModal.isOpen) setQuoteCardModal({ ...quoteCardModal, isOpen: false });
         if (isCinemaMode) {
           setIsCinemaMode(false);
           triggerHudToast("Visão Dividida Padrão");
@@ -739,284 +516,296 @@ export default function FramePlayerShowcase() {
       // '[' = Previous Bead
       else if (e.key === "[") {
         e.preventDefault();
-        const currentIndex = MASTERCLASS_DATA.beads.findIndex((b) => b.id === activeBeadId);
+        const currentIndex = currentMasterclass.beads.findIndex((b) => b.id === activeBeadId);
         if (currentIndex > 0) {
-          handleSeekToBead(MASTERCLASS_DATA.beads[currentIndex - 1]);
+          handleSeekToBead(currentMasterclass.beads[currentIndex - 1]);
         }
       }
       // ']' = Next Bead
       else if (e.key === "]") {
         e.preventDefault();
-        const currentIndex = MASTERCLASS_DATA.beads.findIndex((b) => b.id === activeBeadId);
-        if (currentIndex < MASTERCLASS_DATA.beads.length - 1) {
-          handleSeekToBead(MASTERCLASS_DATA.beads[currentIndex + 1]);
+        const currentIndex = currentMasterclass.beads.findIndex((b) => b.id === activeBeadId);
+        if (currentIndex < currentMasterclass.beads.length - 1) {
+          handleSeekToBead(currentMasterclass.beads[currentIndex + 1]);
         }
       }
-      // Tabs numbers 1-5
+      // Tabs numbers 1-6
       else if (e.key === "1") setActiveRailTab("nodes");
-      else if (e.key === "2") setActiveRailTab("chapters");
-      else if (e.key === "3") setActiveRailTab("transcript");
-      else if (e.key === "4") setActiveRailTab("discourse");
-      else if (e.key === "5") setActiveRailTab("notes");
+      else if (e.key === "2") setActiveRailTab("blueprint");
+      else if (e.key === "3") setActiveRailTab("chapters");
+      else if (e.key === "4") setActiveRailTab("transcript");
+      else if (e.key === "5") setActiveRailTab("discourse");
+      else if (e.key === "6") setActiveRailTab("notes");
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentSeconds, totalDuration, activeBeadId, isMuted, volume, isCinemaMode, showSpeedMenu, showShortcutsModal, showExportModal]);
+  }, [currentSeconds, totalDuration, activeBeadId, isMuted, volume, isCinemaMode, showSpeedMenu, showShortcutsModal, showExportModal, quoteCardModal, currentMasterclass]);
 
   // Active bead finder
   const activeBead = useMemo(() => {
     return (
-      MASTERCLASS_DATA.beads.find((b) => b.id === activeBeadId) ||
-      MASTERCLASS_DATA.beads[0]
+      currentMasterclass.beads.find((b) => b.id === activeBeadId) ||
+      currentMasterclass.beads[0]
     );
-  }, [activeBeadId]);
+  }, [activeBeadId, currentMasterclass]);
 
   // Current chapter calculation
   const currentChapter = useMemo(() => {
-    for (let i = MASTERCLASS_DATA.chapters.length - 1; i >= 0; i--) {
-      if (currentSeconds >= MASTERCLASS_DATA.chapters[i].seconds) {
-        return MASTERCLASS_DATA.chapters[i];
+    for (let i = currentMasterclass.chapters.length - 1; i >= 0; i--) {
+      if (currentSeconds >= currentMasterclass.chapters[i].seconds) {
+        return currentMasterclass.chapters[i];
       }
     }
-    return MASTERCLASS_DATA.chapters[0];
-  }, [currentSeconds]);
+    return currentMasterclass.chapters[0];
+  }, [currentSeconds, currentMasterclass]);
 
   // Active live transcript line at current second
   const activeTranscriptLine = useMemo(() => {
-    return MASTERCLASS_DATA.transcript.find(
+    return currentMasterclass.transcript.find(
       (t) => currentSeconds >= t.startSec && currentSeconds <= t.endSec
     );
-  }, [currentSeconds]);
+  }, [currentSeconds, currentMasterclass]);
 
   // Hover chapter and bead calculation
   const hoverChapter = useMemo(() => {
     if (!timelineHover) return null;
-    for (let i = MASTERCLASS_DATA.chapters.length - 1; i >= 0; i--) {
-      if (timelineHover.sec >= MASTERCLASS_DATA.chapters[i].seconds) {
-        return MASTERCLASS_DATA.chapters[i];
+    for (let i = currentMasterclass.chapters.length - 1; i >= 0; i--) {
+      if (timelineHover.sec >= currentMasterclass.chapters[i].seconds) {
+        return currentMasterclass.chapters[i];
       }
     }
-    return MASTERCLASS_DATA.chapters[0];
-  }, [timelineHover]);
+    return currentMasterclass.chapters[0];
+  }, [timelineHover, currentMasterclass]);
 
   const hoverBead = useMemo(() => {
     if (!timelineHover) return null;
-    return MASTERCLASS_DATA.beads.find((b) => Math.abs(b.seconds - timelineHover.sec) <= 15);
-  }, [timelineHover]);
-
-  // Progress percentage
-  const currentPercent = totalDuration > 0 ? (currentSeconds / totalDuration) * 100 : 0;
-
-  // Filtered transcript based on search query
-  const filteredTranscript = useMemo(() => {
-    if (!searchQuery.trim()) return MASTERCLASS_DATA.transcript;
-    const q = searchQuery.toLowerCase();
-    return MASTERCLASS_DATA.transcript.filter(
-      (line) =>
-        line.text.toLowerCase().includes(q) ||
-        line.speaker.toLowerCase().includes(q)
+    return currentMasterclass.beads.find(
+      (b) => Math.abs(b.seconds - timelineHover.sec) <= 12
     );
-  }, [searchQuery]);
+  }, [timelineHover, currentMasterclass]);
 
-  // Filtered beads based on search query
+  // Filtered beads and transcript based on search query
   const filteredBeads = useMemo(() => {
-    if (!searchQuery.trim()) return MASTERCLASS_DATA.beads;
+    if (!searchQuery.trim()) return currentMasterclass.beads;
     const q = searchQuery.toLowerCase();
-    return MASTERCLASS_DATA.beads.filter(
+    return currentMasterclass.beads.filter(
       (b) =>
         b.title.toLowerCase().includes(q) ||
         b.subtitle.toLowerCase().includes(q) ||
         b.category.toLowerCase().includes(q) ||
         b.transcriptSnippet.toLowerCase().includes(q)
     );
-  }, [searchQuery]);
+  }, [searchQuery, currentMasterclass]);
 
-  // Markdown Study Notes generation
+  const filteredTranscript = useMemo(() => {
+    if (!searchQuery.trim()) return currentMasterclass.transcript;
+    const q = searchQuery.toLowerCase();
+    return currentMasterclass.transcript.filter(
+      (t) =>
+        t.text.toLowerCase().includes(q) ||
+        t.speaker.toLowerCase().includes(q) ||
+        (t.highlightTerm && t.highlightTerm.toLowerCase().includes(q))
+    );
+  }, [searchQuery, currentMasterclass]);
+
+  // Filtered user notes by tag
+  const filteredUserNotes = useMemo(() => {
+    if (!dossierTagFilter) return userNotes;
+    return userNotes.filter((n) => n.tag === dossierTagFilter);
+  }, [userNotes, dossierTagFilter]);
+
+  // Markdown Dossier Generator
   const markdownNotes = useMemo(() => {
-    const userNotesSection =
-      userNotes.length > 0
-        ? `\n## 📝 Anotações Pessoais do Espectador:\n${userNotes
-            .map((n) => `- **[${n.time}]** ${n.text}`)
-            .join("\n")}\n`
-        : "\n## 📝 Anotações Pessoais do Espectador:\n*(Nenhuma anotação gravada nesta sessão)*\n";
+    const lines = [
+      `# ${currentMasterclass.badge}`,
+      `## ${currentMasterclass.title}`,
+      `> *${currentMasterclass.subtitle}*`,
+      ``,
+      `- **Palestrante / Autor:** ${currentMasterclass.lecturer}`,
+      `- **Localização & Ano:** ${currentMasterclass.location}`,
+      `- **Timestamp de Estudo:** ${formatTime(currentSeconds)} / ${formatTime(totalDuration)}`,
+      `- **Capítulo Ativo:** ${currentChapter.title}`,
+      `- **Nó Tectônico em Foco:** [${activeBead.time}] ${activeBead.title} (${activeBead.type})`,
+      `- **Propriedades Acústicas:** RT60 = ${currentMasterclass.acousticData.rt60} | Volume = ${currentMasterclass.acousticData.chamberVolume}`,
+      ``,
+      `---`,
+      `### Matriz de Especificações Técnicas (${activeBead.title}):`,
+      ``,
+    ];
 
-    return `# 🎬 FRAME // Dossiê de Estudo Monográfico: Igreja da Luz
-**Obra:** ${MASTERCLASS_DATA.title}
-**Arquiteto:** ${MASTERCLASS_DATA.lecturer}
-**Localização:** ${MASTERCLASS_DATA.location}
-**Timestamp da Sessão:** ${formatTime(currentSeconds)} / ${formatTime(totalDuration)}
-**Data de Exportação:** ${new Date().toLocaleDateString("pt-BR")} às ${new Date().toLocaleTimeString("pt-BR")}
+    Object.entries(activeBead.specData).forEach(([k, v]) => {
+      lines.push(`- **${k}:** ${v}`);
+    });
 
----
+    lines.push(``);
+    lines.push(`### Índice de Capítulos da Masterclass:`);
+    lines.push(``);
+    currentMasterclass.chapters.forEach((chap, idx) => {
+      lines.push(`${idx + 1}. [${chap.time}] **${chap.title}** (${chap.duration}) — *${chap.summary}*`);
+    });
 
-## 📌 Capítulos Indexados (${MASTERCLASS_DATA.chapters.length}):
-${MASTERCLASS_DATA.chapters.map((c) => `- **[${c.time}] ${c.title}** (${c.duration})\n  *${c.summary}*`).join("\n")}
+    lines.push(``);
+    lines.push(`### Anotações Pessoais Gravadas durante a Sessão (${userNotes.length}):`);
+    lines.push(``);
+    if (userNotes.length === 0) {
+      lines.push(`*Nenhuma nota gravada nesta sessão.*`);
+    } else {
+      userNotes.forEach((n) => {
+        lines.push(`- **[${n.time}]** ${n.tag ? `\`${n.tag}\` ` : ""}${n.text}`);
+      });
+    }
 
-${userNotesSection}
-
-## 🔬 Nó Técnico Ativo no Momento da Gravação:
-**[${activeBead.time}] ${activeBead.title}**
-- *Tipo:* \`${activeBead.type}\`
-- *Categoria:* ${activeBead.category}
-- *Subtítulo:* ${activeBead.subtitle}
-
-### Matriz Tectônica / Especificações:
-${Object.entries(activeBead.specData).map(([k, v]) => `- **${k}:** \`${v}\``).join("\n")}
-
-### Citação Transcrita no Nó:
-> "${activeBead.transcriptSnippet}"
-
----
-
-## 📜 Transcrição Curatorial Selecionada:
-${MASTERCLASS_DATA.transcript.map((t) => `**[${t.timeRange}] ${t.speaker}:**\n> "${t.text}"\n`).join("\n")}
-
----
-
-## 💬 Debate & Crítica Especializada:
-${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time}]:**\n> "${d.text}"\n`).join("\n")}
-
---
-*Exportado via FRAME Interactive Cinema Player // Marcus Ritta (Lead Product Designer)*
-`;
-  }, [currentSeconds, totalDuration, activeBead, userNotes]);
+    lines.push(``);
+    lines.push(`---`);
+    lines.push(`*Exportado automaticamente via FRAME Video Platform // Non-Blocking Knowledge Rail Engine v2.4*`);
+    return lines.join("\n");
+  }, [currentSeconds, totalDuration, activeBead, currentChapter, userNotes, currentMasterclass]);
 
   const handleCopyMarkdown = () => {
     navigator.clipboard.writeText(markdownNotes);
     setCopiedNotes(true);
-    triggerHudToast("✓ Dossiê copiado em Markdown!");
-    setTimeout(() => setCopiedNotes(false), 2500);
+    triggerHudToast("✓ Dossiê Markdown copiado para a Área de Transferência!");
+    setTimeout(() => setCopiedNotes(false), 2000);
   };
 
   const handleDownloadMarkdown = () => {
-    const blob = new Blob([markdownNotes], { type: "text/markdown;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `frame-dossie-tadao-ando-${formatTime(currentSeconds).replace(":", "-")}.md`;
-    link.click();
-    URL.revokeObjectURL(url);
-    triggerHudToast("💾 Download do Dossiê iniciado!");
+    const element = document.createElement("a");
+    const file = new Blob([markdownNotes], { type: "text/markdown;charset=utf-8" });
+    element.href = URL.createObjectURL(file);
+    element.download = `FRAME_Dossie_${currentMasterclass.id}_${formatTime(currentSeconds).replace(":", "m")}s.md`;
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    triggerHudToast("✓ Arquivo .MD gerado e baixado com sucesso!");
   };
+
+  // Optical Inspection Filter CSS Class
+  const getFilterClass = () => {
+    switch (inspectionFilter) {
+      case "monochrome":
+        return "grayscale contrast-125 brightness-95";
+      case "solar":
+        return "sepia contrast-150 brightness-110 saturate-150";
+      default:
+        return "";
+    }
+  };
+
+  const currentPercent = (currentSeconds / totalDuration) * 100;
 
   return (
     <div
       ref={containerRef}
-      className="w-full border border-[#262626] bg-[#080808] text-[#e5e2e1] p-3 sm:p-6 md:p-8 space-y-6 font-sans selection:bg-[#ff5352] selection:text-white relative"
+      className={`w-full bg-[#080808] border border-[#262626] rounded-sm text-[#f8fafc] font-sans shadow-2xl relative select-none ${
+        isFullscreen ? "p-0 rounded-none border-none fixed inset-0 z-[100]" : ""
+      }`}
     >
       {/* ========================================================================= */}
-      {/* 01. EXPANDED EDITORIAL HEADER (MONOGRAPHIC MASTERCLASS)                   */}
+      {/* 00. MASTERCLASS SELECTOR STRIP (Tadao Ando | Kubrick | Lina Bo Bardi)      */}
       {/* ========================================================================= */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[#262626] pb-6">
-        <div className="space-y-2">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5352] animate-pulse" />
-            <span className="font-mono text-xs uppercase tracking-widest text-[#ffb3ae] font-semibold">
-              FRAME // INTERACTIVE CINEMA &amp; KNOWLEDGE RAIL
-            </span>
-            <span className="px-2 py-0.5 text-[10px] font-mono uppercase bg-[#1a1313] border border-[#ff5352]/40 text-[#ffb3ae] font-medium">
-              REPRODUÇÃO REAL 4K • 24 FPS
-            </span>
-          </div>
-
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white font-mono">
-            {MASTERCLASS_DATA.title}
-          </h3>
-
-          <p className="text-xs sm:text-sm text-neutral-400 font-mono max-w-3xl leading-relaxed">
-            {MASTERCLASS_DATA.subtitle}. A linha do tempo vincula a fenda cruciforme de 200mm, a dosagem de 4000 PSI e a reverberação acústica de 2.41s ao vídeo sem interrupção de reprodução.
-          </p>
+      <div className="bg-[#0e0e12] border-b border-[#262626] px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-[#ff5352] animate-pulse" />
+          <span className="text-[10px] text-neutral-400 uppercase tracking-widest font-bold">
+            Catálogo Monográfico:
+          </span>
         </div>
 
-        {/* View Switcher: Split Desktop vs Modo Cinema vs Mobile vs Bento Catalog */}
-        <div className="flex items-center gap-1.5 bg-[#131313] p-1 border border-[#262626] rounded self-start lg:self-center shrink-0">
+        <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
+          {[
+            { id: "ando" as const, author: "Tadao Ando", work: "Church of the Light (1989)", tag: "Tectônica" },
+            { id: "kubrick" as const, author: "Stanley Kubrick", work: "2001 A Space Odyssey", tag: "Simetria" },
+            { id: "bo-bardi" as const, author: "Lina Bo Bardi", work: "MASP Vão Livre (1968)", tag: "Brutalismo" },
+          ].map((m) => {
+            const isSelected = selectedMasterclassId === m.id;
+            return (
+              <button
+                key={m.id}
+                onClick={() => handleSelectMasterclass(m.id)}
+                className={`px-3 py-1.5 rounded-sm transition-all flex items-center gap-2 cursor-pointer ${
+                  isSelected
+                    ? "bg-[#ff5352] text-white font-bold shadow-md shadow-[#ff5352]/20 ring-1 ring-white/30"
+                    : "bg-[#161619] hover:bg-[#202024] text-neutral-300 border border-[#262626]"
+                }`}
+              >
+                <span className="font-bold">{m.author}</span>
+                <span className="text-[9px] opacity-75 hidden sm:inline">• {m.tag}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* View Mode Switcher: Desktop vs Mobile vs Bento Catalog */}
+        <div className="flex items-center bg-[#18181b] border border-[#262626] rounded-sm p-0.5 text-[10px]">
           <button
-            onClick={() => {
-              setDeviceView("desktop");
-              setIsCinemaMode(false);
-            }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono transition-all ${
-              deviceView === "desktop" && !isCinemaMode
-                ? "bg-[#252528] text-white border border-[#ff5352] font-semibold shadow-sm"
+            onClick={() => setDeviceView("desktop")}
+            className={`px-2.5 py-1 rounded-sm transition-colors flex items-center gap-1 cursor-pointer ${
+              deviceView === "desktop"
+                ? "bg-[#ff5352] text-white font-bold"
                 : "text-neutral-400 hover:text-white"
             }`}
+            title="Visualização Cinema Desktop Split-Screen"
           >
-            <Monitor className="w-3.5 h-3.5 text-[#ff5352]" />
-            <span>Split Desktop</span>
+            <Monitor className="w-3 h-3" />
+            <span className="hidden sm:inline">Desktop</span>
           </button>
-
           <button
-            onClick={() => {
-              setDeviceView("desktop");
-              setIsCinemaMode(true);
-              triggerHudToast("🎬 Modo Cinema Ativado [C]");
-            }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono transition-all ${
-              deviceView === "desktop" && isCinemaMode
-                ? "bg-[#ff5352] text-white border border-[#ff5352] font-semibold shadow-[0_0_10px_rgba(255,83,82,0.4)]"
-                : "text-neutral-400 hover:text-white"
-            }`}
-            title="Modo Cinema Expandido [C]"
-          >
-            <Tv className="w-3.5 h-3.5" />
-            <span>Modo Cinema</span>
-          </button>
-
-          <button
-            onClick={() => {
-              setDeviceView("mobile");
-              setIsCinemaMode(false);
-            }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono transition-all ${
+            onClick={() => setDeviceView("mobile")}
+            className={`px-2.5 py-1 rounded-sm transition-colors flex items-center gap-1 cursor-pointer ${
               deviceView === "mobile"
-                ? "bg-[#252528] text-white border border-[#ff5352] font-semibold shadow-sm"
+                ? "bg-[#ff5352] text-white font-bold"
                 : "text-neutral-400 hover:text-white"
             }`}
+            title="Visualização Simulada Mobile com Bottom-Sheet"
           >
-            <Smartphone className="w-3.5 h-3.5" />
-            <span>Mobile</span>
+            <Smartphone className="w-3 h-3" />
+            <span className="hidden sm:inline">Mobile</span>
           </button>
-
           <button
-            onClick={() => {
-              setDeviceView("catalog");
-              setIsCinemaMode(false);
-            }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono transition-all ${
+            onClick={() => setDeviceView("catalog")}
+            className={`px-2.5 py-1 rounded-sm transition-colors flex items-center gap-1 cursor-pointer ${
               deviceView === "catalog"
-                ? "bg-[#252528] text-white border border-[#ff5352] font-semibold shadow-sm"
+                ? "bg-[#ff5352] text-white font-bold"
                 : "text-neutral-400 hover:text-white"
             }`}
+            title="Índice de Capítulos em Bento Grid"
           >
-            <LayoutGrid className="w-3.5 h-3.5" />
-            <span>Capítulos</span>
+            <LayoutGrid className="w-3 h-3" />
+            <span className="hidden sm:inline">Capítulos</span>
           </button>
         </div>
       </div>
 
       {/* ========================================================================= */}
-      {/* VISTA 01: CINEMA DESKTOP (EXPANDED 16:9 VIDEO + SYNCHRONIZED RAIL)        */}
+      {/* VISTA 01: DESKTOP CINEMA MODE & KNOWLEDGE RAIL                            */}
       {/* ========================================================================= */}
       {deviceView === "desktop" && (
-        <div className="border border-[#262626] bg-[#0c0c0e] flex flex-col shadow-2xl overflow-hidden relative">
-          {/* Keyboard Toast HUD Overlay */}
-          {keyboardToast && (
-            <div className="absolute top-14 left-1/2 -translate-x-1/2 z-50 px-4 py-2 bg-[#ff5352] text-white font-mono text-xs font-bold shadow-2xl flex items-center gap-2 border border-white/40 animate-in fade-in slide-in-from-top-2 duration-150">
-              <Keyboard className="w-3.5 h-3.5" />
-              <span>{keyboardToast}</span>
-            </div>
-          )}
+        <div className="relative">
+          {/* Top Control Bar with Search & Quick Actions */}
+          <header className="px-4 sm:px-6 py-3 border-b border-[#262626] bg-[#0d0d0f] flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-[#ff5352] to-[#b32726] text-white flex items-center justify-center font-mono font-bold text-sm rounded-sm shadow-md shadow-[#ff5352]/20">
+                F
+              </div>
+              <div>
+                <div className="flex items-center space-x-2">
+                  <span className="text-sm font-semibold tracking-tight text-white font-mono flex items-center gap-1.5">
+                    FRAME
+                    <span className="text-[10px] text-[#ffb3ae] font-normal font-mono">
+                      // {currentMasterclass.badge.split("//")[1] || "CINEMA 21:9"}
+                    </span>
+                  </span>
+                  <span className="text-[10px] font-mono uppercase bg-[#ff5352]/15 border border-[#ff5352]/40 text-[#ffb3ae] px-2 py-0.5 rounded-sm font-bold">
+                    {currentMasterclass.category}
+                  </span>
+                </div>
+                <p className="text-[11px] text-neutral-400 font-mono truncate max-w-sm sm:max-w-md">
+                  {currentMasterclass.title}
+                </p>
+              </div>
 
-          {/* Top Operational Bar */}
-          <header className="bg-[#09090b] border-b border-[#262626] px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-4 select-none">
-            <div className="flex items-center space-x-6">
-              <span className="font-mono text-xs uppercase tracking-widest text-white font-bold flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#ff5352] inline-block animate-pulse" />
-                FRAME CINEMA PLAYER
-              </span>
-
-              {/* Live Search inside Knowledge Rail */}
+              {/* Integrated Search Input in Topbar */}
               <div className="hidden md:flex items-center relative pl-4 border-l border-[#262626]">
                 <Search className="w-3.5 h-3.5 text-neutral-500 absolute left-6" />
                 <input
@@ -1029,7 +818,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                     }
                   }}
                   placeholder="Buscar termo na transcrição ou nós..."
-                  className="bg-[#18181b] border border-[#262626] focus:border-[#ff5352] text-xs text-white placeholder:text-neutral-500 pl-8 pr-12 py-1 w-64 lg:w-80 outline-none font-mono"
+                  className="bg-[#18181b] border border-[#262626] focus:border-[#ff5352] text-xs text-white placeholder:text-neutral-500 pl-8 pr-12 py-1 w-64 lg:w-72 outline-none font-mono"
                 />
                 {searchQuery ? (
                   <button
@@ -1046,8 +835,37 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
               </div>
             </div>
 
-            {/* Quick Actions (Cinema Mode, Export Dossier, Shortcuts, Fullscreen) */}
+            {/* Quick Actions (Optics, Cinema Mode, Export Dossier, Shortcuts, Fullscreen) */}
             <div className="flex items-center space-x-2 text-xs font-mono">
+              {/* VIEWPORT OPTICS INSPECTION FILTER SELECTOR */}
+              <div className="hidden lg:flex items-center bg-[#141418] border border-[#262626] rounded-sm p-0.5 text-[10px]">
+                <span className="text-neutral-500 px-1.5 flex items-center gap-1">
+                  <Eye className="w-3 h-3 text-[#ff5352]" />
+                  <span>Óptica:</span>
+                </span>
+                {[
+                  { id: "none" as const, label: "Natural" },
+                  { id: "monochrome" as const, label: "Tri-X" },
+                  { id: "solar" as const, label: "Térmico" },
+                  { id: "grid" as const, label: "Grid 21:9" },
+                ].map((f) => (
+                  <button
+                    key={f.id}
+                    onClick={() => {
+                      setInspectionFilter(f.id);
+                      triggerHudToast(`Filtro Óptico: ${f.label}`);
+                    }}
+                    className={`px-2 py-0.5 rounded-sm transition-colors cursor-pointer ${
+                      inspectionFilter === f.id
+                        ? "bg-[#ff5352] text-white font-bold"
+                        : "text-neutral-400 hover:text-white"
+                    }`}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+
               <button
                 onClick={() => {
                   setIsCinemaMode((prev) => {
@@ -1104,7 +922,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                   MODO CINEMA ATIVO
                 </span>
                 <span className="text-neutral-400 text-[11px] hidden md:inline">
-                  Experiência 100% de largura • Pressione <kbd className="px-1 bg-[#1f1e22] text-white border border-[#333]">C</kbd> ou <kbd className="px-1 bg-[#1f1e22] text-white border border-[#333]">Esc</kbd> para alternar
+                  Experiência 100% de largura • Pressione <kbd className="px-1 bg-[#1f1e22] text-white border border-[#333]">C</kbd> ou <kbd className="px-1 bg-[#1f1e22] text-white border border-[#333]">Esc</kbd>
                 </span>
               </div>
 
@@ -1195,10 +1013,10 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                     : "aspect-video"
                 }`}
               >
-                {/* REAL HTML5 VIDEO ELEMENT */}
+                {/* REAL HTML5 VIDEO ELEMENT WITH DYNAMIC FILTER */}
                 <video
                   ref={videoRef}
-                  src={MASTERCLASS_DATA.videoSrc}
+                  src={currentMasterclass.videoSrc}
                   playsInline
                   preload="metadata"
                   onTimeUpdate={handleTimeUpdate}
@@ -1212,8 +1030,25 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                   onPause={() => setIsPlaying(false)}
                   onEnded={() => setIsPlaying(false)}
                   onClick={togglePlay}
-                  className="w-full h-full object-cover cursor-pointer"
+                  className={`w-full h-full object-cover cursor-pointer transition-all duration-300 ${getFilterClass()}`}
                 />
+
+                {/* Grid Overlay Guide (When "grid" optical filter is selected) */}
+                {inspectionFilter === "grid" && (
+                  <div className="absolute inset-0 pointer-events-none z-20">
+                    {/* Golden Ratio & Rule of Thirds Guides */}
+                    <div className="absolute inset-y-0 left-1/3 border-r border-[#ff5352]/40 border-dashed" />
+                    <div className="absolute inset-y-0 right-1/3 border-r border-[#ff5352]/40 border-dashed" />
+                    <div className="absolute inset-x-0 top-1/3 border-b border-[#ff5352]/40 border-dashed" />
+                    <div className="absolute inset-x-0 bottom-1/3 border-b border-[#ff5352]/40 border-dashed" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border border-white/40 rounded-full flex items-center justify-center text-[8px] font-mono text-[#ffb3ae]">
+                      +
+                    </div>
+                    <span className="absolute bottom-2 left-2 text-[8px] font-mono bg-black/80 px-2 py-0.5 border border-[#ff5352]/40 text-[#ffb3ae]">
+                      GUIA DE ENQUADRAMENTO 2.39:1 // TERÇOS & EIXO CENTRAL
+                    </span>
+                  </div>
+                )}
 
                 {/* Ambient Film Grain & Cinematic Vignette Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/60 pointer-events-none" />
@@ -1235,7 +1070,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                   <span className="truncate max-w-[200px] sm:max-w-xs">• {currentChapter.title}</span>
                 </div>
 
-                {/* Active Bead HUD Chip on Top-Right (No duplicate label!) */}
+                {/* Active Bead HUD Chip on Top-Right */}
                 <div className="absolute top-4 right-4 z-20 bg-black/75 border border-[#ff5352]/40 backdrop-blur-md px-3 py-1.5 text-right font-mono text-[10px] shadow-lg">
                   <span className="text-white block font-bold truncate max-w-[200px]">
                     {activeBead.title}
@@ -1245,7 +1080,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                   </span>
                 </div>
 
-                {/* Big Center Play/Pause HUD Button - ABSOLUTELY CENTERED! */}
+                {/* Big Center Play/Pause HUD Button */}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -1334,9 +1169,9 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                 >
                   {/* Cognitive Density Waveform Track */}
                   <div className="absolute inset-x-0 bottom-1 h-3.5 flex items-end justify-between gap-[1px] opacity-45 pointer-events-none px-0.5">
-                    {MASTERCLASS_DATA.densityWaveform.map((val, idx) => {
+                    {currentMasterclass.densityWaveform.map((val, idx) => {
                       const isPast =
-                        (idx / MASTERCLASS_DATA.densityWaveform.length) * 100 <= currentPercent;
+                        (idx / currentMasterclass.densityWaveform.length) * 100 <= currentPercent;
                       return (
                         <div
                           key={idx}
@@ -1365,7 +1200,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                   />
 
                   {/* Timeline Beads - Positioned by exact second */}
-                  {MASTERCLASS_DATA.beads.map((bead) => {
+                  {currentMasterclass.beads.map((bead) => {
                     const isActive = bead.id === activeBeadId;
                     const beadPercent = (bead.seconds / totalDuration) * 100;
                     return (
@@ -1454,98 +1289,87 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                         ) : volume < 0.5 ? (
                           <Volume1 className="w-3.5 h-3.5 text-neutral-300" />
                         ) : (
-                          <Volume2 className="w-3.5 h-3.5 text-white" />
+                          <Volume2 className="w-3.5 h-3.5 text-neutral-300" />
                         )}
                       </button>
+
                       <input
                         type="range"
                         min="0"
                         max="1"
-                        step="0.02"
+                        step="0.05"
                         value={isMuted ? 0 : volume}
                         onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
-                        className="w-14 sm:w-16 accent-[#ff5352] bg-neutral-800 h-1 cursor-pointer"
-                        title={`Volume: ${Math.round((isMuted ? 0 : volume) * 100)}% [↑/↓]`}
+                        className="w-14 sm:w-16 h-1 accent-[#ff5352] bg-[#262626] rounded cursor-pointer"
+                        title={`Volume: ${Math.round((isMuted ? 0 : volume) * 100)}%`}
                       />
                     </div>
 
-                    {/* Timecode Readout */}
-                    <div className="flex items-baseline space-x-1 pl-2 border-l border-[#262626] text-[11px]">
-                      <span className="font-semibold text-white">
-                        {formatTime(currentSeconds)}
-                      </span>
-                      <span className="text-neutral-500">/</span>
-                      <span className="text-neutral-500">
-                        {formatTime(totalDuration)}
-                      </span>
+                    {/* SMPTE Running Timecode */}
+                    <div className="text-[11px] text-neutral-300 font-mono tracking-wider pl-2 border-l border-[#262626]">
+                      <span className="text-[#ffb3ae] font-bold">{formatTime(currentSeconds)}</span>
+                      <span className="text-neutral-500"> / {formatTime(totalDuration)}</span>
                     </div>
                   </div>
 
                   {/* Right Controls */}
-                  <div className="flex items-center space-x-1.5 sm:space-x-2 text-[10px]">
-                    {/* Subtitles (CC) Toggle */}
-                    <button
-                      onClick={() => {
-                        setIsCcActive((prev) => {
-                          const next = !prev;
-                          triggerHudToast(next ? "💬 Legendas Ativadas" : "Legendas Ocultadas");
-                          return next;
-                        });
-                      }}
-                      className={`px-2 py-1 border transition-colors flex items-center gap-1 cursor-pointer ${
-                        isCcActive
-                          ? "border-[#ff5352] text-[#ffb3ae] bg-[#ff5352]/10"
-                          : "border-[#262626] text-neutral-400 hover:text-white"
-                      }`}
-                      title="Alternar Legendas / Transcrição [V]"
-                    >
-                      <Subtitles className="w-3 h-3" />
-                      <span className="hidden sm:inline font-bold">CC</span>
-                    </button>
-
-                    {/* Picture-in-Picture */}
-                    <button
-                      onClick={togglePip}
-                      className="p-1.5 border border-[#262626] hover:border-[#ff5352] text-neutral-400 hover:text-white transition-colors cursor-pointer"
-                      title="Picture-in-Picture / Miniplayer [P]"
-                    >
-                      <PictureInPicture2 className="w-3 h-3" />
-                    </button>
-
+                  <div className="flex items-center space-x-2">
                     {/* Playback Speed Menu */}
                     <div className="relative">
                       <button
-                        onClick={() => setShowSpeedMenu((prev) => !prev)}
-                        className="px-2 py-1 border border-[#262626] hover:border-[#ff5352] text-neutral-300 hover:text-white flex items-center gap-0.5 cursor-pointer"
+                        onClick={() => setShowSpeedMenu(!showSpeedMenu)}
+                        className="px-2 py-0.5 border border-[#262626] hover:border-[#ff5352] text-[10px] text-neutral-300 hover:text-white transition-colors cursor-pointer font-bold"
                         title="Velocidade de Reprodução"
                       >
-                        <span>{playbackSpeed.toFixed(1)}x</span>
+                        {playbackSpeed.toFixed(2)}x
                       </button>
 
                       {showSpeedMenu && (
-                        <div className="absolute bottom-full right-0 mb-2 bg-[#161618] border border-[#262626] shadow-2xl py-1 z-50 flex flex-col w-20 text-[10px]">
-                          {[0.5, 0.75, 1.0, 1.25, 1.5, 2.0].map((sp) => (
+                        <div className="absolute bottom-8 right-0 bg-[#161618] border border-[#ff5352] shadow-2xl p-1 z-40 flex flex-col gap-0.5 text-[10px]">
+                          {[0.75, 1.0, 1.25, 1.5, 2.0].map((s) => (
                             <button
-                              key={sp}
+                              key={s}
                               onClick={() => {
-                                setPlaybackSpeed(sp);
-                                if (videoRef.current) videoRef.current.playbackRate = sp;
+                                setPlaybackSpeed(s);
+                                if (videoRef.current) videoRef.current.playbackRate = s;
                                 setShowSpeedMenu(false);
-                                triggerHudToast(`⚡ Velocidade: ${sp}x`);
+                                triggerHudToast(`Velocidade: ${s}x`);
                               }}
-                              className={`px-2 py-1 text-left transition-colors flex items-center justify-between cursor-pointer ${
-                                playbackSpeed === sp
-                                  ? "bg-[#ff5352] text-white font-bold"
-                                  : "text-neutral-300 hover:bg-[#201f1f]"
+                              className={`px-3 py-1 text-left hover:bg-[#ff5352] hover:text-white cursor-pointer ${
+                                playbackSpeed === s ? "text-[#ff5352] font-bold" : "text-neutral-300"
                               }`}
                             >
-                              <span>{sp}x</span>
-                              {playbackSpeed === sp && <span>✓</span>}
+                              {s.toFixed(2)}x
                             </button>
                           ))}
                         </div>
                       )}
                     </div>
+
+                    {/* CC / Subtitles Toggle */}
+                    <button
+                      onClick={() => {
+                        setIsCcActive(!isCcActive);
+                        triggerHudToast(!isCcActive ? "💬 Legendas Ativadas" : "Legendas Ocultadas");
+                      }}
+                      className={`p-1.5 border transition-colors cursor-pointer ${
+                        isCcActive
+                          ? "border-[#ff5352] text-[#ff5352] bg-[#ff5352]/10"
+                          : "border-[#262626] text-neutral-400 hover:text-white hover:border-[#ff5352]"
+                      }`}
+                      title="Legendas Sincronizadas ao Vivo [V]"
+                    >
+                      <Subtitles className="w-3 h-3" />
+                    </button>
+
+                    {/* Picture in Picture */}
+                    <button
+                      onClick={togglePip}
+                      className="p-1.5 border border-[#262626] hover:border-[#ff5352] text-neutral-400 hover:text-white transition-colors cursor-pointer"
+                      title="Picture-in-Picture [P]"
+                    >
+                      <PictureInPicture2 className="w-3 h-3" />
+                    </button>
 
                     {/* Bookmark Quick Add */}
                     <button
@@ -1601,10 +1425,11 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                   : "lg:col-span-4 bg-[#0d0d0f] border-t lg:border-t-0 border-[#262626]"
               } flex flex-col justify-between`}
             >
-              {/* Knowledge Rail Tabs Header */}
-              <div className="grid grid-cols-5 bg-[#09090b] border-b border-[#262626] text-[10px] sm:text-xs font-mono select-none">
+              {/* Knowledge Rail Tabs Header (Now 6 Tabs with Blueprint!) */}
+              <div className="grid grid-cols-6 bg-[#09090b] border-b border-[#262626] text-[10px] font-mono select-none">
                 {[
                   { id: "nodes", label: "Nós", icon: Box },
+                  { id: "blueprint", label: "Planta", icon: Compass },
                   { id: "chapters", label: "Capítulos", icon: ListOrdered },
                   { id: "transcript", label: "Texto", icon: Film },
                   { id: "discourse", label: "Debate", icon: MessageSquare },
@@ -1654,6 +1479,27 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                         <p className="text-neutral-400 text-xs font-sans leading-relaxed">
                           {activeBead.subtitle}
                         </p>
+                        <div className="flex items-center justify-between pt-1">
+                          <button
+                            onClick={() =>
+                              setQuoteCardModal({
+                                isOpen: true,
+                                speaker: currentMasterclass.lecturer,
+                                text: activeBead.transcriptSnippet,
+                                time: activeBead.time,
+                              })
+                            }
+                            className="text-[10px] text-[#ffb3ae] hover:underline font-bold flex items-center gap-1 cursor-pointer"
+                          >
+                            <Share2 className="w-3 h-3" />
+                            <span>Gerar Card de Citação</span>
+                          </button>
+                          {activeBead.tag && (
+                            <span className="text-[9px] text-neutral-500 bg-[#121214] px-1.5 py-0.5 border border-[#262626]">
+                              {activeBead.tag}
+                            </span>
+                          )}
+                        </div>
                       </div>
 
                       {/* Technical Spec Matrix */}
@@ -1676,6 +1522,16 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                             </div>
                           ))}
                         </div>
+                      </div>
+
+                      {/* Acoustic Monitor Embed */}
+                      <div className="pt-2">
+                        <FrameAcousticSpectrum
+                          masterclass={currentMasterclass}
+                          isPlaying={isPlaying}
+                          isMuted={isMuted}
+                          volume={volume}
+                        />
                       </div>
                     </div>
 
@@ -1717,14 +1573,25 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                   </div>
                 )}
 
-                {/* TAB 2: INDEXED CHAPTERS */}
+                {/* TAB 2: INTERACTIVE BLUEPRINT & PLANTA BAIXA */}
+                {activeRailTab === "blueprint" && (
+                  <div className="space-y-3">
+                    <FrameBlueprintViewer
+                      masterclass={currentMasterclass}
+                      currentSeconds={currentSeconds}
+                      onSeekTo={seekTo}
+                    />
+                  </div>
+                )}
+
+                {/* TAB 3: INDEXED CHAPTERS */}
                 {activeRailTab === "chapters" && (
                   <div className="space-y-2">
                     <span className="text-neutral-500 uppercase text-[9px] tracking-wider block">
                       Capítulos da Masterclass:
                     </span>
                     <div className={isCinemaMode ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" : "space-y-2"}>
-                      {MASTERCLASS_DATA.chapters.map((chap, idx) => {
+                      {currentMasterclass.chapters.map((chap, idx) => {
                         const isCurrent = currentChapter.time === chap.time;
                         return (
                           <div
@@ -1756,7 +1623,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                   </div>
                 )}
 
-                {/* TAB 3: DYNAMIC SYNCHRONIZED TRANSCRIPT */}
+                {/* TAB 4: DYNAMIC SYNCHRONIZED TRANSCRIPT */}
                 {activeRailTab === "transcript" && (
                   <div className="space-y-2.5">
                     <div className="flex items-center justify-between text-[9px] text-neutral-500 pb-1 border-b border-[#262626]">
@@ -1771,11 +1638,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                         return (
                           <div
                             key={line.id}
-                            onClick={() => {
-                              seekTo(line.startSec);
-                              triggerHudToast(`Salto de transcrição: ${line.speaker}`);
-                            }}
-                            className={`p-2.5 border transition-all cursor-pointer space-y-1 ${
+                            className={`p-2.5 border transition-all space-y-1.5 ${
                               isLineActive
                                 ? "bg-[#252528] border-[#ff5352] shadow-sm"
                                 : "bg-[#141416] hover:bg-[#19191c] border-[#262626]"
@@ -1783,9 +1646,39 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                           >
                             <div className="flex items-center justify-between text-[9px]">
                               <span className="text-[#ffb3ae] font-bold">{line.speaker}</span>
-                              <span className="text-neutral-500">{line.timeRange}</span>
+                              <div className="flex items-center gap-2">
+                                <button
+                                  onClick={() =>
+                                    setQuoteCardModal({
+                                      isOpen: true,
+                                      speaker: line.speaker,
+                                      text: line.text,
+                                      time: line.timeRange,
+                                    })
+                                  }
+                                  className="text-neutral-400 hover:text-white cursor-pointer"
+                                  title="Gerar Card de Citação"
+                                >
+                                  <Share2 className="w-3 h-3" />
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    seekTo(line.startSec);
+                                    triggerHudToast(`Salto de transcrição: ${line.speaker}`);
+                                  }}
+                                  className="text-neutral-400 hover:text-white cursor-pointer"
+                                >
+                                  {line.timeRange}
+                                </button>
+                              </div>
                             </div>
-                            <p className="text-neutral-300 text-xs font-sans leading-relaxed">
+                            <p
+                              onClick={() => {
+                                seekTo(line.startSec);
+                                triggerHudToast(`Salto de transcrição: ${line.speaker}`);
+                              }}
+                              className="text-neutral-300 text-xs font-sans leading-relaxed cursor-pointer"
+                            >
                               &ldquo;{line.text}&rdquo;
                             </p>
                           </div>
@@ -1795,14 +1688,14 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                   </div>
                 )}
 
-                {/* TAB 4: CRITICAL DISCOURSE */}
+                {/* TAB 5: CRITICAL DISCOURSE */}
                 {activeRailTab === "discourse" && (
                   <div className="space-y-3">
                     <span className="text-neutral-500 uppercase text-[9px] tracking-wider block">
-                      Crítica & Debate Arquitetônico:
+                      Crítica & Debate Especializado:
                     </span>
                     <div className={isCinemaMode ? "grid grid-cols-1 md:grid-cols-3 gap-3" : "space-y-3"}>
-                      {MASTERCLASS_DATA.discourse.map((disc, idx) => (
+                      {currentMasterclass.discourse.map((disc, idx) => (
                         <div
                           key={idx}
                           className="p-3 bg-[#141416] border border-[#262626] space-y-2"
@@ -1812,15 +1705,31 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                               <span className="text-white font-bold block">{disc.author}</span>
                               <span className="text-neutral-500 text-[8px]">{disc.role}</span>
                             </div>
-                            <button
-                              onClick={() => {
-                                const bead = MASTERCLASS_DATA.beads.find((b) => b.time === disc.time);
-                                if (bead) seekTo(bead.seconds);
-                              }}
-                              className="text-[#ffb3ae] hover:underline font-bold cursor-pointer"
-                            >
-                              [{disc.time}]
-                            </button>
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() =>
+                                  setQuoteCardModal({
+                                    isOpen: true,
+                                    speaker: disc.author,
+                                    text: disc.text,
+                                    time: disc.time,
+                                  })
+                                }
+                                className="text-neutral-400 hover:text-white cursor-pointer"
+                                title="Gerar Card de Citação"
+                              >
+                                <Share2 className="w-3 h-3" />
+                              </button>
+                              <button
+                                onClick={() => {
+                                  const bead = currentMasterclass.beads.find((b) => b.time === disc.time);
+                                  if (bead) seekTo(bead.seconds);
+                                }}
+                                className="text-[#ffb3ae] hover:underline font-bold cursor-pointer"
+                              >
+                                [{disc.time}]
+                              </button>
+                            </div>
                           </div>
                           <p className="text-neutral-300 text-xs font-sans italic leading-relaxed">
                             &ldquo;{disc.text}&rdquo;
@@ -1831,7 +1740,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                   </div>
                 )}
 
-                {/* TAB 5: STUDY DOSSIER & PERSONAL NOTES */}
+                {/* TAB 6: STUDY DOSSIER & PERSONAL NOTES */}
                 {activeRailTab === "notes" && (
                   <div className="space-y-3">
                     <div className="flex justify-between items-center text-[9px] text-neutral-500 border-b border-[#262626] pb-2">
@@ -1857,13 +1766,51 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                       </div>
                     </div>
 
+                    {/* Tag Filter Chips */}
+                    <div className="flex flex-wrap items-center gap-1.5 text-[9px]">
+                      <span className="text-neutral-500">Filtrar:</span>
+                      <button
+                        onClick={() => setDossierTagFilter(null)}
+                        className={`px-2 py-0.5 rounded border transition-colors cursor-pointer ${
+                          dossierTagFilter === null
+                            ? "bg-[#ff5352] text-white border-[#ff5352] font-bold"
+                            : "bg-[#141416] text-neutral-400 border-[#262626]"
+                        }`}
+                      >
+                        Todas ({userNotes.length})
+                      </button>
+                      {["#Tectônica", "#Luz", "#Estrutura", "#Acústica", "#Filosofia"].map((tag) => (
+                        <button
+                          key={tag}
+                          onClick={() => setDossierTagFilter(dossierTagFilter === tag ? null : tag)}
+                          className={`px-2 py-0.5 rounded border transition-colors cursor-pointer ${
+                            dossierTagFilter === tag
+                              ? "bg-[#ff5352] text-white border-[#ff5352] font-bold"
+                              : "bg-[#141416] text-neutral-400 border-[#262626]"
+                          }`}
+                        >
+                          {tag}
+                        </button>
+                      ))}
+                    </div>
+
                     {/* Live Annotation Input */}
                     <div className="p-2.5 bg-[#18181b] border border-[#262626] space-y-2">
                       <div className="flex items-center justify-between text-[9px]">
                         <span className="text-white font-medium">
                           Anotação no Timecode [{formatTime(currentSeconds)}]
                         </span>
-                        <span className="text-[#ffb3ae] text-[8px] font-bold">NÓ: {activeBead.time}</span>
+                        <select
+                          value={newNoteTag}
+                          onChange={(e) => setNewNoteTag(e.target.value)}
+                          className="bg-[#09090b] border border-[#262626] text-[#ffb3ae] text-[9px] px-1.5 py-0.5 outline-none font-mono"
+                        >
+                          <option value="#Tectônica">#Tectônica</option>
+                          <option value="#Luz">#Luz</option>
+                          <option value="#Estrutura">#Estrutura</option>
+                          <option value="#Acústica">#Acústica</option>
+                          <option value="#Filosofia">#Filosofia</option>
+                        </select>
                       </div>
                       <div className="flex gap-1.5">
                         <input
@@ -1888,19 +1835,26 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
 
                     {/* Notes Chronological Stream */}
                     <div className="space-y-2">
-                      {userNotes.length === 0 ? (
+                      {filteredUserNotes.length === 0 ? (
                         <div className="p-4 text-center text-neutral-500 text-xs">
-                          Nenhuma anotação gravada ainda. Digite acima ou pressione Enter.
+                          Nenhuma anotação gravada neste filtro.
                         </div>
                       ) : (
                         <div className={isCinemaMode ? "grid grid-cols-1 sm:grid-cols-2 gap-2" : "space-y-2"}>
-                          {userNotes.map((note) => (
+                          {filteredUserNotes.map((note) => (
                             <div
                               key={note.id}
                               className="p-2.5 bg-[#141416] border border-[#262626] space-y-1 text-xs"
                             >
                               <div className="flex items-center justify-between font-mono text-[9px] text-[#ffb3ae]">
-                                <span className="font-bold">[{note.time}]</span>
+                                <div className="flex items-center gap-1.5">
+                                  <span className="font-bold">[{note.time}]</span>
+                                  {note.tag && (
+                                    <span className="text-neutral-400 bg-black/40 px-1 py-0.2 border border-white/5">
+                                      {note.tag}
+                                    </span>
+                                  )}
+                                </div>
                                 <button
                                   onClick={() => handleDeleteUserNote(note.id)}
                                   className="text-neutral-500 hover:text-red-400 p-0.5 cursor-pointer"
@@ -1949,7 +1903,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
       {/* VISTA 02: MOBILE VIEW SIMULATOR (Bottom-Sheet Gestual)                     */}
       {/* ========================================================================= */}
       {deviceView === "mobile" && (
-        <div className="max-w-sm mx-auto border-4 border-[#262626] rounded-3xl bg-[#09090b] shadow-2xl overflow-hidden font-mono text-xs">
+        <div className="max-w-sm mx-auto border-4 border-[#262626] rounded-3xl bg-[#09090b] shadow-2xl overflow-hidden font-mono text-xs my-6">
           {/* Mobile Notch & Status Bar */}
           <div className="h-6 bg-black flex items-center justify-between px-6 text-[10px] text-neutral-400">
             <span>9:41</span>
@@ -1960,7 +1914,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
           {/* Mobile Video Area */}
           <div className="relative aspect-video w-full bg-black flex items-center justify-center">
             <video
-              src={MASTERCLASS_DATA.videoSrc}
+              src={currentMasterclass.videoSrc}
               playsInline
               preload="metadata"
               controls
@@ -1993,6 +1947,16 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                 </div>
               ))}
             </div>
+
+            <div className="pt-2 flex justify-between items-center text-[10px] text-neutral-400">
+              <span>Arraste para cima para abrir a Planta Baixa</span>
+              <button
+                onClick={() => setDeviceView("desktop")}
+                className="text-[#ff5352] font-bold underline"
+              >
+                Ver Desktop
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -2001,44 +1965,53 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
       {/* VISTA 03: CATALOG BENTO GRID (Visão Geral de Capítulos)                   */}
       {/* ========================================================================= */}
       {deviceView === "catalog" && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 font-mono text-xs">
-          {MASTERCLASS_DATA.chapters.map((chap, idx) => {
-            const isCurrent = currentSeconds >= chap.seconds;
-            return (
-              <div
-                key={idx}
-                onClick={() => {
-                  seekTo(chap.seconds);
-                  setDeviceView("desktop");
-                  triggerHudToast(`Reproduzindo Capítulo: ${chap.title}`);
-                }}
-                className={`p-4 border transition-all cursor-pointer flex flex-col justify-between space-y-3 ${
-                  isCurrent
-                    ? "bg-[#18181b] border-[#ff5352] shadow-lg shadow-[#ff5352]/10"
-                    : "bg-[#121214] border-[#262626] hover:border-neutral-600"
-                }`}
-              >
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between text-[#ffb3ae] text-[10px] font-bold">
-                    <span>{chap.time}</span>
-                    <span>{chap.duration}</span>
+        <div className="p-6 space-y-4">
+          <div className="flex items-center justify-between border-b border-[#262626] pb-3 text-xs font-mono">
+            <span className="text-white font-bold uppercase">
+              Capítulos da Masterclass: {currentMasterclass.title}
+            </span>
+            <span className="text-[#ffb3ae]">{currentMasterclass.chapters.length} SEÇÕES</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 font-mono text-xs">
+            {currentMasterclass.chapters.map((chap, idx) => {
+              const isCurrent = currentSeconds >= chap.seconds;
+              return (
+                <div
+                  key={idx}
+                  onClick={() => {
+                    seekTo(chap.seconds);
+                    setDeviceView("desktop");
+                    triggerHudToast(`Reproduzindo Capítulo: ${chap.title}`);
+                  }}
+                  className={`p-4 border transition-all cursor-pointer flex flex-col justify-between space-y-3 ${
+                    isCurrent
+                      ? "bg-[#18181b] border-[#ff5352] shadow-lg shadow-[#ff5352]/10"
+                      : "bg-[#121214] border-[#262626] hover:border-neutral-600"
+                  }`}
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-[#ffb3ae] text-[10px] font-bold">
+                      <span>{chap.time}</span>
+                      <span>{chap.duration}</span>
+                    </div>
+                    <h4 className="text-white font-bold text-sm leading-snug">
+                      {chap.title}
+                    </h4>
+                    <p className="text-neutral-400 text-xs font-sans leading-relaxed">
+                      {chap.summary}
+                    </p>
                   </div>
-                  <h4 className="text-white font-bold text-sm leading-snug">
-                    {chap.title}
-                  </h4>
-                  <p className="text-neutral-400 text-xs font-sans leading-relaxed">
-                    {chap.summary}
-                  </p>
+                  <div className="flex items-center justify-between pt-2 border-t border-[#262626] text-[10px]">
+                    <span className="text-neutral-500">Capítulo #{idx + 1}</span>
+                    <span className="text-[#ff5352] font-bold flex items-center gap-1">
+                      Assistir →
+                    </span>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between pt-2 border-t border-[#262626] text-[10px]">
-                  <span className="text-neutral-500">Capítulo #{idx + 1}</span>
-                  <span className="text-[#ff5352] font-bold flex items-center gap-1">
-                    Assistir →
-                  </span>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       )}
 
@@ -2057,7 +2030,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
               </div>
               <button
                 onClick={() => setShowExportModal(false)}
-                className="text-neutral-400 hover:text-white p-1"
+                className="text-neutral-400 hover:text-white p-1 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -2067,7 +2040,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
             <div className="flex space-x-2 border-b border-[#262626] pb-2 text-[10px]">
               <button
                 onClick={() => setExportModalTab("preview")}
-                className={`px-3 py-1 font-bold transition-colors ${
+                className={`px-3 py-1 font-bold transition-colors cursor-pointer ${
                   exportModalTab === "preview"
                     ? "bg-[#ff5352] text-white"
                     : "text-neutral-400 hover:text-white"
@@ -2077,7 +2050,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
               </button>
               <button
                 onClick={() => setExportModalTab("markdown")}
-                className={`px-3 py-1 font-bold transition-colors ${
+                className={`px-3 py-1 font-bold transition-colors cursor-pointer ${
                   exportModalTab === "markdown"
                     ? "bg-[#ff5352] text-white"
                     : "text-neutral-400 hover:text-white"
@@ -2093,13 +2066,13 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                 <div className="space-y-3 font-sans text-xs">
                   <div className="border-b border-neutral-800 pb-2">
                     <span className="text-[#ffb3ae] font-mono text-[10px] block font-bold">
-                      {MASTERCLASS_DATA.badge}
+                      {currentMasterclass.badge}
                     </span>
                     <h4 className="text-white text-base font-bold font-mono">
-                      {MASTERCLASS_DATA.title}
+                      {currentMasterclass.title}
                     </h4>
                     <p className="text-neutral-400 text-xs">
-                      {MASTERCLASS_DATA.subtitle}
+                      {currentMasterclass.subtitle}
                     </p>
                   </div>
                   <div className="text-[11px] space-y-1 font-mono">
@@ -2110,7 +2083,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                       <strong>Nó Ativo:</strong> [{activeBead.time}] {activeBead.title}
                     </p>
                     <p>
-                      <strong>Capítulos Indexados:</strong> {MASTERCLASS_DATA.chapters.length} seções
+                      <strong>Capítulos Indexados:</strong> {currentMasterclass.chapters.length} seções
                     </p>
                     <p>
                       <strong>Anotações Pessoais:</strong> {userNotes.length} gravadas
@@ -2132,14 +2105,14 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
               <div className="flex items-center space-x-2">
                 <button
                   onClick={handleCopyMarkdown}
-                  className="px-3 py-1.5 bg-[#201f1f] hover:bg-[#2c2b2b] text-white border border-[#262626] transition-colors flex items-center gap-1.5 font-bold"
+                  className="px-3 py-1.5 bg-[#201f1f] hover:bg-[#2c2b2b] text-white border border-[#262626] transition-colors flex items-center gap-1.5 font-bold cursor-pointer"
                 >
                   <Copy className="w-3.5 h-3.5" />
                   <span>{copiedNotes ? "Copiado!" : "Copiar Markdown"}</span>
                 </button>
                 <button
                   onClick={handleDownloadMarkdown}
-                  className="px-3 py-1.5 bg-[#ff5352] hover:bg-[#e04544] text-white font-bold transition-colors flex items-center gap-1.5"
+                  className="px-3 py-1.5 bg-[#ff5352] hover:bg-[#e04544] text-white font-bold transition-colors flex items-center gap-1.5 cursor-pointer shadow-md shadow-[#ff5352]/20"
                 >
                   <FileText className="w-3.5 h-3.5" />
                   <span>Baixar Arquivo .MD</span>
@@ -2163,7 +2136,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
               </div>
               <button
                 onClick={() => setShowShortcutsModal(false)}
-                className="text-neutral-400 hover:text-white p-1"
+                className="text-neutral-400 hover:text-white p-1 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -2182,7 +2155,7 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
                 { key: "P", action: "Picture-in-Picture (Miniplayer)" },
                 { key: "B", action: "Salvar Marcador no Dossiê" },
                 { key: "[ e ]", action: "Pular para Nó Anterior / Próximo" },
-                { key: "1 a 5", action: "Alternar Abas do Knowledge Rail" },
+                { key: "1 a 6", action: "Alternar Abas (Nós, Planta, Capítulos...)" },
                 { key: "Esc", action: "Sair do Modo Cinema / Fechar Modais" },
                 { key: "?", action: "Abrir / Fechar Guia de Atalhos" },
               ].map((shortcut, i) => (
@@ -2202,6 +2175,30 @@ ${MASTERCLASS_DATA.discourse.map((d) => `**${d.author} (${d.role}) — [${d.time
               Pressione qualquer tecla indicada para operar sem tirar as mãos do teclado.
             </div>
           </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 06. MODAL: QUOTE CARD GENERATOR                                          */}
+      {/* ========================================================================= */}
+      <FrameQuoteCardModal
+        isOpen={quoteCardModal.isOpen}
+        onClose={() => setQuoteCardModal({ ...quoteCardModal, isOpen: false })}
+        masterclass={currentMasterclass}
+        quoteData={{
+          speaker: quoteCardModal.speaker,
+          text: quoteCardModal.text,
+          time: quoteCardModal.time,
+        }}
+      />
+
+      {/* ========================================================================= */}
+      {/* HUD TOAST NOTIFICATION                                                    */}
+      {/* ========================================================================= */}
+      {keyboardToast && (
+        <div className="fixed bottom-6 right-6 z-50 bg-[#161619] border border-[#ff5352] text-white px-4 py-2 font-mono text-xs shadow-2xl flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2 duration-150">
+          <span className="w-2 h-2 rounded-full bg-[#ff5352] animate-ping" />
+          <span>{keyboardToast}</span>
         </div>
       )}
     </div>

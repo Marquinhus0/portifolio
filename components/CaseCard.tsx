@@ -11,7 +11,6 @@ interface CaseCardProps {
 export default function CaseCard({ caseStudy }: CaseCardProps) {
   const isReal = !caseStudy.isConcept;
   const hasInteractiveApp = [
-    "alfa-erp-automotive-redesign",
     "supplyhub-procurement-b2b",
     "flow-crm-b2b",
     "frame-interactive-video",

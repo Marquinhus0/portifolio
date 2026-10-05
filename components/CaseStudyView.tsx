@@ -20,8 +20,6 @@ import PulseMobileShowcase from "./PulseMobileShowcase";
 import FramePlayerShowcase from "./FramePlayerShowcase";
 import FlowCrmShowcase from "./FlowCrmShowcase";
 import SupplyHubShowcase from "./SupplyHubShowcase";
-import AlfaErpShowcase from "./AlfaErpShowcase";
-import AlfaErpCaseStudy from "./AlfaErpCaseStudy";
 import FlowInternalCrmCaseStudy from "./FlowInternalCrmCaseStudy";
 import FrameInteractiveVideoCaseStudy from "./FrameInteractiveVideoCaseStudy";
 import SupplyHubCaseStudy from "./SupplyHubCaseStudy";
@@ -40,18 +38,7 @@ export default function CaseStudyView({
   const isPulseCase = caseStudy.slug === "pulse-social-network";
   const isFrameCase = caseStudy.slug === "frame-interactive-video";
   const isFlowCrmCase = caseStudy.slug === "flow-crm-b2b";
-  const isAlfaErpCase = caseStudy.slug === "alfa-erp-automotive-redesign";
   const isSupplyHubCase = caseStudy.slug === "supplyhub-procurement-b2b";
-
-  if (isAlfaErpCase) {
-    return (
-      <AlfaErpCaseStudy
-        caseStudy={caseStudy}
-        nextCase={nextCase}
-        prevCase={prevCase}
-      />
-    );
-  }
 
   if (isFlowCrmCase) {
     return (
@@ -189,8 +176,6 @@ export default function CaseStudyView({
               <FramePlayerShowcase />
             ) : isFlowCrmCase ? (
               <FlowCrmShowcase />
-            ) : isAlfaErpCase ? (
-              <AlfaErpShowcase />
             ) : isSupplyHubCase ? (
               <SupplyHubShowcase />
             ) : (
