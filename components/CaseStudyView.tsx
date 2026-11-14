@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft,
   ArrowRight,
@@ -23,6 +24,7 @@ import SupplyHubShowcase from "./SupplyHubShowcase";
 import FlowInternalCrmCaseStudy from "./FlowInternalCrmCaseStudy";
 import FrameInteractiveVideoCaseStudy from "./FrameInteractiveVideoCaseStudy";
 import SupplyHubCaseStudy from "./SupplyHubCaseStudy";
+import ErpEnterpriseCaseStudy from "./ErpEnterpriseCaseStudy";
 
 interface CaseStudyViewProps {
   caseStudy: CaseStudy;
@@ -39,6 +41,17 @@ export default function CaseStudyView({
   const isFrameCase = caseStudy.slug === "frame-interactive-video";
   const isFlowCrmCase = caseStudy.slug === "flow-crm-b2b";
   const isSupplyHubCase = caseStudy.slug === "supplyhub-procurement-b2b";
+  const isErpCase = caseStudy.slug === "erp-enterprise-redesign";
+
+  if (isErpCase) {
+    return (
+      <ErpEnterpriseCaseStudy
+        caseStudy={caseStudy}
+        nextCase={nextCase}
+        prevCase={prevCase}
+      />
+    );
+  }
 
   if (isFlowCrmCase) {
     return (
@@ -72,38 +85,65 @@ export default function CaseStudyView({
 
   return (
     <article className="min-h-screen bg-background">
-      {/* 01. Hero do Projeto */}
-      <section className="pt-16 pb-20 border-b border-surface-borderSubtle bg-[#080808]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          {/* Breadcrumb & Navigation */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-10 text-xs font-mono text-neutral-400 border-b border-surface-borderSubtle">
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 hover:text-white transition-colors"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Voltar para todos os cases</span>
-            </Link>
-            <div className="flex items-center gap-2.5">
-              {caseStudy.isConcept ? (
-                <span className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest bg-white text-black font-semibold rounded-sm">
-                  {caseStudy.conceptBadge || "CONCEPT"}
-                </span>
-              ) : (
-                <span className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold rounded-sm">
-                  REAL PRODUCT
-                </span>
-              )}
-              <span className="text-white font-medium">[{caseStudy.number}]</span>
-              <span>/</span>
-              <span className="uppercase tracking-widest text-neutral-400">
-                {caseStudy.category}
+      {/* Top Breadcrumb Strip */}
+      <div className="border-b border-surface-borderSubtle bg-[#080808]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 h-12 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-neutral-400">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-2 hover:text-white transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Voltar para todos os cases</span>
+          </Link>
+          <div className="flex items-center gap-2.5">
+            {caseStudy.isConcept ? (
+              <span className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest bg-white text-black font-semibold rounded-sm">
+                {caseStudy.conceptBadge || "CONCEPT"}
               </span>
-            </div>
+            ) : (
+              <span className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold rounded-sm">
+                REAL PRODUCT
+              </span>
+            )}
+            <span className="text-white font-medium">[{caseStudy.number}]</span>
+            <span className="hidden sm:inline">/</span>
+            <span className="hidden sm:inline uppercase tracking-widest text-neutral-400">
+              {caseStudy.category}
+            </span>
           </div>
+        </div>
+      </div>
 
+      {/* Sticky Section Anchor Bar */}
+      <nav
+        aria-label="Seções do estudo de caso"
+        className="sticky top-16 z-30 bg-[#080808]/95 backdrop-blur-md border-b border-surface-borderSubtle py-2.5 px-6 sm:px-8 overflow-x-auto scrollbar-none"
+      >
+        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-mono min-w-max">
+          {[
+            { href: "#case-overview", label: "Overview & Telas" },
+            { href: "#case-context", label: "Contexto & Problema" },
+            { href: "#case-research", label: "Pesquisa & Personas" },
+            { href: "#case-insights", label: "Insights & Oportunidade" },
+            { href: "#case-architecture", label: "Arquitetura & UI" },
+            { href: "#case-solution", label: "Solução & Métricas" },
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="px-3 py-1.5 rounded-sm text-neutral-400 hover:text-[#13E1BC] hover:bg-neutral-900 transition-colors"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      {/* 01. Hero do Projeto */}
+      <section id="case-overview" className="scroll-mt-32 pt-14 pb-20 border-b border-surface-borderSubtle bg-[#080808]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8">
           {/* Project Title & Overview */}
-          <div className="pt-12 space-y-6 max-w-4xl">
+          <div className="space-y-6 max-w-4xl">
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
@@ -191,7 +231,7 @@ export default function CaseStudyView({
       </section>
 
       {/* 02. Contexto & 03. Problema */}
-      <section className="py-20 border-b border-surface-borderSubtle">
+      <section id="case-context" className="scroll-mt-32 py-20 border-b border-surface-borderSubtle">
         <div className="max-w-7xl mx-auto px-6 sm:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-6 space-y-6">
@@ -273,7 +313,7 @@ export default function CaseStudyView({
       </section>
 
       {/* 05. Usuários (Personas Conceituais) & 06. Pesquisa */}
-      <section className="py-20 border-b border-surface-borderSubtle">
+      <section id="case-research" className="scroll-mt-32 py-20 border-b border-surface-borderSubtle">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
           <div className="space-y-3">
             <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
@@ -457,7 +497,7 @@ export default function CaseStudyView({
       )}
 
       {/* 07. Insights & 08. Oportunidade */}
-      <section className="py-20 border-b border-surface-borderSubtle">
+      <section id="case-insights" className="scroll-mt-32 py-20 border-b border-surface-borderSubtle">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
           <div className="space-y-3">
             <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
@@ -500,7 +540,7 @@ export default function CaseStudyView({
       </section>
 
       {/* 09. Fluxos & Arquitetura de Informação */}
-      <section className="py-20 border-b border-surface-borderSubtle bg-[#080808]">
+      <section id="case-architecture" className="scroll-mt-32 py-20 border-b border-surface-borderSubtle bg-[#080808]">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-2">
@@ -516,13 +556,96 @@ export default function CaseStudyView({
             </p>
           </div>
 
-          {/* Diagram schematic */}
-          <CasePlaceholderMedia
-            type="flow"
-            title={`${caseStudy.title} — Fluxo Sistêmico As-Is vs To-Be`}
-            category="System Flow & Architecture"
-            aspect="wide"
-          />
+          {/* Real Architecture & As-Is vs To-Be Comparison */}
+          {isPulseCase ? (
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs">
+                <div className="p-6 border border-neutral-800 bg-neutral-950 space-y-3">
+                  <div className="flex items-center justify-between border-b border-neutral-850 pb-2.5">
+                    <span className="text-neutral-400 uppercase tracking-widest">
+                      AS-IS // Modelo Algorítmico Convencional
+                    </span>
+                    <span className="px-2 py-0.5 bg-neutral-900 border border-neutral-800 text-neutral-400 rounded-sm text-[10px]">
+                      RUÍDO
+                    </span>
+                  </div>
+                  <p className="text-neutral-300 leading-relaxed">
+                    Feed infinito dirigido por engajamento polarizador → Métricas públicas de vaidade (likes/seguidores) → Desconexão temática entre assunto e autor → Fadiga informacional.
+                  </p>
+                </div>
+
+                <div className="p-6 border border-neutral-700 bg-neutral-900/50 space-y-3">
+                  <div className="flex items-center justify-between border-b border-neutral-800 pb-2.5">
+                    <span className="text-white uppercase tracking-widest font-semibold">
+                      TO-BE // Arquitetura PULSE Orientada a Sinal
+                    </span>
+                    <span className="px-2 py-0.5 bg-white text-black rounded-sm text-[10px] font-bold">
+                      SINAL
+                    </span>
+                  </div>
+                  <p className="text-neutral-200 leading-relaxed">
+                    Calibração explícita de tópicos → Grafo por Comunidades (c/) e Temas (#) → Leitura em edição curada sem contadores de vaidade → Aprofundamento e biblioteca pessoal.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  {
+                    step: "01",
+                    label: "Calibração",
+                    src: "/projects/pulse/pulse_onboarding_experience.png",
+                    alt: "PULSE Onboarding — Calibração de Sinal",
+                  },
+                  {
+                    step: "02",
+                    label: "Feed Curado",
+                    src: "/projects/pulse/pulse_home_feed.png",
+                    alt: "PULSE Feed Editorial Curado",
+                  },
+                  {
+                    step: "03",
+                    label: "Comunidades",
+                    src: "/projects/pulse/pulse_community_page.png",
+                    alt: "PULSE Página de Comunidade c/BrutalistForm",
+                  },
+                  {
+                    step: "04",
+                    label: "Publicação",
+                    src: "/projects/pulse/pulse_create_post.png",
+                    alt: "PULSE Criação Estruturada de Post",
+                  },
+                ].map((screen) => (
+                  <div
+                    key={screen.step}
+                    className="border border-surface-border bg-neutral-950 p-3 space-y-2.5 group"
+                  >
+                    <div className="flex items-center justify-between text-[10px] font-mono text-neutral-400">
+                      <span className="text-white font-semibold">FLUXO {screen.step}</span>
+                      <span className="uppercase">{screen.label}</span>
+                    </div>
+                    <div className="relative aspect-[9/16] w-full overflow-hidden rounded-sm border border-neutral-800 bg-black">
+                      <Image
+                        src={screen.src}
+                        alt={screen.alt}
+                        fill
+                        loading="eager"
+                        sizes="(max-width: 768px) 50vw, 280px"
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <CasePlaceholderMedia
+              type="flow"
+              title={`${caseStudy.title} — Fluxo Sistêmico As-Is vs To-Be`}
+              category="System Flow & Architecture"
+              aspect="wide"
+            />
+          )}
 
           {/* Flow steps */}
           {caseStudy.flows.diagramSteps && (
@@ -558,12 +681,47 @@ export default function CaseStudyView({
                 </p>
               </div>
 
-              <CasePlaceholderMedia
-                type="wireframe"
-                title={`${caseStudy.title} — Wireframes Estruturais`}
-                category="Low-Fidelity Architecture"
-                aspect="video"
-              />
+              {isPulseCase ? (
+                <div className="grid grid-cols-2 gap-4 p-4 border border-surface-border bg-neutral-950">
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block">
+                      Onboarding // Calibração
+                    </span>
+                    <div className="relative aspect-[9/16] w-full overflow-hidden rounded-sm border border-neutral-800 bg-black">
+                      <Image
+                        src="/projects/pulse/pulse_onboarding_experience.png"
+                        alt="Fluxo de Onboarding PULSE"
+                        fill
+                        loading="eager"
+                        sizes="(max-width: 1024px) 45vw, 260px"
+                        className="object-cover object-top"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block">
+                      Composer // Tópico &amp; Enquete
+                    </span>
+                    <div className="relative aspect-[9/16] w-full overflow-hidden rounded-sm border border-neutral-800 bg-black">
+                      <Image
+                        src="/projects/pulse/pulse_create_post.png"
+                        alt="Fluxo de Criação de Post PULSE"
+                        fill
+                        loading="eager"
+                        sizes="(max-width: 1024px) 45vw, 260px"
+                        className="object-cover object-top"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <CasePlaceholderMedia
+                  type="wireframe"
+                  title={`${caseStudy.title} — Wireframes Estruturais`}
+                  category="Low-Fidelity Architecture"
+                  aspect="video"
+                />
+              )}
 
               <ul className="space-y-2 font-mono text-xs text-neutral-300">
                 {caseStudy.wireframes.focusPoints.map((pt, i) => (
@@ -588,12 +746,47 @@ export default function CaseStudyView({
                 </p>
               </div>
 
-              <CasePlaceholderMedia
-                type="interface"
-                title={`${caseStudy.title} — Componentes & Tokens`}
-                category="Design System & High-Fi UI"
-                aspect="video"
-              />
+              {isPulseCase ? (
+                <div className="grid grid-cols-2 gap-4 p-4 border border-surface-border bg-neutral-950">
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block">
+                      Sistema Editorial // c/BrutalistForm
+                    </span>
+                    <div className="relative aspect-[9/16] w-full overflow-hidden rounded-sm border border-neutral-800 bg-black">
+                      <Image
+                        src="/projects/pulse/pulse_community_page.png"
+                        alt="UI de Comunidade PULSE"
+                        fill
+                        loading="eager"
+                        sizes="(max-width: 1024px) 45vw, 260px"
+                        className="object-cover object-top"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block">
+                      Edge Cases // Offline &amp; Empty States
+                    </span>
+                    <div className="relative aspect-[9/16] w-full overflow-hidden rounded-sm border border-neutral-800 bg-black">
+                      <Image
+                        src="/projects/pulse/pulse_empty_error_states.png"
+                        alt="Estados Vazios e Erro PULSE"
+                        fill
+                        loading="eager"
+                        sizes="(max-width: 1024px) 45vw, 260px"
+                        className="object-cover object-top"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <CasePlaceholderMedia
+                  type="interface"
+                  title={`${caseStudy.title} — Componentes & Tokens`}
+                  category="Design System & High-Fi UI"
+                  aspect="video"
+                />
+              )}
 
               <ul className="space-y-2 font-mono text-xs text-neutral-300">
                 {caseStudy.ui.systemHighlights.map((hl, i) => (
@@ -654,7 +847,7 @@ export default function CaseStudyView({
       )}
 
       {/* 12. Solução & 13. Validação Planejada */}
-      <section className="py-20 border-b border-surface-borderSubtle">
+      <section id="case-solution" className="scroll-mt-32 py-20 border-b border-surface-borderSubtle">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
           <div className="space-y-3">
             <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">

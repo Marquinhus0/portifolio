@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { ArrowUpRight, Copy, Check, Mail } from "lucide-react";
 
 export default function ContactBlock() {
@@ -65,13 +66,22 @@ export default function ContactBlock() {
             </div>
 
             {/* Direct Email Action Button */}
-            <a
-              href={`mailto:${email}`}
-              className="flex items-center justify-center gap-2 w-full py-3.5 px-4 bg-white text-black font-medium text-xs font-mono uppercase tracking-widest hover:bg-[#13E1BC] hover:text-black transition-colors"
-            >
-              <span>Entrar em Contato</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
+            <div className="space-y-2.5">
+              <a
+                href={`mailto:${email}?subject=${encodeURIComponent("[Portfólio] Contato — Marcus Ritta")}`}
+                className="flex items-center justify-center gap-2 w-full py-3.5 px-4 bg-white text-black font-medium text-xs font-mono uppercase tracking-widest hover:bg-[#13E1BC] hover:text-black transition-colors"
+              >
+                <span>Entrar em Contato</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+              <Link
+                href="/contact"
+                className="flex items-center justify-center gap-1.5 w-full py-2.5 px-4 border border-neutral-800 hover:border-[#13E1BC]/50 text-[11px] font-mono uppercase tracking-wider text-neutral-300 hover:text-white transition-colors"
+              >
+                <span>Montar briefing rápido</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
 
             {/* Social & Direct Links */}
             <div className="space-y-3 pt-4 border-t border-neutral-800">

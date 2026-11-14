@@ -74,7 +74,7 @@ export default function SupplyHubCaseStudy({
     setActiveNav(id);
     const element = document.getElementById(id);
     if (element) {
-      const yOffset = -70;
+      const yOffset = -124;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
@@ -96,8 +96,8 @@ export default function SupplyHubCaseStudy({
       {/* ========================================================================= */}
       {/* TOP HEADER BREADCRUMB                                                     */}
       {/* ========================================================================= */}
-      <div className="border-b border-neutral-800 bg-[#080808] sticky top-0 z-40 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 h-14 flex items-center justify-between text-xs font-mono">
+      <div className="border-b border-neutral-800 bg-[#080808]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 h-12 flex items-center justify-between text-xs font-mono">
           <Link
             href="/work"
             className="inline-flex items-center space-x-2 text-neutral-400 hover:text-white transition-colors"
@@ -116,7 +116,7 @@ export default function SupplyHubCaseStudy({
       {/* ========================================================================= */}
       {/* STICKY SUBNAV BAR                                                         */}
       {/* ========================================================================= */}
-      <nav className="sticky top-14 z-30 bg-[#080808]/95 backdrop-blur-md border-b border-neutral-800 py-2.5 px-4 overflow-x-auto">
+      <nav className="sticky top-16 z-30 bg-[#080808]/95 backdrop-blur-md border-b border-neutral-800 py-2.5 px-4 overflow-x-auto scrollbar-none">
         <div className="max-w-7xl mx-auto flex items-center space-x-1 sm:space-x-2 text-xs font-mono min-w-max">
           {navItems.map((item) => (
             <button
@@ -254,21 +254,14 @@ export default function SupplyHubCaseStudy({
               </div>
 
               {/* Cockpit Content Image Preview */}
-              <div className="relative aspect-[16/9] w-full bg-[#070b0e] overflow-hidden group/hero">
+              <div className="relative aspect-[16/10] w-full bg-[#f8faf9] overflow-hidden group/hero">
                 <Image
                   src="/cases/supplyhub-cover.jpg"
-                  alt="Painel de Compras B2B SUPPLYHUB"
+                  alt="Painel de Compras B2B SUPPLYHUB — Interface Real"
                   fill
-                  className="object-cover object-top transition-transform duration-700 ease-out group-hover/hero:scale-[1.02]"
+                  className="object-cover object-top transition-transform duration-700 ease-out group-hover/hero:scale-[1.01]"
                   priority
                 />
-                <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded border border-white/20 text-white text-[11px] font-mono flex items-center gap-2 shadow-xl">
-                  <span className="w-2 h-2 rounded-full bg-[#16845a] animate-pulse" />
-                  <span>SUPPLYHUB // Matriz de Equalização Multilateral &amp; TCO</span>
-                </div>
-                <div className="absolute bottom-4 right-4 bg-[#0a1510]/90 backdrop-blur-md px-3 py-1.5 rounded border border-[#16845a]/50 text-[#3cd68e] text-[11px] font-mono shadow-xl hidden sm:flex items-center gap-1.5">
-                  <span>Decisão por TCO • Cotações Multilaterais • Alçadas de Aprovação</span>
-                </div>
               </div>
             </div>
           </div>

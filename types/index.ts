@@ -102,7 +102,7 @@ export interface CaseStudy {
     metrics: {
       label: string;
       value: string;
-      type: "placeholder" | "metric_goal";
+      type: "placeholder" | "metric_goal" | "real";
     }[];
     metricsFramework?: {
       pillar: string;

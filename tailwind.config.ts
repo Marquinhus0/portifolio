@@ -42,8 +42,18 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "-apple-system", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        sans: ['"Inter"', "system-ui", "-apple-system", "sans-serif"],
+        mono: [
+          '"JetBrains Mono"',
+          '"Cascadia Code"',
+          '"Fira Code"',
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "monospace",
+        ],
       },
       letterSpacing: {
         tighter: "-0.04em",

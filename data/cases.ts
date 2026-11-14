@@ -1037,4 +1037,227 @@ export const casesData: CaseStudy[] = [
       },
     ],
   },
+
+  // 05 — ERP CORPORATIVO ENTERPRISE: Real Product Redesign (NDA-Safe)
+  {
+    id: "case-05",
+    slug: "erp-enterprise-redesign",
+    coverImage: "/cases/erp-enterprise-cover.jpg",
+    number: "05",
+    title: "ERP Corporativo B2B — Arquitetura & Antes/Depois (NDA-Safe)",
+    subtitle:
+      "Evolução de fluxos críticos de Compras, Vendas, Estoque e Faturamento unindo 15+ implantações em campo e Product Design padronizado.",
+    category: "ERP Corporativo / B2B SaaS",
+    year: "2020 — Presente",
+    company: "ALFA Software (Reconstrução Anonimizada)",
+    role: "Product Designer & Ex-Analista de Negócios ERP",
+    duration: "Atuação Contínua em Produção (NDA-Safe)",
+    tags: [
+      "REAL PRODUCT",
+      "NDA-Safe",
+      "ERP B2B",
+      "Design System",
+      "Go-Live & QA",
+      "Progressive Disclosure",
+    ],
+    featured: true,
+    isConcept: false,
+    conceptBadge: "NDA-SAFE",
+
+    overview:
+      "Atuação de ponta a ponta no ERP corporativo da ALFA Software desde 2020: primeiro conduzindo 15+ implantações em campo como Analista de Negócios e, desde 2023, liderando pesquisa contínua, prototipação no Figma, Design System e validação funcional com PMs, engenharia e QA.",
+    context:
+      "Entre 2020 e 2023, a condução de implantações completas do levantamento ao go-live expôs onde operadores de balcão, compradores e times fiscais travavam no dia a dia: filtros fragmentados em excesso, micro-ações sem rótulo claro e modais de fechamento sobrecarregados. A transição para Product Designer trouxe método estruturado para evoluir essas rotinas sem romper regras fiscais complexas.",
+    problem:
+      "Como simplificar fluxos densos de Compras, Balcão de Vendas e Fechamento de Pedido em um ERP corporativo B2B, preservando todas as regras tributárias e de negócio enquanto reduz a curva de aprendizado de novas equipes?",
+
+    users: [
+      {
+        target: "Operador de Balcão & Vendedor B2B",
+        needs:
+          "Localizar itens por código, referência ou aplicação sem preencher dezenas de filtros separados e fechar pedidos sem erros de pagamento ou frete.",
+        behaviors:
+          "Atende múltiplos clientes sob pressão de tempo e depende de atalhos previsíveis e confirmação clara de estoque disponível.",
+        painPoints:
+          "Telas legadas com excesso de parâmetros simultâneos e ícones crípticos sem legenda exigem memorização prolongada.",
+      },
+      {
+        target: "Comprador & Gestor de Estoque",
+        needs:
+          "Identificar risco de ruptura rapidamente e ajustar quantidades sugeridas antes de emitir cotações e ordens de compra.",
+        behaviors:
+          "Analisa giro, saldo entre filiais e custo histórico em lotes densos.",
+        painPoints:
+          "Painéis com dezenas de checkboxes e siglas técnicas tornam o treinamento de novos compradores lento e sujeito a retrabalho.",
+      },
+    ],
+
+    research: {
+      approach:
+        "Pesquisa contínua em ambiente real através de entrevistas em profundidade, observação presencial durante implantações assistidas (go-live), testes de usabilidade e método proprietário de coleta de feedbacks em campo.",
+      keyQuestions: [
+        "Quais telas geram mais dúvidas recorrentes durante treinamentos de go-live com clientes novos?",
+        "Quais campos do fechamento de pedido e sugestão de compra são usados em 90% das operações vs. casos fiscais excepcionais?",
+        "Como conectar feedbacks de clientes diretamente aos critérios de aceite de engenharia e QA?",
+      ],
+      activities: [
+        "Observação direta em 15+ implantações B2B completas",
+        "Criação de método proprietário de coleta e estruturação de feedbacks",
+        "Documentação técnica ilustrada com wireframes e base de conhecimento visual",
+      ],
+    },
+
+    hypotheses: [
+      {
+        hypothesis: "Progressive Disclosure em Rotinas Críticas",
+        rationale:
+          "Ocultar parâmetros de exceção sob toggles contextuais mantém a tela limpa para 90% dos pedidos rápidos sem perder profundidade fiscal.",
+      },
+      {
+        hypothesis: "Design System + Critérios de Aceite com QA",
+        rationale:
+          "Componentes padronizados no Figma combinados com validação funcional antes do deploy reduzem inconsistências entre módulos.",
+      },
+    ],
+
+    insights: [
+      {
+        title: "Insight 01 — O go-live revela o que testes de laboratório escondem",
+        description:
+          "Acompanhar implantações reais mostrou que a principal barreira não era falta de funcionalidade, mas excesso de informação competindo pela atenção no mesmo segundo.",
+      },
+      {
+        title: "Insight 02 — Feedback estruturado acelera Design e Engenharia",
+        description:
+          "Padronizar a coleta de feedbacks de clientes transformou relatos soltos de suporte em insumos acionáveis de produto e QA.",
+      },
+    ],
+
+    opportunity:
+      "Unificar arquitetura de informação, componentes reutilizáveis e fluxos guiados por etapas para reduzir atrito operacional e acelerar novas entregas de engenharia.",
+    goals: [
+      "Reduzir a curva de aprendizado de equipes operacionais ao utilizar fluxos críticos (Compras, Vendas, Financeiro e Estoque)",
+      "Padronizar componentes no Figma para acelerar a criação de novas telas do ERP",
+      "Integrar pesquisa com usuários e critérios de aceite com QA na rotina ágil de desenvolvimento",
+    ],
+    constraints: [
+      "Sigilo comercial (NDA): todas as demonstrações públicas usam dados fictícios anonimizados",
+      "Alta complexidade tributária, multi-filial e compatibilidade com rotinas legadas em produção",
+    ],
+
+    process: [
+      "01. Observação em Campo & 15+ Implantações B2B",
+      "02. Método Oficial de Coleta & Estruturação de Feedbacks",
+      "03. Wireframes, Fluxos & Protótipos Interativos no Figma",
+      "04. Padronização de Biblioteca de Componentes & Critérios de QA",
+      "05. Go-Live Assistido, Base Visual & Melhoria Contínua",
+    ],
+
+    flows: {
+      title: "Ponte Campo → Feedback → Design System → QA",
+      description:
+        "Ciclo contínuo aplicado no ERP da ALFA Software para converter dores operacionais reais em entregas consistentes.",
+      diagramSteps: [
+        "Campo: Levantamento em 15+ implantações e demonstrações B2B",
+        "Método: Coleta estruturada de feedbacks adotada como padrão oficial",
+        "Design: Wireframes, fluxos ponta a ponta e componentes no Figma",
+        "Entrega: Validação com PMs/Engenharia, testes de QA e treinamento",
+      ],
+    },
+
+    wireframes: {
+      title: "Antes & Depois Estrutural (Anonimizado)",
+      description:
+        "Comparação interativa entre padrões legados de alta fricção e fluxos modulares reconstruídos sem expor dados reais.",
+      focusPoints: [
+        "Busca unificada e filtros avançados recolhíveis no Balcão de Vendas",
+        "Fechamento de pedido em 3 etapas guiadas com resumo financeiro fixo",
+        "Sugestão de compra orientada a risco de ruptura de estoque",
+      ],
+    },
+
+    ui: {
+      title: "Padronização de Componentes & Documentação Visual",
+      description:
+        "Criação de biblioteca de componentes no Figma acompanhada de documentação ilustrada e manuais práticos de operação.",
+      systemHighlights: [
+        "Padronização de componentes para acelerar a criação de novas telas",
+        "Base de conhecimento visual com manuais práticos e guias operacionais",
+      ],
+    },
+
+    prototype: {
+      description:
+        "Comparador interativo Antes & Depois em React (100% anonimizado / NDA-safe) cobrindo Balcão de Vendas, Fechamento de Pedido e Sugestão de Compra.",
+      type: "Interactive NDA-Safe ERP Redesign Sandbox",
+      linkPlaceholder: "Disponível na seção Comparador Interativo deste case",
+    },
+
+    validation: {
+      method: "Testes de Usabilidade, QA Funcional & Implantações Assistidas",
+      description:
+        "Integração de testes com usuários na rotina ágil somada à validação funcional com perspectiva de QA e acompanhamento de go-live.",
+      findings: [
+        "Integração contínua de testes com usuários à rotina ágil de desenvolvimento",
+        "Redução na curva de aprendizado de equipes operacionais em fluxos críticos",
+      ],
+    },
+
+    solution: {
+      summary:
+        "Evolução prática de produto corporativo ancorada em vivência real de implantação, método oficial de feedbacks e padronização de Design System.",
+      keyFeatures: [
+        {
+          title: "15+ Implantações B2B em Produção",
+          description:
+            "Vivência direta do levantamento de regras de negócio ao go-live e treinamento de equipes nos módulos de Compras, Vendas, Financeiro e Estoque.",
+        },
+        {
+          title: "Método Oficial de Coleta de Feedbacks",
+          description:
+            "Desenvolvimento de método proprietário para estruturar feedbacks de campo, incorporado como padrão de melhoria contínua na empresa.",
+        },
+        {
+          title: "Biblioteca de Componentes & QA",
+          description:
+            "Padronização de interfaces no Figma com definição clara de requisitos funcionais e critérios de aceite junto a PMs e engenharia.",
+        },
+        {
+          title: "Base de Conhecimento Visual",
+          description:
+            "Estruturação de documentação ilustrada, manuais práticos e guias operacionais para autonomia do cliente no pós-implantação.",
+        },
+      ],
+    },
+
+    results: {
+      summary:
+        "Entregas e impactos reais documentados na trajetória na ALFA Software (2020 — Presente), sem extrapolações ou métricas fabricadas:",
+      metrics: [
+        {
+          label: "Experiência em Campo",
+          value: "15+ Implantações B2B",
+          type: "real",
+        },
+        {
+          label: "Processo Institucionalizado",
+          value: "Método Oficial de Feedbacks",
+          type: "real",
+        },
+        {
+          label: "Impacto em Produto & Treinamento",
+          value: "Menor Curva de Aprendizado",
+          type: "real",
+        },
+      ],
+    },
+
+    learnings: [
+      "Em sistemas ERP densos, reduzir atrito cognitivo exige respeitar profundamente regras fiscais e rotinas operacionais de quem usa a tela 8 horas por dia.",
+      "Unir a bagagem de Análise de Negócios ao Product Design elimina ruídos entre requisitos funcionais, engenharia, QA e experiência final do usuário.",
+      "Documentação ilustrada e padronização de componentes no Figma multiplicam a velocidade de entrega do time sem sacrificar consistência.",
+    ],
+
+    galleryPlaceholders: [],
+  },
 ];

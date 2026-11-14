@@ -70,12 +70,22 @@ textarea:focus-visible {
 
 /* Print styles for Resume */
 @media print {
-  body {
-    background-color: #ffffff !important;
-    color: #000000 !important;
+  @page {
+    margin: 12mm;
+    size: A4;
   }
 
+  html,
+  body {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .ambient-grid,
   nav,
+  header,
   footer,
   .no-print {
     display: none !important;
@@ -84,7 +94,28 @@ textarea:focus-visible {
   .print-page {
     padding: 0 !important;
     margin: 0 !important;
-    color: #000000 !important;
+    border: none !important;
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+  }
+
+  .print-page * {
+    border-color: #d4d4d8 !important;
+    box-shadow: none !important;
+  }
+
+  .print-page h1,
+  .print-page h2,
+  .print-page h3,
+  .print-page strong {
+    color: #09090b !important;
+  }
+
+  .print-page p,
+  .print-page li,
+  .print-page span {
+    color: #27272a !important;
   }
 }
 
@@ -98,4 +129,13 @@ textarea:focus-visible {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Hide scrollbars cleanly for horizontal subnavs */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }

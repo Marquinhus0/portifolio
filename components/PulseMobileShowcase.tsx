@@ -733,6 +733,10 @@ export default function PulseMobileShowcase() {
                           </div>
 
                           {/* Post 1 */}
+                          {(feedFilter === "All Signal" ||
+                            feedFilter === "Communities" ||
+                            feedFilter === "Discussions" ||
+                            feedFilter === "AI Systems") && (
                           <div className="p-3 bg-[#161618] border border-[#2C2C2E] rounded-xl space-y-2.5">
                             <div className="flex items-start justify-between">
                               <div className="flex items-center gap-2">
@@ -774,11 +778,11 @@ export default function PulseMobileShowcase() {
                                 <button
                                   onClick={() => setReposted(!reposted)}
                                   className={`flex items-center gap-1 ${
-                                    reposted ? "text-white font-bold" : ""
+                                    reposted ? "text-white font-bold" : "hover:text-white"
                                   }`}
                                 >
                                   <Repeat2 className="w-3.5 h-3.5" />
-                                  <span>{reposted ? "143" : "142"}</span>
+                                  <span>{reposted ? "Sinal amplificado" : "Re-emitir"}</span>
                                 </button>
                                 <button
                                   onClick={() =>
@@ -787,12 +791,13 @@ export default function PulseMobileShowcase() {
                                   className="flex items-center gap-1 hover:text-white"
                                 >
                                   <MessageSquare className="w-3.5 h-3.5" />
-                                  <span>38</span>
+                                  <span>38 debates</span>
                                 </button>
                               </div>
                               <button
                                 onClick={() => setBookmarked(!bookmarked)}
                                 className={bookmarked ? "text-white" : ""}
+                                aria-label="Salvar na biblioteca"
                               >
                                 <Bookmark
                                   className={`w-3.5 h-3.5 ${
@@ -802,8 +807,13 @@ export default function PulseMobileShowcase() {
                               </button>
                             </div>
                           </div>
+                          )}
 
                           {/* Post 2: Poll */}
+                          {(feedFilter === "All Signal" ||
+                            feedFilter === "Polls" ||
+                            feedFilter === "Communities" ||
+                            feedFilter === "Architecture") && (
                           <div className="p-3 bg-[#161618] border border-[#2C2C2E] rounded-xl space-y-2">
                             <div className="flex items-center justify-between text-[11px]">
                               <span className="font-semibold text-white">
@@ -859,6 +869,7 @@ export default function PulseMobileShowcase() {
                               })}
                             </div>
                           </div>
+                          )}
                         </div>
                       </div>
                     )}

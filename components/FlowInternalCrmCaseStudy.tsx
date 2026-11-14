@@ -75,7 +75,7 @@ export default function FlowInternalCrmCaseStudy({
     setActiveNav(id);
     const element = document.getElementById(id);
     if (element) {
-      const yOffset = -70;
+      const yOffset = -124;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
@@ -98,8 +98,8 @@ export default function FlowInternalCrmCaseStudy({
       {/* ========================================================================= */}
       {/* TOP HEADER BREADCRUMB                                                     */}
       {/* ========================================================================= */}
-      <div className="border-b border-neutral-800 bg-[#080808] sticky top-0 z-40 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 h-14 flex items-center justify-between text-xs font-mono">
+      <div className="border-b border-neutral-800 bg-[#080808]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 h-12 flex items-center justify-between text-xs font-mono">
           <Link
             href="/work"
             className="inline-flex items-center space-x-2 text-neutral-400 hover:text-white transition-colors"
@@ -118,7 +118,7 @@ export default function FlowInternalCrmCaseStudy({
       {/* ========================================================================= */}
       {/* STICKY SUBNAV BAR                                                         */}
       {/* ========================================================================= */}
-      <nav className="sticky top-14 z-30 bg-[#080808]/95 backdrop-blur-md border-b border-neutral-800 py-2.5 px-4 overflow-x-auto">
+      <nav className="sticky top-16 z-30 bg-[#080808]/95 backdrop-blur-md border-b border-neutral-800 py-2.5 px-4 overflow-x-auto scrollbar-none">
         <div className="max-w-7xl mx-auto flex items-center space-x-1 sm:space-x-2 text-xs font-mono min-w-max">
           {navItems.map((item) => (
             <button

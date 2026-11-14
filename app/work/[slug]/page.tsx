@@ -25,12 +25,28 @@ export async function generateMetadata({
     };
   }
 
+  const ogImage = caseStudy.coverImage || "/og-cover.jpg";
+
   return {
     title: `${caseStudy.title} — Marcus Ritta`,
     description: caseStudy.subtitle,
     openGraph: {
       title: `${caseStudy.title} — Marcus Ritta`,
       description: caseStudy.subtitle,
+      images: [
+        {
+          url: ogImage,
+          width: 1600,
+          height: 1000,
+          alt: caseStudy.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${caseStudy.title} — Marcus Ritta`,
+      description: caseStudy.subtitle,
+      images: [ogImage],
     },
   };
 }

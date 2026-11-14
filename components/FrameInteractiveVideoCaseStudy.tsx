@@ -71,7 +71,9 @@ export default function FrameInteractiveVideoCaseStudy({
     setActiveNav(id);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      const yOffset = -120;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
 
@@ -80,7 +82,7 @@ export default function FrameInteractiveVideoCaseStudy({
       {/* ========================================================================= */}
       {/* 01. PORTFOLIO TOP INTEGRATION STRIP                                      */}
       {/* ========================================================================= */}
-      <header className="border-b border-[#262626] bg-[#080808] sticky top-0 z-50 backdrop-blur-md">
+      <header className="border-b border-[#262626] bg-[#080808]">
         <div className="max-w-7xl mx-auto px-6 py-3 flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
           <div className="flex items-center space-x-3">
             <Link
@@ -108,7 +110,7 @@ export default function FrameInteractiveVideoCaseStudy({
       {/* ========================================================================= */}
       {/* STICKY CASE NAVIGATION BAR                                                */}
       {/* ========================================================================= */}
-      <nav className="border-b border-[#262626]/80 bg-[#080808]/95 sticky top-[45px] z-40 backdrop-blur-sm overflow-x-auto scrollbar-none">
+      <nav className="border-b border-[#262626]/80 bg-[#080808]/95 sticky top-16 z-30 backdrop-blur-sm overflow-x-auto scrollbar-none">
         <div className="max-w-7xl mx-auto px-6 py-2 flex items-center gap-1 text-[11px] font-mono whitespace-nowrap">
           {[
             { id: "overview", label: "01. Overview" },
@@ -314,21 +316,14 @@ export default function FrameInteractiveVideoCaseStudy({
               </div>
 
               {/* Player Visual Canvas Image */}
-              <div className="relative aspect-[16/9] w-full bg-black overflow-hidden group/hero">
+              <div className="relative aspect-[16/10] w-full bg-black overflow-hidden group/hero">
                 <Image
                   src="/cases/frame-cover.jpg"
-                  alt="Player Cinemático FRAME"
+                  alt="Player Cinemático FRAME — Interface Real"
                   fill
-                  className="object-cover object-top transition-transform duration-700 ease-out group-hover/hero:scale-[1.02]"
+                  className="object-cover object-top transition-transform duration-700 ease-out group-hover/hero:scale-[1.01]"
                   priority
                 />
-                <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded border border-white/20 text-white text-[11px] font-mono flex items-center gap-2 shadow-xl">
-                  <span className="w-2 h-2 rounded-full bg-[#ff5352] animate-pulse" />
-                  <span>FRAME // Canvas 2.39:1 &amp; Knowledge Rail</span>
-                </div>
-                <div className="absolute bottom-4 right-4 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded border border-[#ff5352]/40 text-[#ff807e] text-[11px] font-mono shadow-xl hidden sm:flex items-center gap-1.5">
-                  <span>Player Split-Screen • Dossiê Monográfico em Markdown</span>
-                </div>
               </div>
             </div>
           </div>

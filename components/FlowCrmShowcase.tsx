@@ -162,6 +162,17 @@ const STAGES: StageConfig[] = [
   },
 ];
 
+const STAGE_PROBABILITY: Record<CrmStageId, number> = {
+  novo_lead: 20,
+  qualificacao: 35,
+  contato: 50,
+  oportunidade: 65,
+  proposta: 75,
+  negociacao: 85,
+  ganho: 100,
+  perdido: 0,
+};
+
 const ALL_ENTERPRISE_MODULES: EnterpriseModule[] = [
   "ERP Gestão (Core)",
   "PDV & Faturamento Rápido",
@@ -276,29 +287,115 @@ export default function FlowCrmShowcase() {
     }).format(val);
   };
 
-  // Calculated Pipeline Metrics
+  // Dashboard scoped slices (reage aos filtros globais de vendedor e origem)
+  const dashboardDeals = useMemo(() => {
+    return deals.filter((d) => {
+      const matchRep = filterRep === "Todos os vendedores" || d.owner === filterRep;
+      const matchSource = filterSource === "Todas as origens" || d.source === filterSource;
+      return matchRep && matchSource;
+    });
+  }, [deals, filterRep, filterSource]);
+
+  const dashboardLeads = useMemo(() => {
+    return leads.filter((l) => {
+      const matchRep = filterRep === "Todos os vendedores" || l.owner === filterRep;
+      const matchSource = filterSource === "Todas as origens" || l.source === filterSource;
+      return matchRep && matchSource;
+    });
+  }, [leads, filterRep, filterSource]);
+
+  const dashboardTasks = useMemo(() => {
+    return tasks.filter((t) => filterRep === "Todos os vendedores" || t.owner === filterRep);
+  }, [tasks, filterRep]);
+
+  // Calculated Pipeline Metrics (100% derivado do estado real sem offsets artificiais)
   const pipelineMetrics = useMemo(() => {
-    const openDeals = deals.filter((d) => d.stageId !== "ganho" && d.stageId !== "perdido");
-    const wonDeals = deals.filter((d) => d.stageId === "ganho");
+    const openDeals = dashboardDeals.filter((d) => d.stageId !== "ganho" && d.stageId !== "perdido");
+    const wonDeals = dashboardDeals.filter((d) => d.stageId === "ganho");
     const totalPipelineValue = openDeals.reduce((sum, d) => sum + d.value, 0);
+    const weightedPipelineValue = openDeals.reduce((sum, d) => sum + d.weightedValue, 0);
     const wonValue = wonDeals.reduce((sum, d) => sum + d.value, 0);
-    const avgTicket = openDeals.length > 0 ? totalPipelineValue / openDeals.length : 11900;
-    const leadsReceived = leads.length + 238; // 248 benchmark
-    const qualifiedLeads = leads.filter((l) => l.status === "Oportunidade" || l.status === "Qualificação").length + 78;
-    const conversionRate = 18.4;
+    const avgTicket = openDeals.length > 0 ? Math.round(totalPipelineValue / openDeals.length) : 0;
+    const leadsReceived = dashboardLeads.length;
+    const qualifiedLeads = dashboardLeads.filter(
+      (l) => l.status === "Qualificação" || l.status === "Oportunidade" || l.status === "Cliente"
+    ).length;
+    const qualificationRate = leadsReceived > 0 ? ((qualifiedLeads / leadsReceived) * 100).toFixed(1).replace(".", ",") : "0,0";
+    const totalDealsScope = dashboardDeals.length;
+    const conversionRate =
+      totalDealsScope > 0 ? ((wonDeals.length / totalDealsScope) * 100).toFixed(1).replace(".", ",") : "0,0";
+    const pendingTasksToday = dashboardTasks.filter((t) => !t.completed).length;
+    const highPriorityTasksToday = dashboardTasks.filter((t) => !t.completed && t.priority === "Alta").length;
+    const avgCycleDays =
+      wonDeals.length > 0
+        ? Math.round(wonDeals.reduce((sum, d) => sum + d.daysInStage, 0) / wonDeals.length)
+        : openDeals.length > 0
+        ? Math.round(openDeals.reduce((sum, d) => sum + d.daysInStage, 0) / openDeals.length)
+        : 0;
 
     return {
       totalPipelineValue,
-      openDealsCount: openDeals.length + 30, // 36 benchmark
-      wonValue: wonValue + 72000,
-      wonCount: wonDeals.length + 4,
+      weightedPipelineValue,
+      openDealsCount: openDeals.length,
+      wonValue,
+      wonCount: wonDeals.length,
       avgTicket,
       leadsReceived,
       qualifiedLeads,
+      qualificationRate,
       conversionRate,
-      pendingTasksToday: tasks.filter((t) => !t.completed).length,
+      pendingTasksToday,
+      highPriorityTasksToday,
+      avgCycleDays,
     };
-  }, [deals, leads, tasks]);
+  }, [dashboardDeals, dashboardLeads, dashboardTasks]);
+
+  const sourceBreakdown = useMemo(() => {
+    const palette = ["#1683E8", "#16A34A", "#7C3AED", "#F59E0B", "#0EA5E9", "#EC4899", "#64748B"];
+    const counts = new Map<string, number>();
+    dashboardLeads.forEach((l) => {
+      counts.set(l.source, (counts.get(l.source) || 0) + 1);
+    });
+    const total = dashboardLeads.length || 1;
+    return Array.from(counts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .map(([source, count], idx) => ({
+        source,
+        count,
+        percent: Math.round((count / total) * 100),
+        color: palette[idx % palette.length],
+      }));
+  }, [dashboardLeads]);
+
+  const repRanking = useMemo(() => {
+    const owners = Array.from(new Set(deals.map((d) => d.owner)));
+    return owners
+      .map((owner) => {
+        const ownerDeals = deals.filter((d) => d.owner === owner);
+        const ownerWon = ownerDeals.filter((d) => d.stageId === "ganho").length;
+        const ownerPipeline = ownerDeals
+          .filter((d) => d.stageId !== "perdido")
+          .reduce((acc, d) => acc + d.value, 0);
+        const conv = ownerDeals.length > 0 ? Math.round((ownerWon / ownerDeals.length) * 100) : 0;
+        return { owner, ownerPipeline, conv, count: ownerDeals.length };
+      })
+      .sort((a, b) => b.ownerPipeline - a.ownerPipeline);
+  }, [deals]);
+
+  const lossReport = useMemo(() => {
+    const lost = deals.filter((d) => d.stageId === "perdido");
+    if (lost.length === 0) return [];
+    const grouped = new Map<string, number>();
+    lost.forEach((d) => {
+      const label = LOSS_REASONS.find((r) => r.id === d.lossReason)?.label || d.lossReason || "Outro motivo";
+      grouped.set(label, (grouped.get(label) || 0) + 1);
+    });
+    return Array.from(grouped.entries()).map(([label, count]) => ({
+      label,
+      count,
+      percent: Math.round((count / lost.length) * 100),
+    }));
+  }, [deals]);
 
   // Drag and Drop for Kanban
   const [draggedDealId, setDraggedDealId] = useState<string | null>(null);
@@ -326,12 +423,16 @@ export default function FlowCrmShowcase() {
       return;
     }
 
+    const nextProbability = STAGE_PROBABILITY[targetStageId] ?? 50;
+
     setDeals((prev) =>
       prev.map((d) => {
         if (d.id === dealId) {
           const updated: CrmDeal = {
             ...d,
             stageId: targetStageId,
+            probability: nextProbability,
+            weightedValue: Math.round(d.value * (nextProbability / 100)),
             daysInStage: 0,
             lastActivity: "Agora há pouco",
           };
@@ -434,8 +535,8 @@ export default function FlowCrmShowcase() {
 
   const handleSaveNewLead = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newLeadForm.name || !newLeadForm.company) {
-      alert("Por favor preencha o Nome e a Empresa.");
+    if (!newLeadForm.name.trim() || !newLeadForm.company.trim()) {
+      showToast("Preencha o Nome e a Empresa antes de salvar.");
       return;
     }
 
@@ -1053,11 +1154,25 @@ export default function FlowCrmShowcase() {
                   >
                     <option value="Todas as origens">Todas as origens</option>
                     <option value="Google Ads">Google Ads</option>
-                    <option value="WhatsApp Balcão">WhatsApp Balcão</option>
-                    <option value="Indicação de Loja">Indicação de Loja</option>
-                    <option value="Evento / Automec">Evento / Automec</option>
-                    <option value="Outbound / Balconista">Outbound / Balconista</option>
+                    <option value="WhatsApp Comercial">WhatsApp Comercial</option>
+                    <option value="Indicação Comercial">Indicação Comercial</option>
+                    <option value="Feiras & Eventos B2B">Feiras & Eventos B2B</option>
+                    <option value="Outbound / Prospecção">Outbound / Prospecção</option>
+                    <option value="Site Orgânico">Site Orgânico</option>
+                    <option value="Representante Comercial">Representante Comercial</option>
                   </select>
+
+                  {(filterRep !== "Todos os vendedores" || filterSource !== "Todas as origens") && (
+                    <button
+                      onClick={() => {
+                        setFilterRep("Todos os vendedores");
+                        setFilterSource("Todas as origens");
+                      }}
+                      className="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-[#172033] font-semibold rounded-xl transition-colors"
+                    >
+                      Limpar filtros
+                    </button>
+                  )}
 
                   <button
                     onClick={() => setIsNewLeadModalOpen(true)}
@@ -1085,10 +1200,9 @@ export default function FlowCrmShowcase() {
                     {formatBRL(pipelineMetrics.totalPipelineValue)}
                   </div>
                   <div className="flex items-center gap-2 mt-2 text-[11px]">
-                    <span className="text-[#16A34A] font-bold flex items-center">
-                      <ArrowUpRight className="w-3 h-3" /> +18,2%
+                    <span className="text-[#1683E8] font-bold">
+                      Ponderado: {formatBRL(pipelineMetrics.weightedPipelineValue)}
                     </span>
-                    <span className="text-[#667085]">vs. mês anterior</span>
                   </div>
                   <div className="absolute -bottom-6 -right-6 w-20 h-20 rounded-full bg-[#1683E8]/10 pointer-events-none"></div>
                 </div>
@@ -1097,7 +1211,7 @@ export default function FlowCrmShowcase() {
                 <div className="bg-white border border-[#E4E7EC] rounded-2xl p-5 shadow-xs">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold text-[#667085] uppercase tracking-wider">
-                      Leads Recebidos
+                      Leads no Escopo
                     </span>
                     <span className="p-1.5 rounded-lg bg-slate-100 text-[#667085]">
                       <Users className="w-4 h-4" />
@@ -1108,9 +1222,9 @@ export default function FlowCrmShowcase() {
                   </div>
                   <div className="flex items-center gap-2 mt-2 text-[11px]">
                     <span className="text-[#16A34A] font-bold flex items-center">
-                      <ArrowUpRight className="w-3 h-3" /> +12,4%
+                      <ArrowUpRight className="w-3 h-3" /> {leads.filter((l) => l.priority === "Alta").length} prioridade alta
                     </span>
-                    <span className="text-[#667085]">27 esta semana</span>
+                    <span className="text-[#667085]">base sincronizada</span>
                   </div>
                 </div>
 
@@ -1128,7 +1242,7 @@ export default function FlowCrmShowcase() {
                     {pipelineMetrics.qualifiedLeads}
                   </div>
                   <div className="flex items-center gap-2 mt-2 text-[11px]">
-                    <span className="text-[#1683E8] font-bold">33,8%</span>
+                    <span className="text-[#1683E8] font-bold">{pipelineMetrics.qualificationRate}%</span>
                     <span className="text-[#667085]">taxa de qualificação</span>
                   </div>
                 </div>
@@ -1147,8 +1261,8 @@ export default function FlowCrmShowcase() {
                     {pipelineMetrics.openDealsCount}
                   </div>
                   <div className="flex items-center gap-2 mt-2 text-[11px]">
-                    <span className="text-amber-600 font-bold">R$ 11.900</span>
-                    <span className="text-[#667085]">ticket médio</span>
+                    <span className="text-amber-600 font-bold">{formatBRL(pipelineMetrics.avgTicket)}</span>
+                    <span className="text-[#667085]">ticket médio aberto</span>
                   </div>
                 </div>
 
@@ -1163,34 +1277,34 @@ export default function FlowCrmShowcase() {
                     </span>
                   </div>
                   <div className="text-2xl font-black text-[#172033] mt-2 tracking-tight">
-                    18,4%
+                    {pipelineMetrics.conversionRate}%
                   </div>
                   <div className="flex items-center gap-2 mt-2 text-[11px]">
                     <span className="text-[#16A34A] font-bold flex items-center">
-                      <ArrowUpRight className="w-3 h-3" /> +2,8 p.p.
+                      <ArrowUpRight className="w-3 h-3" /> {pipelineMetrics.wonCount}/{dashboardDeals.length}
                     </span>
-                    <span className="text-[#667085]">neste período</span>
+                    <span className="text-[#667085]">deals ganhos</span>
                   </div>
                 </div>
 
-                {/* KPI 6: Tempo Médio de Fechamento */}
+                {/* KPI 6: Tempo Médio no Estágio */}
                 <div className="bg-white border border-[#E4E7EC] rounded-2xl p-5 shadow-xs">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold text-[#667085] uppercase tracking-wider">
-                      Ciclo de Fechamento
+                      Ciclo Médio
                     </span>
                     <span className="p-1.5 rounded-lg bg-sky-50 text-sky-600">
                       <Clock className="w-4 h-4" />
                     </span>
                   </div>
                   <div className="text-2xl font-black text-[#172033] mt-2 tracking-tight">
-                    16 dias
+                    {pipelineMetrics.avgCycleDays} dias
                   </div>
                   <div className="flex items-center gap-2 mt-2 text-[11px]">
-                    <span className="text-[#16A34A] font-bold flex items-center">
-                      <ArrowDownRight className="w-3 h-3" /> -3 dias
+                    <span className="text-[#1683E8] font-bold flex items-center">
+                      Tempo médio
                     </span>
-                    <span className="text-[#667085]">agilidade na decisão</span>
+                    <span className="text-[#667085]">de fechamento</span>
                   </div>
                 </div>
 
@@ -1205,11 +1319,11 @@ export default function FlowCrmShowcase() {
                     </span>
                   </div>
                   <div className="text-2xl font-black text-[#16A34A] mt-2 tracking-tight">
-                    5 fechados
+                    {pipelineMetrics.wonCount} {pipelineMetrics.wonCount === 1 ? "fechado" : "fechados"}
                   </div>
                   <div className="flex items-center gap-2 mt-2 text-[11px]">
-                    <span className="text-[#16A34A] font-bold">R$ 72.000</span>
-                    <span className="text-[#667085]">faturados este mês</span>
+                    <span className="text-[#16A34A] font-bold">{formatBRL(pipelineMetrics.wonValue)}</span>
+                    <span className="text-[#667085]">receita convertida</span>
                   </div>
                 </div>
 
@@ -1224,11 +1338,11 @@ export default function FlowCrmShowcase() {
                     </span>
                   </div>
                   <div className="text-2xl font-black text-[#172033] mt-2 tracking-tight">
-                    12 ações
+                    {pipelineMetrics.pendingTasksToday} {pipelineMetrics.pendingTasksToday === 1 ? "ação" : "ações"}
                   </div>
                   <div className="flex items-center gap-2 mt-2 text-[11px]">
-                    <span className="text-[#F59E0B] font-bold">4 prioritários</span>
-                    <span className="text-[#667085]">precisam de atenção</span>
+                    <span className="text-[#F59E0B] font-bold">{pipelineMetrics.highPriorityTasksToday} prioritários</span>
+                    <span className="text-[#667085]">pendentes</span>
                   </div>
                 </div>
               </div>
@@ -1259,11 +1373,15 @@ export default function FlowCrmShowcase() {
 
                     {/* Funnel Stage Steps */}
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 pt-2">
-                      {STAGES.filter((s) => s.id !== "ganho").map((stg, i) => {
-                        const countInStage = deals.filter((d) => d.stageId === stg.id).length;
-                        const valueInStage = deals
+                      {STAGES.filter((s) => s.id !== "ganho").map((stg) => {
+                        const countInStage = dashboardDeals.filter((d) => d.stageId === stg.id).length;
+                        const valueInStage = dashboardDeals
                           .filter((d) => d.stageId === stg.id)
                           .reduce((sum, d) => sum + d.value, 0);
+                        const sharePct =
+                          dashboardDeals.length > 0
+                            ? Math.max(countInStage > 0 ? 18 : 6, Math.round((countInStage / dashboardDeals.length) * 100))
+                            : 6;
 
                         return (
                           <div
@@ -1273,7 +1391,9 @@ export default function FlowCrmShowcase() {
                           >
                             <div className="text-[10px] font-bold uppercase tracking-wider text-[#667085] flex items-center justify-between">
                               <span>{stg.shortName}</span>
-                              <span className="text-[9px] text-[#1683E8] font-mono">{stg.convRate}</span>
+                              <span className="text-[9px] text-[#1683E8] font-mono">
+                                {STAGE_PROBABILITY[stg.id]}% prob.
+                              </span>
                             </div>
                             <div className="text-lg font-black text-[#172033] mt-1.5 group-hover:text-[#1683E8] transition-colors">
                               {countInStage}
@@ -1284,7 +1404,7 @@ export default function FlowCrmShowcase() {
                             <div className="w-full bg-[#E4E7EC] h-1.5 rounded-full mt-2 overflow-hidden">
                               <div
                                 className="bg-[#1683E8] h-full rounded-full transition-all"
-                                style={{ width: `${Math.max(15, (6 - i) * 16)}%` }}
+                                style={{ width: `${sharePct}%` }}
                               ></div>
                             </div>
                           </div>
@@ -1316,7 +1436,10 @@ export default function FlowCrmShowcase() {
 
                     <div className="p-5 overflow-x-auto">
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        {deals.slice(0, 3).map((deal) => (
+                        {dashboardDeals
+                          .filter((d) => d.stageId !== "perdido" && d.stageId !== "ganho")
+                          .slice(0, 3)
+                          .map((deal) => (
                           <div
                             key={deal.id}
                             onClick={() => {
@@ -1417,12 +1540,12 @@ export default function FlowCrmShowcase() {
                         </p>
                       </div>
                       <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
-                        {tasks.filter((t) => !t.completed).length} pendentes
+                        {dashboardTasks.filter((t) => !t.completed).length} pendentes
                       </span>
                     </div>
 
                     <div className="p-4 space-y-3">
-                      {tasks.slice(0, 5).map((task) => (
+                      {dashboardTasks.slice(0, 5).map((task) => (
                         <div
                           key={task.id}
                           className={`p-3.5 rounded-xl border transition-all ${
@@ -1508,50 +1631,33 @@ export default function FlowCrmShowcase() {
                     </div>
 
                     <div className="space-y-4 text-xs">
-                      <div>
-                        <div className="flex justify-between font-medium mb-1.5">
-                          <span className="text-[#172033] font-semibold">Google Ads (Campanha ERP)</span>
-                          <strong className="text-[#1683E8] font-bold">42% (104)</strong>
-                        </div>
-                        <div className="h-2 w-full bg-[#F2F4F7] rounded-full overflow-hidden">
-                          <div className="h-full bg-[#1683E8] rounded-full" style={{ width: "42%" }}></div>
-                        </div>
-                      </div>
-
-                      <div>
-                        <div className="flex justify-between font-medium mb-1.5">
-                          <span className="text-[#172033] font-semibold">WhatsApp Comercial & Catálogo</span>
-                          <strong className="text-[#16A34A] font-bold">28% (69)</strong>
-                        </div>
-                        <div className="h-2 w-full bg-[#F2F4F7] rounded-full overflow-hidden">
-                          <div className="h-full bg-[#16A34A] rounded-full" style={{ width: "28%" }}></div>
-                        </div>
-                      </div>
-
-                      <div>
-                        <div className="flex justify-between font-medium mb-1.5">
-                          <span className="text-[#172033] font-semibold">Indicação de Clientes Parceiros</span>
-                          <strong className="text-[#7C3AED] font-bold">18% (45)</strong>
-                        </div>
-                        <div className="h-2 w-full bg-[#F2F4F7] rounded-full overflow-hidden">
-                          <div className="h-full bg-[#7C3AED] rounded-full" style={{ width: "18%" }}></div>
-                        </div>
-                      </div>
-
-                      <div>
-                        <div className="flex justify-between font-medium mb-1.5">
-                          <span className="text-[#172033] font-semibold">Eventos / Feiras Corporativas</span>
-                          <strong className="text-[#F59E0B] font-bold">12% (30)</strong>
-                        </div>
-                        <div className="h-2 w-full bg-[#F2F4F7] rounded-full overflow-hidden">
-                          <div className="h-full bg-[#F59E0B] rounded-full" style={{ width: "12%" }}></div>
-                        </div>
-                      </div>
+                      {sourceBreakdown.length === 0 ? (
+                        <p className="text-xs text-[#667085]">Nenhum lead encontrado para os filtros aplicados.</p>
+                      ) : (
+                        sourceBreakdown.map((item) => (
+                          <div key={item.source}>
+                            <div className="flex justify-between font-medium mb-1.5">
+                              <span className="text-[#172033] font-semibold">{item.source}</span>
+                              <strong className="font-bold" style={{ color: item.color }}>
+                                {item.percent}% ({item.count})
+                              </strong>
+                            </div>
+                            <div className="h-2 w-full bg-[#F2F4F7] rounded-full overflow-hidden">
+                              <div
+                                className="h-full rounded-full transition-all"
+                                style={{ width: `${item.percent}%`, backgroundColor: item.color }}
+                              ></div>
+                            </div>
+                          </div>
+                        ))
+                      )}
                     </div>
 
                     <div className="mt-5 pt-4 border-t border-[#F2F4F7] text-[11px] text-[#667085] flex items-center justify-between">
-                      <span>Custo por Lead Qualificado:</span>
-                      <strong className="text-[#172033] font-bold">R$ 142,50</strong>
+                      <span>Leads no escopo filtrado:</span>
+                      <strong className="text-[#172033] font-bold">
+                        {pipelineMetrics.leadsReceived} leads · {pipelineMetrics.qualificationRate}% qualificados
+                      </strong>
                     </div>
                   </div>
                 </div>
@@ -2310,22 +2416,35 @@ export default function FlowCrmShowcase() {
               </div>
 
               <div className="bg-white border border-[#E4E7EC] rounded-2xl p-6 shadow-xs space-y-4">
-                <div className="p-4 bg-emerald-50/70 border border-emerald-200 rounded-xl flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold">
-                      ✓
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-emerald-950">Distribuidora Real B2B S.A.</h4>
-                      <p className="text-[11px] text-emerald-800">
-                        Fechamento: 24/03/2024 · Contrato R$ 72.000 (Setup) + R$ 4.800/mês
-                      </p>
-                    </div>
-                  </div>
-                  <span className="px-3 py-1 bg-emerald-600 text-white rounded-lg text-xs font-bold">
-                    Onboarding Ativo
-                  </span>
-                </div>
+                {deals.filter((d) => d.stageId === "ganho").length === 0 ? (
+                  <p className="text-xs text-[#667085]">
+                    Arraste uma oportunidade para o estágio &quot;Fechamento (Ganho)&quot; no Kanban para convertê-la automaticamente em cliente ativo.
+                  </p>
+                ) : (
+                  deals
+                    .filter((d) => d.stageId === "ganho")
+                    .map((won) => (
+                      <div
+                        key={won.id}
+                        className="p-4 bg-emerald-50/70 border border-emerald-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold shrink-0">
+                            ✓
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-bold text-emerald-950">{won.company}</h4>
+                            <p className="text-[11px] text-emerald-800">
+                              Contato: {won.contactName} · Valor fechado: {formatBRL(won.value)} · Responsável: {won.owner}
+                            </p>
+                          </div>
+                        </div>
+                        <span className="px-3 py-1 bg-emerald-600 text-white rounded-lg text-xs font-bold self-start sm:self-center">
+                          Onboarding Ativo
+                        </span>
+                      </div>
+                    ))
+                )}
               </div>
             </div>
           )}
@@ -2344,68 +2463,55 @@ export default function FlowCrmShowcase() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white border border-[#E4E7EC] rounded-2xl p-6 shadow-xs space-y-4">
-                  <h3 className="text-sm font-bold text-[#172033]">Motivos de Perda de Negócios</h3>
-                  <div className="space-y-3 text-xs">
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span>Preço / Custo de Implantação</span>
-                        <strong className="text-rose-600">35%</strong>
-                      </div>
-                      <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                        <div className="h-full bg-rose-500 rounded-full" style={{ width: "35%" }}></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span>Optou por Concorrente (Linx/Totvs)</span>
-                        <strong className="text-amber-600">25%</strong>
-                      </div>
-                      <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                        <div className="h-full bg-amber-500 rounded-full" style={{ width: "25%" }}></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span>Sem Orçamento / Congelado</span>
-                        <strong className="text-slate-600">20%</strong>
-                      </div>
-                      <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                        <div className="h-full bg-slate-500 rounded-full" style={{ width: "20%" }}></div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span>Timing / Adiou Decisão</span>
-                        <strong className="text-blue-600">15%</strong>
-                      </div>
-                      <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full" style={{ width: "15%" }}></div>
-                      </div>
-                    </div>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-sm font-bold text-[#172033]">Motivos de Perda de Negócios</h3>
+                    <span className="text-[11px] font-mono text-[#667085]">
+                      {deals.filter((d) => d.stageId === "perdido").length} perdido(s)
+                    </span>
                   </div>
+                  {lossReport.length === 0 ? (
+                    <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E4E7EC] text-xs text-[#667085]">
+                      Nenhuma oportunidade marcada como &quot;Perdido&quot; nesta sessão. Arraste um card para a coluna de Perda ou finalize uma oportunidade para contabilizar os motivos em tempo real.
+                    </div>
+                  ) : (
+                    <div className="space-y-3 text-xs">
+                      {lossReport.map((item) => (
+                        <div key={item.label}>
+                          <div className="flex justify-between mb-1">
+                            <span>{item.label}</span>
+                            <strong className="text-rose-600">
+                              {item.percent}% ({item.count})
+                            </strong>
+                          </div>
+                          <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                            <div className="h-full bg-rose-500 rounded-full" style={{ width: `${item.percent}%` }}></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <div className="bg-white border border-[#E4E7EC] rounded-2xl p-6 shadow-xs space-y-4">
-                  <h3 className="text-sm font-bold text-[#172033]">Ranking de Vendedores</h3>
+                  <h3 className="text-sm font-bold text-[#172033]">Ranking de Vendedores (Pipeline Ativo + Ganho)</h3>
                   <div className="space-y-3 text-xs">
-                    <div className="p-3 bg-[#F8FAFC] rounded-xl flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-[#172033]">1º João Silva</span>
+                    {repRanking.map((rep, idx) => (
+                      <div key={rep.owner} className="p-3 bg-[#F8FAFC] rounded-xl flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-[#172033]">
+                            {idx + 1}º {rep.owner}
+                          </span>
+                          <span className="text-[10px] text-[#667085]">({rep.count} negociações)</span>
+                        </div>
+                        <span
+                          className={`font-extrabold ${
+                            idx === 0 ? "text-[#16A34A]" : idx === 1 ? "text-[#1683E8]" : "text-[#667085]"
+                          }`}
+                        >
+                          {formatBRL(rep.ownerPipeline)} (Conv.: {rep.conv}%)
+                        </span>
                       </div>
-                      <span className="font-extrabold text-[#16A34A]">R$ 184.200 (Conversão: 22%)</span>
-                    </div>
-                    <div className="p-3 bg-[#F8FAFC] rounded-xl flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-[#172033]">2º Ana Souza</span>
-                      </div>
-                      <span className="font-extrabold text-[#1683E8]">R$ 126.800 (Conversão: 19%)</span>
-                    </div>
-                    <div className="p-3 bg-[#F8FAFC] rounded-xl flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-[#172033]">3º Carlos Ferreira</span>
-                      </div>
-                      <span className="font-extrabold text-[#667085]">R$ 98.400 (Conversão: 16%)</span>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -2477,12 +2583,62 @@ export default function FlowCrmShowcase() {
             </div>
           )}
 
-          {/* Fallback for other routes */}
+          {/* Contatos & Compradores */}
           {activeTab === "contatos" && (
-            <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6">
-              <h1 className="text-2xl font-bold text-[#172033]">Contatos & Compradores</h1>
-              <div className="bg-white p-6 rounded-2xl border border-[#E4E7EC]">
-                <p className="text-xs text-[#667085]">Base de tomadores de decisão corporativos e contatos operacionais.</p>
+            <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
+              <div>
+                <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">Contatos & Compradores</h1>
+                <p className="text-xs text-[#667085] mt-1">
+                  Base sincronizada de decisores corporativos vinculados às oportunidades e empresas ativas.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {leads.map((contact) => (
+                  <div
+                    key={contact.id}
+                    className="bg-white p-5 rounded-2xl border border-[#E4E7EC] shadow-xs flex flex-col justify-between gap-4 hover:border-[#1683E8] transition-colors"
+                  >
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-xs font-bold text-[#172033]">{contact.name}</span>
+                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-[#1683E8]">
+                          {contact.status}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-[#667085]">
+                        {contact.role} · <strong className="text-[#172033]">{contact.company}</strong>
+                      </p>
+                      <p className="text-[11px] text-[#667085] pt-1">
+                        {contact.email} · {contact.whatsapp}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between pt-3 border-t border-[#F2F4F7]">
+                      <span className="text-[11px] text-[#667085]">
+                        {contact.city}/{contact.state}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => {
+                            setActiveWhatsAppLead(contact);
+                            setWhatsAppModalOpen(true);
+                          }}
+                          className="text-[11px] font-semibold text-emerald-700 hover:underline"
+                        >
+                          WhatsApp
+                        </button>
+                        <button
+                          onClick={() => {
+                            setSelectedLead(contact);
+                            setActiveLeadDrawer(true);
+                          }}
+                          className="text-[11px] font-semibold text-[#1683E8] hover:underline"
+                        >
+                          Perfil 360°
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -3021,6 +3177,16 @@ export default function FlowCrmShowcase() {
               <div className="flex justify-end gap-2 pt-2">
                 <button
                   onClick={() => {
+                    const msg =
+                      WHATSAPP_TEMPLATES.find((t) => t.id === selectedWaTemplate)
+                        ?.text.replace("{nome}", activeWhatsAppLead.name)
+                        .replace("{empresa}", activeWhatsAppLead.company)
+                        .replace("{vendedor}", "Marcus Henrique")
+                        .replace("{horario}", "15:00")
+                        .replace("{lojas}", String(activeWhatsAppLead.storesCount)) || "";
+                    if (msg && typeof navigator !== "undefined" && navigator.clipboard) {
+                      navigator.clipboard.writeText(msg);
+                    }
                     showToast("Texto copiado para a área de transferência!");
                   }}
                   className="px-3.5 py-2 border border-[#E4E7EC] rounded-xl text-xs font-semibold text-[#667085] flex items-center gap-1.5"

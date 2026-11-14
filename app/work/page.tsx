@@ -1,25 +1,57 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import CaseCard from "@/components/CaseCard";
 import { casesData } from "@/data/cases";
 
+type FilterOption = "Todos" | "B2B & Enterprise" | "Consumer & Mídia" | "Sandbox Live";
+
+const INTERACTIVE_SLUGS = new Set([
+  "supplyhub-procurement-b2b",
+  "flow-crm-b2b",
+  "frame-interactive-video",
+  "erp-enterprise-redesign",
+]);
+
+const B2B_SLUGS = new Set([
+  "flow-crm-b2b",
+  "supplyhub-procurement-b2b",
+  "erp-enterprise-redesign",
+]);
+
 export default function WorkPage() {
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [selectedFilter, setSelectedFilter] = useState<FilterOption>("Todos");
 
-  const realProjects = casesData.filter((c) => !c.isConcept);
-  const conceptualProjects = casesData.filter((c) => c.isConcept);
+  const filteredCases = casesData.filter((cs) => {
+    if (selectedFilter === "B2B & Enterprise") return B2B_SLUGS.has(cs.slug);
+    if (selectedFilter === "Consumer & Mídia") return !B2B_SLUGS.has(cs.slug);
+    if (selectedFilter === "Sandbox Live") return INTERACTIVE_SLUGS.has(cs.slug);
+    return true;
+  });
 
-  const categories = ["Todos", "Real Products", "Conceptual Products"];
-
-  const showReal = selectedCategory === "Todos" || selectedCategory === "Real Products";
-  const showConceptual = selectedCategory === "Todos" || selectedCategory === "Conceptual Products";
+  const filters: { label: FilterOption; count: number }[] = [
+    { label: "Todos", count: casesData.length },
+    {
+      label: "B2B & Enterprise",
+      count: casesData.filter((c) => B2B_SLUGS.has(c.slug)).length,
+    },
+    {
+      label: "Consumer & Mídia",
+      count: casesData.filter((c) => !B2B_SLUGS.has(c.slug)).length,
+    },
+    {
+      label: "Sandbox Live",
+      count: casesData.filter((c) => INTERACTIVE_SLUGS.has(c.slug)).length,
+    },
+  ];
 
   return (
-    <div className="py-20 bg-background min-h-screen">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-16">
+    <div className="py-16 md:py-20 bg-background min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
         {/* Header */}
-        <div className="space-y-4 max-w-3xl border-b border-surface-borderSubtle pb-12">
+        <div className="space-y-4 max-w-3xl border-b border-surface-borderSubtle pb-10">
           <span className="text-xs font-mono uppercase tracking-widest text-[#13E1BC] flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC]" />
             <span>[Índice de Projetos]</span>
@@ -28,81 +60,92 @@ export default function WorkPage() {
             Projetos selecionados
           </h1>
           <p className="text-base sm:text-xl text-neutral-300 font-light leading-relaxed pt-2">
-            Estudos de caso de Product Design e UX para softwares de gestão, ERPs e ferramentas de trabalho, divididos entre atuação profissional e projetos autorais.
+            Estudos de caso de Product Design e UX para softwares de gestão, plataformas B2B e mídia interativa, com documentação de arquitetura e protótipos funcionais.
           </p>
         </div>
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap items-center gap-2 pb-6 border-b border-surface-borderSubtle">
-          <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest mr-2">
-            Visualizar:
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-surface-borderSubtle">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest mr-2">
+              Filtrar por:
+            </span>
+            {filters.map((f) => (
+              <button
+                key={f.label}
+                type="button"
+                onClick={() => setSelectedFilter(f.label)}
+                className={`px-3.5 py-1.5 text-xs font-mono transition-all rounded-sm flex items-center gap-2 ${
+                  selectedFilter === f.label
+                    ? "bg-[#13E1BC] text-[#080808] font-semibold shadow-[0_0_15px_rgba(19,225,188,0.25)]"
+                    : "bg-neutral-950 text-neutral-400 hover:text-white border border-neutral-800"
+                }`}
+              >
+                <span>{f.label}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded-sm ${
+                    selectedFilter === f.label
+                      ? "bg-[#080808]/20 text-[#080808]"
+                      : "bg-neutral-900 text-neutral-500"
+                  }`}
+                >
+                  {f.count}
+                </span>
+              </button>
+            ))}
+          </div>
+          <span className="text-xs font-mono text-neutral-500">
+            Exibindo {filteredCases.length} de {casesData.length} cases
           </span>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-1.5 text-xs font-mono transition-all rounded-sm ${
-                selectedCategory === cat
-                  ? "bg-[#13E1BC] text-black font-semibold shadow-[0_0_15px_rgba(19,225,188,0.25)]"
-                  : "bg-neutral-950 text-neutral-400 hover:text-white border border-neutral-800"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
         </div>
 
-        {/* Real Products Section */}
-        {showReal && (
-          <section className="space-y-8">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-neutral-850">
-              <div className="flex items-center gap-2.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#13E1BC] shadow-[0_0_8px_#13E1BC]" />
-                <h2 className="text-xl sm:text-2xl font-medium text-white tracking-tight uppercase">
-                  Real Products
-                </h2>
-                <span className="text-xs font-mono px-2 py-0.5 bg-[#13E1BC]/15 border border-[#13E1BC]/30 text-[#13E1BC] rounded font-medium">
-                  Experiência Profissional
-                </span>
+        {/* Cases Grid */}
+        <section className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {filteredCases.map((cs, idx) => (
+              <CaseCard
+                key={cs.id}
+                caseStudy={cs}
+                priority={idx < 2}
+                horizontal={filteredCases.length % 2 === 1 && idx === filteredCases.length - 1}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Corporate ERP Experience Callout */}
+        <section className="pt-4">
+          <div className="p-8 border border-surface-border border-l-2 border-l-[#13E1BC] bg-neutral-950/90 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="flex items-center gap-2 text-xs font-mono text-[#13E1BC] uppercase tracking-widest">
+                <ShieldCheck className="w-4 h-4" />
+                <span>Experiência Profissional em Produção • ALFA Software</span>
               </div>
-              <p className="text-xs font-mono text-neutral-400">
-                Atuação corporativa com requisitos reais, regras de negócio e validação contínua
+              <h2 className="text-xl sm:text-2xl font-medium text-white tracking-tight">
+                Sistemas ERP, Compras, Vendas, Financeiro &amp; Estoque (2020 — Presente)
+              </h2>
+              <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                Por questões de confidencialidade corporativa (NDA), telas internas de produção com dados reais não são expostas diretamente — o Case [05] demonstra a arquitetura Antes/Depois com dados anonimizados, além das 15+ implantações B2B detalhadas em Sobre e no Currículo.
               </p>
             </div>
-
-            <div className="grid grid-cols-1 gap-8">
-              {realProjects.map((cs) => (
-                <CaseCard key={cs.id} caseStudy={cs} priority />
-              ))}
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 px-4 py-2.5 border border-neutral-800 bg-neutral-900 text-white hover:border-[#13E1BC] hover:text-[#13E1BC] text-xs font-mono uppercase tracking-wider transition-colors"
+              >
+                <span>Ver Trajetória</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <Link
+                href="/resume"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-white text-black hover:bg-[#13E1BC] text-xs font-mono font-semibold uppercase tracking-wider transition-colors"
+              >
+                <span>Currículo / CV</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
-          </section>
-        )}
-
-        {/* Conceptual Products Section */}
-        {showConceptual && (
-          <section className="space-y-8 pt-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-neutral-850">
-              <div className="flex items-center gap-2.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-neutral-400" />
-                <h2 className="text-xl sm:text-2xl font-medium text-white tracking-tight uppercase">
-                  Conceptual Products
-                </h2>
-                <span className="text-xs font-mono px-2 py-0.5 bg-white text-black font-semibold rounded">
-                  CONCEPT
-                </span>
-              </div>
-              <p className="text-xs font-mono text-neutral-400">
-                Estudos autorais de exploração de produto, UX e sistemas digitais
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {conceptualProjects.map((cs) => (
-                <CaseCard key={cs.id} caseStudy={cs} />
-              ))}
-            </div>
-          </section>
-        )}
+          </div>
+        </section>
       </div>
     </div>
   );
