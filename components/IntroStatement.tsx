@@ -67,7 +67,7 @@ export default function IntroStatement() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between border-b border-neutral-850 pb-2.5">
                     <span className="text-xs font-mono tracking-widest text-neutral-400 group-hover:text-[#13E1BC] transition-colors">
-                      0{idx + 1} // [{item.code}]
+                      0{idx + 1} {"//"} [{item.code}]
                     </span>
                     <span className="w-1.5 h-1.5 bg-neutral-600 group-hover:bg-[#13E1BC] rounded-full transition-colors" />
                   </div>

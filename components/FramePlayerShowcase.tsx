@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import {
   Play,
   Pause,
@@ -199,13 +199,16 @@ export default function FramePlayerShowcase() {
   };
 
   // Seek handler
-  const seekTo = (sec: number) => {
-    const target = Math.max(0, Math.min(totalDuration, sec));
-    setCurrentSeconds(target);
-    if (videoRef.current) {
-      videoRef.current.currentTime = target;
-    }
-  };
+  const seekTo = useCallback(
+    (sec: number) => {
+      const target = Math.max(0, Math.min(totalDuration, sec));
+      setCurrentSeconds(target);
+      if (videoRef.current) {
+        videoRef.current.currentTime = target;
+      }
+    },
+    [totalDuration]
+  );
 
   // Mute toggle with volume memory
   const toggleMute = () => {
@@ -417,17 +420,17 @@ export default function FramePlayerShowcase() {
       window.removeEventListener("mousemove", handleGlobalMouseMove);
       window.removeEventListener("mouseup", handleGlobalMouseUp);
     };
-  }, [isDraggingScrubber, totalDuration]);
+  }, [isDraggingScrubber, totalDuration, seekTo]);
 
   // Universal Keyboard Shortcuts listener
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
-        return;
-      }
+  const keyDownHandlerRef = useRef<(e: KeyboardEvent) => void>();
+  keyDownHandlerRef.current = (e: KeyboardEvent) => {
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+      return;
+    }
 
-      // Space or 'k' = Play/Pause
-      if (e.code === "Space" || e.key === "k" || e.key === "K") {
+    // Space or 'k' = Play/Pause
+    if (e.code === "Space" || e.key === "k" || e.key === "K") {
         e.preventDefault();
         togglePlay();
       }
@@ -536,11 +539,13 @@ export default function FramePlayerShowcase() {
       else if (e.key === "4") setActiveRailTab("transcript");
       else if (e.key === "5") setActiveRailTab("discourse");
       else if (e.key === "6") setActiveRailTab("notes");
-    };
+  };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentSeconds, totalDuration, activeBeadId, isMuted, volume, isCinemaMode, showSpeedMenu, showShortcutsModal, showExportModal, quoteCardModal, currentMasterclass]);
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => keyDownHandlerRef.current?.(e);
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   // Active bead finder
   const activeBead = useMemo(() => {
@@ -793,7 +798,7 @@ export default function FramePlayerShowcase() {
                   <span className="text-sm font-semibold tracking-tight text-white font-mono flex items-center gap-1.5">
                     FRAME
                     <span className="text-[10px] text-[#ffb3ae] font-normal font-mono">
-                      // {currentMasterclass.badge.split("//")[1] || "CINEMA 21:9"}
+                      {"//"} {currentMasterclass.badge.split("//")[1] || "CINEMA 21:9"}
                     </span>
                   </span>
                   <span className="text-[10px] font-mono uppercase bg-[#ff5352]/15 border border-[#ff5352]/40 text-[#ffb3ae] px-2 py-0.5 rounded-sm font-bold">
@@ -1467,7 +1472,7 @@ export default function FramePlayerShowcase() {
                       <div className="p-3 bg-[#18181b] border-l-2 border-[#ff5352] border-y border-r border-[#262626] space-y-2">
                         <div className="flex items-center justify-between">
                           <span className="text-[10px] text-[#ffb3ae] font-bold uppercase">
-                            {activeBead.time} // {activeBead.category}
+                            {activeBead.time} {"//"} {activeBead.category}
                           </span>
                           <span className="text-[9px] bg-[#ff5352] text-white px-1.5 py-0.5 font-bold">
                             {activeBead.type}
@@ -1927,7 +1932,7 @@ export default function FramePlayerShowcase() {
             <div className="w-10 h-1 bg-neutral-700 rounded-full mx-auto" />
             <div className="flex items-center justify-between">
               <span className="text-[#ffb3ae] text-[10px] font-bold uppercase">
-                {activeBead.time} // {activeBead.category}
+                {activeBead.time} {"//"} {activeBead.category}
               </span>
               <span className="text-[9px] bg-[#ff5352] text-white px-1.5 py-0.5 font-bold">
                 {activeBead.type}
