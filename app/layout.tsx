@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CommandCenterLauncher from "@/components/CommandCenterLauncher";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { getSiteUrl } from "@/lib/site";
 
@@ -83,6 +84,7 @@ export default function RootLayout({
           <div className="ambient-grid fixed inset-0 pointer-events-none z-0 bg-[radial-gradient(#1f1f1f_1px,transparent_1px)] [background-size:24px_24px] opacity-30" />
 
           <Navbar />
+          <CommandCenterLauncher />
           <main id="main-content" className="flex-1 relative z-10">{children}</main>
           <Footer />
         </LanguageProvider>

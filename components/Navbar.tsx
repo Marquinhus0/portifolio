@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowUpRight, Globe } from "lucide-react";
+import { Menu, X, ArrowUpRight, Globe, Search } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { NAV_TRANSLATIONS } from "@/data/translations";
 
@@ -84,8 +84,22 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right: Language Switcher, Status Indicator & Resume Link */}
+        {/* Right: Command Center, Language Switcher, Status Indicator & Resume Link */}
         <div className="hidden md:flex items-center space-x-3">
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("open-command-center"))}
+            aria-label={
+              locale === "en"
+                ? "Open Product Command Center (Ctrl+K)"
+                : "Abrir Central de Comando de Produto (Ctrl+K)"
+            }
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm border border-neutral-800 bg-neutral-950 hover:border-[#13E1BC]/60 text-[11px] font-mono text-neutral-300 hover:text-white transition-colors"
+          >
+            <Search className="w-3 h-3 text-[#13E1BC]" />
+            <kbd className="text-[10px] text-neutral-400">⌘K</kbd>
+          </button>
+
           <div
             className="inline-flex items-center rounded-sm border border-neutral-800 bg-neutral-950 p-0.5 text-[10px] font-mono"
             role="group"
@@ -182,6 +196,18 @@ export default function Navbar() {
             <span className="h-1.5 w-1.5 rounded-full bg-[#13E1BC] shadow-[0_0_6px_#13E1BC]" />
             <span>{t.available}</span>
           </span>
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("open-command-center"))}
+            className="p-2 text-neutral-300 hover:text-[#13E1BC] border border-neutral-800 rounded-sm bg-neutral-950"
+            aria-label={
+              locale === "en"
+                ? "Open Product Command Center"
+                : "Abrir Central de Comando"
+            }
+          >
+            <Search className="w-4 h-4" />
+          </button>
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}

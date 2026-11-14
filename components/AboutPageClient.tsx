@@ -209,7 +209,9 @@ export default function AboutPageClient() {
       <DesignSystemShowcase />
 
       {/* Experience Timeline */}
-      <ExperienceTimeline />
+      <div id="experiencia" className="scroll-mt-20">
+        <ExperienceTimeline />
+      </div>
 
       {/* Philosophy */}
       <PhilosophyBlock />
