@@ -3,9 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Copy, Check, Mail } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { CONTACT_BLOCK_TRANSLATIONS } from "@/data/translations";
 
 export default function ContactBlock() {
   const [copied, setCopied] = useState(false);
+  const { locale } = useLanguage();
+  const t = CONTACT_BLOCK_TRANSLATIONS[locale];
   const email = "marcuszhrt@gmail.com";
 
   const handleCopy = () => {
@@ -22,17 +26,17 @@ export default function ContactBlock() {
           <div className="lg:col-span-8 space-y-6">
             <span className="text-xs font-mono uppercase tracking-widest text-[#13E1BC] flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC]" />
-              <span>[Contato Direto]</span>
+              <span>{t.eyebrow}</span>
             </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tighter text-white uppercase leading-[0.98]">
-              Tem um desafio no seu produto?
+              {t.titleLine1}
               <br />
               <span className="text-neutral-400 font-light text-2xl sm:text-4xl md:text-5xl block pt-2">
-                Vamos torná-lo mais simples de usar.
+                {t.titleLine2}
               </span>
             </h2>
             <p className="text-base sm:text-lg text-neutral-300 font-light max-w-2xl leading-relaxed pt-2">
-              Ajudo times e empresas a desenharem interfaces claras para sistemas de gestão, plataformas B2B e ferramentas de trabalho.
+              {t.desc}
             </p>
           </div>
 
@@ -40,7 +44,7 @@ export default function ContactBlock() {
           <div className="lg:col-span-4 p-8 border border-surface-border bg-neutral-950 space-y-8 hover:border-[#13E1BC]/40 transition-colors">
             <div className="space-y-2">
               <span className="text-xs font-mono uppercase tracking-wider text-neutral-400 block">
-                Canal Principal:
+                {t.primaryChannel}
               </span>
               <div className="flex items-center justify-between gap-2 p-3 bg-neutral-900 border border-neutral-800 text-xs font-mono text-white">
                 <div className="flex items-center gap-2 truncate">
@@ -50,13 +54,13 @@ export default function ContactBlock() {
                 <button
                   onClick={handleCopy}
                   className="p-1.5 hover:bg-neutral-800 text-neutral-300 hover:text-white transition-colors shrink-0 rounded"
-                  title="Copiar e-mail"
-                  aria-label="Copiar endereço de e-mail"
+                  title={t.copyAria}
+                  aria-label={t.copyAria}
                 >
                   {copied ? (
                     <span className="flex items-center gap-1 text-[10px] text-[#13E1BC] font-semibold">
                       <Check className="w-3.5 h-3.5 text-[#13E1BC]" />
-                      <span>Copiado</span>
+                      <span>{t.copied}</span>
                     </span>
                   ) : (
                     <Copy className="w-3.5 h-3.5" />
@@ -71,14 +75,14 @@ export default function ContactBlock() {
                 href={`mailto:${email}?subject=${encodeURIComponent("[Portfólio] Contato — Marcus Ritta")}`}
                 className="flex items-center justify-center gap-2 w-full py-3.5 px-4 bg-white text-black font-medium text-xs font-mono uppercase tracking-widest hover:bg-[#13E1BC] hover:text-black transition-colors"
               >
-                <span>Entrar em Contato</span>
+                <span>{t.emailBtn}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
               <Link
                 href="/contact"
                 className="flex items-center justify-center gap-1.5 w-full py-2.5 px-4 border border-neutral-800 hover:border-[#13E1BC]/50 text-[11px] font-mono uppercase tracking-wider text-neutral-300 hover:text-white transition-colors"
               >
-                <span>Montar briefing rápido</span>
+                <span>{t.briefBtn}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -86,7 +90,7 @@ export default function ContactBlock() {
             {/* Social & Direct Links */}
             <div className="space-y-3 pt-4 border-t border-neutral-800">
               <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-widest block">
-                Redes & Canais:
+                {t.linksLabel}
               </span>
               <div className="flex flex-col space-y-2">
                 <a

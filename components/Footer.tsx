@@ -2,17 +2,15 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { FOOTER_TRANSLATIONS } from "@/data/translations";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { locale } = useLanguage();
+  const t = FOOTER_TRANSLATIONS[locale];
 
-  const navLinks = [
-    { name: "Início", href: "/" },
-    { name: "Projetos", href: "/work" },
-    { name: "Sobre", href: "/about" },
-    { name: "Currículo", href: "/resume" },
-    { name: "Contato", href: "/contact" },
-  ];
+  const navLinks = t.links;
 
   const socialLinks = [
     { name: "LinkedIn", href: "https://linkedin.com/in/marcusritta" },
@@ -36,14 +34,14 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-xs text-neutral-500 tracking-wide font-mono">
-              Sistemas de Gestão • Plataformas B2B • Produtos Digitais Complexos
+              {t.tagline}
             </p>
           </div>
 
           {/* Internal Navigation */}
           <nav
             className="flex flex-wrap items-center gap-x-6 gap-y-2"
-            aria-label="Navegação do rodapé"
+            aria-label={t.navAria}
           >
             {navLinks.map((item) => (
               <Link
@@ -74,8 +72,8 @@ export default function Footer() {
         </div>
 
         <div className="pt-6 border-t border-surface-borderSubtle/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px] font-mono text-neutral-600">
-          <span>© {currentYear} Marcus Ritta. Todos os direitos reservados.</span>
-          <span>Brasil • Remoto / Híbrido</span>
+          <span>© {currentYear} Marcus Ritta. {t.rights}</span>
+          <span>{t.location}</span>
         </div>
       </div>
     </footer>

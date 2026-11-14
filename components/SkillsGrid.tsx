@@ -1,6 +1,14 @@
+"use client";
+
 import { skillsData } from "@/data/skills";
+import { useLanguage } from "@/context/LanguageContext";
+import { SKILLS_TRANSLATIONS } from "@/data/translations";
 
 export default function SkillsGrid() {
+  const { locale } = useLanguage();
+  const t = SKILLS_TRANSLATIONS[locale];
+  const categories = t.itemsEn || skillsData;
+
   return (
     <section className="py-24 border-b border-surface-borderSubtle bg-background">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
@@ -9,20 +17,20 @@ export default function SkillsGrid() {
           <div className="space-y-3">
             <span className="text-xs font-mono uppercase tracking-widest text-[#13E1BC] flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC]" />
-              <span>[Domínio & Ferramentas]</span>
+              <span>{t.eyebrow}</span>
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white">
-              Competências
+              {t.title}
             </h2>
           </div>
           <p className="max-w-md text-sm text-neutral-400 font-normal leading-relaxed">
-            Habilidades e ferramentas organizadas por área, com foco em softwares de gestão, plataformas B2B e rotinas de trabalho.
+            {t.subtitle}
           </p>
         </div>
 
         {/* Balanced 6-Col Bento Grid (Top 3 = 2 cols each, Bottom 2 = 3 cols each -> zero orphan gap) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 pt-12">
-          {skillsData.map((category, idx) => {
+          {categories.map((category, idx) => {
             const colSpanClass =
               idx < 3 ? "lg:col-span-2" : "lg:col-span-3";
             return (

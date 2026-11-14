@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { casesData } from "@/data/cases";
 import CaseStudyView from "@/components/CaseStudyView";
+import { COVER_DIMENSIONS } from "@/lib/site";
 
 interface PageProps {
   params: {
@@ -26,9 +27,10 @@ export async function generateMetadata({
   }
 
   const ogImage = caseStudy.coverImage || "/og-cover.jpg";
+  const dims = COVER_DIMENSIONS[caseStudy.slug] || { width: 1200, height: 630 };
 
   return {
-    title: `${caseStudy.title} — Marcus Ritta`,
+    title: caseStudy.title,
     description: caseStudy.subtitle,
     openGraph: {
       title: `${caseStudy.title} — Marcus Ritta`,
@@ -36,8 +38,8 @@ export async function generateMetadata({
       images: [
         {
           url: ogImage,
-          width: 1600,
-          height: 1000,
+          width: dims.width,
+          height: dims.height,
           alt: caseStudy.title,
         },
       ],

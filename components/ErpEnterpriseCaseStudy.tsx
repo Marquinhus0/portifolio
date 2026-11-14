@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { CaseStudy } from "@/types";
 import ErpBeforeAfterShowcase from "./ErpBeforeAfterShowcase";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ErpEnterpriseCaseStudyProps {
   caseStudy: CaseStudy;
@@ -30,6 +31,8 @@ export default function ErpEnterpriseCaseStudy({
   prevCase,
 }: ErpEnterpriseCaseStudyProps) {
   const [activeNav, setActiveNav] = useState("overview");
+  const { locale } = useLanguage();
+  const isEn = locale === "en";
 
   const scrollToSection = (id: string) => {
     setActiveNav(id);
@@ -43,42 +46,73 @@ export default function ErpEnterpriseCaseStudy({
 
   const navItems = [
     { id: "overview", label: "01. Overview" },
-    { id: "sandbox", label: "02. Antes & Depois (NDA-Safe)" },
-    { id: "contexto", label: "03. Campo & Problema" },
-    { id: "metodo", label: "04. Método Feedback → Figma" },
-    { id: "resultados", label: "05. Entregas & Impacto" },
+    { id: "sandbox", label: isEn ? "02. Before & After (NDA-Safe)" : "02. Antes & Depois (NDA-Safe)" },
+    { id: "contexto", label: isEn ? "03. Field & Problem" : "03. Campo & Problema" },
+    { id: "metodo", label: isEn ? "04. Feedback → Figma Method" : "04. Método Feedback → Figma" },
+    { id: "resultados", label: isEn ? "05. Outcomes & Impact" : "05. Entregas & Impacto" },
   ];
 
-  const workflowSteps = [
-    {
-      step: "01",
-      title: "Observação em Go-Live & Campo",
-      icon: Users,
-      detail:
-        "Levantamento direto durante 15+ implantações de ERP B2B nos módulos de Compras, Vendas, Estoque e Financeiro, observando operadores reais sob pressão de balcão e faturamento.",
-    },
-    {
-      step: "02",
-      title: "Método Oficial de Coleta de Feedbacks",
-      icon: ClipboardList,
-      detail:
-        "Estruturação de método proprietário para registrar fricções de usabilidade e regras de negócio em produção — modelo posteriormente adotado como padrão oficial da empresa.",
-    },
-    {
-      step: "03",
-      title: "Componentização Figma & Documentação",
-      icon: Figma,
-      detail:
-        "Wireframes, protótipos interativos navegáveis e bibliotecas de componentes padronizadas para acelerar a criação de novas telas com consistência visual.",
-    },
-    {
-      step: "04",
-      title: "Critérios de Aceite, QA & Base Visual",
-      icon: FileCheck2,
-      detail:
-        "Validação contínua junto a PMs e engenharia, testes funcionais com perspectiva de QA antes da entrega e publicação de guias visuais e treinamentos para reduzir a curva de aprendizado.",
-    },
-  ];
+  const workflowSteps = isEn
+    ? [
+        {
+          step: "01",
+          title: "Field & Go-Live Observation",
+          icon: Users,
+          detail:
+            "Direct discovery across 15+ B2B ERP implementations covering Purchasing, Sales, Inventory, and Finance with real counter and billing operators.",
+        },
+        {
+          step: "02",
+          title: "Official Feedback Framework",
+          icon: ClipboardList,
+          detail:
+            "Built a structured framework to log production usability friction and business rules—later adopted as the company's official standard.",
+        },
+        {
+          step: "03",
+          title: "Figma Componentization & Docs",
+          icon: Figma,
+          detail:
+            "Navigable interactive prototypes, illustrated specs, and standardized Figma component libraries to speed up consistent screen delivery.",
+        },
+        {
+          step: "04",
+          title: "Acceptance Criteria, QA & Training",
+          icon: FileCheck2,
+          detail:
+            "Ongoing alignment with PMs and engineers, functional QA reviews pre-release, and visual user guides reducing team learning curves.",
+        },
+      ]
+    : [
+        {
+          step: "01",
+          title: "Observação em Go-Live & Campo",
+          icon: Users,
+          detail:
+            "Levantamento direto durante 15+ implantações de ERP B2B nos módulos de Compras, Vendas, Estoque e Financeiro, observando operadores reais sob pressão de balcão e faturamento.",
+        },
+        {
+          step: "02",
+          title: "Método Oficial de Coleta de Feedbacks",
+          icon: ClipboardList,
+          detail:
+            "Estruturação de método proprietário para registrar fricções de usabilidade e regras de negócio em produção — modelo posteriormente adotado como padrão oficial da empresa.",
+        },
+        {
+          step: "03",
+          title: "Componentização Figma & Documentação",
+          icon: Figma,
+          detail:
+            "Wireframes, protótipos interativos navegáveis e bibliotecas de componentes padronizadas para acelerar a criação de novas telas com consistência visual.",
+        },
+        {
+          step: "04",
+          title: "Critérios de Aceite, QA & Base Visual",
+          icon: FileCheck2,
+          detail:
+            "Validação contínua junto a PMs e engenharia, testes funcionais com perspectiva de QA antes da entrega e publicação de guias visuais e treinamentos para reduzir a curva de aprendizado.",
+        },
+      ];
 
   return (
     <article className="bg-[#080808] text-white min-h-screen font-sans antialiased">
@@ -90,7 +124,7 @@ export default function ErpEnterpriseCaseStudy({
             className="inline-flex items-center gap-2 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Voltar para todos os cases</span>
+            <span>{isEn ? "Back to all cases" : "Voltar para todos os cases"}</span>
           </Link>
           <div className="flex items-center gap-2.5">
             <span className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest bg-[#13E1BC]/15 text-[#13E1BC] border border-[#13E1BC]/30 font-semibold rounded-sm">
@@ -134,14 +168,22 @@ export default function ErpEnterpriseCaseStudy({
             <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
               <span className="text-[#13E1BC] uppercase tracking-widest flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5" />
-                <span>Atuação Profissional Real // ALFA Software (NDA-Safe)</span>
+                <span>
+                  {isEn
+                    ? "Real Production Track Record // ALFA Software (NDA-Safe)"
+                    : "Atuação Profissional Real // ALFA Software (NDA-Safe)"}
+                </span>
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter text-white leading-tight">
-              {caseStudy.title}
+              {isEn
+                ? "Enterprise B2B ERP — Architecture & Before/After (NDA-Safe)"
+                : caseStudy.title}
             </h1>
             <p className="text-lg sm:text-2xl text-neutral-300 font-light leading-relaxed">
-              {caseStudy.subtitle}
+              {isEn
+                ? "Evolution of mission-critical Purchasing, Sales, Inventory, and Billing workflows combining 15+ field rollouts and standardized Product Design."
+                : caseStudy.subtitle}
             </p>
           </div>
 
@@ -149,9 +191,24 @@ export default function ErpEnterpriseCaseStudy({
           <div className="p-5 border border-[#13E1BC]/30 bg-[#13E1BC]/[0.04] flex items-start gap-3 text-xs font-mono text-neutral-300">
             <ShieldCheck className="w-4 h-4 text-[#13E1BC] shrink-0 mt-0.5" />
             <p className="leading-relaxed">
-              <strong className="text-white uppercase tracking-wider">Transparência &amp; Confidencialidade (NDA):</strong>{" "}
-              Por sigilo comercial, telas internas com dados de clientes reais e infraestrutura proprietária não são publicadas literalmente. O comparador abaixo apresenta uma{" "}
-              <span className="text-[#13E1BC]">reconstrução estrutural anonimizada</span> baseada nos padrões reais de atrito e soluções de arquitetura aplicadas em Compras, Vendas e Estoque.
+              <strong className="text-white uppercase tracking-wider">
+                {isEn
+                  ? "Transparency & Confidentiality (NDA):"
+                  : "Transparência & Confidencialidade (NDA):"}
+              </strong>{" "}
+              {isEn ? (
+                <>
+                  Out of commercial confidentiality, internal screens containing real customer data or proprietary infrastructure are never exposed verbatim. The sandbox below presents an{" "}
+                  <span className="text-[#13E1BC]">anonymized structural reconstruction</span>{" "}
+                  based on real friction patterns and architecture decisions applied across Purchasing, Sales, and Inventory.
+                </>
+              ) : (
+                <>
+                  Por sigilo comercial, telas internas com dados de clientes reais e infraestrutura proprietária não são publicadas literalmente. O comparador abaixo apresenta uma{" "}
+                  <span className="text-[#13E1BC]">reconstrução estrutural anonimizada</span>{" "}
+                  baseada nos padrões reais de atrito e soluções de arquitetura aplicadas em Compras, Vendas e Estoque.
+                </>
+              )}
             </p>
           </div>
 
@@ -193,13 +250,17 @@ export default function ErpEnterpriseCaseStudy({
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-6">
           <div className="space-y-2 max-w-3xl">
             <span className="text-xs font-mono text-[#13E1BC] uppercase tracking-widest block">
-              02 — Protótipo Comparativo Anonimizado
+              {isEn ? "02 — Anonymized Before/After Prototype" : "02 — Protótipo Comparativo Anonimizado"}
             </span>
             <h2 className="text-2xl sm:text-4xl font-medium text-white tracking-tight">
-              Legado Denso vs. Arquitetura Modular Interativa
+              {isEn
+                ? "Dense Legacy UI vs. Interactive Modular Architecture"
+                : "Legado Denso vs. Arquitetura Modular Interativa"}
             </h2>
             <p className="text-sm text-neutral-400 leading-relaxed">
-              Alterne entre &ldquo;Antes (Legado)&rdquo; e &ldquo;Depois (Redesign)&rdquo; nos 3 módulos vitais para testar como a hierarquia visual e o Progressive Disclosure transformam fluxos operacionais diários.
+              {isEn
+                ? 'Switch between "Antes (Legado)" and "Depois (Redesign)" across the 3 core ERP modules to test how visual hierarchy and Progressive Disclosure streamline daily operations.'
+                : 'Alterne entre "Antes (Legado)" e "Depois (Redesign)" nos 3 módulos vitais para testar como a hierarquia visual e o Progressive Disclosure transformam fluxos operacionais diários.'}
             </p>
           </div>
 

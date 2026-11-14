@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { CaseStudy } from "@/types";
 import CaseCardVisual from "./CaseCardVisual";
+import { useLanguage } from "@/context/LanguageContext";
+import { CASE_CARD_COPY } from "@/data/translations";
 
 interface CaseCardProps {
   caseStudy: CaseStudy;
@@ -33,6 +37,7 @@ const SLUG_META: Record<string, { domainLabel: string; accentClass: string }> = 
 };
 
 export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProps) {
+  const { locale } = useLanguage();
   const isReal = !caseStudy.isConcept;
   const hasInteractiveApp = [
     "supplyhub-procurement-b2b",
@@ -41,6 +46,20 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
     "erp-enterprise-redesign",
   ].includes(caseStudy.slug);
   const slugMeta = SLUG_META[caseStudy.slug];
+  const cardCopy = CASE_CARD_COPY[locale]?.[caseStudy.slug];
+  const displayTitle = cardCopy?.title || caseStudy.title;
+  const displaySubtitle = cardCopy?.subtitle || caseStudy.subtitle;
+  const displayDomain = cardCopy?.domainLabel || slugMeta?.domainLabel || caseStudy.category;
+  const displayYear = cardCopy?.year || caseStudy.year;
+  const displayCta =
+    cardCopy?.cta ||
+    (hasInteractiveApp
+      ? locale === "en"
+        ? "View Case & Live Sandbox"
+        : "Ver Case & Sandbox Live"
+      : locale === "en"
+      ? "Read Case Study"
+      : "Ver Estudo de Caso");
 
   if (horizontal) {
     return (
@@ -70,7 +89,7 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
                 )}
               </div>
               <span className="uppercase tracking-widest text-[10px] text-neutral-400 font-mono">
-                {slugMeta?.domainLabel || caseStudy.category}
+                {displayDomain}
               </span>
             </div>
 
@@ -80,11 +99,11 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
                   href={`/work/${caseStudy.slug}`}
                   className="focus:outline-none after:absolute after:inset-0"
                 >
-                  {caseStudy.title}
+                  {displayTitle}
                 </Link>
               </h3>
               <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                {caseStudy.subtitle}
+                {displaySubtitle}
               </p>
             </div>
 
@@ -102,11 +121,11 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
 
           <div className="px-6 sm:px-8 py-4 border-t border-surface-borderSubtle flex items-center justify-between text-xs font-mono text-neutral-400 bg-neutral-900/40">
             <span className="uppercase tracking-wider font-medium text-white group-hover:text-[#13E1BC] transition-colors flex items-center gap-1.5">
-              <span>Explorar Antes &amp; Depois NDA-Safe</span>
+              <span>{displayCta}</span>
               <ArrowRight className="w-3.5 h-3.5 text-[#13E1BC] transition-transform duration-200 group-hover:translate-x-1" />
             </span>
             <div className="flex items-center gap-1.5 text-neutral-500 group-hover:text-neutral-300">
-              <span className="text-[11px]">{caseStudy.year}</span>
+              <span className="text-[11px]">{displayYear}</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:text-[#13E1BC] transition-colors" />
             </div>
           </div>
@@ -116,7 +135,7 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
           <div className="w-full overflow-hidden border border-neutral-800 group-hover:border-neutral-700 rounded-sm transition-colors shadow-lg">
             <CaseCardVisual
               slug={caseStudy.slug}
-              title={caseStudy.title}
+              title={displayTitle}
               category={caseStudy.category}
               coverImage={caseStudy.coverImage}
             />
@@ -156,7 +175,7 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
             )}
           </div>
           <span className="uppercase tracking-widest text-[10px] text-neutral-400 font-mono">
-            {slugMeta?.domainLabel || caseStudy.category.split("/")[0].trim()}
+            {displayDomain}
           </span>
         </div>
 
@@ -167,11 +186,11 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
               href={`/work/${caseStudy.slug}`}
               className="focus:outline-none after:absolute after:inset-0"
             >
-              {caseStudy.title}
+              {displayTitle}
             </Link>
           </h3>
           <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed line-clamp-2">
-            {caseStudy.subtitle}
+            {displaySubtitle}
           </p>
         </div>
       </div>
@@ -181,7 +200,7 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
         <div className="overflow-hidden border border-neutral-800 group-hover:border-neutral-700 rounded-sm transition-colors shadow-lg">
           <CaseCardVisual
             slug={caseStudy.slug}
-            title={caseStudy.title}
+            title={displayTitle}
             category={caseStudy.category}
             coverImage={caseStudy.coverImage}
           />
@@ -203,12 +222,12 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
       {/* 04. Bottom Action Footer */}
       <div className="px-6 sm:px-7 py-3.5 border-t border-surface-borderSubtle flex items-center justify-between text-xs font-mono text-neutral-400 group-hover:text-white transition-colors bg-neutral-900/40">
         <span className="uppercase tracking-wider font-medium text-white group-hover:text-[#13E1BC] transition-colors flex items-center gap-1.5">
-          <span>{hasInteractiveApp ? "Ver Case & Sandbox Live" : "Ver Estudo de Caso"}</span>
+          <span>{displayCta}</span>
           <ArrowRight className="w-3.5 h-3.5 text-[#13E1BC] transition-transform duration-200 group-hover:translate-x-1" />
         </span>
         <div className="flex items-center gap-1.5 text-neutral-500 group-hover:text-neutral-300">
           <span className="text-[11px]">
-            {caseStudy.year}
+            {displayYear}
           </span>
           <ArrowUpRight className="w-3.5 h-3.5 group-hover:text-[#13E1BC] transition-colors" />
         </div>

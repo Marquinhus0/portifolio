@@ -1,7 +1,10 @@
-import { CheckCircle2 } from "lucide-react";
+"use client";
 
-export default function IntroStatement() {
-  const pillars = [
+import { CheckCircle2 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+
+const PILLARS = {
+  pt: [
     {
       label: "UX & Arquitetura",
       code: "UX/IA",
@@ -26,7 +29,39 @@ export default function IntroStatement() {
       desc: "Tratamento de cenários de erro, estados vazios, falhas de conexão, validação de formulários extensos e consistência entre design e código.",
       detail: "Prevenção de bugs e testes em cenários extremos",
     },
-  ];
+  ],
+  en: [
+    {
+      label: "UX & Architecture",
+      code: "UX/IA",
+      desc: "Practical discovery, frictionless workflows, crisp visual hierarchy, and keyboard-first ergonomics for daily operational tasks.",
+      detail: "Lower screen friction and lighter cognitive load",
+    },
+    {
+      label: "Business Rules",
+      code: "BUSINESS",
+      desc: "Detailed mapping of ERP workflows, margin approval tiers, fiscal calculations, and multi-warehouse inventory.",
+      detail: "Tight alignment between business policy and daily execution",
+    },
+    {
+      label: "Engineering & Tech",
+      code: "FRONT-END",
+      desc: "Speaking the same language as engineers—live React/TypeScript prototypes, REST data contracts, and token-based Design Systems.",
+      detail: "Real feasibility and zero handoff rework",
+    },
+    {
+      label: "Quality & Rigor",
+      code: "QA & EDGE",
+      desc: "Designing error states, empty states, degraded connectivity, large form validation, and Figma-to-code parity.",
+      detail: "Defect prevention and resilience across edge cases",
+    },
+  ],
+};
+
+export default function IntroStatement() {
+  const { locale } = useLanguage();
+  const isEn = locale === "en";
+  const pillars = PILLARS[locale];
 
   return (
     <section className="py-20 md:py-24 border-b border-surface-borderSubtle bg-surface/30">
@@ -36,23 +71,27 @@ export default function IntroStatement() {
           <div className="lg:col-span-5 space-y-5">
             <span className="text-xs font-mono uppercase tracking-widest text-[#13E1BC] flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC]" />
-              <span>[Posicionamento & Diferencial]</span>
+              <span>{isEn ? "[Positioning & Edge]" : "[Posicionamento & Diferencial]"}</span>
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight">
-              Eu desenho produtos de alta densidade, não apenas telas.
+              {isEn
+                ? "I design high-density products, not just isolated screens."
+                : "Eu desenho produtos de alta densidade, não apenas telas."}
             </h2>
             <p className="text-base sm:text-lg text-neutral-300 font-light leading-relaxed">
-              Especializado em softwares de gestão, ERPs e ferramentas corporativas. Uno pesquisa com usuários, regras de negócio e engenharia front-end para criar interfaces que funcionam de verdade na pressão do dia a dia.
+              {isEn
+                ? "Specialized in management software, ERPs, and enterprise SaaS. I combine user research, business rules, and front-end engineering to build interfaces that hold up under daily operational pressure."
+                : "Especializado em softwares de gestão, ERPs e ferramentas corporativas. Uno pesquisa com usuários, regras de negócio e engenharia front-end para criar interfaces que funcionam de verdade na pressão do dia a dia."}
             </p>
             <div className="pt-2 flex flex-wrap gap-2 text-[11px] font-mono text-neutral-300">
               <span className="px-2.5 py-1 bg-neutral-900 border border-neutral-800 rounded-sm">
-                B2B & Enterprise
+                B2B &amp; Enterprise
               </span>
               <span className="px-2.5 py-1 bg-neutral-900 border border-neutral-800 rounded-sm">
-                Sistemas ERP
+                {isEn ? "ERP Systems" : "Sistemas ERP"}
               </span>
               <span className="px-2.5 py-1 bg-neutral-900 border border-neutral-800 rounded-sm">
-                React & Design Systems
+                React &amp; Design Systems
               </span>
             </div>
           </div>
@@ -81,7 +120,7 @@ export default function IntroStatement() {
 
                 <div className="pt-3 border-t border-neutral-900">
                   <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block">
-                    Impacto Prático:
+                    {isEn ? "Practical Impact:" : "Impacto Prático:"}
                   </span>
                   <p className="text-[11px] text-neutral-300 font-mono pt-0.5 leading-snug">
                     {item.detail}
@@ -97,7 +136,9 @@ export default function IntroStatement() {
           <div className="flex items-center gap-3 text-neutral-200">
             <CheckCircle2 className="w-4 h-4 text-[#13E1BC] shrink-0" />
             <span className="text-sm font-medium text-white tracking-tight">
-              &ldquo;É conectando essas frentes que reduzo o ciclo de entrega e o retrabalho entre design e engenharia.&rdquo;
+              &ldquo;{isEn
+                ? "Connecting these four pillars is how I cut delivery cycles and rework between design and engineering."
+                : "É conectando essas frentes que reduzo o ciclo de entrega e o retrabalho entre design e engenharia."}&rdquo;
             </span>
           </div>
           <span className="text-[11px] text-neutral-400 uppercase tracking-wider shrink-0">

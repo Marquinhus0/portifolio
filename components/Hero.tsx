@@ -1,33 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight, Layers, ShieldCheck, Briefcase } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { HERO_TRANSLATIONS } from "@/data/translations";
 
 export default function Hero() {
-  const tags = [
-    "Product Design",
-    "UX/UI",
-    "B2B SaaS",
-    "Gestão & ERP",
-    "Discovery",
-    "Design System",
-  ];
-
-  const credentials = [
-    {
-      label: "Atuação Atual",
-      value: "Product Designer — ALFA Software",
-      meta: "2023 — Presente • ERP & SaaS B2B",
-    },
-    {
-      label: "Base Estratégica",
-      value: "Analista de Negócios ERP",
-      meta: "2020 — 2023 • 15+ Implantações B2B",
-    },
-    {
-      label: "Entrega & Execução",
-      value: "Discovery, Design System & Protótipo Live",
-      meta: "Figma + React/TypeScript + Critérios de QA",
-    },
-  ];
+  const { locale } = useLanguage();
+  const t = HERO_TRANSLATIONS[locale];
+  const tags = t.tags;
+  const credentials = t.credentials;
 
   return (
     <section className="relative pt-12 pb-16 md:pt-20 md:pb-24 border-b border-surface-borderSubtle overflow-hidden">
@@ -45,7 +27,7 @@ export default function Hero() {
             <span>Product Designer</span>
           </div>
           <div className="text-neutral-400 uppercase tracking-wider text-[11px]">
-            Sistemas de Gestão • B2B SaaS • ERP
+            {t.topDomain}
           </div>
         </div>
 
@@ -55,22 +37,22 @@ export default function Hero() {
           <div className="lg:col-span-7 space-y-6">
             <p className="text-xs sm:text-sm font-mono tracking-widest text-[#13E1BC] uppercase flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC]" />
-              <span>Portfolio // Produtos Digitais Complexos</span>
+              <span>{t.eyebrow}</span>
             </p>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-semibold tracking-tighter text-white leading-[0.98]">
               Product Designer
               <span className="text-neutral-400 font-light text-2xl sm:text-4xl md:text-5xl block pt-2.5 tracking-tight">
-                para sistemas densos e produtos B2B
+                {t.subtitleHero}
               </span>
             </h1>
 
             <div className="space-y-3 pt-1 max-w-2xl">
               <p className="text-lg sm:text-xl md:text-2xl font-light text-neutral-200 leading-snug tracking-tight">
-                &ldquo;Simplifico ferramentas de trabalho e softwares de gestão para quem opera o sistema todos os dias.&rdquo;
+                &ldquo;{t.quote}&rdquo;
               </p>
               <p className="text-sm sm:text-base text-neutral-400 font-normal leading-relaxed">
-                Atuo de ponta a ponta entre Discovery, regras de negócio, arquitetura de informação e prototipação funcional em código para reduzir atrito operacional e retrabalho com engenharia.
+                {t.bio}
               </p>
             </div>
 
@@ -80,21 +62,21 @@ export default function Hero() {
                 href="#selected-work"
                 className="inline-flex items-center gap-2.5 text-xs font-mono uppercase tracking-wider px-5 py-3 bg-[#13E1BC] text-[#080808] font-semibold hover:bg-[#0db899] transition-colors shadow-[0_0_24px_rgba(19,225,188,0.18)]"
               >
-                <span>Explorar Projetos</span>
+                <span>{t.exploreProjects}</span>
                 <ArrowDown className="w-3.5 h-3.5" />
               </a>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white hover:text-[#13E1BC] transition-colors px-5 py-3 border border-surface-border bg-neutral-950 hover:border-[#13E1BC]/60"
               >
-                <span>Entrar em Contato</span>
+                <span>{t.contactMe}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 href="/resume"
                 className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white transition-colors px-2 py-2"
               >
-                <span>Currículo / CV</span>
+                <span>{t.resumeCta}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#13E1BC]" />
               </Link>
             </div>
@@ -108,9 +90,9 @@ export default function Hero() {
               <div className="flex items-center justify-between border-b border-surface-borderSubtle pb-3.5 text-[11px] font-mono">
                 <span className="text-[#13E1BC] uppercase tracking-widest flex items-center gap-2">
                   <Briefcase className="w-3.5 h-3.5" />
-                  <span>Dossiê Profissional</span>
+                  <span>{t.dossierLabel}</span>
                 </span>
-                <span className="text-neutral-500">4+ ANOS // B2B & ERP</span>
+                <span className="text-neutral-500">{t.dossierYears}</span>
               </div>
 
               <div className="divide-y divide-surface-borderSubtle/80">
@@ -132,13 +114,13 @@ export default function Hero() {
               <div className="pt-4 border-t border-surface-borderSubtle flex items-center justify-between text-[11px] font-mono">
                 <span className="text-neutral-400 flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#13E1BC]" />
-                  <span>4 Case Studies + 3 Sandboxes Live</span>
+                  <span>5 Case Studies + 4 Sandboxes Live</span>
                 </span>
                 <Link
                   href="/about"
                   className="text-white hover:text-[#13E1BC] transition-colors inline-flex items-center gap-1"
                 >
-                  <span>Sobre</span>
+                  <span>{locale === "en" ? "About" : "Sobre"}</span>
                   <ArrowUpRight className="w-3 h-3" />
                 </Link>
               </div>
@@ -160,7 +142,7 @@ export default function Hero() {
           </div>
           <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono text-neutral-500">
             <Layers className="w-3.5 h-3.5 text-neutral-500" />
-            <span>Brasil • Remoto / Híbrido</span>
+            <span>{locale === "en" ? "Brazil • Remote / Hybrid" : "Brasil • Remoto / Híbrido"}</span>
           </span>
         </div>
       </div>

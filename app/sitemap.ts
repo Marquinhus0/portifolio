@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { casesData } from "@/data/cases";
+import { getSiteUrl } from "@/lib/site";
 
-const BASE_URL = "https://marcusritta.design";
+const BASE_URL = getSiteUrl();
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
