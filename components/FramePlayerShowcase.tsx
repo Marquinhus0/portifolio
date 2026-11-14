@@ -81,6 +81,7 @@ export default function FramePlayerShowcase() {
   // Playback state
   const [isPlaying, setIsPlaying] = useState(false);
   const [isBuffering, setIsBuffering] = useState(false);
+  const [videoUnavailable, setVideoUnavailable] = useState(false);
   const [currentSeconds, setCurrentSeconds] = useState(currentMasterclass.initialTimeSec);
   const [totalDuration, setTotalDuration] = useState(currentMasterclass.fallbackDurationSec);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1.0);
@@ -159,6 +160,7 @@ export default function FramePlayerShowcase() {
     if (id === selectedMasterclassId) return;
     const nextMasterclass = MASTERCLASSES[id];
     setSelectedMasterclassId(id);
+    setVideoUnavailable(false);
     setCurrentSeconds(nextMasterclass.initialTimeSec);
     setTotalDuration(nextMasterclass.fallbackDurationSec);
     setActiveBeadId(nextMasterclass.beads[1]?.id || nextMasterclass.beads[0]?.id);
@@ -171,7 +173,14 @@ export default function FramePlayerShowcase() {
   // Play / Pause unified handler
   const togglePlay = () => {
     const v = videoRef.current;
-    if (!v) return;
+    if (videoUnavailable || !v) {
+      setIsPlaying((prev) => {
+        const next = !prev;
+        triggerHudToast(next ? "▶ Timeline Simulada Ativa" : "⏸ Pausado");
+        return next;
+      });
+      return;
+    }
 
     if (v.paused) {
       v.play()
@@ -188,7 +197,9 @@ export default function FramePlayerShowcase() {
               triggerHudToast("▶ Reproduzindo (Áudio mudo por política do navegador)");
             })
             .catch(() => {
-              triggerHudToast("Aviso: Interação necessária para tocar");
+              setVideoUnavailable(true);
+              setIsPlaying(true);
+              triggerHudToast("▶ Modo Timeline Simulada");
             });
         });
     } else {
@@ -287,6 +298,25 @@ export default function FramePlayerShowcase() {
       triggerHudToast("PiP não suportado");
     }
   };
+
+  // Simulated timeline progression fallback when remote .mp4 stream is absent
+  useEffect(() => {
+    if (!videoUnavailable || !isPlaying || isDraggingScrubber) return;
+    const tick = setInterval(() => {
+      setCurrentSeconds((prev) => {
+        const next = prev + playbackSpeed >= totalDuration ? 0 : prev + playbackSpeed;
+        let nearest = currentMasterclass.beads[0];
+        for (const bead of currentMasterclass.beads) {
+          if (next >= bead.seconds - 15) nearest = bead;
+        }
+        if (nearest && nearest.id !== activeBeadId) {
+          setActiveBeadId(nearest.id);
+        }
+        return next;
+      });
+    }, 1000);
+    return () => clearInterval(tick);
+  }, [videoUnavailable, isPlaying, isDraggingScrubber, playbackSpeed, totalDuration, currentMasterclass, activeBeadId]);
 
   // Synchronize on fullscreen change
   useEffect(() => {
@@ -1018,16 +1048,22 @@ export default function FramePlayerShowcase() {
                     : "aspect-video"
                 }`}
               >
-                {/* REAL HTML5 VIDEO ELEMENT WITH DYNAMIC FILTER */}
+                {/* REAL HTML5 VIDEO ELEMENT WITH DYNAMIC FILTER & RESILIENT FALLBACK */}
                 <video
                   ref={videoRef}
                   src={currentMasterclass.videoSrc}
+                  poster={currentMasterclass.fallbackPosterUrl}
                   playsInline
                   preload="metadata"
+                  onError={() => {
+                    setVideoUnavailable(true);
+                    setIsBuffering(false);
+                  }}
                   onTimeUpdate={handleTimeUpdate}
                   onLoadedMetadata={handleLoadedMetadata}
                   onWaiting={() => setIsBuffering(true)}
                   onPlaying={() => {
+                    setVideoUnavailable(false);
                     setIsBuffering(false);
                     setIsPlaying(true);
                   }}
@@ -1037,6 +1073,24 @@ export default function FramePlayerShowcase() {
                   onClick={togglePlay}
                   className={`w-full h-full object-cover cursor-pointer transition-all duration-300 ${getFilterClass()}`}
                 />
+
+                {videoUnavailable && (
+                  <div
+                    onClick={togglePlay}
+                    className="absolute inset-0 z-10 cursor-pointer bg-black flex items-center justify-center overflow-hidden"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={currentMasterclass.fallbackPosterUrl}
+                      alt={currentMasterclass.title}
+                      className={`w-full h-full object-cover opacity-85 transition-all duration-300 ${getFilterClass()}`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/40" />
+                    <span className="absolute top-3 right-3 px-2.5 py-1 bg-[#080808]/90 border border-[#ff5352]/40 text-[#ffb3ae] font-mono text-[10px] uppercase tracking-wider rounded-sm">
+                      Timeline Simulada // Fallback Sem Stream .MP4
+                    </span>
+                  </div>
+                )}
 
                 {/* Grid Overlay Guide (When "grid" optical filter is selected) */}
                 {inspectionFilter === "grid" && (
@@ -1917,14 +1971,29 @@ export default function FramePlayerShowcase() {
           </div>
 
           {/* Mobile Video Area */}
-          <div className="relative aspect-video w-full bg-black flex items-center justify-center">
+          <div className="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
             <video
               src={currentMasterclass.videoSrc}
+              poster={currentMasterclass.fallbackPosterUrl}
               playsInline
               preload="metadata"
               controls
+              onError={() => setVideoUnavailable(true)}
               className="w-full h-full object-cover"
             />
+            {videoUnavailable && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/75">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={currentMasterclass.fallbackPosterUrl}
+                  alt={currentMasterclass.title}
+                  className="w-full h-full object-cover opacity-80"
+                />
+                <span className="absolute bottom-2 left-2 right-2 text-center px-2 py-1 bg-[#080808]/90 border border-[#ff5352]/40 text-[#ffb3ae] text-[9px] uppercase tracking-wider">
+                  Modo Timeline Simulada // Sem Stream .MP4
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Mobile Bottom-Sheet (Swipeable Knowledge Rail) */}

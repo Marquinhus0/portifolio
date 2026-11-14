@@ -458,9 +458,9 @@ export default function SupplyHubWorkspace() {
                     <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#16845a]">
                       Visão geral
                     </span>
-                    <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#15201c] mt-1">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#15201c] mt-1">
                       Olá, Marcus.
-                    </h1>
+                    </h2>
                     <p className="text-xs sm:text-sm text-[#71807a] mt-1">
                       Acompanhe suas compras e oportunidades em um só lugar.
                     </p>

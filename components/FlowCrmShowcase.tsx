@@ -705,7 +705,7 @@ export default function FlowCrmShowcase() {
         <div className="fixed bottom-6 right-6 z-50 bg-[#123B63] text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-white/10 animate-in fade-in slide-in-from-bottom-4 duration-200 text-xs font-medium">
           <CheckCircle2 className="w-4 h-4 text-[#1683E8]" />
           <span>{toastMessage}</span>
-          <button onClick={() => setToastMessage(null)} className="ml-2 text-white/60 hover:text-white">
+          <button type="button" aria-label="Fechar notificação" onClick={() => setToastMessage(null)} className="ml-2 text-white/60 hover:text-white">
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -1113,9 +1113,9 @@ export default function FlowCrmShowcase() {
                     <span>•</span>
                     <span className="text-[#667085]">ECOSSISTEMA B2B</span>
                   </div>
-                  <h1 className="text-3xl font-extrabold text-[#172033] tracking-tight">
+                  <h2 className="text-3xl font-extrabold text-[#172033] tracking-tight">
                     Visão comercial
-                  </h1>
+                  </h2>
                   <p className="text-xs text-[#667085] mt-1">
                     Acompanhe o desempenho do seu funil e da equipe comercial em tempo real.
                   </p>
@@ -1558,6 +1558,8 @@ export default function FlowCrmShowcase() {
                         >
                           <div className="flex items-start gap-3">
                             <button
+                              type="button"
+                              aria-label={task.completed ? `Reabrir tarefa: ${task.title}` : `Concluir tarefa: ${task.title}`}
                               onClick={() => handleToggleTask(task.id)}
                               className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all shrink-0 mt-0.5 ${
                                 task.completed
@@ -1673,9 +1675,9 @@ export default function FlowCrmShowcase() {
                   <div className="text-[11px] font-bold text-[#1683E8] uppercase tracking-wider mb-1">
                     PIPELINE COMERCIAL B2B
                   </div>
-                  <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
+                  <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                     Funil de Vendas (Kanban)
-                  </h1>
+                  </h2>
                   <p className="text-xs text-[#667085] mt-1">
                     Arraste cards entre estágios ou clique para gerenciar negociações e registrar atividades.
                   </p>
@@ -1847,9 +1849,9 @@ export default function FlowCrmShowcase() {
                   <div className="text-[11px] font-bold text-[#1683E8] uppercase tracking-wider mb-1">
                     BASE DE PROSPECÇÃO B2B
                   </div>
-                  <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
+                  <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                     Leads & Contas B2B
-                  </h1>
+                  </h2>
                   <p className="text-xs text-[#667085] mt-1">
                     Gerencie entradas de campanhas, WhatsApp, balcão e indicações de mercado.
                   </p>
@@ -2052,9 +2054,9 @@ export default function FlowCrmShowcase() {
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
+                  <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                     Oportunidades em Aberto
-                  </h1>
+                  </h2>
                   <p className="text-xs text-[#667085] mt-1">
                     Cálculo de probabilidade e valor ponderado para projeção de receita do ERP.
                   </p>
@@ -2134,9 +2136,9 @@ export default function FlowCrmShowcase() {
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
+                  <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                     Central de Follow-ups & Tarefas
-                  </h1>
+                  </h2>
                   <p className="text-xs text-[#667085] mt-1">
                     Garantia de que nenhum lead ou negociação corporativa fique sem próximo contato.
                   </p>
@@ -2159,6 +2161,8 @@ export default function FlowCrmShowcase() {
                   >
                     <div className="flex items-center gap-3">
                       <button
+                        type="button"
+                        aria-label={task.completed ? `Reabrir tarefa: ${task.title}` : `Concluir tarefa: ${task.title}`}
                         onClick={() => handleToggleTask(task.id)}
                         className={`w-5 h-5 rounded-md border flex items-center justify-center ${
                           task.completed
@@ -2204,9 +2208,9 @@ export default function FlowCrmShowcase() {
           {activeTab === "atividades" && (
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div>
-                <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
+                <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                   Central de Atividades
-                </h1>
+                </h2>
                 <p className="text-xs text-[#667085] mt-1">
                   Histórico de ligações, mensagens de WhatsApp, demonstrações do ERP e propostas.
                 </p>
@@ -2248,9 +2252,9 @@ export default function FlowCrmShowcase() {
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
+                  <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                     Agenda Comercial
-                  </h1>
+                  </h2>
                   <p className="text-xs text-[#667085] mt-1">
                     Demonstrações agendadas de software, reuniões presenciais e visitas técnicas.
                   </p>
@@ -2315,9 +2319,9 @@ export default function FlowCrmShowcase() {
           {activeTab === "empresas" && (
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div>
-                <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
+                <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                   Empresas & Contas B2B
-                </h1>
+                </h2>
                 <p className="text-xs text-[#667085] mt-1">
                   Redes de lojas, distribuidores e empresas integradas à base comercial.
                 </p>
@@ -2354,9 +2358,9 @@ export default function FlowCrmShowcase() {
           {activeTab === "propostas" && (
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div>
-                <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
+                <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                   Propostas Comerciais Enterprise
-                </h1>
+                </h2>
                 <p className="text-xs text-[#667085] mt-1">
                   Orçamentos de implantação, licenças por filial e contratos de software.
                 </p>
@@ -2407,9 +2411,9 @@ export default function FlowCrmShowcase() {
           {activeTab === "clientes" && (
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div>
-                <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
+                <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                   Clientes Convertidos (Pós-Fechamento)
-                </h1>
+                </h2>
                 <p className="text-xs text-[#667085] mt-1">
                   Empresas ganhas que migraram do CRM para a base ativa de clientes.
                 </p>
@@ -2453,9 +2457,9 @@ export default function FlowCrmShowcase() {
           {activeTab === "relatorios" && (
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div>
-                <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
+                <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                   Relatórios Comerciais & Motivos de Perda
-                </h1>
+                </h2>
                 <p className="text-xs text-[#667085] mt-1">
                   Métricas de conversão por etapa, performance por vendedor e análise de motivos de perda.
                 </p>
@@ -2523,9 +2527,9 @@ export default function FlowCrmShowcase() {
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">
+                  <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">
                     Automações Comerciais B2B
-                  </h1>
+                  </h2>
                   <p className="text-xs text-[#667085] mt-1">
                     Workflows para distribuição de leads, follow-ups de SLA e sincronização com o ERP corporativo.
                   </p>
@@ -2547,6 +2551,8 @@ export default function FlowCrmShowcase() {
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-bold text-[#172033]">{rule.title}</span>
                       <button
+                        type="button"
+                        aria-label={`${rule.active ? "Desativar" : "Ativar"} automação: ${rule.title}`}
                         onClick={() => {
                           setAutomations((prev) =>
                             prev.map((r) => (r.id === rule.id ? { ...r, active: !r.active } : r))
@@ -2587,7 +2593,7 @@ export default function FlowCrmShowcase() {
           {activeTab === "contatos" && (
             <div className="p-8 max-w-[1720px] mx-auto w-full space-y-6 animate-in fade-in duration-200">
               <div>
-                <h1 className="text-2xl font-extrabold text-[#172033] tracking-tight">Contatos & Compradores</h1>
+                <h2 className="text-2xl font-extrabold text-[#172033] tracking-tight">Contatos & Compradores</h2>
                 <p className="text-xs text-[#667085] mt-1">
                   Base sincronizada de decisores corporativos vinculados às oportunidades e empresas ativas.
                 </p>
@@ -2687,6 +2693,8 @@ export default function FlowCrmShowcase() {
                 </div>
 
                 <button
+                  type="button"
+                  aria-label="Fechar painel do lead"
                   onClick={() => setActiveLeadDrawer(false)}
                   className="p-2 hover:bg-[#F5F7FA] rounded-xl text-[#667085] hover:text-[#172033]"
                 >
@@ -2888,7 +2896,7 @@ export default function FlowCrmShowcase() {
                 <h3 className="text-base font-extrabold text-[#172033]">Cadastrar Novo Lead</h3>
                 <p className="text-xs text-[#667085]">Insira os dados da empresa e do contato principal.</p>
               </div>
-              <button onClick={() => setIsNewLeadModalOpen(false)} className="p-1.5 text-[#667085] hover:text-[#172033]">
+              <button type="button" aria-label="Fechar modal de novo lead" onClick={() => setIsNewLeadModalOpen(false)} className="p-1.5 text-[#667085] hover:text-[#172033]">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -3068,7 +3076,7 @@ export default function FlowCrmShowcase() {
                 <h3 className="text-sm font-extrabold text-[#172033]">Registrar Motivo de Perda</h3>
                 <p className="text-xs text-[#667085]">Oportunidade: {dealToMarkLost.company}</p>
               </div>
-              <button onClick={() => setIsLossReasonModalOpen(false)} className="text-[#667085]">
+              <button type="button" aria-label="Fechar modal de motivo de perda" onClick={() => setIsLossReasonModalOpen(false)} className="text-[#667085]">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -3143,7 +3151,7 @@ export default function FlowCrmShowcase() {
                   <p className="text-xs text-[#667085]">Para: {activeWhatsAppLead.name} ({activeWhatsAppLead.company})</p>
                 </div>
               </div>
-              <button onClick={() => setWhatsAppModalOpen(false)} className="text-[#667085]">
+              <button type="button" aria-label="Fechar modal do WhatsApp" onClick={() => setWhatsAppModalOpen(false)} className="text-[#667085]">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -3240,7 +3248,7 @@ export default function FlowCrmShowcase() {
                   <p className="text-xs text-[#667085]">{activeCallLead.name} ({activeCallLead.phone})</p>
                 </div>
               </div>
-              <button onClick={() => setCallModalOpen(false)} className="text-[#667085]">
+              <button type="button" aria-label="Fechar modal de ligação" onClick={() => setCallModalOpen(false)} className="text-[#667085]">
                 <X className="w-4 h-4" />
               </button>
             </div>

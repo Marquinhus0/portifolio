@@ -3,7 +3,7 @@ export function getSiteUrl(): string {
     process.env.NEXT_PUBLIC_SITE_URL ||
     process.env.VERCEL_PROJECT_PRODUCTION_URL ||
     process.env.VERCEL_URL ||
-    "https://marcusritta.design";
+    "https://portifolio-marcus-hrt.vercel.app";
 
   const trimmed = raw.trim().replace(/\/+$/, "");
   if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
