@@ -16,6 +16,7 @@ export default function Navbar() {
   const navLinks = [
     { name: t.links.home, href: "/" },
     { name: t.links.work, href: "/work" },
+    { name: t.links.decisionLab, href: "/decision-lab" },
     { name: t.links.about, href: "/about" },
     { name: t.links.contact, href: "/contact" },
   ];

@@ -6,6 +6,7 @@ export const NAV_TRANSLATIONS = {
     links: {
       home: "Início",
       work: "Projetos",
+      decisionLab: "Decision Lab",
       about: "Sobre",
       contact: "Contato",
     },
@@ -20,6 +21,7 @@ export const NAV_TRANSLATIONS = {
     links: {
       home: "Home",
       work: "Projects",
+      decisionLab: "Decision Lab",
       about: "About",
       contact: "Contact",
     },
@@ -39,6 +41,7 @@ export const FOOTER_TRANSLATIONS = {
     links: [
       { name: "Início", href: "/" },
       { name: "Projetos", href: "/work" },
+      { name: "Decision Lab", href: "/decision-lab" },
       { name: "Sobre", href: "/about" },
       { name: "Currículo", href: "/resume" },
       { name: "Contato", href: "/contact" },
@@ -52,6 +55,7 @@ export const FOOTER_TRANSLATIONS = {
     links: [
       { name: "Home", href: "/" },
       { name: "Projects", href: "/work" },
+      { name: "Decision Lab", href: "/decision-lab" },
       { name: "About", href: "/about" },
       { name: "Resume", href: "/resume" },
       { name: "Contact", href: "/contact" },
