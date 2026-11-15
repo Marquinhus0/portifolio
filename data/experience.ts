@@ -15,9 +15,9 @@ export const experienceData: ExperienceItem[] = [
       "Participação em demonstrações com clientes corporativos e processos de implantação assistida (go-live e treinamentos)"
     ],
     impacts: [
-      "Integração de testes com usuários na rotina ágil de desenvolvimento",
-      "Padronização de componentes para acelerar a criação de novas telas",
-      "Redução na curva de aprendizado de equipes operacionais ao utilizar fluxos críticos do sistema"
+      "Padronização de componentes e estados críticos (erro fiscal, vazio e carregamento) entre Figma e engenharia",
+      "Adoção de testes de usabilidade e critérios de aceite na rotina ágil antes de ir para produção",
+      "Simplificação de telas densas de balcão, fechamento de pedido e sugestão de compra, reduzindo dúvidas operacionais pós-implantação"
     ],
     technologies: ["Figma", "Product Discovery", "UX Research", "Design Systems", "Usability Testing", "QA & Criteria", "B2B ERP", "JIRA"]
   },
@@ -36,9 +36,9 @@ export const experienceData: ExperienceItem[] = [
       "Suporte técnico especializado e análise de processos nos módulos vitais: Compras, Vendas, Financeiro e Estoque"
     ],
     impacts: [
-      "Otimização da arquitetura da informação e jornada de navegação no site institucional da empresa",
-      "15+ implantações completas entregues com sucesso e alta taxa de adesão em clientes B2B",
-      "Metodologia padronizada de coleta de feedbacks incorporada ao processo de melhoria contínua da empresa"
+      "15+ implantações completas de ERP conduzidas em clientes B2B (Compras, Vendas, Financeiro e Estoque)",
+      "Método próprio de coleta e triagem de feedbacks adotado como padrão oficial da empresa",
+      "Base de conhecimento ilustrada com guias operacionais e arquitetura do site institucional otimizada"
     ],
     technologies: ["Business Analysis", "Process Mapping", "ERP Systems", "Information Architecture", "QA & Testing", "Wireframing", "Go-Live Delivery"]
   },

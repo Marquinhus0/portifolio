@@ -102,7 +102,7 @@ export default function FrameInteractiveVideoCaseStudy({
             <span className="bg-[#ff5352]/15 border border-[#ff5352]/40 text-[#ffb3ae] text-[10px] px-2 py-0.5 rounded-sm font-bold tracking-wider uppercase">
               CONCEPT STUDY // MEDIA &amp; STREAMING
             </span>
-            <span className="text-neutral-400">CASE 02 / FRAME</span>
+            <span className="text-neutral-400">CASE {caseStudy.number} / FRAME</span>
           </div>
         </div>
       </header>
@@ -552,7 +552,7 @@ export default function FrameInteractiveVideoCaseStudy({
           {/* The 3 Personas Mapped */}
           <div className="space-y-4 pt-6">
             <span className="text-xs font-mono text-neutral-500 uppercase tracking-wider block">
-              Personas Validadas na Arquitetura:
+              Personas Hipotéticas (Arquétipos de Uso Conceitual):
             </span>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1260,28 +1260,28 @@ export default function FrameInteractiveVideoCaseStudy({
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
           <div className="max-w-3xl space-y-3">
             <span className="text-xs font-mono text-[#ffb3ae] uppercase tracking-widest block">
-              10 // IMPACTO &amp; APRENDIZADOS
+              10 // CRITÉRIOS-ALVO CONCEITUAIS (NÃO MEDIDOS EM PRODUÇÃO)
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-mono">
-              Framework de Métricas de Produto &amp; Conclusão
+              Framework de Metas &amp; Hipóteses para Validação
             </h2>
             <p className="text-neutral-400 text-sm leading-relaxed">
-              Como projeto autoral, evitamos inventar métricas fictícias de mercado. Em vez disso, estruturamos os indicadores exatos que um Product Designer deve acompanhar para validar o sucesso do produto na prática:
+              Como estudo autoral sem telemetria de produção, os alvos abaixo definem critérios mensuráveis que seriam acompanhados em um eventual teste com usuários — não resultados medidos em campo:
             </p>
           </div>
 
           {/* Metric Goals with Progress Bars */}
           <div className="space-y-4 font-mono">
             {[
-              { label: "Completion Rate (vídeos >15min)", value: 48, suffix: "%", prefix: "+", color: "#ff5352", desc: "Aumento na taxa de conclusão de vídeos técnicos longos ao eliminar o atrito de abas externas.", metric: "02" },
-              { label: "Knowledge Rail Discovery", value: 74, suffix: "%", prefix: "", color: "#ff5352", desc: "Usuários que utilizam a busca na transcrição para localizar termos técnicos específicos.", metric: "03" },
-              { label: "Dossier Export Rate (por sessão)", value: 41, suffix: "%", prefix: "", color: "#ff5352", desc: "Pesquisadores que exportam o resumo em Markdown com suas anotações pessoais gravadas.", metric: "04" },
-              { label: "Audio Continuity (zero pauses)", value: 100, suffix: "%", prefix: "", color: "#13E1BC", desc: "Nenhuma interrupção de áudio registrada durante inspeção de nós no Knowledge Rail.", metric: "01" },
+              { label: "Alvo: Audio Continuity (zero pausas ao inspecionar)", value: 100, suffix: "%", prefix: "", color: "#13E1BC", desc: "Comportamento garantido na arquitetura do player não-bloqueante.", metric: "01 — Comportamento" },
+              { label: "Meta Hipotética: Completion Rate (vídeos >15min)", value: 48, suffix: "%", prefix: "+", color: "#ff5352", desc: "Hipótese de ganho na conclusão ao eliminar troca de abas.", metric: "02 — Hipótese a Validar" },
+              { label: "Meta Hipotética: Descoberta via Knowledge Rail", value: 74, suffix: "%", prefix: "", color: "#ff5352", desc: "Alvo esperado de sessões usando busca sincronizada na transcrição.", metric: "03 — Hipótese a Validar" },
+              { label: "Meta Hipotética: Dossier Export Rate", value: 41, suffix: "%", prefix: "", color: "#ff5352", desc: "Alvo conceitual de pesquisadores exportando resumo em Markdown.", metric: "04 — Hipótese a Validar" },
             ].map((m) => (
               <div key={m.metric} className="p-5 bg-[#111113] border border-[#262626] space-y-3 group hover:border-[#262626]/80 transition-colors">
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-0.5">
-                    <span className="text-[10px] text-neutral-500 uppercase tracking-widest block">Métrica {m.metric}</span>
+                    <span className="text-[10px] text-neutral-500 uppercase tracking-widest block">Critério {m.metric}</span>
                     <span className="text-white text-sm font-bold">{m.label}</span>
                     <p className="text-neutral-400 text-[11px] font-sans leading-relaxed pt-0.5">{m.desc}</p>
                   </div>

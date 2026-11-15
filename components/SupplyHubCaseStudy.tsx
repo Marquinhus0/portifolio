@@ -469,7 +469,7 @@ export default function SupplyHubCaseStudy({
                 Topbar: 64px
               </span>
               <span className="px-2.5 py-1 bg-[#16845a]/20 text-[#3cd68e] border border-[#16845a]/40 rounded font-bold">
-                Design Real Navegável
+                Protótipo Funcional Interativo • Dados Sintéticos
               </span>
             </div>
           </div>
@@ -913,7 +913,7 @@ export default function SupplyHubCaseStudy({
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-10">
           <div className="space-y-4 max-w-3xl">
             <span className="text-xs font-mono text-[#3cd68e] uppercase tracking-widest font-semibold block">
-              07 — VALIDAÇÃO CONCEITUAL & CRITÉRIOS DE SUCESSO
+              07 — VALIDAÇÃO CONCEITUAL &amp; METAS PROJETADAS (NÃO MEDIDAS)
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
               Como Medir a Eficiência de uma Plataforma B2B
@@ -933,7 +933,7 @@ export default function SupplyHubCaseStudy({
                 Mede a quantidade de horas desde o disparo da RFQ multilateral até a seleção final da proposta vencedora.
               </p>
               <span className="text-[11px] text-neutral-500 block pt-2 border-t border-neutral-800">
-                Meta de Design: Reduzir de 3 dias úteis para menos de 4 horas operacionais.
+                Meta Projetada (Hipótese): Reduzir de 3 dias úteis para menos de 4 horas operacionais.
               </span>
             </div>
 
@@ -946,7 +946,7 @@ export default function SupplyHubCaseStudy({
                 Diferença percentual obtida entre o preço de tabela do distribuidor e o valor final negociado na plataforma.
               </p>
               <span className="text-[11px] text-neutral-500 block pt-2 border-t border-neutral-800">
-                Meta de Design: Facilitar contrapropostas rápidas com economia média entre 6% e 12%.
+                Meta Projetada (Hipótese): Facilitar contrapropostas rápidas com economia-alvo entre 6% e 12%.
               </span>
             </div>
 
@@ -959,7 +959,7 @@ export default function SupplyHubCaseStudy({
                 Percentual de ordens de compra emitidas sem violação das regras de limite financeiro e sem requisição retroativa.
               </p>
               <span className="text-[11px] text-neutral-500 block pt-2 border-t border-neutral-800">
-                Meta de Design: 100% de rastreabilidade de aprovações em auditoria contábil.
+                Meta Projetada (Critério de Arquitetura): Rastreabilidade total de aprovações em trilha de auditoria.
               </span>
             </div>
           </div>

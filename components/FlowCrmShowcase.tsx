@@ -262,10 +262,15 @@ export default function FlowCrmShowcase() {
     setTimeout(() => setToastMessage(null), 3500);
   };
 
-  // Keyboard shortcut for Ctrl+K
+  // Keyboard shortcut for "/" (avoids collision with global Ctrl+K Command Center)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+      const target = e.target as HTMLElement | null;
+      const isTyping =
+        target?.tagName === "INPUT" ||
+        target?.tagName === "TEXTAREA" ||
+        target?.isContentEditable;
+      if (e.key === "/" && !isTyping && !e.ctrlKey && !e.metaKey) {
         e.preventDefault();
         setIsSearchModalOpen((prev) => !prev);
       }
@@ -973,7 +978,7 @@ export default function FlowCrmShowcase() {
                   <span>Buscar lead, empresa ou oportunidade...</span>
                 </div>
                 <kbd className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono font-bold bg-white text-[#667085] border border-[#E4E7EC] rounded-md shadow-2xs">
-                  ⌘ K
+                  /
                 </kbd>
               </div>
             </div>

@@ -214,7 +214,7 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
       context:
         "Em operações de varejo e atacarejo B2B integradas ao ERP, o operador precisa concluir vendas em segundos pelo teclado. Porém, cada emissão envolve NCM, CFOP, ICMS-ST, reserva de estoque e comunicação com autorizador fiscal externo.",
       relatedCaseSlug: "erp-enterprise-redesign",
-      relatedCaseLabel: "Case 05 — ERP Enterprise (NDA-Safe)",
+      relatedCaseLabel: "Case 01 — ERP Enterprise (NDA-Safe)",
       constraints: [
         "Operador não domina tributação; erro técnico críptico trava o atendimento presencial.",
         "Estoque reservado em venda abortada precisa ser liberado sem registro fantasma.",
@@ -397,7 +397,7 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
       context:
         "Em redes multi-filiais, compradores precisam responder cotações rápido para evitar ruptura de estoque, mas a diretoria financeira teme aprovar aumentos silenciosos fora do histórico ou acima do orçamento mensal.",
       relatedCaseSlug: "supplyhub-procurement-b2b",
-      relatedCaseLabel: "Case 04 — SupplyHub B2B",
+      relatedCaseLabel: "Case 02 — SupplyHub B2B",
       constraints: [
         "Diretores não têm tempo de auditar centenas de pedidos rotineiros idênticos.",
         "Comprador precisa visualizar imediatamente se um preço subiu frente à última compra.",
@@ -764,7 +764,7 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
       context:
         "In B2B retail and wholesale ERP workflows, cashiers must complete orders in seconds via keyboard. Yet every invoice validates tax codes (NCM/CFOP/ICMS), stock reservation, and external fiscal authorization.",
       relatedCaseSlug: "erp-enterprise-redesign",
-      relatedCaseLabel: "Case 05 — Enterprise ERP (NDA-Safe)",
+      relatedCaseLabel: "Case 01 — Enterprise ERP (NDA-Safe)",
       constraints: [
         "Operators are not tax specialists; cryptic error codes freeze physical lines.",
         "Reserved stock on aborted orders must be cleanly released.",
@@ -947,7 +947,7 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
       context:
         "Branch buyers need fast PO turnaround to avoid stockouts, whereas finance teams want visibility whenever suppliers raise unit costs above historical baselines or monthly department budgets.",
       relatedCaseSlug: "supplyhub-procurement-b2b",
-      relatedCaseLabel: "Case 04 — SupplyHub B2B",
+      relatedCaseLabel: "Case 02 — SupplyHub B2B",
       constraints: [
         "Executives cannot manually review hundreds of routine unchanged orders.",
         "Buyers need instant visual comparison against last approved price.",

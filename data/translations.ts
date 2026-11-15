@@ -77,22 +77,22 @@ export const HERO_TRANSLATIONS = {
     contactMe: "Entrar em Contato",
     resumeCta: "Currículo / CV",
     dossierLabel: "Dossiê Profissional",
-    dossierYears: "4+ ANOS // B2B & ERP",
+    dossierYears: "~6 ANOS EM ERP // 3+ PRODUCT DESIGN",
     credentials: [
       {
-        label: "Atuação Atual",
+        label: "Atuação Atual (3+ Anos)",
         value: "Product Designer — ALFA Software",
-        meta: "2023 — Presente • ERP & SaaS B2B",
+        meta: "2023 — Presente • Discovery, Design System & QA",
       },
       {
-        label: "Base Estratégica",
-        value: "Analista de Negócios ERP",
+        label: "Base em Negócios ERP (3 Anos)",
+        value: "Analista de Negócios ERP — ALFA Software",
         meta: "2020 — 2023 • 15+ Implantações B2B",
       },
       {
         label: "Entrega & Execução",
-        value: "Discovery, Design System & Protótipo Live",
-        meta: "Figma + React/TypeScript + Critérios de QA",
+        value: "Regras de Negócio, IA & Prototipação React",
+        meta: "Figma + TypeScript + Critérios de Aceite QA",
       },
     ],
     tags: [
@@ -115,22 +115,22 @@ export const HERO_TRANSLATIONS = {
     contactMe: "Get in Touch",
     resumeCta: "Resume / CV",
     dossierLabel: "Executive Dossier",
-    dossierYears: "4+ YRS // B2B & ERP",
+    dossierYears: "~6 YRS IN ERP // 3+ PRODUCT DESIGN",
     credentials: [
       {
-        label: "Current Role",
+        label: "Current Role (3+ Years)",
         value: "Product Designer — ALFA Software",
-        meta: "2023 — Present • ERP & B2B SaaS",
+        meta: "2023 — Present • Discovery, Design System & QA",
       },
       {
-        label: "Strategic Foundation",
-        value: "ERP Business Analyst",
+        label: "ERP Business Foundation (3 Years)",
+        value: "ERP Business Analyst — ALFA Software",
         meta: "2020 — 2023 • 15+ B2B Rollouts",
       },
       {
         label: "Delivery & Execution",
-        value: "Discovery, Design System & Live Prototype",
-        meta: "Figma + React/TypeScript + QA Criteria",
+        value: "Business Rules, IA & React Prototyping",
+        meta: "Figma + TypeScript + QA Acceptance Criteria",
       },
     ],
     tags: [
@@ -146,23 +146,23 @@ export const HERO_TRANSLATIONS = {
 
 export const HOME_TRANSLATIONS = {
   pt: {
-    workEyebrow: "[Estudos de Caso & Protótipos Interativos]",
-    workTitle: "Projetos selecionados",
-    workCountNote: "4 estudos autorais + 1 case real NDA-safe com protótipos em React",
+    workEyebrow: "[Experiência em Produção • ALFA Software]",
+    workTitle: "Case real em destaque",
+    workCountNote: "Fluxos reais de ERP (NDA-Safe) seguidos por 4 estudos autorais",
     workAllLink: "Ver índice completo",
-    ndaTitle: "Projetos Corporativos em Produção (ALFA Software • NDA-Safe)",
+    ndaTitle: "Estudos Autorais & Protótipos Funcionais Interativos",
     ndaDesc:
-      "O Case [05] reconstrói fluxos reais do ERP sem expor dados confidenciais de clientes, complementando os 4 estudos autorais acima e a trajetória detalhada logo abaixo.",
+      "Os 4 projetos abaixo são explorações autorais com dados sintéticos em React/TypeScript para demonstrar arquitetura, estados de borda e prototipação interativa.",
     ndaCta: "Ver Experiência",
   },
   en: {
-    workEyebrow: "[Case Studies & Interactive Prototypes]",
-    workTitle: "Selected projects",
-    workCountNote: "4 self-directed concepts + 1 NDA-safe production ERP case in React",
+    workEyebrow: "[Production Track Record • ALFA Software]",
+    workTitle: "Featured real-world case",
+    workCountNote: "Real ERP workflows (NDA-Safe) followed by 4 self-directed studies",
     workAllLink: "View full index",
-    ndaTitle: "Production Enterprise Work (ALFA Software • NDA-Safe)",
+    ndaTitle: "Self-Directed Studies & Interactive Functional Prototypes",
     ndaDesc:
-      "Case [05] reconstructs real ERP workflows without exposing confidential customer data, pairing with the 4 interactive studies above and full timeline below.",
+      "The 4 projects below are authorial explorations built with synthetic data in React/TypeScript to demonstrate architecture, edge states, and live prototyping.",
     ndaCta: "View Experience",
   },
 } as const;
@@ -184,21 +184,21 @@ export const CASE_CARD_COPY: Record<
       subtitle:
         "Plataforma de cinema e arquitetura onde cada segundo do vídeo carrega plantas interativas, contexto histórico e caderno de estudos.",
       domainLabel: "Cinema & Mídia Interativa",
-      cta: "Ver Case & Sandbox Live",
+      cta: "Ver Case & Protótipo Interativo",
     },
     "flow-crm-b2b": {
       title: "FLOW CRM — Pipeline & Operação Comercial B2B",
       subtitle:
         "Plataforma comercial B2B desenhada para transformar gestão de oportunidades, funil Kanban e aprovações em execução previsível.",
       domainLabel: "CRM Comercial B2B",
-      cta: "Ver Case & Sandbox Live",
+      cta: "Ver Case & Protótipo Interativo",
     },
     "supplyhub-procurement-b2b": {
       title: "SupplyHub — Procurement & Cotações B2B",
       subtitle:
         "Suite enterprise para gestão de cotações, mapa comparativo de preços e ordens de compra sem fricção operacional.",
       domainLabel: "Compras & Suprimentos B2B",
-      cta: "Ver Case & Sandbox Live",
+      cta: "Ver Case & Protótipo Interativo",
     },
     "erp-enterprise-redesign": {
       title: "ERP Corporativo B2B — Arquitetura & Antes/Depois (NDA-Safe)",
@@ -222,21 +222,21 @@ export const CASE_CARD_COPY: Record<
       subtitle:
         "Cinema and architecture platform where every video timestamp carries interactive blueprints, historical context, and live study notes.",
       domainLabel: "Cinema & Interactive Media",
-      cta: "View Case & Live Sandbox",
+      cta: "View Case & Interactive Prototype",
     },
     "flow-crm-b2b": {
       title: "FLOW CRM — B2B Revenue Pipeline & Operations",
       subtitle:
         "B2B sales platform engineered to turn opportunity tracking, Kanban stages, and discount approvals into predictable daily execution.",
       domainLabel: "B2B Sales CRM",
-      cta: "View Case & Live Sandbox",
+      cta: "View Case & Interactive Prototype",
     },
     "supplyhub-procurement-b2b": {
       title: "SupplyHub — B2B Procurement & RFQ Matrix",
       subtitle:
         "Enterprise suite unifying RFQ collection, side-by-side vendor comparison matrices, and purchase order workflows.",
       domainLabel: "Procurement & Supply B2B",
-      cta: "View Case & Live Sandbox",
+      cta: "View Case & Interactive Prototype",
     },
     "erp-enterprise-redesign": {
       title: "Enterprise B2B ERP — Architecture & Before/After (NDA-Safe)",
@@ -364,9 +364,9 @@ export const EXPERIENCE_TRANSLATIONS: Record<
           "Enterprise client demos and assisted go-live onboarding & training sessions",
         ],
         impacts: [
-          "Embedded regular user testing into the agile engineering sprint cadence",
-          "Standardized reusable UI components to accelerate new screen delivery",
-          "Reduced learning curve for operational teams using mission-critical workflows",
+          "Standardized UI components and edge-case specs (tax error, empty, loading) shared between Figma and engineering",
+          "Embedded usability checks and acceptance criteria into sprint delivery before production release",
+          "Simplified high-density POS counter, order closing, and restock screens, cutting recurring post-rollout operator questions",
         ],
         technologies: [
           "Figma",
@@ -395,9 +395,9 @@ export const EXPERIENCE_TRANSLATIONS: Record<
           "Specialized technical support and workflow analysis across Procurement, Sales, Finance, and Inventory",
         ],
         impacts: [
-          "Improved information architecture and conversion navigation on the corporate website",
-          "15+ full ERP rollouts delivered with strong adoption across B2B clients",
-          "Standardized feedback framework embedded into the company's continuous improvement loop",
+          "Delivered 15+ full-cycle ERP rollouts across Purchasing, Sales, Finance, and Inventory for B2B clients",
+          "Created a proprietary user feedback intake & triage framework adopted as company standard",
+          "Built visual operational guides and restructured corporate site information architecture",
         ],
         technologies: [
           "Business Analysis",
@@ -574,13 +574,13 @@ export const WORK_PAGE_TRANSLATIONS = {
       all: "Todos",
       b2b: "B2B & Enterprise",
       consumer: "Consumer & Mídia",
-      live: "Sandbox Live",
+      live: "Protótipo Interativo",
     },
     ndaEyebrow: "Experiência Profissional em Produção • ALFA Software",
-    ndaTitle: "Evolução Real de Sistema Corporativo (Case [05] NDA-Safe)",
+    ndaTitle: "Evolução Real de Sistema Corporativo (Case [01] NDA-Safe)",
     ndaDesc:
-      "Os 4 primeiros estudos são projetos autorais com dados fictícios para demonstrar arquitetura e prototipação live. O Case [05] documenta a transição real no ERP da ALFA Software com antes/depois interativo anonimizado e resultados fundamentados em campo.",
-    ndaCta: "Abrir Case 05 (ERP NDA-Safe)",
+      "O Case [01] documenta fluxos reais do ERP da ALFA Software via comparador antes/depois anonimizado. Os projetos [02] a [05] são estudos autorais com dados sintéticos e protótipos interativos em React.",
+    ndaCta: "Abrir Case Real (ERP NDA-Safe)",
   },
   en: {
     eyebrow: "[Project Directory]",
@@ -593,12 +593,12 @@ export const WORK_PAGE_TRANSLATIONS = {
       all: "All",
       b2b: "B2B & Enterprise",
       consumer: "Consumer & Media",
-      live: "Live Sandbox",
+      live: "Interactive Prototype",
     },
     ndaEyebrow: "Production Enterprise Track Record • ALFA Software",
-    ndaTitle: "Real Enterprise System Evolution (Case [05] NDA-Safe)",
+    ndaTitle: "Real Enterprise System Evolution (Case [01] NDA-Safe)",
     ndaDesc:
-      "The first 4 projects are self-directed concepts using synthetic data to showcase live prototyping. Case [05] documents real ERP evolution at ALFA Software via an anonymized before/after sandbox grounded in field delivery.",
-    ndaCta: "Open Case 05 (ERP NDA-Safe)",
+      "Case [01] documents real ERP workflows at ALFA Software via an anonymized before/after prototype. Projects [02]–[05] are self-directed authorial studies built with synthetic data in React.",
+    ndaCta: "Open Real Case (ERP NDA-Safe)",
   },
 } as const;

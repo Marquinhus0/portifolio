@@ -412,7 +412,7 @@ export default function FlowInternalCrmCaseStudy({
               Flow CRM em Ação (Protótipo Funcional)
             </h2>
             <p className="text-sm text-neutral-300 font-normal leading-relaxed">
-              Interaja diretamente com a aplicação comercial. Navegue entre as abas na barra lateral, arraste cards no Kanban, filtre a tabela de leads, abra o perfil 360° com histórico, teste o simulador de WhatsApp comercial B2B e pressione <kbd className="px-1.5 py-0.5 bg-neutral-800 text-white rounded font-mono text-xs border border-neutral-700">Ctrl + K</kbd> para acionar a busca global.
+              Interaja diretamente com o protótipo funcional comercial. Navegue entre as abas na barra lateral, arraste cards no Kanban, filtre a tabela de leads, abra o perfil 360° com histórico, teste o simulador de WhatsApp comercial B2B e pressione <kbd className="px-1.5 py-0.5 bg-neutral-800 text-white rounded font-mono text-xs border border-neutral-700">/</kbd> para acionar a busca interna do CRM.
             </p>
           </div>
 
@@ -430,7 +430,7 @@ export default function FlowInternalCrmCaseStudy({
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-[10px] px-2 py-0.5 rounded bg-[#1683E8] text-white font-bold">
-                  SISTEMA 100% OPERACIONAL
+                  PROTÓTIPO FUNCIONAL INTERATIVO • DADOS SINTÉTICOS
                 </span>
               </div>
             </div>
@@ -448,13 +448,13 @@ export default function FlowInternalCrmCaseStudy({
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
           <div className="space-y-4 max-w-3xl">
             <span className="text-xs font-mono text-[#1683E8] uppercase tracking-widest font-semibold block">
-              05 — PESQUISA DE USUÁRIO & PERSONAS
+              05 — PERSONAS HIPOTÉTICAS (MODELO CONCEITUAL)
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Desenhado para a Velocidade Real de Balcão e Gestão
+              Arquétipos Projetados para Velocidade de Balcão e Gestão
             </h2>
             <p className="text-base text-neutral-300 leading-relaxed font-normal">
-              A arquitetura do Flow CRM equilibra a simplicidade operacional do vendedor em linha de frente com a inteligência estratégica exigida pela diretoria comercial:
+              Como estudo autoral, os perfis abaixo sintetizam hipóteses comportamentais baseadas em rotinas comerciais B2B observadas — sem representar entrevistas empíricas específicas deste protótipo:
             </p>
           </div>
 
@@ -624,36 +624,48 @@ export default function FlowInternalCrmCaseStudy({
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
           <div className="space-y-4 max-w-3xl">
             <span className="text-xs font-mono text-[#1683E8] uppercase tracking-widest font-semibold block">
-              08 — EFICIÊNCIA & IMPACTO NO NEGÓCIO
+              08 — HIPÓTESES &amp; METAS CONCEITUAIS (NÃO MEDIDAS EM PRODUÇÃO)
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Resultados Projetados para a Operação Comercial
+              Critérios-Alvo Projetados para Validação Futura
             </h2>
             <p className="text-base text-neutral-300 leading-relaxed font-normal">
-              A consolidação do Flow CRM como central de operações de vendas gera ganhos diretos em tração e produtividade:
+              Por tratar-se de um estudo autoral com dados sintéticos, os alvos abaixo representam hipóteses de validação para um futuro piloto em distribuidoras B2B — não métricas medidas em cliente real:
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-mono">
             <div className="p-6 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block">
+                [Meta Conceitual 01]
+              </span>
               <span className="text-3xl font-extrabold text-[#1683E8] block">-45%</span>
-              <p className="text-xs text-white font-bold">Negócios Estagnados</p>
-              <p className="text-[11px] text-neutral-400 leading-tight">Eliminação de oportunidades esquecidas com alerta de 3 dias.</p>
+              <p className="text-xs text-white font-bold">Alvo: Negócios Estagnados</p>
+              <p className="text-[11px] text-neutral-400 leading-tight">Hipótese via alertas de SLA após 3 dias sem contato.</p>
             </div>
             <div className="p-6 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block">
+                [Meta Conceitual 02]
+              </span>
               <span className="text-3xl font-extrabold text-emerald-400 block">&lt; 15 min</span>
-              <p className="text-xs text-white font-bold">Tempo de Resposta</p>
-              <p className="text-[11px] text-neutral-400 leading-tight">Primeiro contato ágil após entrada via Google Ads e WhatsApp.</p>
+              <p className="text-xs text-white font-bold">Alvo: Tempo de Resposta</p>
+              <p className="text-[11px] text-neutral-400 leading-tight">Critério de primeiro contato após entrada inbound/WhatsApp.</p>
             </div>
             <div className="p-6 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block">
+                [Meta Conceitual 03]
+              </span>
               <span className="text-3xl font-extrabold text-[#1683E8] block">+2,8 p.p.</span>
-              <p className="text-xs text-white font-bold">Aumento na Conversão</p>
-              <p className="text-[11px] text-neutral-400 leading-tight">Taxa geral do funil atingindo 18,4% no período.</p>
+              <p className="text-xs text-white font-bold">Alvo: Taxa de Conversão</p>
+              <p className="text-[11px] text-neutral-400 leading-tight">Projeção conceitual de ganho no funil em eventual piloto.</p>
             </div>
             <div className="p-6 bg-neutral-900/50 border border-neutral-800 rounded-sm space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block">
+                [Meta Conceitual 04]
+              </span>
               <span className="text-3xl font-extrabold text-emerald-400 block">+30%</span>
-              <p className="text-xs text-white font-bold">Volume de Follow-ups</p>
-              <p className="text-[11px] text-neutral-400 leading-tight">Mais contatos produtivos realizados por dia por cada vendedor.</p>
+              <p className="text-xs text-white font-bold">Alvo: Follow-ups</p>
+              <p className="text-[11px] text-neutral-400 leading-tight">Hipótese de produtividade diária com registro em 1 clique.</p>
             </div>
           </div>
         </div>

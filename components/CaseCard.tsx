@@ -55,8 +55,8 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
     cardCopy?.cta ||
     (hasInteractiveApp
       ? locale === "en"
-        ? "View Case & Live Sandbox"
-        : "Ver Case & Sandbox Live"
+        ? "View Case & Interactive Prototype"
+        : "Ver Case & Protótipo Interativo"
       : locale === "en"
       ? "Read Case Study"
       : "Ver Estudo de Caso");
@@ -73,18 +73,24 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
                 </span>
                 {isReal && (
                   <span className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest bg-[#13E1BC]/15 text-[#13E1BC] border border-[#13E1BC]/30 font-semibold rounded-sm">
-                    REAL PRODUCT
+                    {locale === "en" ? "REAL PRODUCT • NDA-SAFE" : "PRODUTO REAL • NDA-SAFE"}
                   </span>
                 )}
                 {caseStudy.conceptBadge && (
                   <span className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest bg-neutral-900 text-neutral-300 border border-neutral-700 font-semibold rounded-sm">
-                    {caseStudy.conceptBadge}
+                    {isReal
+                      ? caseStudy.conceptBadge
+                      : locale === "en"
+                      ? "AUTHORIAL STUDY"
+                      : "ESTUDO AUTORAL"}
                   </span>
                 )}
                 {hasInteractiveApp && (
                   <span className="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider bg-neutral-900 border border-[#13E1BC]/30 text-[#13E1BC] rounded-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC] animate-pulse shadow-[0_0_6px_#13E1BC]" />
-                    <span className="font-semibold">App Live</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC]" />
+                    <span className="font-semibold">
+                      {locale === "en" ? "Interactive Prototype" : "Protótipo Interativo"}
+                    </span>
                   </span>
                 )}
               </div>
@@ -156,7 +162,7 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
             </span>
             {isReal ? (
               <span className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest bg-[#13E1BC]/15 text-[#13E1BC] border border-[#13E1BC]/30 font-semibold rounded-sm">
-                REAL PRODUCT
+                {locale === "en" ? "REAL PRODUCT • NDA-SAFE" : "PRODUTO REAL • NDA-SAFE"}
               </span>
             ) : (
               <span
@@ -164,13 +170,15 @@ export default function CaseCard({ caseStudy, horizontal = false }: CaseCardProp
                   slugMeta?.accentClass || "bg-white text-black border-white"
                 }`}
               >
-                {caseStudy.conceptBadge || "CONCEPT"}
+                {locale === "en" ? "AUTHORIAL STUDY" : "ESTUDO AUTORAL"}
               </span>
             )}
             {hasInteractiveApp && (
               <span className="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider bg-neutral-900 border border-[#13E1BC]/30 text-[#13E1BC] rounded-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC] animate-pulse shadow-[0_0_6px_#13E1BC]" />
-                <span className="font-semibold">App Live</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC]" />
+                <span className="font-semibold">
+                  {locale === "en" ? "Interactive Prototype" : "Protótipo Interativo"}
+                </span>
               </span>
             )}
           </div>

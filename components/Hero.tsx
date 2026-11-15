@@ -114,7 +114,11 @@ export default function Hero() {
               <div className="pt-4 border-t border-surface-borderSubtle flex items-center justify-between text-[11px] font-mono">
                 <span className="text-neutral-400 flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#13E1BC]" />
-                  <span>5 Case Studies + 4 Sandboxes Live</span>
+                  <span>
+                    {locale === "en"
+                      ? "1 Real ERP Case (NDA-Safe) + 4 Interactive Studies"
+                      : "1 Case Real de ERP (NDA-Safe) + 4 Estudos Interativos"}
+                  </span>
                 </span>
                 <Link
                   href="/about"

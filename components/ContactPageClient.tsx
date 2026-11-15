@@ -452,7 +452,7 @@ export default function ContactPageClient() {
                         {isEn ? "Interactive Case Studies" : "Estudos de Caso Interativos"}
                       </span>
                       <span className="text-xs font-mono text-neutral-500">
-                        PULSE, FRAME, Flow CRM, SupplyHub &amp; ERP Case 05
+                        ERP Case 01 (NDA-Safe), SupplyHub, Flow CRM, FRAME &amp; PULSE
                       </span>
                     </div>
                   </div>
