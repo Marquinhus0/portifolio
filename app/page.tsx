@@ -1,39 +1,37 @@
 import Hero from "@/components/Hero";
+import CareerMetricsStrip from "@/components/CareerMetricsStrip";
 import HomeSelectedWorkSection from "@/components/HomeSelectedWorkSection";
-import ExperienceTimeline from "@/components/ExperienceTimeline";
-import IntroStatement from "@/components/IntroStatement";
 import DecisionLabPreviewSection from "@/components/DecisionLabPreviewSection";
+import IntroStatement from "@/components/IntroStatement";
 import SkillsGrid from "@/components/SkillsGrid";
-import PhilosophyBlock from "@/components/PhilosophyBlock";
+import ExperienceTimeline from "@/components/ExperienceTimeline";
 import ContactBlock from "@/components/ContactBlock";
 
 export default function Home() {
   return (
     <div>
-      {/* 01. Hero Section + Executive Credibility Dossier */}
+      {/* 01. Hero & Executive Positioning */}
       <Hero />
 
-      {/* 02. Selected Work: Interactive Case Studies */}
+      {/* 02. Trajectory & Experience Indicators */}
+      <CareerMetricsStrip />
+
+      {/* 03 & 04. Featured Real Production Case (NDA-Safe) + Authorial Studies */}
       <HomeSelectedWorkSection />
 
-      {/* 03. Real-World Professional Experience */}
+      {/* 05. Product Thinking Lab Preview */}
+      <DecisionLabPreviewSection />
+
+      {/* 06. Positioning Pillars & Core Skills */}
+      <IntroStatement />
+      <SkillsGrid />
+
+      {/* 07. Detailed Professional Experience */}
       <div id="experiencia">
         <ExperienceTimeline />
       </div>
 
-      {/* 04. Positioning & 4 Architectural Pillars */}
-      <IntroStatement />
-
-      {/* 05. UX Decision Lab & Product Thinking Teaser */}
-      <DecisionLabPreviewSection />
-
-      {/* 06. Competencies & Stack */}
-      <SkillsGrid />
-
-      {/* 06. Design Philosophy */}
-      <PhilosophyBlock />
-
-      {/* 07. Direct Contact */}
+      {/* 08. Direct Contact */}
       <ContactBlock />
     </div>
   );

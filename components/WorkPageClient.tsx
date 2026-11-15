@@ -106,39 +106,87 @@ export default function WorkPageClient() {
           </span>
         </div>
 
-        {/* Cases Grid */}
-        <section className="space-y-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {filteredCases.map((cs, idx) => (
-              <CaseCard
-                key={cs.id}
-                caseStudy={cs}
-                priority={idx < 2}
-                horizontal={filteredCases.length % 2 === 1 && idx === filteredCases.length - 1}
-              />
-            ))}
-          </div>
-        </section>
+        {/* Cases Separated by Real Product vs Authorial Studies */}
+        {(() => {
+          const realCases = filteredCases.filter((c) => c.category === "real_product");
+          const authorialCases = filteredCases.filter((c) => c.category !== "real_product");
+          return (
+            <div className="space-y-12">
+              {realCases.length > 0 && (
+                <section className="space-y-4">
+                  <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#13E1BC]">
+                    <ShieldCheck className="w-4 h-4" />
+                    <span>
+                      {locale === "en"
+                        ? "Real Production Experience • ALFA Software (NDA-Safe)"
+                        : "Experiência Profissional Real • ALFA Software (NDA-Safe)"}
+                    </span>
+                  </div>
+                  <div className="space-y-6">
+                    {realCases.map((cs) => (
+                      <CaseCard key={cs.id} caseStudy={cs} priority={true} horizontal={true} />
+                    ))}
+                  </div>
+                </section>
+              )}
 
-        {/* Corporate ERP Experience Callout */}
+              {authorialCases.length > 0 && (
+                <section className="space-y-4">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-xs font-mono uppercase tracking-widest text-neutral-300">
+                      {locale === "en"
+                        ? "Authorial Case Studies & Interactive Prototypes (Synthetic Data)"
+                        : "Estudos Autorais & Protótipos Interativos (Dados Sintéticos)"}
+                    </span>
+                    <span className="text-[11px] font-mono text-neutral-500">
+                      {locale === "en"
+                        ? "Conceptual metrics highlighted separately from production evidence"
+                        : "Metas conceituais separadas de evidências em produção"}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {authorialCases.map((cs, idx) => (
+                      <CaseCard
+                        key={cs.id}
+                        caseStudy={cs}
+                        priority={idx < 2}
+                        horizontal={authorialCases.length % 2 === 1 && idx === authorialCases.length - 1}
+                      />
+                    ))}
+                  </div>
+                </section>
+              )}
+            </div>
+          );
+        })()}
+
+        {/* Next Step Callout: Decision Lab & Resume */}
         <section className="pt-4">
           <div className="p-8 border border-surface-border border-l-2 border-l-[#13E1BC] bg-neutral-950/90 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
             <div className="space-y-2 max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-mono text-[#13E1BC] uppercase tracking-widest">
                 <ShieldCheck className="w-4 h-4" />
-                <span>{t.ndaEyebrow}</span>
+                <span>
+                  {locale === "en" ? "Product Thinking & Career Track" : "Raciocínio de Produto & Trajetória"}
+                </span>
               </div>
               <h2 className="text-xl sm:text-2xl font-medium text-white tracking-tight">
-                {t.ndaTitle}
+                {locale === "en"
+                  ? "Inspect Trade-offs in the Decision Lab or Download CV"
+                  : "Explore Trade-offs no Decision Lab ou Acesse o Currículo"}
               </h2>
-              <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">{t.ndaDesc}</p>
+              <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                {locale === "en"
+                  ? "Review interactive ERP diagnostic scenarios (diagnostic -> P0/P1/P2 -> QA contracts) or inspect the technical resume."
+                  : "Explore cenários didáticos de diagnóstico ERP (priorização P0/P1/P2, fluxos As-Is/To-Be e contratos QA) ou consulte o histórico completo."}
+              </p>
             </div>
             <div className="flex flex-wrap items-center gap-3 shrink-0">
               <Link
-                href="/work/erp-enterprise-redesign"
+                href="/decision-lab"
                 className="inline-flex items-center gap-2 px-4 py-2.5 bg-white text-black hover:bg-[#13E1BC] text-xs font-mono font-semibold uppercase tracking-wider transition-colors"
               >
-                <span>{t.ndaCta}</span>
+                <span>{locale === "en" ? "Open Decision Lab" : "Abrir Decision Lab"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
