@@ -13,6 +13,8 @@ import {
   Cpu,
   ChevronRight,
   Sparkles,
+  ListChecks,
+  AlertOctagon,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import {
@@ -22,7 +24,8 @@ import {
   type DecisionOption,
 } from "@/data/decisionLabData";
 
-type LabMode = "lab" | "thinking";
+type LabMode = "diagnosis" | "lab" | "thinking";
+type PriorityFilter = "ALL" | "P0" | "P1" | "P2";
 
 function AxisMeter({
   label,
@@ -96,7 +99,9 @@ export default function UxDecisionLab() {
 
   const [activeScenarioIdx, setActiveScenarioIdx] = useState(0);
   const [selectedOptionId, setSelectedOptionId] = useState<DecisionOption["id"]>("A");
-  const [mode, setMode] = useState<LabMode>("lab");
+  const [mode, setMode] = useState<LabMode>("diagnosis");
+  const [priorityFilter, setPriorityFilter] = useState<PriorityFilter>("ALL");
+  const [activeExtremeIdx, setActiveExtremeIdx] = useState(0);
   const [activeStepIdx, setActiveStepIdx] = useState(0);
 
   // Sync optional ?scenario=DL-01..03 parameter cleanly on mount
@@ -120,10 +125,18 @@ export default function UxDecisionLab() {
     scenario.options.find((opt) => opt.isRecommended) || scenario.options[2];
   const activeThinkingStep =
     scenario.thinkingFlow[activeStepIdx] || scenario.thinkingFlow[0];
+  const activeExtremeState =
+    scenario.extremeStates[activeExtremeIdx] || scenario.extremeStates[0];
+  const visiblePriorities =
+    priorityFilter === "ALL"
+      ? scenario.prioritizationItems
+      : scenario.prioritizationItems.filter((item) => item.priority === priorityFilter);
 
   const handleSelectScenario = (idx: number) => {
     setActiveScenarioIdx(idx);
     setSelectedOptionId("A");
+    setPriorityFilter("ALL");
+    setActiveExtremeIdx(0);
     setActiveStepIdx(0);
   };
 
@@ -246,18 +259,32 @@ export default function UxDecisionLab() {
             </div>
 
             {/* Mode Switcher Tabs + Cross-link */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               <div
                 className="inline-flex flex-wrap gap-2"
                 role="tablist"
-                aria-label="Modo de exploração"
+                aria-label={locale === "en" ? "Exploration mode" : "Modo de exploração"}
               >
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={mode === "diagnosis"}
+                  onClick={() => setMode("diagnosis")}
+                  className={`inline-flex items-center gap-2 px-3.5 py-2 text-xs font-mono uppercase tracking-wider border transition-colors ${
+                    mode === "diagnosis"
+                      ? "border-[#13E1BC] bg-[#13E1BC]/10 text-[#13E1BC] font-semibold"
+                      : "border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:text-white"
+                  }`}
+                >
+                  <ListChecks className="w-3.5 h-3.5" />
+                  <span>{copy.modeTabs.diagnosis}</span>
+                </button>
                 <button
                   type="button"
                   role="tab"
                   aria-selected={mode === "lab"}
                   onClick={() => setMode("lab")}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 text-xs font-mono uppercase tracking-wider border transition-colors ${
+                  className={`inline-flex items-center gap-2 px-3.5 py-2 text-xs font-mono uppercase tracking-wider border transition-colors ${
                     mode === "lab"
                       ? "border-[#13E1BC] bg-[#13E1BC]/10 text-[#13E1BC] font-semibold"
                       : "border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:text-white"
@@ -271,7 +298,7 @@ export default function UxDecisionLab() {
                   role="tab"
                   aria-selected={mode === "thinking"}
                   onClick={() => setMode("thinking")}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 text-xs font-mono uppercase tracking-wider border transition-colors ${
+                  className={`inline-flex items-center gap-2 px-3.5 py-2 text-xs font-mono uppercase tracking-wider border transition-colors ${
                     mode === "thinking"
                       ? "border-[#13E1BC] bg-[#13E1BC]/10 text-[#13E1BC] font-semibold"
                       : "border-neutral-800 bg-neutral-900/50 text-neutral-400 hover:text-white"
@@ -284,16 +311,130 @@ export default function UxDecisionLab() {
 
               <Link
                 href={`/work/${scenario.relatedCaseSlug}`}
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-300 hover:text-[#13E1BC] transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-300 hover:text-[#13E1BC] transition-colors shrink-0"
               >
                 <span>{scenario.relatedCaseLabel}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
 
-            {/* MODE 1: UX DECISION LAB */}
+            {/* MODE 1: DIAGNOSIS & P0/P1/P2 PRIORITIZATION */}
+            {mode === "diagnosis" && (
+              <div className="space-y-6 pt-2">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-medium text-white">
+                      {copy.diagnosisHeading}
+                    </h3>
+                    <p className="text-xs text-neutral-400 max-w-2xl">
+                      {copy.diagnosisSubtitle}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2">
+                    {(["ALL", "P0", "P1", "P2"] as PriorityFilter[]).map((lvl) => (
+                      <button
+                        key={lvl}
+                        type="button"
+                        aria-pressed={priorityFilter === lvl}
+                        onClick={() => setPriorityFilter(lvl)}
+                        className={`px-3 py-1.5 text-xs font-mono border transition-colors ${
+                          priorityFilter === lvl
+                            ? "border-[#13E1BC] bg-[#13E1BC] text-[#080808] font-bold"
+                            : "border-neutral-800 bg-[#080808] text-neutral-400 hover:text-white"
+                        }`}
+                      >
+                        {lvl === "ALL" ? (locale === "en" ? "All" : "Todos") : lvl}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {visiblePriorities.map((item) => {
+                    const badgeStyle =
+                      item.priority === "P0"
+                        ? "border-rose-500/40 bg-rose-950/30 text-rose-300"
+                        : item.priority === "P1"
+                        ? "border-amber-500/40 bg-amber-950/30 text-amber-300"
+                        : "border-neutral-700 bg-neutral-900 text-neutral-300";
+
+                    return (
+                      <div
+                        key={item.id}
+                        className="p-5 border border-surface-border bg-[#080808] space-y-3 flex flex-col justify-between"
+                      >
+                        <div className="space-y-2.5">
+                          <div className="flex items-center justify-between gap-2 text-[11px] font-mono">
+                            <span className={`px-2 py-0.5 border font-semibold ${badgeStyle}`}>
+                              {item.priority}
+                            </span>
+                            <span className="text-neutral-400">
+                              {locale === "en" ? "Frequency:" : "Frequência:"}{" "}
+                              <strong className="text-white">{item.frequency}</strong>
+                            </span>
+                          </div>
+                          <h4 className="text-sm sm:text-base font-medium text-white leading-snug">
+                            {item.issue}
+                          </h4>
+                          <p className="text-xs text-neutral-300 leading-relaxed">
+                            <span className="text-amber-300 font-mono">
+                              {locale === "en" ? "Risk: " : "Risco: "}
+                            </span>
+                            {item.businessRisk}
+                          </p>
+                        </div>
+
+                        <div className="pt-3 border-t border-surface-borderSubtle text-xs text-neutral-400 leading-relaxed">
+                          <span className="text-[#13E1BC] font-mono">
+                            {locale === "en" ? "Rationale: " : "Critério: "}
+                          </span>
+                          {item.rationale}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* MODE 2: AS-IS -> TO-BE ARCHITECTURE & TRADE-OFFS */}
             {mode === "lab" && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-2">
+              <div className="space-y-6 pt-2">
+                {/* As-Is vs To-Be Architectural Strip */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div className="p-5 border border-amber-500/25 bg-amber-950/10 space-y-3">
+                    <div className="flex items-center justify-between gap-2 text-xs font-mono text-amber-300 uppercase tracking-wider">
+                      <span>{copy.asIsHeading}</span>
+                      <span className="text-[10px] text-neutral-400">{scenario.asIsToBe.asIsTitle}</span>
+                    </div>
+                    <ol className="space-y-2 text-xs text-neutral-300">
+                      {scenario.asIsToBe.asIsSteps.map((step, sIdx) => (
+                        <li key={sIdx} className="flex items-start gap-2.5">
+                          <span className="font-mono text-amber-300/80 shrink-0">0{sIdx + 1}</span>
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+
+                  <div className="p-5 border border-[#13E1BC]/30 bg-[#13E1BC]/[0.04] space-y-3">
+                    <div className="flex items-center justify-between gap-2 text-xs font-mono text-[#13E1BC] uppercase tracking-wider">
+                      <span>{copy.toBeHeading}</span>
+                      <span className="text-[10px] text-neutral-300">{scenario.asIsToBe.toBeTitle}</span>
+                    </div>
+                    <ol className="space-y-2 text-xs text-neutral-200">
+                      {scenario.asIsToBe.toBeSteps.map((step, sIdx) => (
+                        <li key={sIdx} className="flex items-start gap-2.5">
+                          <span className="font-mono text-[#13E1BC] shrink-0">0{sIdx + 1}</span>
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 {/* Left Column: 3 Selectable Alternatives */}
                 <div className="lg:col-span-5 space-y-3">
                   <div className="space-y-1 pb-1">
@@ -436,22 +577,84 @@ export default function UxDecisionLab() {
                     </p>
                   </div>
                 </div>
+                </div>
               </div>
             )}
 
-            {/* MODE 2: PRODUCT THINKING FLOW */}
+            {/* MODE 3: EXTREME STATES (UX + QA) & PRODUCT THINKING FLOW */}
             {mode === "thinking" && (
-              <div className="space-y-6 pt-2">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div className="space-y-8 pt-2">
+                {/* Extreme States Matrix */}
+                <div className="p-5 sm:p-6 border border-surface-border bg-[#080808] space-y-4">
                   <div className="space-y-1">
-                    <h3 className="text-lg font-medium text-white">
-                      {copy.thinkingHeading}
-                    </h3>
-                    <p className="text-xs text-neutral-400 max-w-2xl">
-                      {copy.thinkingSubtitle}
-                    </p>
+                    <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-300">
+                      <AlertOctagon className="w-4 h-4 shrink-0" />
+                      <span>{copy.extremeStatesHeading}</span>
+                    </div>
+                    <p className="text-xs text-neutral-400">{copy.extremeStatesSubtitle}</p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+                    {scenario.extremeStates.map((ext, eIdx) => {
+                      const active = eIdx === activeExtremeIdx;
+                      return (
+                        <button
+                          key={ext.id}
+                          type="button"
+                          aria-pressed={active}
+                          onClick={() => setActiveExtremeIdx(eIdx)}
+                          className={`text-left p-3.5 border transition-colors ${
+                            active
+                              ? "border-amber-400 bg-amber-950/20 text-white"
+                              : "border-neutral-800 bg-neutral-950 text-neutral-400 hover:border-neutral-700 hover:text-neutral-200"
+                          }`}
+                        >
+                          <span className="text-[10px] font-mono text-amber-300 block mb-1">
+                            EDGE-0{eIdx + 1}
+                          </span>
+                          <span className="text-xs font-medium block leading-snug">
+                            {ext.state}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 pt-2 border-t border-surface-borderSubtle text-xs">
+                    <div className="p-4 border border-neutral-850 bg-neutral-950 space-y-1.5">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block">
+                        {locale === "en" ? "Trigger" : "Gatilho"}
+                      </span>
+                      <p className="text-neutral-200 leading-relaxed">{activeExtremeState.trigger}</p>
+                    </div>
+                    <div className="p-4 border border-neutral-850 bg-neutral-950 space-y-1.5">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#13E1BC] block">
+                        {locale === "en" ? "Expected UI Behavior" : "Comportamento de UI Esperado"}
+                      </span>
+                      <p className="text-neutral-200 leading-relaxed">{activeExtremeState.uiBehavior}</p>
+                    </div>
+                    <div className="p-4 border border-[#13E1BC]/25 bg-[#13E1BC]/[0.03] space-y-1.5">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#13E1BC] block">
+                        {locale === "en" ? "QA Acceptance Contract" : "Critério de Aceite QA"}
+                      </span>
+                      <p className="text-neutral-200 leading-relaxed font-mono text-[11px]">
+                        {activeExtremeState.qaContract}
+                      </p>
+                    </div>
                   </div>
                 </div>
+
+                <div className="space-y-6">
+                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div className="space-y-1">
+                      <h3 className="text-lg font-medium text-white">
+                        {copy.thinkingHeading}
+                      </h3>
+                      <p className="text-xs text-neutral-400 max-w-2xl">
+                        {copy.thinkingSubtitle}
+                      </p>
+                    </div>
+                  </div>
 
                 {/* 5-Stage Interactive Stepper */}
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
@@ -563,6 +766,7 @@ export default function UxDecisionLab() {
                       </button>
                     </div>
                   </div>
+                </div>
                 </div>
               </div>
             )}

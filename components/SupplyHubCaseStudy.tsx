@@ -211,7 +211,7 @@ export default function SupplyHubCaseStudy({
               <span className="text-neutral-400">Design de Produto B2B &amp; Prototipagem Funcional em React</span>
             </div>
             <span className="text-[11px] text-neutral-500 uppercase tracking-wider">
-              Arquitetura de Suprimentos • RFQ Matrix • Sandbox Live
+              Arquitetura de Suprimentos • RFQ Matrix • Protótipo Interativo
             </span>
           </div>
 

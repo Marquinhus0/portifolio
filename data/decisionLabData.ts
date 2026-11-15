@@ -30,6 +30,30 @@ export interface ThinkingStepData {
   engineeringNote: string;
 }
 
+export interface PriorityItem {
+  id: string;
+  issue: string;
+  priority: "P0" | "P1" | "P2";
+  frequency: string;
+  businessRisk: string;
+  rationale: string;
+}
+
+export interface AsIsToBeFlow {
+  asIsTitle: string;
+  asIsSteps: string[];
+  toBeTitle: string;
+  toBeSteps: string[];
+}
+
+export interface ExtremeStateCase {
+  id: string;
+  state: string;
+  trigger: string;
+  uiBehavior: string;
+  qaContract: string;
+}
+
 export interface DecisionScenario {
   id: string;
   code: string;
@@ -42,6 +66,9 @@ export interface DecisionScenario {
   relatedCaseLabel: string;
   constraints: string[];
   stakeholders: string[];
+  prioritizationItems: PriorityItem[];
+  asIsToBe: AsIsToBeFlow;
+  extremeStates: ExtremeStateCase[];
   options: DecisionOption[];
   thinkingFlow: ThinkingStepData[];
 }
@@ -57,12 +84,19 @@ export interface DecisionLabCopy {
     engineering: string;
   };
   modeTabs: {
+    diagnosis: string;
     lab: string;
     thinking: string;
   };
   scenarioLabel: string;
   contextHeading: string;
   constraintsHeading: string;
+  diagnosisHeading: string;
+  diagnosisSubtitle: string;
+  asIsHeading: string;
+  toBeHeading: string;
+  extremeStatesHeading: string;
+  extremeStatesSubtitle: string;
   optionsHeading: string;
   optionsHint: string;
   recommendedTag: string;
@@ -94,24 +128,33 @@ export interface DecisionLabCopy {
 
 export const DECISION_LAB_COPY: Record<Locale, DecisionLabCopy> = {
   pt: {
-    eyebrow: "[UX Decision Lab & Product Thinking]",
-    pageTitle: "Como tomo decisões em produtos complexos.",
+    eyebrow: "[Product Thinking Lab • Demonstração Autoral]",
+    pageTitle: "Como estruturo diagnóstico, fluxo e decisões em ERP & B2B.",
     pageSubtitle:
-      "Explore dilemas reais de ERP, Procurement e CRM B2B. Selecione alternativas para comparar trade-offs operacionais, regras de negócio e critérios de aceitação antes de escrever uma linha de UI.",
+      "Demonstração autoral de raciocínio de produto: explore diagnóstico e priorização P0/P1/P2, arquitetura As-Is → To-Be, trade-offs de UX e contratos de estados extremos para QA.",
     ndaNotice:
-      "Cenários baseados em padrões recorrentes de sistemas corporativos (NDA-safe • sem dados proprietários ou métricas inventadas).",
+      "Demonstração Autoral Didática: cenários inspirados em desafios típicos de ERP/B2B, sem expor telas, regras proprietárias ou dados de clientes reais.",
     pillarsLabel: {
       business: "Business & Regras",
       design: "UX & Arquitetura",
       engineering: "Engenharia & QA",
     },
     modeTabs: {
-      lab: "01. UX Decision Lab (Trade-offs)",
-      thinking: "02. Product Thinking Flow (Diagnóstico → QA)",
+      diagnosis: "01. Diagnóstico & Priorização (P0/P1/P2)",
+      lab: "02. Arquitetura As-Is → To-Be & Trade-offs",
+      thinking: "03. Estados Extremos & Critérios QA",
     },
     scenarioLabel: "Cenário",
     contextHeading: "Contexto & Tensão de Negócio",
     constraintsHeading: "Restrições Inegociáveis",
+    diagnosisHeading: "Diagnóstico & Priorização de Fricções (P0 / P1 / P2)",
+    diagnosisSubtitle:
+      "Filtre por criticidade para inspecionar frequência operacional, risco ao negócio e justificativa de sequência no backlog.",
+    asIsHeading: "Fluxo As-Is (Fricção Operacional)",
+    toBeHeading: "Fluxo To-Be (Arquitetura Proposta)",
+    extremeStatesHeading: "Matriz de Estados Extremos & Contratos QA",
+    extremeStatesSubtitle:
+      "Selecione um cenário extremo para ver o comportamento exato esperado na interface e na API.",
     optionsHeading: "Alternativas de Solução",
     optionsHint: "Selecione uma abordagem para inspecionar impactos e riscos",
     recommendedTag: "Decisão Adotada",
@@ -137,34 +180,43 @@ export const DECISION_LAB_COPY: Record<Locale, DecisionLabCopy> = {
       "Navegue pelas 5 camadas usadas para transformar um problema operacional ambíguo em especificação pronta para Engenharia e QA.",
     engineeringNoteHeading: "Alinhamento Design ↔ Engenharia",
     preview: {
-      eyebrow: "[UX Decision Lab • Laboratório Interativo]",
-      title: "Trade-offs reais antes da interface final.",
+      eyebrow: "[Product Thinking Lab • Demonstração Autoral]",
+      title: "Diagnóstico, priorização e trade-offs antes da UI.",
       subtitle:
-        "Em software B2B, cada escolha de UX mexe com regra fiscal, alçada de aprovação ou débito técnico. Simule decisões em 3 cenários corporativos.",
-      cta: "Explorar UX Decision Lab completo",
-      promptLabel: "Teste um dilema rápido:",
+        "Demonstração autoral de como transformo atritos de sistemas B2B em backlog P0/P1/P2, fluxos As-Is → To-Be, decisões de UX e contratos claros de QA.",
+      cta: "Explorar Product Thinking Lab completo",
+      promptLabel: "Teste um cenário didático:",
       recommendedNote: "Arquitetura equilibrada",
     },
   },
   en: {
-    eyebrow: "[UX Decision Lab & Product Thinking]",
-    pageTitle: "How I make trade-off calls in complex products.",
+    eyebrow: "[Product Thinking Lab • Authorial Demo]",
+    pageTitle: "How I structure diagnosis, flows, and trade-offs in ERP & B2B.",
     pageSubtitle:
-      "Inspect real ERP, Procurement, and B2B CRM dilemmas. Switch between solution alternatives to evaluate operational speed, business safeguards, and engineering acceptance criteria.",
+      "Authorial product thinking demonstration: explore P0/P1/P2 UX diagnosis, As-Is → To-Be information architecture, UX trade-offs, and extreme-state QA contracts.",
     ndaNotice:
-      "Scenarios grounded in recurring enterprise patterns (NDA-safe • no proprietary client data or fabricated metrics).",
+      "Authorial Didactic Demo: scenarios inspired by recurring enterprise ERP/B2B patterns without exposing client screens, proprietary logic, or real customer data.",
     pillarsLabel: {
       business: "Business Rules",
       design: "UX Architecture",
       engineering: "Engineering & QA",
     },
     modeTabs: {
-      lab: "01. UX Decision Lab (Trade-offs)",
-      thinking: "02. Product Thinking Flow (Diagnosis → QA)",
+      diagnosis: "01. Diagnosis & P0/P1/P2 Triage",
+      lab: "02. As-Is → To-Be Flow & Trade-offs",
+      thinking: "03. Edge States & QA Acceptance",
     },
     scenarioLabel: "Scenario",
     contextHeading: "Operational Context & Tension",
     constraintsHeading: "Hard Constraints",
+    diagnosisHeading: "UX Friction Triage & Prioritization (P0 / P1 / P2)",
+    diagnosisSubtitle:
+      "Filter by severity to inspect operational frequency, business risk, and backlog sequencing rationale.",
+    asIsHeading: "As-Is Flow (Operational Bottleneck)",
+    toBeHeading: "To-Be Flow (Target Architecture)",
+    extremeStatesHeading: "Extreme States & QA Acceptance Matrix",
+    extremeStatesSubtitle:
+      "Inspect how UI and engineering state contracts behave when network, concurrency, or tax rules fail.",
     optionsHeading: "Solution Alternatives",
     optionsHint: "Pick an option below to inspect operational and technical consequences",
     recommendedTag: "Adopted Decision",
@@ -190,12 +242,12 @@ export const DECISION_LAB_COPY: Record<Locale, DecisionLabCopy> = {
       "Walk through the 5 stages used to translate an ambiguous business bottleneck into UI architecture and QA acceptance criteria.",
     engineeringNoteHeading: "Design ↔ Engineering Alignment",
     preview: {
-      eyebrow: "[UX Decision Lab • Interactive Simulation]",
-      title: "Real trade-offs before high-fidelity UI.",
+      eyebrow: "[Product Thinking Lab • Authorial Demo]",
+      title: "Diagnosis, triage, and trade-offs before high-fidelity UI.",
       subtitle:
-        "In enterprise software, every UX choice affects tax rules, approval tiers, or technical complexity. Test real trade-offs across 3 B2B scenarios.",
-      cta: "Open full UX Decision Lab",
-      promptLabel: "Try a quick dilemma:",
+        "Authorial demonstration showing how complex B2B bottlenecks become P0/P1/P2 priorities, As-Is → To-Be flows, UX trade-offs, and testable QA contracts.",
+      cta: "Open full Product Thinking Lab",
+      promptLabel: "Try a didactic scenario:",
       recommendedNote: "Balanced architecture",
     },
   },
@@ -207,7 +259,7 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
       id: "erp-pdv-fiscal",
       code: "DL-01",
       domain: "ERP & Frente de Loja (PDV)",
-      originTag: "Padrão Real • NDA-Safe",
+      originTag: "Cenário Didático • Padrão ERP",
       title: "Velocidade no Balcão vs. Integridade Fiscal em Tempo Real",
       dilemma:
         "Como impedir filas no caixa durante instabilidade de rede ou SEFAZ sem gerar passivo tributário nem inconsistência de estoque?",
@@ -385,12 +437,85 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
             "Sem lacunas entre Figma e sprint: cada critério tem estado visual correspondente no Design System.",
         },
       ],
+      prioritizationItems: [
+        {
+          id: "dl1-p0-queue",
+          issue: "Fila travada esperando resposta síncrona da SEFAZ (> 4s)",
+          priority: "P0",
+          frequency: "Alta",
+          businessRisk: "Gargalo físico no caixa e abandono ou erro no fechamento de turno.",
+          rationale: "Impacta receita direta e experiência presencial; precisa de contingência não-bloqueante antes de otimizações visuais.",
+        },
+        {
+          id: "dl1-p0-reconcile",
+          issue: "Divergência silenciosa entre cupom offline emitido e estoque central",
+          priority: "P0",
+          frequency: "Média",
+          businessRisk: "Passivo tributário (inutilização fora de prazo) e furo de inventário.",
+          rationale: "Sem trilha de reconciliação auditável, o ganho de velocidade no balcão vira erro contábil grave no fechamento mensal.",
+        },
+        {
+          id: "dl1-p1-shortcuts",
+          issue: "Dependência de mouse para trocar forma de pagamento ou aplicar desconto",
+          priority: "P1",
+          frequency: "Alta",
+          businessRisk: "Aumenta segundos mortos por item bipado e fadiga repetitiva do operador.",
+          rationale: "Ganho contínuo de produtividade via fluxo 100% teclado após estabilizar resiliência fiscal.",
+        },
+        {
+          id: "dl1-p2-fiscal-hint",
+          issue: "Exibição detalhada de logs XML técnicos no visor do operador",
+          priority: "P2",
+          frequency: "Baixa",
+          businessRisk: "Polui leitura do caixa e confunde usuário não-técnico com códigos SEFAZ crus.",
+          rationale: "Separado para camada colapsável destinada apenas a suporte/retaguarda.",
+        },
+      ],
+      asIsToBe: {
+        asIsTitle: "Fluxo Síncrono Bloqueante",
+        asIsSteps: [
+          "Operador fecha venda no PDV",
+          "Tela trava em spinner esperando SEFAZ",
+          "Instabilidade causa duplo clique ou reinício",
+          "Supervisor precisa reabrir caixa manualmente",
+        ],
+        toBeTitle: "Assíncrono Resiliente em Contingência",
+        toBeSteps: [
+          "Validação fiscal local pré-checada em cache",
+          "Finalização imediata via F12 + chave idempotente",
+          "Timeout > 4s ativa contingência NFC-e silenciosa",
+          "Badge discreto sincroniza fila e guia fiscal apenas em exceção",
+        ],
+      },
+      extremeStates: [
+        {
+          id: "dl1-e1",
+          state: "Timeout SEFAZ > 4s no fechamento",
+          trigger: "Latência ou queda intermitente do autorizador estadual durante pico de fila.",
+          uiBehavior: "Banner âmbar no topo sinaliza 'Contingência Ativa'; impressão segue normalmente e caixa é liberado para o próximo cliente em < 1s.",
+          qaContract: "Dado timeout > 4000ms, Quando pagamento é confirmado, Então a venda é gravada localmente com chave idempotente e status 'SYNC_PENDING'.",
+        },
+        {
+          id: "dl1-e2",
+          state: "Duplo envio por tecla Enter / F12",
+          trigger: "Operador pressiona atalho repetidamente enquanto aguarda retorno do PINPAD.",
+          uiBehavior: "Trava transacional mantém botão em estado de processamento sem limpar carrinho e ignora submits subsequentes.",
+          qaContract: "Durante transação ativa para a mesma chave de idempotência, requisições duplicadas devem retornar o recibo original sem duplicar baixa de estoque.",
+        },
+        {
+          id: "dl1-e3",
+          state: "Rejeição fiscal (NCM/CFOP divergente)",
+          trigger: "Lote em contingência encontra regra cadastral inválida ao tentar transmissão posterior.",
+          uiBehavior: "Não bloqueia novos atendimentos no PDV; direciona apenas a nota afetada para fila de correção fiscal na retaguarda com diagnóstico legível.",
+          qaContract: "Rejeições fiscais isolam o documento no módulo de Retaguarda sem interromper o terminal de frente de loja.",
+        },
+      ],
     },
     {
       id: "supplyhub-approvals",
       code: "DL-02",
       domain: "Procurement B2B & Compras",
-      originTag: "Estudo Autoral B2B",
+      originTag: "Cenário Didático • Procurement B2B",
       title: "Autonomia do Comprador vs. Governança de Margem e Alçada",
       dilemma:
         "Como acelerar reposições recorrentes sem perder controle sobre desvios de preço, orçamento do centro de custo e alçadas?",
@@ -568,12 +693,85 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
             "Critérios testáveis diretamente via testes de integração de workflow e UI.",
         },
       ],
+      prioritizationItems: [
+        {
+          id: "dl2-p0-margin",
+          issue: "Aprovação em bloco sem destacar itens com desvio de preço/fornecedor",
+          priority: "P0",
+          frequency: "Alta",
+          businessRisk: "Risco direto de perda de margem ou aprovação acidental acima do orçamento.",
+          rationale: "Prioridade máxima pois elimina aprovações cegas com proteção algorítmica da alçada.",
+        },
+        {
+          id: "dl2-p0-audit",
+          issue: "Aprovação informal via WhatsApp/e-mail sem rastro no ERP",
+          priority: "P0",
+          frequency: "Alta",
+          businessRisk: "Quebra de compliance e perda do motivo da exceção em auditoria futura.",
+          rationale: "Sem justificativa obrigatória acoplada à exceção, o fluxo volta para fora do sistema.",
+        },
+        {
+          id: "dl2-p1-split",
+          issue: "Falta de ação contextual para dividir itens saudáveis dos itens em exceção",
+          priority: "P1",
+          frequency: "Média",
+          businessRisk: "Cotação inteira fica parada por causa de 1 único item fora da política.",
+          rationale: "Desbloqueia entrega dos itens urgentes sem flexibilizar controle sobre a exceção.",
+        },
+        {
+          id: "dl2-p2-diff",
+          issue: "Tabela histórica de variações antigas carregada aberta por padrão",
+          priority: "P2",
+          frequency: "Baixa",
+          businessRisk: "Sobrecarga visual desnecessária na triagem executiva diária.",
+          rationale: "Mantida sob demanda dentro do drawer lateral quando o gestor pede detalhamento.",
+        },
+      ],
+      asIsToBe: {
+        asIsTitle: "Triagem Cega ou Bloqueio Total",
+        asIsSteps: [
+          "Mapa comparativo gera 10+ itens para aprovação",
+          "Gestor precisa abrir cada linha para checar histórico",
+          "Ou aprova tudo às cegas ou trava o pedido completo",
+          "Negociação de exceção escapa para mensagens externas",
+        ],
+        toBeTitle: "Aprovação por Exceção + Divisão de Ordem",
+        toBeSteps: [
+          "Itens dentro da política mostram badge verde elegível",
+          "Itens fora da alçada sobem agrupados com delta %",
+          "1 clique aprova itens limpos e gera OC imediata",
+          "Exceções exigem justificativa auditável em drawer lateral",
+        ],
+      },
+      extremeStates: [
+        {
+          id: "dl2-e1",
+          state: "Pedido com 100% dos itens dentro da tolerância",
+          trigger: "Comprador seleciona melhor SLA/preço dentro do teto histórico da categoria.",
+          uiBehavior: "Banner confirma conformidade e reduz fricção para emissão direta com registro automático de regra.",
+          qaContract: "Dado delta <= tolerância configurada em todos os itens, Então fluxo dispensa justificativa manual de exceção.",
+        },
+        {
+          id: "dl2-e2",
+          state: "Exceção enviada sem justificativa preenchida",
+          trigger: "Gestor ou comprador tenta forçar aprovação de item > +8% do teto.",
+          uiBehavior: "Ação mantém foco no textarea de observação com alerta claro do valor excedido e histórico anterior.",
+          qaContract: "API retorna 422 caso exceptionReason esteja vazio para itens com severity='BLOCKING'.",
+        },
+        {
+          id: "dl2-e3",
+          state: "Concorrência de aprovação simultânea",
+          trigger: "Dois gestores da mesma alçada abrem e submetem a mesma cotação ao mesmo tempo.",
+          uiBehavior: "Segundo usuário recebe aviso não-destrutivo informando quem já deliberou e horário exato do bloqueio.",
+          qaContract: "Controle otimista por version/ETag impede sobrescrita dupla de status na mesma requisição.",
+        },
+      ],
     },
     {
       id: "enterprise-form-density",
       code: "DL-03",
       domain: "SaaS Corporativo & Cadastro Denso",
-      originTag: "Padrão Real • NDA-Safe",
+      originTag: "Cenário Didático • Padrão ERP",
       title: "Densidade Operacional vs. Clareza em Telas de 45+ Campos",
       dilemma:
         "Como atender power users que operam 8h/dia via teclado sem esmagar novos operadores com formulários gigantes e erro silencioso?",
@@ -750,6 +948,79 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
             "Critérios objetivos eliminam idas e vindas entre design, front-end e QA.",
         },
       ],
+      prioritizationItems: [
+        {
+          id: "dl3-p0-tax",
+          issue: "Erros fiscais de validação exibidos apenas após clique final em 'Salvar'",
+          priority: "P0",
+          frequency: "Alta",
+          businessRisk: "Perda de minutos reenchendo campos e retrabalho frequente na emissão de NF-e.",
+          rationale: "Validação tardia destrói confiança em formulários longos de cadastro B2B.",
+        },
+        {
+          id: "dl3-p0-scroll",
+          issue: "Usuário perde posição da barra de salvamento e seções pendentes em telas > 45 campos",
+          priority: "P0",
+          frequency: "Alta",
+          businessRisk: "Fechamento acidental da aba com perda total de alterações não salvas.",
+          rationale: "Sticky action bar + guarda de saída eliminam perda de trabalho crítica.",
+        },
+        {
+          id: "dl3-p1-defaults",
+          issue: "Preenchimento manual repetitivo de dados que derivam de CNPJ ou NCM",
+          priority: "P1",
+          frequency: "Média",
+          businessRisk: "Lentidão na entrada de novos fornecedores e clientes corporativos.",
+          rationale: "Autopreenchimento auditável acelera rotina mantendo revisão humana explícita.",
+        },
+        {
+          id: "dl3-p2-advanced",
+          issue: "Exceções tributárias raras (ex.: Suframa / ST específica) expostas para todos os operadores",
+          priority: "P2",
+          frequency: "Baixa",
+          businessRisk: "Aumenta fadiga visual e risco de alteração acidental em campos sensíveis.",
+          rationale: "Agrupadas sob disclosure controlado com badge indicando quando possuem valor ativo.",
+        },
+      ],
+      asIsToBe: {
+        asIsTitle: "Formulário Monolítico sem Hierarquia",
+        asIsSteps: [
+          "45+ inputs empilhados em rolagem única",
+          "Campos obrigatórios e raros misturados no mesmo peso",
+          "Erro de regra fiscal só aparece ao clicar em Salvar no rodapé",
+          "Sem sinal claro do que foi alterado antes de sair",
+        ],
+        toBeTitle: "Âncoras por Domínio + Validação Inline",
+        toBeSteps: [
+          "Menu lateral ancora Identificação, Tributação e Endereço",
+          "Validação inline ao sair do campo com feedback contextual",
+          "Exceções raras recolhidas com contador ativo quando preenchidas",
+          "Rodapé sticky indica campos alterados + botão Salvar fixo",
+        ],
+      },
+      extremeStates: [
+        {
+          id: "dl3-e1",
+          state: "Erro em seção recolhida ou fora da viewport",
+          trigger: "Usuário tenta salvar cadastro com campo tributário inválido fora da dobra atual.",
+          uiBehavior: "Sidebar marca a seção com badge de erro numérico, ancora suavemente até o primeiro campo inválido e aplica foco automático.",
+          qaContract: "Ao submeter formulário inválido, scrollToFirstError move o viewport para o primeiro input com aria-invalid='true'.",
+        },
+        {
+          id: "dl3-e2",
+          state: "Tentativa de saída com formulário 'dirty'",
+          trigger: "Usuário clica em voltar ou trocar de rota após alterar NCM ou alíquota.",
+          uiBehavior: "Rodapé exibe contador 'Alterações não salvas' e modal curto confirma se deseja descartar ou salvar antes de sair.",
+          qaContract: "Estado isDirty compara snapshot inicial vs atual e bloqueia navegação sem confirmação explícita.",
+        },
+        {
+          id: "dl3-e3",
+          state: "Consulta automática de CNPJ indisponível",
+          trigger: "Serviço externo de Receita/SEFAZ retorna timeout durante cadastro rápido.",
+          uiBehavior: "Exibe aviso discreto sem travar o formulário e libera preenchimento manual normal dos campos desbloqueados.",
+          qaContract: "Falha de enrichment externo nunca deve bloquear submissão manual válida do cadastro.",
+        },
+      ],
     },
   ],
   en: [
@@ -757,7 +1028,7 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
       id: "erp-pdv-fiscal",
       code: "DL-01",
       domain: "ERP & Point of Sale (POS)",
-      originTag: "Real Pattern • NDA-Safe",
+      originTag: "Didactic Scenario • ERP Pattern",
       title: "Counter Speed vs. Real-Time Fiscal Integrity",
       dilemma:
         "How do you prevent checkout queues during network or tax-authority instability without creating fiscal compliance debt or ghost stock locks?",
@@ -935,12 +1206,85 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
             "Zero ambiguity between Figma specs and QA test cases.",
         },
       ],
+      prioritizationItems: [
+        {
+          id: "dl1-p0-queue",
+          issue: "Checkout queue stalls waiting for synchronous tax authorization (> 4s)",
+          priority: "P0",
+          frequency: "High",
+          businessRisk: "Physical lane bottleneck and accidental duplicate payment submits.",
+          rationale: "Directly impacts store throughput and shift closing; resilient offline contingency outranks visual polish.",
+        },
+        {
+          id: "dl1-p0-reconcile",
+          issue: "Silent divergence between offline contingency receipts and central stock",
+          priority: "P0",
+          frequency: "Medium",
+          businessRisk: "Tax penalty exposure and inventory discrepancy during audits.",
+          rationale: "Fast checkout cannot compromise auditable back-office reconciliation.",
+        },
+        {
+          id: "dl1-p1-shortcuts",
+          issue: "Pointer dependency when switching payment methods or discounts",
+          priority: "P1",
+          frequency: "High",
+          businessRisk: "Adds idle seconds per scanned item and operator fatigue.",
+          rationale: "Keyboard-first flow unlocks continuous productivity once tax resilience is in place.",
+        },
+        {
+          id: "dl1-p2-fiscal-hint",
+          issue: "Raw XML tax logs displayed directly on the cashier terminal",
+          priority: "P2",
+          frequency: "Low",
+          businessRisk: "Clutters frontline UI with technical codes operators cannot act on.",
+          rationale: "Moved behind an expandable diagnostic drawer meant for support staff.",
+        },
+      ],
+      asIsToBe: {
+        asIsTitle: "Blocking Synchronous Checkout",
+        asIsSteps: [
+          "Operator finishes sale at POS",
+          "Screen locks on spinner awaiting tax API",
+          "Retries cause double charge or browser reload",
+          "Supervisor manually reconciles drawer",
+        ],
+        toBeTitle: "Resilient Asynchronous Contingency",
+        toBeSteps: [
+          "Local tax rules pre-validated from cache",
+          "Instant F12 commit with idempotency key",
+          "Timeout > 4s activates silent NFC-e contingency",
+          "Discreet header badge syncs queue & flags real rejections only",
+        ],
+      },
+      extremeStates: [
+        {
+          id: "dl1-e1",
+          state: "Tax Gateway Timeout > 4s at Commit",
+          trigger: "State tax authority latency or outage during peak checkout hours.",
+          uiBehavior: "Top amber banner confirms 'Contingency Active'; receipt prints normally and register resets for the next customer in < 1s.",
+          qaContract: "Given timeout > 4000ms, When payment confirms, Then sale commits locally with idempotency key and status 'SYNC_PENDING'.",
+        },
+        {
+          id: "dl1-e2",
+          state: "Double Submit via Enter / F12",
+          trigger: "Operator presses shortcut twice while awaiting terminal response.",
+          uiBehavior: "Transactional lock disables duplicate commit without clearing the cart.",
+          qaContract: "Concurrent commit requests sharing the same idempotencyKey must return the original receipt with zero double inventory deduction.",
+        },
+        {
+          id: "dl1-e3",
+          state: "Delayed Tax Rejection (NCM/CFOP Mismatch)",
+          trigger: "Queued offline receipt fails validation once connection restores.",
+          uiBehavior: "Frontline lane remains unblocked; rejected receipt routes to a dedicated back-office exception queue with human-readable fix hints.",
+          qaContract: "Back-office rejections isolate only the affected document without halting POS lanes.",
+        },
+      ],
     },
     {
       id: "supplyhub-approvals",
       code: "DL-02",
       domain: "B2B Procurement & Approvals",
-      originTag: "Concept Product Study",
+      originTag: "Didactic Scenario • Procurement B2B",
       title: "Buyer Autonomy vs. Margin & Budget Governance",
       dilemma:
         "How can multi-branch buyers close recurring restocks quickly while giving finance control over unit price hikes and budget caps?",
@@ -1117,12 +1461,85 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
             "Directly translatable to end-to-end workflow and permission tests.",
         },
       ],
+      prioritizationItems: [
+        {
+          id: "dl2-p0-margin",
+          issue: "Bulk PO approval without highlighting price or supplier deviations",
+          priority: "P0",
+          frequency: "High",
+          businessRisk: "Direct margin leakage and unapproved spend above category budget.",
+          rationale: "Top priority to replace blind approvals with rule-driven exception highlighting.",
+        },
+        {
+          id: "dl2-p0-audit",
+          issue: "Informal approvals happening via chat/email outside the ERP",
+          priority: "P0",
+          frequency: "High",
+          businessRisk: "Compliance failure and zero audit trail for exception rationales.",
+          rationale: "Inline mandatory notes keep governance inside the product.",
+        },
+        {
+          id: "dl2-p1-split",
+          issue: "Inability to split compliant items from exception items on one quote",
+          priority: "P1",
+          frequency: "Medium",
+          businessRisk: "Entire replenishment stalls because one SKU exceeded tolerance.",
+          rationale: "Unblocks urgent supply lines without loosening budget enforcement.",
+        },
+        {
+          id: "dl2-p2-diff",
+          issue: "Historical price variance table expanded by default",
+          priority: "P2",
+          frequency: "Low",
+          businessRisk: "Creates cognitive overload during rapid daily approval queues.",
+          rationale: "Kept inside an on-demand inspection drawer when deeper context is requested.",
+        },
+      ],
+      asIsToBe: {
+        asIsTitle: "Blind Sign-Off or Full Hold",
+        asIsSteps: [
+          "RFQ produces 10+ line items for review",
+          "Manager inspects every SKU manually",
+          "Either blindly approves all or stalls the whole PO",
+          "Exception discussions move out to email/chat",
+        ],
+        toBeTitle: "Exception-First Review + Split PO",
+        toBeSteps: [
+          "Compliant items display eligible green status",
+          "Out-of-bounds items surface at top with delta %",
+          "One click approves healthy lines into an instant PO",
+          "Exceptions capture mandatory rationale in side drawer",
+        ],
+      },
+      extremeStates: [
+        {
+          id: "dl2-e1",
+          state: "100% Compliant Quote Submission",
+          trigger: "Buyer selects lowest SLA/price within historical category threshold.",
+          uiBehavior: "Banner confirms policy compliance and allows frictionless single-click release.",
+          qaContract: "Given delta <= threshold for all line items, Then mandatory exception note is bypassed cleanly.",
+        },
+        {
+          id: "dl2-e2",
+          state: "Exception Submitted Without Rationale",
+          trigger: "User tries to approve an item exceeding +8% threshold with empty comment.",
+          uiBehavior: "Focus shifts to rationale textarea highlighting exceeded delta and prior unit cost.",
+          qaContract: "API returns HTTP 422 when exceptionReason is blank on severity='BLOCKING' items.",
+        },
+        {
+          id: "dl2-e3",
+          state: "Concurrent Approver Collision",
+          trigger: "Two managers in the same tier act on the identical quote simultaneously.",
+          uiBehavior: "Second actor sees a non-destructive conflict notice naming who approved first and exact timestamp.",
+          qaContract: "Optimistic ETag/version check prevents duplicate PO generation on concurrent writes.",
+        },
+      ],
     },
     {
       id: "enterprise-form-density",
       code: "DL-03",
       domain: "Enterprise SaaS & Dense Forms",
-      originTag: "Real Pattern • NDA-Safe",
+      originTag: "Didactic Scenario • ERP Pattern",
       title: "High-Frequency Density vs. Clarity in 45+ Field Screens",
       dilemma:
         "How do you support power users operating 8 hours/day via keyboard without overwhelming newer operators or hiding validation errors?",
@@ -1297,6 +1714,79 @@ export const DECISION_SCENARIOS: Record<Locale, DecisionScenario[]> = {
           ],
           engineeringNote:
             "Removes ambiguity between design intent, frontend implementation, and QA regression.",
+        },
+      ],
+      prioritizationItems: [
+        {
+          id: "dl3-p0-tax",
+          issue: "Tax validation errors revealed only after final Save click",
+          priority: "P0",
+          frequency: "High",
+          businessRisk: "Minutes wasted scrolling long screens and broken invoice setups.",
+          rationale: "Early inline feedback prevents abandonment and billing errors.",
+        },
+        {
+          id: "dl3-p0-scroll",
+          issue: "Operators lose save actions and section awareness across 45+ fields",
+          priority: "P0",
+          frequency: "High",
+          businessRisk: "Accidental tab close loses entire customer/supplier edit session.",
+          rationale: "Sticky action bar + unsaved guard eliminates silent data loss.",
+        },
+        {
+          id: "dl3-p1-defaults",
+          issue: "Manual re-entry of data derivable from Tax ID or NCM codes",
+          priority: "P1",
+          frequency: "Medium",
+          businessRisk: "Slows supplier and client onboarding queues.",
+          rationale: "Auditable auto-fill accelerates routine data entry while preserving review.",
+        },
+        {
+          id: "dl3-p2-advanced",
+          issue: "Rare fiscal exception fields shown at full visual weight for every role",
+          priority: "P2",
+          frequency: "Low",
+          businessRisk: "Increases scan fatigue and accidental edits on sensitive regimes.",
+          rationale: "Grouped in controlled disclosures showing active badge counts when populated.",
+        },
+      ],
+      asIsToBe: {
+        asIsTitle: "Flat Monolithic Form",
+        asIsSteps: [
+          "45+ inputs stacked in one endless scroll",
+          "Mandatory and rare edge fields share equal hierarchy",
+          "Validation errors surface only at bottom Save click",
+          "No dirty-state indicator before navigating away",
+        ],
+        toBeTitle: "Domain Anchors + Inline Validation",
+        toBeSteps: [
+          "Left rail anchors Identification, Tax Rules, and Addresses",
+          "On-blur inline validation provides contextual guidance",
+          "Rare regimes collapse cleanly unless populated",
+          "Sticky footer tracks changed fields and locks exit",
+        ],
+      },
+      extremeStates: [
+        {
+          id: "dl3-e1",
+          state: "Error Inside Collapsed or Offscreen Section",
+          trigger: "User clicks Save while an invalid tax field sits offscreen.",
+          uiBehavior: "Rail highlights the section badge count, smoothly scrolls to the first error, and sets keyboard focus.",
+          qaContract: "Submitting invalid form triggers scrollToFirstError targeting the first aria-invalid='true' control.",
+        },
+        {
+          id: "dl3-e2",
+          state: "Navigation Attempt on Dirty Form",
+          trigger: "Operator hits Back or switches route after changing tax regime.",
+          uiBehavior: "Sticky footer surfaces unsaved change count and a concise confirmation dialog prevents data loss.",
+          qaContract: "isDirty snapshot comparison intercepts route exit until user confirms discard or save.",
+        },
+        {
+          id: "dl3-e3",
+          state: "External Tax ID Lookup Outage",
+          trigger: "External government lookup times out during supplier onboarding.",
+          uiBehavior: "Shows a non-blocking fallback notice and keeps manual fields unlocked for uninterrupted entry.",
+          qaContract: "Third-party enrichment timeouts never lock manual validation or form submission.",
         },
       ],
     },
