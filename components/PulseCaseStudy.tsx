@@ -95,11 +95,11 @@ export default function PulseCaseStudy({
                 </span>
                 {caseStudy.isConcept ? (
                   <span className="text-xs font-mono text-neutral-400">
-                    — [Estudo Autoral Não-Comercial]
+                    — [Estudo Autoral • Conceito & Protótipo UI]
                   </span>
                 ) : (
                   <span className="text-xs font-mono text-emerald-400">
-                    — [Experiência Profissional Comprovada]
+                    — [Experiência Profissional Real]
                   </span>
                 )}
               </div>

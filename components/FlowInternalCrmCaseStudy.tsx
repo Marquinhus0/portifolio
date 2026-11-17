@@ -405,11 +405,11 @@ export default function FlowInternalCrmCaseStudy({
                 04 — DEMONSTRAÇÃO INTERATIVA COMPLETA
               </span>
               <span className="px-2 py-0.5 bg-[#1683E8] text-white font-mono text-[10px] font-black rounded">
-                LIVE WORKSPACE
+                SANDBOX INTERATIVO
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Flow CRM em Ação (Protótipo Funcional)
+              Simulação de Operação Comercial (Sandbox Navegável)
             </h2>
             <p className="text-sm text-neutral-300 font-normal leading-relaxed">
               Interaja diretamente com o protótipo funcional comercial. Navegue entre as abas na barra lateral, arraste cards no Kanban, filtre a tabela de leads, abra o perfil 360° com histórico, teste o simulador de WhatsApp comercial B2B e pressione <kbd className="px-1.5 py-0.5 bg-neutral-800 text-white rounded font-mono text-xs border border-neutral-700">/</kbd> para acionar a busca interna do CRM.

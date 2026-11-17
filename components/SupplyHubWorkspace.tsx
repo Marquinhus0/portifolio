@@ -1426,7 +1426,7 @@ export default function SupplyHubWorkspace() {
                   <div className="bg-white border border-[#e4ebe7] rounded-xl p-5 space-y-1">
                     <span className="text-xs text-[#71807a]">Tempo Médio de Ciclo (P2P)</span>
                     <strong className="text-2xl font-extrabold text-[#15201c] block">2.4 dias</strong>
-                    <span className="text-[10px] text-[#16845a] font-bold">Redução de 65% vs processo manual</span>
+                    <span className="text-[10px] text-[#16845a] font-bold">Dados demonstrativos • Cenário simulado</span>
                   </div>
 
                   <div className="bg-white border border-[#e4ebe7] rounded-xl p-5 space-y-1">

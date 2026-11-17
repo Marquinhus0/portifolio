@@ -27,7 +27,7 @@ export default function Home() {
       <SkillsGrid />
 
       {/* 07. Detailed Professional Experience */}
-      <div id="experiencia">
+      <div id="experiencia" className="scroll-mt-20">
         <ExperienceTimeline />
       </div>
 

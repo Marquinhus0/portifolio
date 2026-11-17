@@ -2,17 +2,18 @@
 
 import { Printer, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { experienceData } from "@/data/experience";
+import { CANONICAL_EXPERIENCE, RESUME_SUMMARY } from "@/data/careerProfile";
 import { skillsData } from "@/data/skills";
 import { useLanguage } from "@/context/LanguageContext";
-import { EXPERIENCE_TRANSLATIONS, SKILLS_TRANSLATIONS } from "@/data/translations";
+import { SKILLS_TRANSLATIONS } from "@/data/translations";
 
 export default function ResumePageClient() {
   const { locale } = useLanguage();
   const isEn = locale === "en";
 
-  const expList = EXPERIENCE_TRANSLATIONS[locale].itemsEn || experienceData;
+  const expList = CANONICAL_EXPERIENCE[locale];
   const skillList = SKILLS_TRANSLATIONS[locale].itemsEn || skillsData;
+  const summaryBio = RESUME_SUMMARY[locale];
 
   const handlePrint = () => {
     window.print();
@@ -64,9 +65,7 @@ export default function ResumePageClient() {
             </div>
 
             <p className="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed pt-2">
-              {isEn
-                ? "Product Designer specializing in management software, ERPs, and B2B SaaS. Working from field research and discovery through business rules alignment and front-end engineering delivery."
-                : "Product Designer focado em softwares de gestão, ERPs e plataformas B2B. Atuo desde a pesquisa e descoberta de problemas até o alinhamento com regras de negócio e entrega com desenvolvedores."}
+              {summaryBio}
             </p>
           </div>
 

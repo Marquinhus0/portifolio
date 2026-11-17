@@ -1,5 +1,6 @@
 import type { ExperienceItem, SkillCategory } from "@/types";
 import type { Locale } from "@/context/LanguageContext";
+import { CANONICAL_EXPERIENCE } from "@/data/careerProfile";
 
 export const NAV_TRANSLATIONS = {
   pt: {
@@ -67,79 +68,79 @@ export const FOOTER_TRANSLATIONS = {
 
 export const HERO_TRANSLATIONS = {
   pt: {
-    topDomain: "Sistemas de Gestão • B2B SaaS • ERP",
-    eyebrow: "Portfolio // Produtos Digitais Complexos",
-    subtitleHero: "para sistemas densos e produtos B2B",
+    topDomain: "Especialização // ERP, SaaS B2B e Sistemas Complexos",
+    eyebrow: "Product Designer // Sistemas Corporativos",
+    subtitleHero: "especializado em ERP, SaaS B2B e sistemas complexos",
     quote:
-      "Simplifico ferramentas de trabalho e softwares de gestão para quem opera o sistema todos os dias.",
-    bio: "Atuo de ponta a ponta entre Discovery, regras de negócio, arquitetura de informação e prototipação funcional em código para reduzir atrito operacional e retrabalho com engenharia.",
-    exploreProjects: "Explorar Projetos",
-    contactMe: "Entrar em Contato",
+      "Transformo regras de negócio complexas e rotinas operacionais densas em fluxos digitais claros e confiáveis.",
+    bio: "Na ALFA Software desde 2020: uni vivência em 15+ implantações de ERP à prática de Product Design — conduzindo discovery, arquitetura de informação, Figma, critérios de aceite e QA com engenharia.",
+    exploreProjects: "Explorar Case Real de ERP",
+    contactMe: "Explorar Todos os Cases",
     resumeCta: "Currículo / CV",
     dossierLabel: "Dossiê Profissional",
-    dossierYears: "~6 ANOS EM ERP // 3+ PRODUCT DESIGN",
+    dossierYears: "2020 — PRESENTE",
     credentials: [
       {
-        label: "Atuação Atual (3+ Anos)",
+        label: "Atuação Atual (2023 — Presente)",
         value: "Product Designer — ALFA Software",
-        meta: "2023 — Presente • Discovery, Design System & QA",
+        meta: "Pesquisa, Fluxos, Figma, Critérios de Aceite & QA",
       },
       {
-        label: "Base em Negócios ERP (3 Anos)",
+        label: "Base em Negócios ERP (2020 — 2023)",
         value: "Analista de Negócios ERP — ALFA Software",
-        meta: "2020 — 2023 • 15+ Implantações B2B",
+        meta: "15+ Implantações B2B, Regras Fiscais & Go-Live",
       },
       {
         label: "Entrega & Execução",
-        value: "Regras de Negócio, IA & Prototipação React",
-        meta: "Figma + TypeScript + Critérios de Aceite QA",
+        value: "Arquitetura de Informação & Prototipação React",
+        meta: "Figma + TypeScript + Alinhamento com Engenharia",
       },
     ],
     tags: [
-      "Product Design",
-      "UX/UI",
-      "B2B SaaS",
-      "Gestão & ERP",
-      "Discovery",
-      "Design System",
+      "Product Discovery",
+      "ERP & Regras de Negócio",
+      "Arquitetura de Informação",
+      "Design Systems",
+      "Figma + React/TS",
+      "Critérios QA",
     ],
   },
   en: {
-    topDomain: "Enterprise Systems • B2B SaaS • ERP",
-    eyebrow: "Portfolio // Complex Digital Products",
-    subtitleHero: "for dense systems and B2B platforms",
+    topDomain: "Specialization // ERP, B2B SaaS & Complex Systems",
+    eyebrow: "Product Designer // Enterprise Systems",
+    subtitleHero: "specialized in ERP, B2B SaaS, and complex systems",
     quote:
-      "I simplify operational tools and enterprise software for teams who rely on the system every single day.",
-    bio: "Working end-to-end across Discovery, business rules, information architecture, and live React prototyping to remove operational friction and engineering rework.",
-    exploreProjects: "Explore Projects",
-    contactMe: "Get in Touch",
+      "I turn intricate business rules and dense operational workflows into clear, dependable digital products.",
+    bio: "At ALFA Software since 2020: combining 15+ ERP implementations with end-to-end Product Design—research, information architecture, Figma systems, acceptance criteria, and engineering QA.",
+    exploreProjects: "Explore Real ERP Case",
+    contactMe: "Browse All Case Studies",
     resumeCta: "Resume / CV",
     dossierLabel: "Executive Dossier",
-    dossierYears: "~6 YRS IN ERP // 3+ PRODUCT DESIGN",
+    dossierYears: "2020 — PRESENT",
     credentials: [
       {
-        label: "Current Role (3+ Years)",
+        label: "Current Role (2023 — Present)",
         value: "Product Designer — ALFA Software",
-        meta: "2023 — Present • Discovery, Design System & QA",
+        meta: "Research, Workflows, Figma, Acceptance Criteria & QA",
       },
       {
-        label: "ERP Business Foundation (3 Years)",
+        label: "ERP Business Foundation (2020 — 2023)",
         value: "ERP Business Analyst — ALFA Software",
-        meta: "2020 — 2023 • 15+ B2B Rollouts",
+        meta: "15+ B2B Rollouts, Tax Rules & Go-Live Delivery",
       },
       {
         label: "Delivery & Execution",
-        value: "Business Rules, IA & React Prototyping",
-        meta: "Figma + TypeScript + QA Acceptance Criteria",
+        value: "Information Architecture & React Prototyping",
+        meta: "Figma + TypeScript + Engineering Alignment",
       },
     ],
     tags: [
-      "Product Design",
-      "UX/UI",
-      "B2B SaaS",
-      "ERP Systems",
-      "Discovery",
-      "Design System",
+      "Product Discovery",
+      "ERP Business Rules",
+      "Information Architecture",
+      "Design Systems",
+      "Figma + React/TS",
+      "QA Acceptance",
     ],
   },
 } as const;
@@ -178,6 +179,7 @@ export const CASE_CARD_COPY: Record<
         "Rede social mobile-first desenhada para leitura calma, publicações intencionais e conexões por interesse sem ruído algorítmico.",
       domainLabel: "Consumer Social • Mobile App",
       cta: "Ver Estudo de Caso",
+      year: "2024 — Estudo Autoral",
     },
     "frame-interactive-video": {
       title: "FRAME — Streaming Cinemático & Notas Vivas",
@@ -185,25 +187,28 @@ export const CASE_CARD_COPY: Record<
         "Plataforma de cinema e arquitetura onde cada segundo do vídeo carrega plantas interativas, contexto histórico e caderno de estudos.",
       domainLabel: "Cinema & Mídia Interativa",
       cta: "Ver Case & Protótipo Interativo",
+      year: "2024 — Estudo Autoral",
     },
     "flow-crm-b2b": {
       title: "FLOW CRM — Pipeline & Operação Comercial B2B",
       subtitle:
-        "Plataforma comercial B2B desenhada para transformar gestão de oportunidades, funil Kanban e aprovações em execução previsível.",
+        "Estudo autoral com sandbox navegável em React para gestão visual de oportunidades, funil Kanban e alertas de follow-up em dados demonstrativos.",
       domainLabel: "CRM Comercial B2B",
-      cta: "Ver Case & Protótipo Interativo",
+      cta: "Ver Estudo & Sandbox Interativo",
+      year: "2024 — Estudo Autoral",
     },
     "supplyhub-procurement-b2b": {
       title: "SupplyHub — Procurement & Cotações B2B",
       subtitle:
-        "Suite enterprise para gestão de cotações, mapa comparativo de preços e ordens de compra sem fricção operacional.",
+        "Suite conceitual enterprise com sandbox navegável para gestão de cotações, mapa comparativo de preços e ordens de compra.",
       domainLabel: "Compras & Suprimentos B2B",
-      cta: "Ver Case & Protótipo Interativo",
+      cta: "Ver Estudo & Sandbox Interativo",
+      year: "2024 — Estudo Autoral",
     },
     "erp-enterprise-redesign": {
       title: "ERP Corporativo B2B — Arquitetura & Antes/Depois (NDA-Safe)",
       subtitle:
-        "Evolução de fluxos críticos de Compras, Vendas, Estoque e Faturamento unindo 15+ implantações em campo e Product Design padronizado.",
+        "Evolução real de fluxos de Compras, Vendas, Estoque e Faturamento unindo 15+ implantações em campo e Product Design padronizado (reconstrução anonimizada).",
       domainLabel: "ERP Corporativo • NDA-Safe",
       cta: "Explorar Antes & Depois NDA-Safe",
       year: "2020 — Presente",
@@ -216,32 +221,36 @@ export const CASE_CARD_COPY: Record<
         "Mobile-first social app crafted for calm reading, intentional publishing, and interest-driven communities without algorithmic noise.",
       domainLabel: "Consumer Social • Mobile App",
       cta: "Read Case Study",
+      year: "2024 — Authorial Study",
     },
     "frame-interactive-video": {
       title: "FRAME — Cinematic Streaming & Living Notes",
       subtitle:
         "Cinema and architecture platform where every video timestamp carries interactive blueprints, historical context, and live study notes.",
       domainLabel: "Cinema & Interactive Media",
-      cta: "View Case & Interactive Prototype",
+      cta: "View Case & Functional Prototype",
+      year: "2024 — Authorial Study",
     },
     "flow-crm-b2b": {
       title: "FLOW CRM — B2B Revenue Pipeline & Operations",
       subtitle:
-        "B2B sales platform engineered to turn opportunity tracking, Kanban stages, and discount approvals into predictable daily execution.",
+        "Authorial study with a navigable React sandbox for B2B pipeline tracking, Kanban stages, and SLA follow-ups using synthetic demo data.",
       domainLabel: "B2B Sales CRM",
-      cta: "View Case & Interactive Prototype",
+      cta: "View Study & Interactive Sandbox",
+      year: "2024 — Authorial Study",
     },
     "supplyhub-procurement-b2b": {
       title: "SupplyHub — B2B Procurement & RFQ Matrix",
       subtitle:
-        "Enterprise suite unifying RFQ collection, side-by-side vendor comparison matrices, and purchase order workflows.",
+        "Conceptual B2B procurement suite with an interactive sandbox unifying RFQ collection, side-by-side matrices, and approval tiers.",
       domainLabel: "Procurement & Supply B2B",
-      cta: "View Case & Interactive Prototype",
+      cta: "View Study & Interactive Sandbox",
+      year: "2024 — Authorial Study",
     },
     "erp-enterprise-redesign": {
       title: "Enterprise B2B ERP — Architecture & Before/After (NDA-Safe)",
       subtitle:
-        "Redesigning mission-critical Procurement, Sales, Inventory, and Billing flows combining 15+ field rollouts with standardized Product Design.",
+        "Real-world evolution of Purchasing, Sales, Inventory, and Billing flows combining 15+ field rollouts with standardized Product Design (anonymized reconstruction).",
       domainLabel: "Enterprise ERP • NDA-Safe",
       cta: "Explore Before & After NDA-Safe",
       year: "2020 — Present",
@@ -281,7 +290,7 @@ export const INTRO_TRANSLATIONS = {
         code: "EXECUÇÃO",
         label: "Validação Técnica & QA",
         desc: "Documentação estruturada de requisitos funcionais e testes práticos em interface junto ao time de desenvolvimento.",
-        impact: "Alinhamento impecável com engenharia e qualidade no Go-Live",
+        impact: "Alinhamento consistente com engenharia e qualidade no Go-Live",
       },
     ],
   },
@@ -298,7 +307,7 @@ export const INTRO_TRANSLATIONS = {
         code: "DISCOVERY",
         label: "Research & Product Strategy",
         desc: "Deep understanding of operational rules, real customer routines, and workflow bottlenecks before drawing a single frame.",
-        impact: "Focused product direction and zero wasted engineering cycles",
+        impact: "Focused product direction and leaner engineering handoffs",
       },
       {
         code: "ARCHITECTURE",
@@ -310,7 +319,7 @@ export const INTRO_TRANSLATIONS = {
         code: "SYSTEMS",
         label: "Scalable Figma Libraries",
         desc: "Building modular component foundations and interactive high-fidelity prototypes that guide sustainable product evolution.",
-        impact: "Systemic UI consistency and faster feature delivery",
+        impact: "Systemic UI consistency and steadier feature delivery",
       },
       {
         code: "EXECUTION",
@@ -348,90 +357,7 @@ export const EXPERIENCE_TRANSLATIONS: Record<
       "Hands-on track record building complex enterprise software, bridging ERP business rules and end-to-end Product Design.",
     respLabel: "Responsibilities:",
     impactLabel: "Outcomes & Impact:",
-    itemsEn: [
-      {
-        period: "2023 — Present",
-        company: "ALFA Software",
-        role: "Product Designer",
-        domain: "ERP / B2B / SaaS",
-        description:
-          "Leading Product Design for the company's ERP suite, partnering from customer discovery through engineering handoff and production QA.",
-        responsibilities: [
-          "Ongoing user research through in-depth interviews, field observation, and usability testing",
-          "End-to-end interface and flow design in Figma (wireframes, navigable prototypes, and component libraries)",
-          "Functional requirements and acceptance criteria alignment with PMs, engineering, and stakeholders",
-          "Experience quality assurance via structured functional testing and QA feedback loops",
-          "Enterprise client demos and assisted go-live onboarding & training sessions",
-        ],
-        impacts: [
-          "Standardized UI components and edge-case specs (tax error, empty, loading) shared between Figma and engineering",
-          "Embedded usability checks and acceptance criteria into sprint delivery before production release",
-          "Simplified high-density POS counter, order closing, and restock screens, cutting recurring post-rollout operator questions",
-        ],
-        technologies: [
-          "Figma",
-          "Product Discovery",
-          "UX Research",
-          "Design Systems",
-          "Usability Testing",
-          "QA & Criteria",
-          "B2B ERP",
-          "JIRA",
-        ],
-      },
-      {
-        period: "2020 — 2023",
-        company: "ALFA Software",
-        role: "Business Analyst (ERP)",
-        domain: "ERP / Business / Product",
-        description:
-          "Strategic bridge between enterprise clients, engineering, and design—leading process mapping, ERP business rules validation, and full rollouts.",
-        responsibilities: [
-          "Led 15+ full-cycle ERP implementations, from requirements gathering to operator go-live",
-          "Created a proprietary user feedback collection & triage framework adopted as company standard",
-          "Authored illustrated technical specs (wireframes, diagrams, flows) for complex business rules",
-          "Designed the company institutional website focused on information architecture and conversion flow",
-          "Structured a visual knowledge base with practical manuals, video tutorials, and operational guides",
-          "Specialized technical support and workflow analysis across Procurement, Sales, Finance, and Inventory",
-        ],
-        impacts: [
-          "Delivered 15+ full-cycle ERP rollouts across Purchasing, Sales, Finance, and Inventory for B2B clients",
-          "Created a proprietary user feedback intake & triage framework adopted as company standard",
-          "Built visual operational guides and restructured corporate site information architecture",
-        ],
-        technologies: [
-          "Business Analysis",
-          "Process Mapping",
-          "ERP Systems",
-          "Information Architecture",
-          "QA & Testing",
-          "Wireframing",
-          "Go-Live Delivery",
-        ],
-      },
-      {
-        period: "2020 (6 mos)",
-        company: "ISBET — Instituto Brasileiro Pró-Educação",
-        role: "Administrative & Systems Support Assistant",
-        domain: "Operations / Systems / Infra",
-        description:
-          "Internal systems operation, registration data governance, and hardware/network support, establishing discipline with data integrity.",
-        responsibilities: [
-          "Verification and data governance in the apprenticeship management system",
-          "Standardized structuring and filing of corporate records",
-          "Hands-on technical support for workstations, peripherals, and internal network",
-        ],
-        impacts: [
-          "Streamlined registration update workflows and maintained operational record integrity",
-        ],
-        technologies: [
-          "Operating Systems",
-          "Data Governance",
-          "Tech Support",
-          "Network & Infra",
-        ],
-      },
-    ],
+    itemsEn: CANONICAL_EXPERIENCE.en,
   },
 };
 

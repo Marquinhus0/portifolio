@@ -1,56 +1,90 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, ShieldCheck } from "lucide-react";
-import ExperienceTimeline from "@/components/ExperienceTimeline";
+import { ArrowRight, ArrowUpRight, CheckCircle2, Layers, ShieldCheck, Wrench } from "lucide-react";
 import DesignSystemShowcase from "@/components/DesignSystemShowcase";
 import PhilosophyBlock from "@/components/PhilosophyBlock";
-import ContactBlock from "@/components/ContactBlock";
 import { useLanguage } from "@/context/LanguageContext";
+import { ALFA_NARRATIVE } from "@/data/careerProfile";
 
-const SPECIALTIES = {
+const TRANSITION_STAGES = {
   pt: [
     {
-      code: "ERP // PDV",
-      title: "ERPs & Operações de Alta Densidade",
-      desc: "Especialista em fluxos de balcão de vendas, estoque, compras e emissão fiscal. Foco em interfaces velozes, tabelas com milhares de itens e usabilidade zero-mouse para quem trabalha sob pressão operacional.",
+      period: "2020 (6 meses)",
+      org: "ISBET",
+      role: "Auxiliar Administrativo & Suporte a Sistemas",
+      shift: "Disciplina com governança cadastral, sistemas operacionais e rotina de suporte técnico.",
     },
     {
-      code: "B2B // SAAS",
-      title: "CRM Comercial & Funis B2B",
-      desc: "Estruturação de pipelines Kanban, canais de comunicação integrados (WhatsApp, e-mail, ligações), alçadas de desconto por margem e métricas comerciais claras.",
+      period: "2020 — 2023",
+      org: "ALFA Software",
+      role: "Analista de Negócios ERP",
+      shift: "15+ implantações B2B completas em campo (Compras, Vendas, Financeiro, Estoque), método oficial de feedbacks e documentação ilustrada.",
     },
     {
-      code: "DESIGN SYSTEM",
-      title: "Design Systems Corporativos",
-      desc: "Arquitetura de componentes densos, tokens semânticos, estados de erro rigorosos e acessibilidade via teclado, conectando Figma diretamente a bibliotecas React.",
-    },
-    {
-      code: "REACT // CODE",
-      title: "Prototipação Interativa em Código",
-      desc: "Construção de sandboxes funcionais em React e TypeScript para validar performance, layout e fluxos reais antes do handoff, eliminando atrito com times de engenharia.",
+      period: "2023 — Presente",
+      org: "ALFA Software",
+      role: "Product Designer",
+      shift: "Transição estruturada da análise de regras de negócio para discovery contínuo, UX/IA, padronização Figma, critérios de aceite e QA.",
     },
   ],
   en: [
     {
-      code: "ERP // POS",
-      title: "High-Density ERPs & Operations",
-      desc: "Specialist in point-of-sale counters, warehouse inventory, purchasing, and tax invoicing—designing fast data tables and keyboard-first ergonomics for daily operators.",
+      period: "2020 (6 mos)",
+      org: "ISBET",
+      role: "Administrative & Systems Support Assistant",
+      shift: "Discipline in registration data governance, operational routines, and technical support.",
     },
     {
-      code: "B2B // SAAS",
-      title: "Commercial CRM & B2B Funnels",
-      desc: "Structuring Kanban sales pipelines, omnichannel workflows, margin-based discount approval tiers, and actionable revenue telemetry.",
+      period: "2020 — 2023",
+      org: "ALFA Software",
+      role: "ERP Business Analyst",
+      shift: "15+ full-cycle B2B ERP implementations (Purchasing, Sales, Finance, Inventory), internal feedback method, and illustrated specs.",
     },
     {
-      code: "DESIGN SYSTEM",
-      title: "Enterprise Design Systems",
-      desc: "High-density component architecture, semantic status tokens, thorough error handling, and keyboard accessibility linking Figma directly to React.",
+      period: "2023 — Present",
+      org: "ALFA Software",
+      role: "Product Designer",
+      shift: "Structured transition from ERP business rules into ongoing user discovery, UX/IA, Figma component systems, acceptance criteria, and QA.",
+    },
+  ],
+};
+
+const COLLABORATION_PRACTICES = {
+  pt: [
+    {
+      code: "DISCOVERY → BUSINESS",
+      title: "Levantamento & Regras Fiscais/Comerciais",
+      items: [
+        "Entrevistas e observação presencial em clientes durante go-live e rotina de balcão",
+        "Tradução de restrições tributárias e operacionais em requisitos funcionais claros",
+      ],
     },
     {
-      code: "REACT // CODE",
-      title: "Live Code Prototyping",
-      desc: "Building interactive React and TypeScript sandboxes to validate density, keyboard contracts, and edge cases ahead of engineering handoff.",
+      code: "DESIGN → ENGINEERING",
+      title: "Critérios de Aceite, QA & Handoff",
+      items: [
+        "Especificação explícita de estados vazios, carregamentos e erros antes do sprint",
+        "Testes funcionais com perspectiva de QA e documentação visual para reduzir dúvidas pós-deploy",
+      ],
+    },
+  ],
+  en: [
+    {
+      code: "DISCOVERY → BUSINESS",
+      title: "Field Research & Commercial/Tax Rules",
+      items: [
+        "User interviews and onsite observation during live go-live operations and counter routines",
+        "Translating fiscal and inventory constraints into actionable functional requirements",
+      ],
+    },
+    {
+      code: "DESIGN → ENGINEERING",
+      title: "Acceptance Criteria, QA & Handoff",
+      items: [
+        "Explicit specification of empty, loading, and error states prior to sprint implementation",
+        "QA-minded functional reviews and visual operational guides reducing post-release ambiguity",
+      ],
     },
   ],
 };
@@ -58,43 +92,44 @@ const SPECIALTIES = {
 export default function AboutPageClient() {
   const { locale } = useLanguage();
   const isEn = locale === "en";
-  const coreSpecialties = SPECIALTIES[locale];
+  const narrative = ALFA_NARRATIVE[locale];
+  const stages = TRANSITION_STAGES[locale];
+  const collab = COLLABORATION_PRACTICES[locale];
 
   return (
     <div className="bg-background min-h-screen">
-      {/* Hero Section */}
-      <section className="pt-20 pb-20 border-b border-surface-borderSubtle bg-background">
+      {/* 01. About Hero */}
+      <section className="pt-16 pb-16 border-b border-surface-borderSubtle bg-background">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
           <span className="text-xs font-mono uppercase tracking-widest text-[#13E1BC] flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC]" />
             <span>{isEn ? "[About Marcus Ritta]" : "[Sobre Marcus Ritta]"}</span>
           </span>
-          <div className="max-w-4xl space-y-6">
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tighter text-white uppercase leading-none">
+          <div className="max-w-4xl space-y-5">
+            <h1 className="text-4xl sm:text-6xl font-semibold tracking-tighter text-white uppercase leading-none">
               Marcus Ritta
             </h1>
-            <p className="text-xl sm:text-2xl text-neutral-300 font-light leading-relaxed">
+            <p className="text-lg sm:text-2xl text-neutral-200 font-light leading-relaxed">
               {isEn
-                ? "Product Designer with hands-on experience across transactional systems, dense information architecture, and enterprise B2B software—bridging operational reality, business strategy, and front-end execution."
-                : "Product Designer com sólida experiência em sistemas transacionais, arquitetura de informação complexa e produtos enterprise. Conecto a realidade operacional de quem usa o software à estratégia de negócio e à viabilidade técnica da engenharia."}
+                ? "Product Designer specialized in ERP, enterprise SaaS, and transactional systems—combining 15+ field rollouts with UX architecture, Figma systems, and engineering QA."
+                : "Product Designer especializado em ERP, SaaS B2B e sistemas transacionais — unindo vivência em 15+ implantações em campo à arquitetura de informação, Figma e validação com engenharia."}
             </p>
           </div>
 
-          {/* Verifiable LinkedIn & Credentials Callout (No fabricated testimonials) */}
-          <div className="pt-4">
-            <div className="p-5 sm:p-6 border border-surface-border bg-neutral-950/80 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="pt-2">
+            <div className="p-5 sm:p-6 border border-surface-border bg-neutral-950/90 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex items-start gap-3 text-xs font-mono text-neutral-300">
                 <ShieldCheck className="w-4 h-4 text-[#13E1BC] shrink-0 mt-0.5" />
                 <div className="space-y-1">
                   <span className="text-white uppercase tracking-wider font-medium block">
                     {isEn
-                      ? "Verifiable Track Record & Recommendations"
+                      ? "Verifiable Career & LinkedIn Profile"
                       : "Trajetória & Referências Verificáveis"}
                   </span>
                   <p className="text-neutral-400 leading-relaxed">
                     {isEn
-                      ? "Full career timeline, 15+ ERP rollouts at ALFA Software, and verified peer recommendations are available directly on LinkedIn and on the PDF Resume."
-                      : "Histórico completo, 15+ implantações de ERP na ALFA Software e referências verificáveis diretamente no LinkedIn e no Currículo PDF."}
+                      ? "Full timeline at ALFA Software, enterprise ERP rollout background, and peer recommendations."
+                      : "Histórico completo na ALFA Software, vivência em implantações ERP e recomendações verificáveis no LinkedIn."}
                   </p>
                 </div>
               </div>
@@ -103,14 +138,14 @@ export default function AboutPageClient() {
                   href="https://linkedin.com/in/marcusritta"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#13E1BC] text-[#080808] font-semibold uppercase tracking-wider hover:bg-[#0db899] transition-colors"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#13E1BC] text-[#080808] font-semibold uppercase tracking-wider hover:bg-white transition-colors"
                 >
                   <span>LinkedIn</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
                 <Link
                   href="/resume"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 border border-neutral-800 bg-neutral-900 text-white hover:border-[#13E1BC] hover:text-[#13E1BC] uppercase tracking-wider transition-colors"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 border border-neutral-800 bg-neutral-900 text-white hover:border-[#13E1BC] hover:text-[#13E1BC] uppercase tracking-wider transition-colors"
                 >
                   <span>{isEn ? "View Resume" : "Ver Currículo"}</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
@@ -121,103 +156,163 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* Narrative Section */}
+      {/* 02. Unified Detailed ALFA Narrative */}
       <section className="py-20 border-b border-surface-borderSubtle">
         <div className="max-w-7xl mx-auto px-6 sm:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-4 space-y-4">
               <span className="text-xs font-mono uppercase tracking-widest text-[#13E1BC] block">
-                {isEn ? "[My Approach]" : "[Minha Abordagem]"}
+                {narrative.eyebrow}
               </span>
               <h2 className="text-3xl sm:text-4xl font-medium text-white tracking-tight">
-                {isEn
-                  ? "Design forged in daily operational reality."
-                  : "Design forjado na realidade da operação."}
+                {narrative.heading}
               </h2>
             </div>
 
             <div className="lg:col-span-8 space-y-6 text-neutral-300 leading-relaxed text-base sm:text-lg font-light">
-              <p>
-                {isEn
-                  ? "My product career did not start by drawing isolated Dribbble concepts—it started inside real operations: busy distribution centers, tight purchasing desks, fiscal reconciliations, and sales teams who cannot afford slow or confusing software."
-                  : "Minha experiência em produtos não nasceu desenhando telas conceituais isoladas, mas sim entendendo o cotidiano de operações complexas: centros de distribuição dinâmicos, rotinas de compras sob pressão de prazos, conciliações fiscais e equipes comerciais que não podem perder tempo com burocracia ou interfaces confusas."}
-              </p>
-              <p>
-                {isEn
-                  ? "In mission-critical software, the best interface gets out of the user's way: instant keyboard ergonomics, explicit error prevention, clear visual hierarchy across dense records, and strict alignment with business rules."
-                  : "Acredito que em software de missão crítica, a melhor interface é aquela que quase desaparece: responde instantaneamente a atalhos de teclado, antecipa erros com clareza, organiza milhares de registros sem poluição visual e respeita as regras de negócio sem engessar a operação."}
-              </p>
-              <p className="text-sm font-mono text-neutral-400 border-l-2 border-[#13E1BC] pl-4 py-1">
-                &ldquo;
-                {isEn
-                  ? "I connect real user discovery, fiscal and commercial constraints, and React front-end collaboration."
-                  : "Trabalho conectando discovery com usuários de verdade, especificações tributárias e comerciais com engenharia front-end em React."}
-                &rdquo;
+              {narrative.paragraphs.map((paragraph, pIdx) => (
+                <p key={pIdx}>{paragraph}</p>
+              ))}
+              <p className="text-sm font-mono text-neutral-300 border-l-2 border-[#13E1BC] pl-4 py-1">
+                &ldquo;{narrative.quote}&rdquo;
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4 Core Focus Areas */}
-      <section className="py-20 border-b border-surface-borderSubtle bg-background">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-surface-borderSubtle">
-            <div className="space-y-3">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#13E1BC] flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC]" />
-                <span>{isEn ? "[Core Specialties]" : "[Especialidades Principais]"}</span>
+      {/* 03. Career Progression: From Field ERP Analyst to Product Designer */}
+      <section className="py-20 border-b border-surface-borderSubtle bg-[#090909]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-10">
+          <div className="space-y-3 max-w-2xl">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#13E1BC] flex items-center gap-2">
+              <Layers className="w-4 h-4" />
+              <span>
+                {isEn
+                  ? "[Career Transition & Evolution]"
+                  : "[Evolução & Transição de Papel]"}
               </span>
-              <h2 className="text-3xl sm:text-4xl font-medium text-white tracking-tight">
-                {isEn ? "Where I drive the most impact" : "Onde gero maior impacto"}
-              </h2>
-            </div>
-            <p className="text-xs font-mono text-neutral-400 max-w-sm">
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-medium text-white tracking-tight">
               {isEn
-                ? "Mature practice across mission-critical B2B and enterprise applications"
-                : "Competências maduras em softwares de missão crítica e produtos corporativos"}
-            </p>
+                ? "How field ERP analysis shaped my Product Design practice"
+                : "Como a análise de negócios em campo moldou meu Product Design"}
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {coreSpecialties.map((spec) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {stages.map((stage, idx) => (
               <div
-                key={spec.code}
-                className="p-8 border border-surface-border bg-neutral-950 flex flex-col justify-between space-y-6 hover:border-[#13E1BC]/50 hover:shadow-[0_0_20px_rgba(19,225,188,0.06)] transition-all group"
+                key={stage.period}
+                className="p-6 sm:p-7 border border-surface-border bg-neutral-950 flex flex-col justify-between space-y-5"
               >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between border-b border-neutral-850 pb-3">
-                    <span className="font-mono text-xs text-neutral-400 group-hover:text-[#13E1BC] transition-colors">
-                      [{spec.code}]
-                    </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC] shadow-[0_0_6px_#13E1BC]" />
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between text-xs font-mono border-b border-surface-borderSubtle pb-3">
+                    <span className="text-[#13E1BC] font-semibold">0{idx + 1}</span>
+                    <span className="text-neutral-400">{stage.period}</span>
                   </div>
-                  <h3 className="text-xl font-medium text-white tracking-tight">
-                    {spec.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-normal">
-                    {spec.desc}
-                  </p>
+                  <div>
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 block">
+                      {stage.org}
+                    </span>
+                    <h3 className="text-lg font-medium text-white tracking-tight pt-0.5">
+                      {stage.role}
+                    </h3>
+                  </div>
                 </div>
+                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                  {stage.shift}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Interactive B2B Design System & Tokens Specimen */}
+      {/* 04. Engineering Collaboration, QA & Implementation Bridge */}
+      <section className="py-20 border-b border-surface-borderSubtle bg-background">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-10">
+          <div className="space-y-3 max-w-2xl">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#13E1BC] flex items-center gap-2">
+              <Wrench className="w-4 h-4" />
+              <span>
+                {isEn
+                  ? "[Engineering Collaboration & Validation]"
+                  : "[Colaboração com Engenharia & Validação]"}
+              </span>
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-medium text-white tracking-tight">
+              {isEn
+                ? "From Go-Live constraints to testable handoffs"
+                : "Das restrições de implantação ao handoff testável"}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {collab.map((block) => (
+              <div
+                key={block.code}
+                className="p-7 border border-surface-border bg-neutral-950/90 space-y-4"
+              >
+                <span className="text-xs font-mono text-[#13E1BC] uppercase tracking-widest block">
+                  [{block.code}]
+                </span>
+                <h3 className="text-xl font-medium text-white tracking-tight">
+                  {block.title}
+                </h3>
+                <ul className="space-y-2.5 text-sm text-neutral-300">
+                  {block.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#13E1BC] shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 05. Interactive B2B Design System & Tokens Specimen (Unique to /about) */}
       <DesignSystemShowcase />
 
-      {/* Experience Timeline */}
-      <div id="experiencia" className="scroll-mt-20">
-        <ExperienceTimeline />
-      </div>
-
-      {/* Philosophy */}
+      {/* 06. Operating Philosophy */}
       <PhilosophyBlock />
 
-      {/* Contact */}
-      <ContactBlock />
+      {/* 07. Concise Next-Step Routing (No duplicated Homepage Timeline/Contact Grid) */}
+      <section className="py-16 bg-background">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+          <div className="p-8 border border-surface-border border-l-2 border-l-[#13E1BC] bg-neutral-950 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <span className="text-xs font-mono text-[#13E1BC] uppercase tracking-widest block">
+                {isEn ? "[Explore Evidence & Contact]" : "[Evidências & Contato Direto]"}
+              </span>
+              <h2 className="text-2xl font-medium text-white tracking-tight">
+                {isEn
+                  ? "See this experience applied in the ERP case or open a conversation"
+                  : "Veja essa trajetória aplicada no case real de ERP ou inicie uma conversa"}
+              </h2>
+            </div>
+            <div className="flex flex-wrap items-center gap-3 shrink-0 font-mono text-xs uppercase tracking-wider">
+              <Link
+                href="/work/erp-enterprise-redesign"
+                className="inline-flex items-center gap-2 px-5 py-3 bg-[#13E1BC] text-[#080808] font-semibold hover:bg-white transition-colors"
+              >
+                <span>{isEn ? "ERP Case [01]" : "Case Real ERP [01]"}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-5 py-3 border border-neutral-800 bg-neutral-900 text-white hover:border-[#13E1BC] hover:text-[#13E1BC] transition-colors"
+              >
+                <span>{isEn ? "Contact" : "Contato"}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

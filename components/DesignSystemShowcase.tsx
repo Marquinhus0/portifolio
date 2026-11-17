@@ -252,7 +252,7 @@ export default function DesignSystemShowcase() {
               <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-300 flex items-center gap-2">
                   <Keyboard className="w-3.5 h-3.5 text-[#13E1BC]" />
-                  <span>{isEn ? "Zero-Mouse ERP Contract" : "Contrato Zero-Mouse (ERP)"}</span>
+                  <span>{isEn ? "Keyboard-First ERP Contract" : "Contrato Orientado a Teclado (ERP)"}</span>
                 </span>
                 <span className="text-[10px] font-mono text-neutral-500">WCAG AA FOCUS</span>
               </div>

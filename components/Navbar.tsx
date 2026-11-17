@@ -45,14 +45,14 @@ export default function Navbar() {
         {/* Left: Brand Identity */}
         <Link
           href="/"
-          className="group flex items-baseline gap-2.5 focus-visible:outline-none"
+          className="group flex items-baseline gap-2.5 shrink-0 whitespace-nowrap focus-visible:outline-none"
           aria-label={t.brandAria}
         >
-          <span className="text-base font-medium tracking-tight text-white group-hover:text-neutral-300 transition-colors flex items-center">
+          <span className="text-sm sm:text-base font-medium tracking-tight text-white group-hover:text-neutral-300 transition-colors flex items-center whitespace-nowrap">
             Marcus Ritta
-            <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC] inline-block ml-1.5 shadow-[0_0_8px_#13E1BC]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC] inline-block ml-1.5 shrink-0 shadow-[0_0_8px_#13E1BC]" />
           </span>
-          <span className="hidden sm:inline-block text-xs font-mono tracking-wider text-neutral-500 uppercase">
+          <span className="hidden sm:inline-block text-xs font-mono tracking-wider text-neutral-400 uppercase whitespace-nowrap">
             / Product Designer
           </span>
         </Link>
@@ -138,7 +138,7 @@ export default function Navbar() {
             title={t.availableTitle}
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#13E1BC] opacity-75" />
+              <span className="animate-ping motion-reduce:animate-none absolute inline-flex h-full w-full rounded-full bg-[#13E1BC] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#13E1BC] shadow-[0_0_8px_#13E1BC]" />
             </span>
             <span className="font-mono text-[11px] tracking-tight">
@@ -161,7 +161,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center gap-2.5">
+        <div className="flex md:hidden items-center gap-2 shrink-0">
           <div
             className="inline-flex items-center rounded-sm border border-neutral-800 bg-neutral-950 p-0.5 text-[10px] font-mono"
             role="group"
@@ -192,7 +192,7 @@ export default function Navbar() {
               EN
             </button>
           </div>
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-neutral-800 bg-neutral-900/80 text-[10px] font-mono text-neutral-300">
+          <span className="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-neutral-800 bg-neutral-900/80 text-[10px] font-mono text-neutral-300">
             <span className="h-1.5 w-1.5 rounded-full bg-[#13E1BC] shadow-[0_0_6px_#13E1BC]" />
             <span>{t.available}</span>
           </span>

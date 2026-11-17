@@ -2206,7 +2206,7 @@ export default function FramePlayerShowcase() {
             <div className="flex items-center justify-between border-b border-[#262626] pb-3">
               <div className="flex items-center space-x-2 text-white">
                 <Keyboard className="w-5 h-5 text-[#ff5352]" />
-                <h3 className="font-bold text-sm">Atalhos Zero-Mouse // FRAME</h3>
+                <h3 className="font-bold text-sm">Atalhos de Teclado // FRAME</h3>
               </div>
               <button
                 onClick={() => setShowShortcutsModal(false)}

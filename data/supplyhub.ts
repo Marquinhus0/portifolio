@@ -616,7 +616,7 @@ export const supplyHubData = {
         "Para evitar o retrabalho de criar cotações isoladas para cada empresa, a mesma solicitação de compra (RFQ) é disparada em paralelo para distribuidores concorrentes, garantindo sigilo entre eles.",
       solution:
         "Mecanismo de 'Blind RFQ' onde cada fornecedor vê apenas sua própria proposta, enquanto o comprador recebe todas unificadas na mesma tela.",
-      impact: "Reduz o tempo de emissão de RFQ em 75%.",
+      impact: "Projetado para reduzir o tempo de emissão de RFQ em múltiplos fornecedores.",
     },
     {
       id: "rule-2",
@@ -826,9 +826,9 @@ export const supplyHubData = {
       {
         id: "h-4",
         question: "O acompanhamento do status do pedido reduz a ansiedade de entrega?",
-        targetUser: "Analista de Almoxarifado",
-        method: "Acompanhamento Contextual de Rotina",
-        metricCriteria: "Redução estimada de 60% em telefonemas de cobrança de entrega.",
+        targetUser: "Analista de Almoxarifado (Persona Hipotética)",
+        method: "Critério para Acompanhamento Contextual",
+        metricCriteria: "Meta projetada: reduzir telefonemas de cobrança de entrega.",
       },
     ],
     methods: [
@@ -855,32 +855,32 @@ export const supplyHubData = {
     indicators: [
       {
         label: "Tempo Médio para Criar uma Cotação",
-        goal: "Redução de 45 min para < 8 min",
-        definition: "Mede a facilidade e rapidez do comprador ao buscar itens e emitir uma RFQ.",
+        goal: "Meta projetada: < 8 min (benchmark ~45 min)",
+        definition: "Indicador planejado para medir rapidez ao buscar itens e emitir uma RFQ.",
         category: "eficiencia",
       },
       {
         label: "Taxa de Conclusão de RFQ",
-        goal: "> 85% das cotações iniciadas",
-        definition: "Percentual de cotações que chegam até o envio final sem abandono no formulário.",
+        goal: "Meta projetada: > 85% das cotações iniciadas",
+        definition: "Percentual-alvo de cotações enviadas sem abandono no formulário.",
         category: "adocao",
       },
       {
         label: "Tempo até Aprovação Interna",
-        goal: "Redução de 48h para < 4h",
-        definition: "Velocidade com que gestores liberam pedidos graças às notificações e acesso mobile.",
+        goal: "Meta projetada: < 4h (benchmark ~48h)",
+        definition: "Meta conceitual com uso de notificações e aprovação mobile.",
         category: "eficiencia",
       },
       {
         label: "Taxa de Conversão de Cotação em Pedido",
-        goal: "> 60% de pedidos emitidos",
-        definition: "Mede se as propostas recebidas atendem às expectativas comerciais dos compradores.",
+        goal: "Meta projetada: > 60% de pedidos emitidos",
+        definition: "Indicador planejado para avaliar aderência comercial das propostas.",
         category: "qualidade",
       },
       {
         label: "Tempo Total do Ciclo de Compra (P2P)",
-        goal: "Redução de 7 dias para 2 dias",
-        definition: "Tempo transcorrido desde a identificação da necessidade até a confirmação da compra.",
+        goal: "Meta projetada: até 2 dias (benchmark ~7 dias)",
+        definition: "Janela projetada entre identificação da demanda e emissão da OC.",
         category: "eficiencia",
       },
       {

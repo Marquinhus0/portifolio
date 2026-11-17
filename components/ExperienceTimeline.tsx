@@ -10,7 +10,7 @@ export default function ExperienceTimeline() {
   const items = t.itemsEn || experienceData;
 
   return (
-    <section className="py-24 border-b border-surface-borderSubtle bg-background">
+    <section className="scroll-mt-20 py-24 border-b border-surface-borderSubtle bg-background">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-surface-borderSubtle">

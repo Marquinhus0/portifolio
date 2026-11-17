@@ -2,66 +2,12 @@
 
 import { CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-
-const PILLARS = {
-  pt: [
-    {
-      label: "UX & Arquitetura",
-      code: "UX/IA",
-      desc: "Pesquisa prática, fluxos sem atrito, hierarquia visual densa e usabilidade zero-mouse para tarefas operacionais diárias.",
-      detail: "Otimização de tempo de tela e redução de carga cognitiva",
-    },
-    {
-      label: "Regras de Negócio",
-      code: "BUSINESS",
-      desc: "Mapeamento minucioso de fluxos de ERP, alçadas de aprovação, cálculo tributário, margens comerciais e estoque.",
-      detail: "Alinhamento com metas da empresa e rotinas operacionais",
-    },
-    {
-      label: "Engenharia & Tech",
-      code: "FRONT-END",
-      desc: "Diálogo de igual para igual com times técnicos. Protótipos funcionais em React/TypeScript, consumo de APIs e Design System em tokens.",
-      detail: "Viabilidade real e handoff com zero retrabalho técnico",
-    },
-    {
-      label: "Qualidade & Rigor",
-      code: "QA & EDGE",
-      desc: "Tratamento de cenários de erro, estados vazios, falhas de conexão, validação de formulários extensos e consistência entre design e código.",
-      detail: "Prevenção de bugs e testes em cenários extremos",
-    },
-  ],
-  en: [
-    {
-      label: "UX & Architecture",
-      code: "UX/IA",
-      desc: "Practical discovery, frictionless workflows, crisp visual hierarchy, and keyboard-first ergonomics for daily operational tasks.",
-      detail: "Lower screen friction and lighter cognitive load",
-    },
-    {
-      label: "Business Rules",
-      code: "BUSINESS",
-      desc: "Detailed mapping of ERP workflows, margin approval tiers, fiscal calculations, and multi-warehouse inventory.",
-      detail: "Tight alignment between business policy and daily execution",
-    },
-    {
-      label: "Engineering & Tech",
-      code: "FRONT-END",
-      desc: "Speaking the same language as engineers—live React/TypeScript prototypes, REST data contracts, and token-based Design Systems.",
-      detail: "Real feasibility and zero handoff rework",
-    },
-    {
-      label: "Quality & Rigor",
-      code: "QA & EDGE",
-      desc: "Designing error states, empty states, degraded connectivity, large form validation, and Figma-to-code parity.",
-      detail: "Defect prevention and resilience across edge cases",
-    },
-  ],
-};
+import { INTRO_TRANSLATIONS } from "@/data/translations";
 
 export default function IntroStatement() {
   const { locale } = useLanguage();
   const isEn = locale === "en";
-  const pillars = PILLARS[locale];
+  const t = INTRO_TRANSLATIONS[locale];
 
   return (
     <section className="py-20 md:py-24 border-b border-surface-borderSubtle bg-surface/30">
@@ -71,17 +17,14 @@ export default function IntroStatement() {
           <div className="lg:col-span-5 space-y-5">
             <span className="text-xs font-mono uppercase tracking-widest text-[#13E1BC] flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#13E1BC]" />
-              <span>{isEn ? "[Positioning & Edge]" : "[Posicionamento & Diferencial]"}</span>
+              <span>{t.eyebrow}</span>
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight">
-              {isEn
-                ? "I design high-density products, not just isolated screens."
-                : "Eu desenho produtos de alta densidade, não apenas telas."}
+              {t.titleLine1}
+              <span className="block text-neutral-400 font-light">{t.titleLine2}</span>
             </h2>
             <p className="text-base sm:text-lg text-neutral-300 font-light leading-relaxed">
-              {isEn
-                ? "Specialized in management software, ERPs, and enterprise SaaS. I combine user research, business rules, and front-end engineering to build interfaces that hold up under daily operational pressure."
-                : "Especializado em softwares de gestão, ERPs e ferramentas corporativas. Uno pesquisa com usuários, regras de negócio e engenharia front-end para criar interfaces que funcionam de verdade na pressão do dia a dia."}
+              {t.body}
             </p>
             <div className="pt-2 flex flex-wrap gap-2 text-[11px] font-mono text-neutral-300">
               <span className="px-2.5 py-1 bg-neutral-900 border border-neutral-800 rounded-sm">
@@ -91,14 +34,14 @@ export default function IntroStatement() {
                 {isEn ? "ERP Systems" : "Sistemas ERP"}
               </span>
               <span className="px-2.5 py-1 bg-neutral-900 border border-neutral-800 rounded-sm">
-                React &amp; Design Systems
+                Figma &amp; React Prototyping
               </span>
             </div>
           </div>
 
           {/* 4 Pillars Matrix */}
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {pillars.map((item, idx) => (
+            {t.pillars.map((item, idx) => (
               <div
                 key={item.code}
                 className="p-6 border border-surface-border bg-neutral-950/80 hover:border-[#13E1BC]/50 transition-colors flex flex-col justify-between space-y-4 group"
@@ -120,10 +63,10 @@ export default function IntroStatement() {
 
                 <div className="pt-3 border-t border-neutral-900">
                   <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block">
-                    {isEn ? "Practical Impact:" : "Impacto Prático:"}
+                    {t.impactLabel}
                   </span>
                   <p className="text-[11px] text-neutral-300 font-mono pt-0.5 leading-snug">
-                    {item.detail}
+                    {item.impact}
                   </p>
                 </div>
               </div>
@@ -137,12 +80,12 @@ export default function IntroStatement() {
             <CheckCircle2 className="w-4 h-4 text-[#13E1BC] shrink-0" />
             <span className="text-sm font-medium text-white tracking-tight">
               &ldquo;{isEn
-                ? "Connecting these four pillars is how I cut delivery cycles and rework between design and engineering."
-                : "É conectando essas frentes que reduzo o ciclo de entrega e o retrabalho entre design e engenharia."}&rdquo;
+                ? "Connecting these four pillars keeps product decisions aligned across business rules, design, and engineering."
+                : "É conectando essas frentes que reduzo ruídos entre regras de negócio, design, engenharia e QA."}&rdquo;
             </span>
           </div>
           <span className="text-[11px] text-neutral-400 uppercase tracking-wider shrink-0">
-            [Zero-Handover Friction]
+            {isEn ? "[Design ↔ Engineering Alignment]" : "[Alinhamento Design ↔ Engenharia]"}
           </span>
         </div>
       </div>

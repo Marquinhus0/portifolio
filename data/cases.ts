@@ -226,12 +226,305 @@ export const casesData: CaseStudy[] = [
   },
 
   // CONCEPTUAL STUDIES (Estudos Autorais com Dados Sintéticos)
-  // 02 — SUPPLYHUB: B2B Procurement
+  // 02 — Flow CRM: B2B Commercial Operations & Sales Pipeline
   {
     id: "case-02",
+    slug: "flow-crm-b2b",
+    coverImage: "/cases/flow-crm-cover.jpg",
+    number: "02",
+    title: "Flow CRM",
+    subtitle:
+      "CRM comercial B2B para vendas consultivas e distribuição: gestão visual do funil, acompanhamento de leads, follow-ups de alta prioridade e visão 360° da operação.",
+    category: "B2B SaaS / CRM Comercial",
+    year: "2024 — Estudo Autoral",
+    company: "Projeto Conceitual / Autoral",
+    role: "Product Designer & Front-End Engineer (Product Discovery, Design System, UI/UX & React Implementation)",
+    duration: "4 semanas (Arquitetura de CRM B2B, Funil Comercial, Pipeline Kanban & React)",
+    tags: [
+      "Flow CRM",
+      "CRM B2B",
+      "Pipeline Kanban",
+      "Lead Management",
+      "Sales Operations",
+      "B2B SaaS",
+    ],
+    featured: true,
+    isConcept: true,
+    conceptBadge: "B2B SAAS / SALES PIPELINE",
+
+    overview:
+      "O Flow CRM é a central de operação comercial desenvolvida para empresas B2B com vendas consultivas e complexas (distribuidores, indústrias e serviços corporativos). O produto elimina planilhas paralelas e perda de negócios através de um funil estruturado (Lead → Qualificação → Oportunidade → Negociação → Proposta → Fechamento → Cliente).",
+    context:
+      "Em operações comerciais B2B, o processo de vendas envolve múltiplos canais (inbound, prospecção ativa, WhatsApp comercial e indicações). Sem um CRM estruturado, as equipes comerciais sofrem com leads parados, falta de follow-up estruturado, indefinição do próximo passo e desconhecimento dos reais motivos de perda de negócios.",
+    problem:
+      "Como estruturar um CRM comercial que responda instantaneamente quem são os leads, quanto há em negociação, quais negócios estão estagnados e o que precisa ser feito hoje, reduzindo o esforço manual do vendedor e acelerando o fechamento?",
+
+    users: [
+      {
+        target: "Persona Conceitual 01 — Vendedor Consultivo & Inside Sales (João, 31)",
+        needs:
+          "Saber exatamente quem atender primeiro no dia, histórico de WhatsApp e ligações na mesma tela, envio ágil de orçamentos e registro rápido de follow-up sem burocracia.",
+        behaviors:
+          "Trabalha em ritmo acelerado com múltiplos chats de WhatsApp e ligações simultâneas; precisa de destaque visual imediato para 'Próxima ação'.",
+        painPoints:
+          "Esquecer de retornar contatos de clientes corporativos e perder tempo preenchendo formulários lentos.",
+      },
+      {
+        target: "Persona Conceitual 02 — Gestor Comercial & Head de Vendas B2B (Marcus, 35)",
+        needs:
+          "Visão panorâmica do funil comercial, valor total do pipeline ponderado por probabilidade, taxas de conversão por vendedor e motivos reais de perda de negócios.",
+        behaviors:
+          "Analisa métricas semanais e diárias; cobra follow-up da equipe e redistribui leads estagnados.",
+        painPoints:
+          "Falta de visibilidade sobre o motivo de perda de negócios (preço, concorrente, falta de orçamento ou timing).",
+      },
+      {
+        target: "Persona Conceitual 03 — Diretor de Operações B2B / Cliente Comprador (Carlos, 44)",
+        needs:
+          "Proposta comercial clara com implantação, módulos inclusos (Gestão de Pedidos, Faturamento, Fiscal) e suporte ágil na integração.",
+        behaviors:
+          "Compara custos de setup e mensalidades SaaS por quantidade de licenças e filiais.",
+        painPoints:
+          "Sistemas legados lentos que travam na emissão de pedidos e causam atrasos operacionais.",
+      },
+    ],
+
+    research: {
+      approach:
+        "Análise conceitual da jornada comercial de vendas B2B, benchmarking de CRMs de alta densidade (Pipedrive, HubSpot, Salesforce e Attio) e consolidação de padrões observados em operações comerciais de clientes ERP.",
+      keyQuestions: [
+        "Quais informações o vendedor B2B precisa enxergar logo ao abrir o sistema?",
+        "Como sinalizar visualmente quando um lead ultrapassa 3 dias sem contato no estágio?",
+        "De que forma associar os módulos corporativos à oportunidade comercial?",
+      ],
+      activities: [
+        "Mapeamento do funil comercial: Novo Lead → Qualificação → Contato Realizado → Oportunidade → Proposta → Negociação → Fechamento (Ganho)",
+        "Desenvolvimento do design system com tokens corporativos (#1683E8, #123B63, #F5F7FA, #E4E7EC)",
+        "Construção de componentes funcionais em sandbox React: Pipeline Kanban com drag-and-drop, Drawer 360° do Lead, Call Logger e Simulador de WhatsApp",
+      ],
+      benchmarkingNotes: [
+        "CRMs genéricos exigem dezenas de campos irrelevantes e não contemplam regras comerciais de faturamento corporativo.",
+        "Hipótese central: dar visibilidade imediata à 'Próxima Ação' ajuda a priorizar follow-ups e reduzir esquecimento de leads.",
+      ],
+    },
+
+    hypotheses: [
+      {
+        hypothesis: "Destaque Obrigatório da 'Próxima Ação'",
+        rationale:
+          "Hipótese projetada: exibir visualmente 'O que fazer' e 'Quando' diretamente no card do funil busca reduzir a taxa de negócios estagnados em validação futura.",
+      },
+      {
+        hypothesis: "Integração Conceitual com Módulos Corporativos",
+        rationale:
+          "Hipótese projetada: vincular módulos específicos (Core, Faturamento, Fiscal) desde a qualificação tende a agilizar a montagem de propostas.",
+      },
+    ],
+
+    insights: [
+      {
+        title: "Insight 01 — O vendedor precisa de velocidade tática",
+        description:
+          "Botões de ação direta (Ligar com 1 clique, disparar template de WhatsApp comercial) mantêm o vendedor operando dentro da mesma tela sem alternar abas.",
+      },
+      {
+        title: "Insight 02 — Motivo de Perda é ativo estratégico",
+        description:
+          "Tornar obrigatória a seleção do motivo de perda ao fechar um negócio perdido alimenta relatórios que orientam a política de preços e desenvolvimento de produto.",
+      },
+      {
+        title: "Insight 03 — Design predominantemente neutro com acentos estratégicos em azul",
+        description:
+          "Fundo neutro claro (#F5F7FA) com cartões brancos (#FFFFFF) e azul corporativo (#1683E8) como cor de ação gera alto conforto visual e autoridade corporativa.",
+      },
+    ],
+
+    opportunity:
+      "Construir o CRM comercial definitivo para empresas e distribuidores B2B, unindo simplicidade operacional para o vendedor, controle analítico para o gestor e visibilidade completa do pipeline.",
+    goals: [
+      "Criar visão comercial executiva com 8 KPIs em tempo real e funil progressivo",
+      "Implementar pipeline Kanban interativo com drag-and-drop e destaque de próxima ação",
+      "Estruturar gestão de leads com filtros por segmento de mercado e drawer 360° com timeline",
+      "Integrar templates comerciais de WhatsApp e registro de ligações com resultados",
+      "Consolidar a linguagem visual alinhada a padrões modernos de B2B SaaS",
+    ],
+    constraints: [
+      "Evitar excesso de azul: a interface deve ser predominantemente neutra e profissional",
+      "Priorizar desktop (1920x1080, 1440x900, 1366x768) mantendo responsividade fluida",
+    ],
+
+    process: [
+      "01. Imersão na rotina comercial de distribuidores e empresas B2B",
+      "02. Definição das etapas do funil comercial B2B (Lead → Fechamento)",
+      "03. Estruturação do Design System baseado em tokens corporativos neutros e azul primário",
+      "04. Desenvolvimento da arquitetura de componentes em React e TypeScript",
+      "05. Implementação do Kanban com Drag & Drop, modais de perda e drawer 360°",
+      "06. Validação dos fluxos de rotina diária (Tarefas, Follow-ups, Ligações e WhatsApp)",
+    ],
+
+    flows: {
+      title: "Fluxo Comercial B2B: Lead → Qualificação → Negociação → Fechamento",
+      description:
+        "Da entrada multicanal até a qualificação de contas, emissão da proposta e onboarding do novo cliente.",
+      diagramSteps: [
+        "Entrada do Lead: Inbound, Prospecção Ativa, WhatsApp Comercial ou Indicação",
+        "Qualificação: Checagem de porte da empresa, segmento de atuação e software legado",
+        "Oportunidade & Demonstração: Apresentação da solução e alinhamento de escopo",
+        "Proposta Comercial: Orçamento de implantação e plano de assinatura",
+        "Negociação & Alinhamento: Follow-ups ativos de alta prioridade",
+        "Fechamento & Ganho: Sincronização automática para onboarding e faturamento",
+      ],
+    },
+
+    wireframes: {
+      title: "Arquitetura da Informação & App Shell do Flow CRM",
+      description:
+        "Sidebar esquerda com navegação por domínio comercial, header superior com busca global (/) e ações rápidas (+), e área de trabalho central em grid flexível.",
+      focusPoints: [
+        "Card Kanban de alta densidade com valor, probabilidade e próxima ação",
+        "Gaveta lateral (Drawer 360°) que preserva o contexto da tela anterior",
+        "Central de Follow-up com tarefas agrupadas por urgência e checklist",
+      ],
+    },
+
+    ui: {
+      title: "Linguagem Visual: Enterprise B2B Design Tokens",
+      description:
+        "Design sóbrio, limpo e corporativo. Superfícies brancas com bordas sutis (#E4E7EC), tipografia Inter com hierarquia precisa, azul corporativo (#1683E8) para ações primárias e azul escuro (#123B63) para ancoragem estrutural.",
+      systemHighlights: [
+        "Funil comercial horizontal com percentuais de conversão progressiva",
+        "Kanban com colunas informativas de volume total e contadores em tempo real",
+        "Tabela de leads com ordenação e filtros multifacetados por segmento de mercado",
+        "Drawer 360° com timeline cronológica e ações de comunicação integradas",
+      ],
+    },
+
+    systemStates: [
+      {
+        state: "Alerta de Estagnação (SLA de 3 Dias)",
+        scenario: "Oportunidade parada há mais de 3 dias sem nova atividade registrada.",
+        solution:
+          "Card recebe indicador de atenção e tarefa prioritária de follow-up é gerada para o vendedor.",
+      },
+      {
+        state: "Registro de Perda de Negócio",
+        scenario: "Vendedor move oportunidade para o estágio 'Perdido'.",
+        solution:
+          "Modal obrigatório solicita o motivo categorizado (Preço, Concorrente, Sem orçamento, etc.) e alimenta o dashboard de perdas.",
+      },
+      {
+        state: "Abertura Automática Pós-Cadastro",
+        scenario: "Novo lead é salvo através do formulário de entrada.",
+        solution:
+          "O sistema fecha o modal e abre imediatamente o perfil 360° do lead para início imediato do atendimento.",
+      },
+    ],
+
+    prototype: {
+      description:
+        "Sandbox interativo navegável do Flow CRM com dados demonstrativos sintéticos: App Shell, Dashboard comercial com KPIs simulados, Pipeline Kanban com Drag & Drop, Gestão de Leads com Drawer 360°, Simulador de WhatsApp/Ligações, Tarefas de Follow-up e Busca Interna (/).",
+      type: "Sandbox Navegável & Protótipo Funcional Interativo (Dados Demonstrativos)",
+      linkPlaceholder: "[Protótipo Navegável disponível na Seção 04 deste estudo]",
+      interactionPoints: [
+        "Arraste e solte de oportunidades simuladas entre as 7 colunas do Kanban",
+        "Cadastro demonstrativo de lead com abertura instantânea do perfil 360°",
+        "Simulação de envio de mensagem comercial no WhatsApp com templates B2B",
+        "Conclusão e reagendamento de tarefas de follow-up em memória local",
+        "Busca interna de leads, empresas e oportunidades com atalho de teclado (/)",
+      ],
+    },
+
+    validation: {
+      method: "Avaliação Heurística & Plano para Testes Futuros",
+      description:
+        "Como estudo autoral sem testes empíricos em clientes reais, foram definidos critérios para validar clareza dos cards e agilidade de registro em sessões futuras.",
+      findings: [
+        "Hipótese a validar: redução do tempo gasto registrando interações após ligações",
+        "Critério de avaliação: clareza imediata da 'Próxima Ação' na triagem diária",
+        "Critério de avaliação: utilidade da categorização obrigatória de motivos de perda",
+      ],
+    },
+
+    solution: {
+      summary:
+        "O estudo Flow CRM propõe uma operação comercial B2B mais estruturada, priorizando próximos passos visíveis e clareza em cada estágio do funil.",
+      keyFeatures: [
+        {
+          title: "Pipeline Kanban com Drag & Drop",
+          description:
+            "Acompanhamento visual das 7 etapas com valores totais e destaque obrigatório do próximo passo.",
+        },
+        {
+          title: "Drawer 360° com Ações Rápidas",
+          description:
+            "Perfil completo com ligação, WhatsApp, histórico cronológico e módulos corporativos de interesse.",
+        },
+        {
+          title: "Central de Follow-up & Alertas de SLA",
+          description:
+            "Tarefas com prioridade alta, prazos e conclusão com um clique para manter o funil em movimento.",
+        },
+      ],
+    },
+
+    results: {
+      summary:
+        "Hipóteses de impacto projetadas para futura validação de implantação (estudo conceitual — não medido em produção):",
+      metrics: [
+        {
+          label: "Meta Conceitual: Estagnados",
+          value: "Reduzir leads sem contato",
+          type: "metric_goal",
+        },
+        {
+          label: "Meta Conceitual: SLA",
+          value: "Primeiro contato < 15 min",
+          type: "metric_goal",
+        },
+        {
+          label: "Meta Conceitual: Conversão",
+          value: "Meta +2,8 p.p. na taxa do funil",
+          type: "metric_goal",
+        },
+        {
+          label: "Meta Conceitual: Cadência",
+          value: "Aumentar follow-ups diários",
+          type: "metric_goal",
+        },
+      ],
+    },
+
+    learnings: [
+      "Em vendas B2B consultivas, um CRM não pode parecer burocrático; ele precisa ser a ferramenta que economiza tempo do vendedor.",
+      "A associação clara com os módulos corporativos cria sinergia imediata entre o time comercial e a operação da empresa.",
+      "O uso do design system com tokens neutros e acentos pontuais em azul gera autoridade e foco no que realmente importa: fechar negócios.",
+    ],
+
+    galleryPlaceholders: [
+      {
+        title: "Visão Geral do Pipeline Kanban no Flow CRM",
+        caption: "Colunas com valores, probabilidades e cards com próxima ação",
+        type: "interface",
+      },
+      {
+        title: "Perfil 360° do Lead com Linha do Tempo",
+        caption: "Histórico completo de interações e ações rápidas de WhatsApp e ligação",
+        type: "interface",
+      },
+      {
+        title: "Dashboard Comercial com KPIs e Funil",
+        caption: "Métricas de conversão, ticket médio e distribuição por canal de origem",
+        type: "interface",
+      },
+    ],
+  },
+
+  // 03 — SUPPLYHUB: B2B Procurement
+  {
+    id: "case-03",
     slug: "supplyhub-procurement-b2b",
     coverImage: "/cases/supplyhub-cover.jpg",
-    number: "02",
+    number: "03",
     title: "SUPPLYHUB — B2B Procurement & Supplier Network",
     subtitle:
       "Plataforma de cotação corporativa, gestão de compras e homologação de fornecedores para suprimentos industriais.",
@@ -357,11 +650,11 @@ export const casesData: CaseStudy[] = [
     },
 
     validation: {
-      method: "Testes Heurísticos de Equalização de Propostas",
+      method: "Análise Heurística de Equalização de Propostas",
       description:
-        "Verificação da velocidade de escolha de cenários de compra comparando o layout matricial com modelos tradicionais em abas.",
+        "Critério planejado para avaliar velocidade de escolha de cenários comparando layout matricial versus abas convencionais.",
       findings: [
-        "Apresentação simultânea de frete e preço reduziu o tempo de decisão de compra",
+        "Hipótese de design: exibição simultânea de frete e preço tende a reduzir o tempo de análise comparativa",
       ],
     },
 
@@ -407,299 +700,6 @@ export const casesData: CaseStudy[] = [
       {
         title: "Matriz de Comparação de Cotações",
         caption: "Equalização simultânea de 5 propostas com cálculo de TCO",
-        type: "interface",
-      },
-    ],
-  },
-
-  // 03 — Flow CRM: B2B Commercial Operations & Sales Pipeline
-  {
-    id: "case-03",
-    slug: "flow-crm-b2b",
-    coverImage: "/cases/flow-crm-cover.jpg",
-    number: "03",
-    title: "Flow CRM",
-    subtitle:
-      "CRM comercial B2B para vendas consultivas e distribuição: gestão visual do funil, acompanhamento de leads, follow-ups de alta prioridade e visão 360° da operação.",
-    category: "B2B SaaS / CRM Comercial",
-    year: "2024 — Estudo Autoral",
-    company: "Projeto Conceitual / Autoral",
-    role: "Product Designer & Front-End Engineer (Product Discovery, Design System, UI/UX & React Implementation)",
-    duration: "4 semanas (Arquitetura de CRM B2B, Funil Comercial, Pipeline Kanban & React)",
-    tags: [
-      "Flow CRM",
-      "CRM B2B",
-      "Pipeline Kanban",
-      "Lead Management",
-      "Sales Operations",
-      "B2B SaaS",
-    ],
-    featured: true,
-    isConcept: true,
-    conceptBadge: "B2B SAAS / SALES PIPELINE",
-
-    overview:
-      "O Flow CRM é a central de operação comercial desenvolvida para empresas B2B com vendas consultivas e complexas (distribuidores, indústrias e serviços corporativos). O produto elimina planilhas paralelas e perda de negócios através de um funil estruturado (Lead → Qualificação → Oportunidade → Negociação → Proposta → Fechamento → Cliente).",
-    context:
-      "Em operações comerciais B2B, o processo de vendas envolve múltiplos canais (inbound, prospecção ativa, WhatsApp comercial e indicações). Sem um CRM estruturado, as equipes comerciais sofrem com leads parados, falta de follow-up estruturado, indefinição do próximo passo e desconhecimento dos reais motivos de perda de negócios.",
-    problem:
-      "Como estruturar um CRM comercial que responda instantaneamente quem são os leads, quanto há em negociação, quais negócios estão estagnados e o que precisa ser feito hoje, reduzindo o esforço manual do vendedor e acelerando o fechamento?",
-
-    users: [
-      {
-        target: "Persona Conceitual 01 — Vendedor Consultivo & Inside Sales (João, 31)",
-        needs:
-          "Saber exatamente quem atender primeiro no dia, histórico de WhatsApp e ligações na mesma tela, envio ágil de orçamentos e registro rápido de follow-up sem burocracia.",
-        behaviors:
-          "Trabalha em ritmo acelerado com múltiplos chats de WhatsApp e ligações simultâneas; precisa de destaque visual imediato para 'Próxima ação'.",
-        painPoints:
-          "Esquecer de retornar contatos de clientes corporativos e perder tempo preenchendo formulários lentos.",
-      },
-      {
-        target: "Persona Conceitual 02 — Gestor Comercial & Head de Vendas B2B (Marcus, 35)",
-        needs:
-          "Visão panorâmica do funil comercial, valor total do pipeline ponderado por probabilidade, taxas de conversão por vendedor e motivos reais de perda de negócios.",
-        behaviors:
-          "Analisa métricas semanais e diárias; cobra follow-up da equipe e redistribui leads estagnados.",
-        painPoints:
-          "Falta de visibilidade sobre o motivo de perda de negócios (preço, concorrente, falta de orçamento ou timing).",
-      },
-      {
-        target: "Persona Conceitual 03 — Diretor de Operações B2B / Cliente Comprador (Carlos, 44)",
-        needs:
-          "Proposta comercial clara com implantação, módulos inclusos (Gestão de Pedidos, Faturamento, Fiscal) e suporte ágil na integração.",
-        behaviors:
-          "Compara custos de setup e mensalidades SaaS por quantidade de licenças e filiais.",
-        painPoints:
-          "Sistemas legados lentos que travam na emissão de pedidos e causam atrasos operacionais.",
-      },
-    ],
-
-    research: {
-      approach:
-        "Análise aprofundada da jornada comercial de vendas B2B, benchmarking de CRMs de alta densidade (Pipedrive, HubSpot, Salesforce e Attio) e entrevistas com equipes de inside sales e representantes comerciais corporativos.",
-      keyQuestions: [
-        "Quais informações o vendedor B2B precisa enxergar em menos de 2 segundos ao abrir o sistema?",
-        "Como garantir que nenhum lead fique mais de 3 dias sem contato no estágio?",
-        "De que forma associar os módulos corporativos à oportunidade comercial?",
-      ],
-      activities: [
-        "Mapeamento do funil comercial: Novo Lead → Qualificação → Contato Realizado → Oportunidade → Proposta → Negociação → Fechamento (Ganho)",
-        "Desenvolvimento do design system com tokens corporativos (#1683E8, #123B63, #F5F7FA, #E4E7EC)",
-        "Criação de componentes ricos: Pipeline Kanban com drag-and-drop, Drawer 360° do Lead, Call Logger e Simulador de WhatsApp Comercial",
-      ],
-      benchmarkingNotes: [
-        "CRMs genéricos exigem dezenas de campos irrelevantes e não compreendem regras comerciais de faturamento corporativo.",
-        "A clareza da 'Próxima Ação' é o fator número 1 de aumento de taxa de conversão em vendas B2B.",
-      ],
-    },
-
-    hypotheses: [
-      {
-        hypothesis: "Destaque Obrigatório da 'Próxima Ação'",
-        rationale:
-          "O vendedor nunca deve entrar em uma oportunidade sem saber o próximo passo. Destacar visualmente 'O que fazer' e 'Quando' reduz em 40% a taxa de negócios estagnados.",
-      },
-      {
-        hypothesis: "Integração Conceitual com Módulos Corporativos",
-        rationale:
-          "Vincular módulos específicos (Core, Faturamento, Fiscal) desde a qualificação acelera a elaboração da proposta e o onboarding técnico pós-fechamento.",
-      },
-    ],
-
-    insights: [
-      {
-        title: "Insight 01 — O vendedor precisa de velocidade tática",
-        description:
-          "Botões de ação direta (Ligar com 1 clique, disparar template de WhatsApp comercial) mantêm o vendedor operando dentro da mesma tela sem alternar abas.",
-      },
-      {
-        title: "Insight 02 — Motivo de Perda é ativo estratégico",
-        description:
-          "Tornar obrigatória a seleção do motivo de perda ao fechar um negócio perdido alimenta relatórios que orientam a política de preços e desenvolvimento de produto.",
-      },
-      {
-        title: "Insight 03 — Design predominantemente neutro com acentos estratégicos em azul",
-        description:
-          "Fundo neutro claro (#F5F7FA) com cartões brancos (#FFFFFF) e azul corporativo (#1683E8) como cor de ação gera alto conforto visual e autoridade corporativa.",
-      },
-    ],
-
-    opportunity:
-      "Construir o CRM comercial definitivo para empresas e distribuidores B2B, unindo simplicidade operacional para o vendedor, controle analítico para o gestor e visibilidade completa do pipeline.",
-    goals: [
-      "Criar visão comercial executiva com 8 KPIs em tempo real e funil progressivo",
-      "Implementar pipeline Kanban interativo com drag-and-drop e destaque de próxima ação",
-      "Estruturar gestão de leads com filtros por segmento de mercado e drawer 360° com timeline",
-      "Integrar templates comerciais de WhatsApp e registro de ligações com resultados",
-      "Consolidar a linguagem visual alinhada a padrões modernos de B2B SaaS",
-    ],
-    constraints: [
-      "Evitar excesso de azul: a interface deve ser predominantemente neutra e profissional",
-      "Priorizar desktop (1920x1080, 1440x900, 1366x768) mantendo responsividade fluida",
-    ],
-
-    process: [
-      "01. Imersão na rotina comercial de distribuidores e empresas B2B",
-      "02. Definição das etapas do funil comercial B2B (Lead → Fechamento)",
-      "03. Estruturação do Design System baseado em tokens corporativos neutros e azul primário",
-      "04. Desenvolvimento da arquitetura de componentes em React e TypeScript",
-      "05. Implementação do Kanban com Drag & Drop, modais de perda e drawer 360°",
-      "06. Validação dos fluxos de rotina diária (Tarefas, Follow-ups, Ligações e WhatsApp)",
-    ],
-
-    flows: {
-      title: "Fluxo Comercial B2B: Lead → Qualificação → Negociação → Fechamento",
-      description:
-        "Da entrada multicanal até a qualificação de contas, emissão da proposta e onboarding do novo cliente.",
-      diagramSteps: [
-        "Entrada do Lead: Inbound, Prospecção Ativa, WhatsApp Comercial ou Indicação",
-        "Qualificação: Checagem de porte da empresa, segmento de atuação e software legado",
-        "Oportunidade & Demonstração: Apresentação da solução e alinhamento de escopo",
-        "Proposta Comercial: Orçamento de implantação e plano de assinatura",
-        "Negociação & Alinhamento: Follow-ups ativos de alta prioridade",
-        "Fechamento & Ganho: Sincronização automática para onboarding e faturamento",
-      ],
-    },
-
-    wireframes: {
-      title: "Arquitetura da Informação & App Shell do Flow CRM",
-      description:
-        "Sidebar esquerda com navegação por domínio comercial, header superior com busca global (Ctrl+K) e ações rápidas (+), e área de trabalho central em grid flexível.",
-      focusPoints: [
-        "Card Kanban de alta densidade com valor, probabilidade e próxima ação",
-        "Gaveta lateral (Drawer 360°) que não perde o contexto da tela anterior",
-        "Central de Follow-up com tarefas agrupadas por urgência e checklist",
-      ],
-    },
-
-    ui: {
-      title: "Linguagem Visual: Enterprise B2B Design Tokens",
-      description:
-        "Design sóbrio, limpo e corporativo. Superfícies brancas com bordas sutis (#E4E7EC), tipografia Inter com hierarquia precisa, azul corporativo (#1683E8) para ações primárias e azul escuro (#123B63) para ancoragem estrutural.",
-      systemHighlights: [
-        "Funil comercial horizontal com percentuais de conversão progressiva",
-        "Kanban com colunas informativas de volume total e contadores em tempo real",
-        "Tabela de leads com ordenação e filtros multifacetados por segmento de mercado",
-        "Drawer 360° com timeline cronológica e ações de comunicação integradas",
-      ],
-    },
-
-    systemStates: [
-      {
-        state: "Alerta de Estagnação (SLA de 3 Dias)",
-        scenario: "Oportunidade parada há mais de 3 dias sem nova atividade registrada.",
-        solution:
-          "Card recebe indicador de atenção e tarefa prioritária de follow-up é gerada para o vendedor.",
-      },
-      {
-        state: "Registro de Perda de Negócio",
-        scenario: "Vendedor move oportunidade para o estágio 'Perdido'.",
-        solution:
-          "Modal obrigatório solicita o motivo categorizado (Preço, Concorrente, Sem orçamento, etc.) e alimenta o dashboard de perdas.",
-      },
-      {
-        state: "Abertura Automática Pós-Cadastro",
-        scenario: "Novo lead é salvo através do formulário de entrada.",
-        solution:
-          "O sistema fecha o modal e abre imediatamente o perfil 360° do lead para início imediato do atendimento.",
-      },
-    ],
-
-    prototype: {
-      description:
-        "Aplicação interativa completa do Flow CRM com App Shell, Dashboard comercial com 8 KPIs, Pipeline Kanban com Drag & Drop, Gestão de Leads com Drawer 360°, Simulador de WhatsApp e Ligações, Tarefas de Follow-up e Busca Global (Ctrl+K).",
-      type: "Interactive React SaaS B2B Application",
-      linkPlaceholder: "[Flow CRM no Figma & Storybook]",
-      interactionPoints: [
-        "Arraste e solte de oportunidades entre as 7 colunas do Kanban",
-        "Cadastro de lead com abertura instantânea do perfil 360°",
-        "Simulação de envio de mensagem comercial no WhatsApp com templates B2B prontos",
-        "Conclusão e reagendamento de tarefas de follow-up",
-        "Busca global de leads, empresas e oportunidades com atalho de teclado",
-      ],
-    },
-
-    validation: {
-      method: "Testes de Usabilidade com Vendedores e Gestores Comerciais",
-      description:
-        "Avaliação da rapidez de navegação, clareza dos cards de oportunidade e facilidade de registro de histórico.",
-      findings: [
-        "Vendedores reduziram em 65% o tempo gasto registrando informações após ligações",
-        "O destaque visual da 'Próxima Ação' eliminou a dúvida sobre qual cliente contatar",
-        "Gestores destacaram a precisão do relatório de motivos de perda para revisão de preços",
-      ],
-    },
-
-    solution: {
-      summary:
-        "O Flow CRM transforma a equipe de vendas B2B em uma central de alta produtividade, eliminando negócios esquecidos e garantindo clareza em cada etapa do funil.",
-      keyFeatures: [
-        {
-          title: "Pipeline Kanban com Drag & Drop",
-          description:
-            "Acompanhamento visual das 7 etapas com valores totais e destaque obrigatório do próximo passo.",
-        },
-        {
-          title: "Drawer 360° com Ações Rápidas",
-          description:
-            "Perfil completo com ligação, WhatsApp, histórico cronológico e módulos corporativos de interesse.",
-        },
-        {
-          title: "Central de Follow-up & Alertas de SLA",
-          description:
-            "Tarefas com prioridade alta, prazos e conclusão com um clique para manter o funil em movimento.",
-        },
-      ],
-    },
-
-    results: {
-      summary:
-        "Hipóteses de impacto projetadas para futura validação de implantação (estudo conceitual — não medido em produção):",
-      metrics: [
-        {
-          label: "Meta Conceitual: Estagnados",
-          value: "Reduzir leads sem contato",
-          type: "metric_goal",
-        },
-        {
-          label: "Meta Conceitual: SLA",
-          value: "Primeiro contato < 15 min",
-          type: "metric_goal",
-        },
-        {
-          label: "Meta Conceitual: Conversão",
-          value: "Meta +2,8 p.p. na taxa do funil",
-          type: "metric_goal",
-        },
-        {
-          label: "Meta Conceitual: Cadência",
-          value: "Aumentar follow-ups diários",
-          type: "metric_goal",
-        },
-      ],
-    },
-
-    learnings: [
-      "Em vendas B2B consultivas, um CRM não pode parecer burocrático; ele precisa ser a ferramenta que economiza tempo do vendedor.",
-      "A associação clara com os módulos corporativos cria sinergia imediata entre o time comercial e a operação da empresa.",
-      "O uso do design system com tokens neutros e acentos pontuais em azul gera autoridade e foco no que realmente importa: fechar negócios.",
-    ],
-
-    galleryPlaceholders: [
-      {
-        title: "Visão Geral do Pipeline Kanban no Flow CRM",
-        caption: "Colunas com valores, probabilidades e cards com próxima ação",
-        type: "interface",
-      },
-      {
-        title: "Perfil 360° do Lead com Linha do Tempo",
-        caption: "Histórico completo de interações e ações rápidas de WhatsApp e ligação",
-        type: "interface",
-      },
-      {
-        title: "Dashboard Comercial com KPIs e Funil",
-        caption: "Métricas de conversão, ticket médio e distribuição por canal de origem",
         type: "interface",
       },
     ],
@@ -780,14 +780,14 @@ export const casesData: CaseStudy[] = [
         "Mapeamento de atritos e quebras de foco na jornada de consumo de vídeos técnicos no YouTube e MOOCs",
         "Análise de padrões de Split-Screen e gavetas de contexto laterais em ferramentas de mídia",
         "Formulação dos princípios de 'Non-Blocking Playback' para o player do FRAME",
-        "Benchmark de ergonomia de atalhos de teclado (Vim/YouTube/NLEs profissionais) para navegação Zero-Mouse",
+        "Benchmark de ergonomia de atalhos de teclado (Vim/YouTube/NLEs profissionais) para navegação orientada a teclado",
       ],
       benchmarkingNotes: [
         "YouTube: Monopólio passivo em 16:9; descrição sepultada abaixo da dobra; pausas obrigatórias que quebram o fluxo de raciocínio.",
         "Coursera / edX: Bom suporte a transcrição sincronizada, mas quebra o ritmo com bloqueios de tela rígidos.",
         "Loom: Ágil para comunicação assíncrona corporativa, porém sem camada semântica estrutural ou dossiê exportável.",
         "Masterclass: Alta cinematografia e requinte estético, porém com interatividade passiva e zero notas técnicas acopladas.",
-        "FRAME (Inovação): Combinação de cinematografia 2.39:1 DCI 4K com trilha de dados viva (Knowledge Rail) e latência de 4ms.",
+        "FRAME (Proposta Conceitual): Combinação de viewport 2.39:1 com trilha de dados contextual (Knowledge Rail) e transcrição sincronizada.",
       ],
     },
 
@@ -795,17 +795,17 @@ export const casesData: CaseStudy[] = [
       {
         hypothesis: "Hipótese de Split-Context sem Pausa",
         rationale:
-          "Permitir que um painel lateral sincronize materiais ao áudio contínuo reduz o abandono por navegação em abas externas concorrentes em mais de 45%.",
+          "Hipótese projetada: permitir que um painel lateral sincronize materiais ao áudio contínuo busca reduzir em ~45% a distração por abas externas.",
       },
       {
         hypothesis: "Hipótese do Scrubber Semântico",
         rationale:
-          "Se a barra de tempo exibir nós categorizados com pré-visualização ao passar o mouse, o tempo para localizar momentos-chave cai em 70%.",
+          "Hipótese projetada: exibir nós categorizados com pré-visualização na barra de tempo busca reduzir o tempo para localizar momentos-chave.",
       },
       {
         hypothesis: "Hipótese da Exportação de Dossiê Monográfico",
         rationale:
-          "Permitir a digitação de notas ao vivo combinada à exportação automática em Markdown aumenta o valor percebido do conteúdo em mais de 60%.",
+          "Hipótese projetada: digitação de notas ao vivo com exportação em Markdown tende a elevar a retenção prática durante o estudo.",
       },
     ],
 
@@ -832,8 +832,8 @@ export const casesData: CaseStudy[] = [
     goals: [
       "Desenhar o sistema de Interactive Moments acoplado à linha do tempo com nós interativos categorizados",
       "Garantir que a exploração contextual não bloqueie nem pause o fluxo de reprodução cinematográfica",
-      "Projetar a sincronização viva de transcrição com busca instantânea e latência de 4ms",
-      "Implementar navegação Zero-Mouse integral via atalhos universais de teclado",
+      "Projetar sincronização instantânea de transcrição e busca contextual",
+      "Implementar navegação orientada a teclado via atalhos consistentes",
     ],
     constraints: [
       "O painel contextual não pode poluir visualmente nem competir com o enquadramento do vídeo",
@@ -915,11 +915,11 @@ export const casesData: CaseStudy[] = [
     validation: {
       method: "Roteiro de Testes de Usabilidade Comparativos e Análise de Carga Cognitiva",
       description:
-        "Protocolo estruturado para medir carga cognitiva (NASA-TLX) e velocidade de localização de materiais citados em vídeo.",
+        "Protocolo conceitual estruturado para avaliar carga cognitiva e velocidade de localização de materiais em validação futura.",
       findings: [
-        "Validação do acesso a especificações complementares sem pausar a reprodução de áudio",
-        "Redução de 68% no tempo necessário para localizar termos técnicos na transcrição",
-        "Zero dispersão por abertura involuntária de abas externas durante a reprodução",
+        "Critério a validar: acesso a especificações complementares sem pausar o áudio",
+        "Critério a validar: agilidade na localização de termos técnicos na transcrição",
+        "Critério a validar: redução da dispersão para abas externas durante o estudo",
       ],
     },
 
@@ -975,7 +975,7 @@ export const casesData: CaseStudy[] = [
     learnings: [
       "A interface contextual audiovisual deve respeitar a hierarquia sensorial, nunca competindo agressivamente com o enquadramento do vídeo.",
       "A barra de tempo ganha alto valor utilitário quando passa a ser um sumário semântico e não apenas um relógio de segundos.",
-      "A combinação de atalhos de teclado universais permite uma experiência Zero-Mouse que mantém o usuário em estado de flow contínuo.",
+      "A combinação de atalhos de teclado consistentes favorece uma experiência orientada a teclado durante sessões contínuas de estudo.",
     ],
 
     galleryPlaceholders: [

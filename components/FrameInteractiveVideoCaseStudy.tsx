@@ -538,7 +538,7 @@ export default function FrameInteractiveVideoCaseStudy({
                   <td className="p-4 text-center bg-[#ff5352]/5 text-emerald-400 font-bold border-l border-[#ff5352]/30">✓ Markdown Dinâmico com Notas</td>
                 </tr>
                 <tr className="hover:bg-neutral-900/50">
-                  <td className="p-4 font-semibold text-white">Navegação Zero-Mouse (Atalhos)</td>
+                  <td className="p-4 font-semibold text-white">Navegação Orientada a Teclado (Atalhos)</td>
                   <td className="p-4 text-center text-neutral-400">Básico (K, J, L)</td>
                   <td className="p-4 text-center text-red-400">❌ Muito Limitado</td>
                   <td className="p-4 text-center text-red-400">❌ Limitado</td>
@@ -975,7 +975,7 @@ export default function FrameInteractiveVideoCaseStudy({
             <div className="p-3.5 bg-[#0d0d0f] border border-[#262626] space-y-1">
               <div className="flex items-center gap-1.5 text-[#ffb3ae]">
                 <Keyboard className="w-3.5 h-3.5" />
-                <span className="font-bold uppercase text-[10px]">Zero-Mouse Keyboard Suite</span>
+                <span className="font-bold uppercase text-[10px]">Keyboard-First Shortcut Suite</span>
               </div>
               <p className="text-neutral-400 text-[11px] font-sans">
                 <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">Espaço</kbd> play, <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">J/L</kbd> ±10s, <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">[/]</kbd> nós, <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">1-6</kbd> abas, <kbd className="px-1 bg-[#1c1b1b] text-white border border-[#262626]">B</kbd> planta.
@@ -1273,7 +1273,7 @@ export default function FrameInteractiveVideoCaseStudy({
           {/* Metric Goals with Progress Bars */}
           <div className="space-y-4 font-mono">
             {[
-              { label: "Alvo: Audio Continuity (zero pausas ao inspecionar)", value: 100, suffix: "%", prefix: "", color: "#13E1BC", desc: "Comportamento garantido na arquitetura do player não-bloqueante.", metric: "01 — Comportamento" },
+              { label: "Alvo: Audio Continuity (sem pausas ao inspecionar)", value: 100, suffix: "%", prefix: "", color: "#13E1BC", desc: "Comportamento especificado na arquitetura do player não-bloqueante.", metric: "01 — Comportamento" },
               { label: "Meta Hipotética: Completion Rate (vídeos >15min)", value: 48, suffix: "%", prefix: "+", color: "#ff5352", desc: "Hipótese de ganho na conclusão ao eliminar troca de abas.", metric: "02 — Hipótese a Validar" },
               { label: "Meta Hipotética: Descoberta via Knowledge Rail", value: 74, suffix: "%", prefix: "", color: "#ff5352", desc: "Alvo esperado de sessões usando busca sincronizada na transcrição.", metric: "03 — Hipótese a Validar" },
               { label: "Meta Hipotética: Dossier Export Rate", value: 41, suffix: "%", prefix: "", color: "#ff5352", desc: "Alvo conceitual de pesquisadores exportando resumo em Markdown.", metric: "04 — Hipótese a Validar" },
@@ -1334,7 +1334,7 @@ export default function FrameInteractiveVideoCaseStudy({
               <div className="space-y-2">
                 <strong className="text-white font-mono text-xs uppercase tracking-wider block">4. Atalhos de Teclado são uma Declaração de Posicionamento:</strong>
                 <p className="text-neutral-400 text-xs leading-relaxed">
-                  Suportar uma suíte completa de zero-mouse shortcuts (Espaço, J/L, [/], B, C, F, M) não é acessibilidade avançada — é um sinal ao usuário poder: &ldquo;este produto foi construído para você, que não quer tirar as mãos do teclado enquanto aprende&rdquo;.
+                  Suportar uma suíte completa de atalhos de teclado (Espaço, J/L, [/], B, C, F, M) não é acessibilidade avançada — é um sinal ao usuário avançado: &ldquo;este produto foi construído para quem prefere manter as mãos no teclado enquanto estuda&rdquo;.
                 </p>
               </div>
             </div>

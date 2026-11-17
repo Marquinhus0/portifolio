@@ -19,7 +19,7 @@ export default function ContactBlock() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-background">
+    <section id="contact" className="scroll-mt-20 py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Headline Column */}

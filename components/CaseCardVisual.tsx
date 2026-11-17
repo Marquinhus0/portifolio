@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface CaseCardVisualProps {
   slug: string;
@@ -44,29 +45,36 @@ export default function CaseCardVisual({
   title,
   coverImage,
 }: CaseCardVisualProps) {
+  const { locale } = useLanguage();
   const meta = CASE_COVERS[slug];
   const imgSrc = coverImage || meta?.src || `/cases/${slug}-cover.jpg`;
+  const isRealErp = slug === "erp-enterprise-redesign";
+
+  const altText = isRealErp
+    ? locale === "en"
+      ? `Anonymized structural reconstruction of ${title}`
+      : `Reconstrução estrutural anonimizada de ${title}`
+    : locale === "en"
+    ? `Visual preview of authorial study ${title}`
+    : `Preview visual do estudo autoral ${title}`;
 
   return (
     <div className="relative w-full aspect-[16/10] bg-[#0a0a0c] overflow-hidden group select-none">
-      {/* Real High-Resolution Product Interface Cover */}
       <Image
         src={imgSrc}
-        alt={`Interface real do projeto ${title}`}
+        alt={altText}
         fill
         loading="eager"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
-        className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02] motion-reduce:transform-none"
       />
 
-      {/* Subtle edge vignette only at bottom corner for hover CTA contrast */}
       <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
 
-      {/* Clean Hover Action Pill */}
-      <div className="absolute bottom-3 right-3 pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1.5 group-hover:translate-y-0">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#080808]/90 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] font-semibold tracking-wider uppercase rounded-sm shadow-xl">
-          <span>Explorar Case</span>
+      <div className="absolute bottom-3 right-3 pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-1 group-hover:translate-y-0 motion-reduce:translate-y-0">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#080808]/95 border border-white/20 text-white font-mono text-[10px] font-semibold tracking-wider uppercase rounded-sm shadow-xl">
+          <span>{locale === "en" ? "Explore Study" : "Explorar Case"}</span>
           <ArrowUpRight className="w-3 h-3 text-[#13E1BC]" />
         </span>
       </div>
