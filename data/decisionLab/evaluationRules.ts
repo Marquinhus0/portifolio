@@ -10,7 +10,9 @@ import type {
 
 export interface SelectedDecisionSummary {
   problem: ScenarioProblem;
+  priorityOrder: number;
   chosenAlternative: SolutionAlternative;
+  discardedAlternatives: SolutionAlternative[];
 }
 
 export interface EvaluationReport {
@@ -19,9 +21,12 @@ export interface EvaluationReport {
   decisions: SelectedDecisionSummary[];
   aggregateTradeOffs: TradeOffDelta;
   selectedQaScenarios: QaTestScenarioItem[];
+  relevantQaForDecisions: QaTestScenarioItem[];
   unselectedEssentialQa: QaTestScenarioItem[];
+  decisionLinkedCriteria: string[];
   overlapCount: number;
   alignmentSummary: string;
+  synthesizedStrategySummary: string;
   reasoningDifferences: string[];
   tradeOffObservations: string[];
 }
@@ -77,8 +82,8 @@ export function describeTradeOffBias(
   const magnitude =
     Math.abs(score) >= 2
       ? locale === "en"
-        ? "Strong bias toward"
-        : "Forte inclinação para"
+        ? "Strong emphasis on"
+        : "Ênfase forte em"
       : locale === "en"
       ? "Leans toward"
       : "Tendência moderada para";
@@ -91,20 +96,34 @@ export function buildEvaluationReport(
   state: SimulationState,
   locale: Locale
 ): EvaluationReport {
-  const prioritizedProblems = scenario.problems.filter((p) =>
-    state.prioritizedProblemIds.includes(p.id)
-  );
+  // Preserve visitor's exact priority ranking order!
+  const prioritizedProblems = state.prioritizedProblemIds
+    .map((id) => scenario.problems.find((p) => p.id === id))
+    .filter((p): p is ScenarioProblem => Boolean(p));
 
   const decisions: SelectedDecisionSummary[] = prioritizedProblems
-    .map((problem) => {
+    .map((problem, idx) => {
       const chosenId = state.selectedSolutionsByProblem[problem.id];
       const chosenAlternative = problem.alternatives.find((a) => a.id === chosenId);
       if (!chosenAlternative) return null;
-      return { problem, chosenAlternative };
+      const discardedAlternatives = problem.alternatives.filter(
+        (a) => a.id !== chosenAlternative.id
+      );
+      return {
+        problem,
+        priorityOrder: idx + 1,
+        chosenAlternative,
+        discardedAlternatives,
+      };
     })
     .filter((d): d is SelectedDecisionSummary => d !== null);
 
   const aggregateTradeOffs = computeAggregateTradeOffs(decisions);
+
+  const selectedProblemCodes = new Set(prioritizedProblems.map((p) => p.code));
+  const relevantQaForDecisions = scenario.qaScenarios.filter((qa) =>
+    qa.linkedProblemCodes.some((code) => selectedProblemCodes.has(code))
+  );
 
   const selectedQaScenarios = scenario.qaScenarios.filter((q) =>
     state.selectedQaIds.includes(q.id)
@@ -116,9 +135,16 @@ export function buildEvaluationReport(
       !state.selectedQaIds.includes(q.id)
   );
 
+  const decisionLinkedCriteria = decisions.map((d) => {
+    const label = d.problem.code;
+    const alt = d.chosenAlternative;
+    return locale === "en"
+      ? `[${label} -> Option ${alt.label}] Verify that "${alt.expectedBenefit}" holds under "${alt.dependencies[0] || "standard conditions"}" while mitigating: ${alt.risks[0] || alt.limitation}.`
+      : `[${label} -> Alternativa ${alt.label}] Validar na entrega que "${alt.expectedBenefit}" funciona com "${alt.dependencies[0] || "fluxo padrão"}", mitigando o risco: ${alt.risks[0] || alt.limitation}.`;
+  });
+
   const refSet = new Set(scenario.referenceStrategy.recommendedProblemIds);
   const overlapCount = prioritizedProblems.filter((p) => refSet.has(p.id)).length;
-
   const referenceMatchesCount = decisions.filter(
     (d) => d.chosenAlternative.isReferenceChoice
   ).length;
@@ -126,31 +152,38 @@ export function buildEvaluationReport(
   const reasoningDifferences: string[] = [];
 
   if (overlapCount === refSet.size && prioritizedProblems.length === refSet.size) {
+    const exactOrderMatches = prioritizedProblems.every(
+      (p, idx) => p.id === scenario.referenceStrategy.recommendedProblemIds[idx]
+    );
     reasoningDifferences.push(
-      locale === "en"
-        ? "Problem selection matches the scenario's core reference triage focus."
-        : "Sua priorização coincidiu com o foco principal adotado na estratégia de referência."
+      exactOrderMatches
+        ? locale === "en"
+          ? "Your prioritized problems and sequence order match the scenario's baseline reference strategy."
+          : "Sua seleção e ordem de prioridade coincidiram exatamente com a trilha de referência deste cenário."
+        : locale === "en"
+        ? "You selected the same core problems as the reference strategy, shifting only the execution sequence."
+        : "Você selecionou os mesmos problemas centrais da estratégia de referência, variando apenas a ordem de execução."
     );
   } else {
     const visitorOnly = prioritizedProblems
       .filter((p) => !refSet.has(p.id))
-      .map((p) => p.title);
+      .map((p) => `${p.code} (${p.title})`);
     const refOnly = scenario.problems
       .filter((p) => refSet.has(p.id) && !state.prioritizedProblemIds.includes(p.id))
-      .map((p) => p.title);
+      .map((p) => `${p.code} (${p.title})`);
 
     if (visitorOnly.length > 0) {
       reasoningDifferences.push(
         locale === "en"
-          ? `Your sequence emphasized: ${visitorOnly.join("; ")}. That shifts initial effort toward visible operator pain or governance areas ahead of the reference sequence.`
-          : `Você priorizou primeiro: ${visitorOnly.join("; ")}. Isso desloca o ciclo inicial para alívio operacional imediato ou ajustes de governança distintos da trilha de referência.`
+          ? `Your triage prioritized: ${visitorOnly.join("; ")}. This favors solving those operational or structural gaps first.`
+          : `Sua triagem deu foco inicial a: ${visitorOnly.join("; ")}. Isso antecipa a resolução dessas frentes antes da trilha de referência.`
       );
     }
     if (refOnly.length > 0) {
       reasoningDifferences.push(
         locale === "en"
-          ? `The reference strategy also prioritized: ${refOnly.join("; ")} to stabilize downstream integrity before expanding enhancements.`
-          : `A estratégia de referência também priorizava: ${refOnly.join("; ")} para proteger integridade estrutural antes de evoluções complementares.`
+          ? `The reference strategy prioritized: ${refOnly.join("; ")} earlier to protect downstream flow stability.`
+          : `A trilha de referência priorizava antes: ${refOnly.join("; ")} para estabilizar integridade antes de otimizações secundárias.`
       );
     }
   }
@@ -160,18 +193,18 @@ export function buildEvaluationReport(
       .filter((d) => !d.chosenAlternative.isReferenceChoice)
       .map(
         (d) =>
-          `${d.problem.code}: [${d.chosenAlternative.label}] ${d.chosenAlternative.title} — ${d.chosenAlternative.limitation}`
+          `${d.problem.code} [Opt ${d.chosenAlternative.label}]: ${d.chosenAlternative.limitation}`
       );
     reasoningDifferences.push(
       locale === "en"
-        ? `Alternative architecture trade-offs chosen: ${alternativeChoices.join(" | ")}`
-        : `Escolhas alternativas assumidas no desenho: ${alternativeChoices.join(" | ")}`
+        ? `Different solution trade-offs selected: ${alternativeChoices.join(" | ")}`
+        : `Alternativas distintas adotadas e suas concessões: ${alternativeChoices.join(" | ")}`
     );
   } else if (decisions.length > 0) {
     reasoningDifferences.push(
       locale === "en"
-        ? "Solution paths aligned with balanced safeguards between speed, rule integrity, and engineering effort."
-        : "Suas decisões de solução convergiram com alternativas equilibradas entre agilidade de uso, segurança de regra e esforço técnico."
+        ? "Your selected solutions converged with balanced trade-offs between frontline flow, rule safety, and technical scope."
+        : "As soluções selecionadas convergiram com escolhas equilibradas entre fluidez de uso, proteção da regra e esforço técnico."
     );
   }
 
@@ -186,10 +219,17 @@ export function buildEvaluationReport(
     )}`;
   });
 
+  const synthesizedStrategySummary =
+    state.strategyNotes.trim().length > 0
+      ? state.strategyNotes.trim()
+      : locale === "en"
+      ? `Strategy focused first on ${prioritizedProblems.map((p) => `${p.code} (${p.title})`).join(", ")}, balancing operational continuity against assumed implementation constraints.`
+      : `Estratégia direcionada primeiro para ${prioritizedProblems.map((p) => `${p.code} (${p.title})`).join(", ")}, assumindo os trade-offs e critérios de cobertura QA selecionados acima.`;
+
   const alignmentSummary =
     locale === "en"
-      ? `You prioritized ${prioritizedProblems.length} critical problems, defined ${decisions.length} contextual solutions, and specified ${selectedQaScenarios.length}/${scenario.qaScenarios.length} QA test scenarios. Below is how your rationale compares with the baseline reference path.`
-      : `Você priorizou ${prioritizedProblems.length} problemas, definiu ${decisions.length} soluções contextuais e selecionou ${selectedQaScenarios.length}/${scenario.qaScenarios.length} cenários na proposta de cobertura QA. Abaixo está o contraste objetivo com a estratégia de referência do cenário.`;
+      ? `You ranked ${prioritizedProblems.length} prioritized problems, evaluated ${decisions.length} solution sets (plus discarded alternatives), and mapped ${selectedQaScenarios.length}/${scenario.qaScenarios.length} QA coverage scenarios.`
+      : `Você ordenou ${prioritizedProblems.length} problemas prioritários, definiu ${decisions.length} soluções (registrando alternativas descartadas) e selecionou ${selectedQaScenarios.length}/${scenario.qaScenarios.length} cenários de QA.`;
 
   return {
     scenario,
@@ -197,9 +237,12 @@ export function buildEvaluationReport(
     decisions,
     aggregateTradeOffs,
     selectedQaScenarios,
+    relevantQaForDecisions,
     unselectedEssentialQa,
+    decisionLinkedCriteria,
     overlapCount,
     alignmentSummary,
+    synthesizedStrategySummary,
     reasoningDifferences,
     tradeOffObservations,
   };

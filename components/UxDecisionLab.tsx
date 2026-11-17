@@ -27,6 +27,7 @@ export default function UxDecisionLab() {
     markProblemInspected,
     toggleCompareProblem,
     togglePrioritizedProblem,
+    movePriorityOrder,
     selectSolutionForProblem,
     toggleTradeOffAcknowledged,
     toggleQaScenario,
@@ -128,6 +129,7 @@ export default function UxDecisionLab() {
                 onInspectProblem={markProblemInspected}
                 onToggleCompare={toggleCompareProblem}
                 onTogglePrioritize={togglePrioritizedProblem}
+                onMovePriorityOrder={movePriorityOrder}
               />
             )}
 
@@ -142,6 +144,7 @@ export default function UxDecisionLab() {
                 onInspectProblem={markProblemInspected}
                 onToggleCompare={toggleCompareProblem}
                 onTogglePrioritize={togglePrioritizedProblem}
+                onMovePriorityOrder={movePriorityOrder}
               />
             )}
 

@@ -41,6 +41,7 @@ export interface SolutionAlternative {
   operationalImpact: string;
   estimatedComplexity: "Baixa" | "Média" | "Alta" | "Low" | "Medium" | "High";
   dependencies: string[];
+  risks: string[];
   consequenceAnalysis: string;
   tradeOffShift: TradeOffDelta;
   isReferenceChoice?: boolean;
@@ -54,8 +55,37 @@ export interface ScenarioProblem {
   userImpactDetail: string;
   operationalImpactDetail: string;
   evidenceCue: string;
+  justification: string;
   scores: ProblemScores;
   alternatives: SolutionAlternative[];
+}
+
+export interface FlowNodeItem {
+  id: string;
+  step: string;
+  label: string;
+  stateTag: string;
+  isFriction?: boolean;
+  isImproved?: boolean;
+  detail: string;
+}
+
+export interface StateTransitionItem {
+  from: string;
+  trigger: string;
+  to: string;
+  guardNote: string;
+}
+
+export interface AsIsToBeConfig {
+  asIsTitle: string;
+  asIsSubtitle: string;
+  asIsNodes: FlowNodeItem[];
+  toBeTitle: string;
+  toBeSubtitle: string;
+  toBeNodes: FlowNodeItem[];
+  stateTransitions: StateTransitionItem[];
+  keyDifferences: string[];
 }
 
 export interface QaTestScenarioItem {
@@ -66,12 +96,14 @@ export interface QaTestScenarioItem {
     | "communication_failure"
     | "unauthorized_user"
     | "inconsistent_data"
-    | "duplicate_operation";
+    | "duplicate_operation"
+    | "loading_and_error";
   title: string;
   scenarioDescription: string;
   expectedUiState: string;
   givenWhenThen: string;
   recommendedCriticality: "essential" | "recommended";
+  linkedProblemCodes: string[];
 }
 
 export interface TradeOffAxisMeta {
@@ -88,6 +120,7 @@ export interface DecisionScenarioConfig {
   originTag: string;
   name: string;
   dilemma: string;
+  domainDisclaimer?: string;
   businessContext: {
     overview: string;
     operationScale: string;
@@ -95,6 +128,7 @@ export interface DecisionScenarioConfig {
     constraints: string[];
     keyMetricsWatch: string[];
   };
+  asIsToBe: AsIsToBeConfig;
   problems: ScenarioProblem[];
   tradeOffAxes: TradeOffAxisMeta[];
   qaScenarios: QaTestScenarioItem[];
@@ -129,6 +163,26 @@ export interface StepDefinition {
   title: string;
   shortTitle: string;
   purpose: string;
+}
+
+export interface RawSolutionAlternative extends Omit<SolutionAlternative, "risks"> {
+  risks?: string[];
+}
+
+export interface RawScenarioProblem extends Omit<ScenarioProblem, "justification" | "alternatives"> {
+  justification?: string;
+  alternatives: RawSolutionAlternative[];
+}
+
+export interface RawQaTestScenarioItem extends Omit<QaTestScenarioItem, "linkedProblemCodes"> {
+  linkedProblemCodes?: string[];
+}
+
+export interface RawDecisionScenarioConfig
+  extends Omit<DecisionScenarioConfig, "asIsToBe" | "problems" | "qaScenarios"> {
+  asIsToBe?: AsIsToBeConfig;
+  problems: RawScenarioProblem[];
+  qaScenarios: RawQaTestScenarioItem[];
 }
 
 export type LocalizedScenarioMap = Record<Locale, DecisionScenarioConfig[]>;

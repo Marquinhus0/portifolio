@@ -1,6 +1,6 @@
-import type { DecisionScenarioConfig } from "./types";
+import type { RawDecisionScenarioConfig } from "./types";
 
-export const SCENARIOS_EN: DecisionScenarioConfig[] = [
+export const SCENARIOS_EN: RawDecisionScenarioConfig[] = [
   // =========================================================================
   // SCENARIO 01 — POS: Retail Point-of-Sale Sales Operation
   // =========================================================================

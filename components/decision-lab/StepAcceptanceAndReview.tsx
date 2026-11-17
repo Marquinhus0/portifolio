@@ -8,8 +8,10 @@ import {
   CheckSquare,
   ClipboardCheck,
   RotateCcw,
+  ShieldAlert,
   ShieldCheck,
   Square,
+  XCircle,
 } from "lucide-react";
 import type { Locale } from "@/context/LanguageContext";
 import type { EvaluationReport } from "@/data/decisionLab/evaluationRules";
@@ -41,6 +43,7 @@ export default function StepAcceptanceAndReview({
   onRestart,
 }: StepAcceptanceAndReviewProps) {
   const isEn = locale === "en";
+  const prioritizedCodeSet = new Set(report.prioritizedProblems.map((p) => p.code));
 
   if (mode === "acceptance") {
     return (
@@ -54,18 +57,18 @@ export default function StepAcceptanceAndReview({
             </span>
             <h2 className="text-2xl sm:text-3xl font-medium text-white tracking-tight">
               {isEn
-                ? "Select scenarios for the proposed QA test coverage"
-                : "Selecione os cenários que devem compor a proposta de testes"}
+                ? "Select validation scenarios aligned with your product decisions"
+                : "Selecione os cenários de validação correspondentes às suas decisões"}
             </h2>
             <p className="text-sm text-neutral-300 leading-relaxed">
               {isEn
-                ? "Pick at least 2 demonstrative scenarios (normal flow, missing field, communication drop, unauthorized role, inconsistent state, or duplicate submit)."
-                : "Marque ao menos 2 cenários demonstrativos para definir os critérios de aceite antes do relatório final."}
+                ? "Choose at least 2 validation scenarios (normal path, missing fields, communication drops, permissions, inconsistent data, duplicate submit, loading & error states)."
+                : "Marque ao menos 2 cenários (fluxo normal, campos ausentes, falha de comunicação, permissão, dados inconsistentes, duplicidade, carregamento e erro)."}
             </p>
           </div>
 
           <div className="px-4 py-2 border border-neutral-800 bg-[#080808] font-mono text-xs shrink-0">
-            <span className="text-neutral-400">{isEn ? "Covered:" : "Selecionados:"} </span>
+            <span className="text-neutral-400">{isEn ? "Selected:" : "Selecionados:"} </span>
             <span
               className={
                 selectedQaIds.length >= 2
@@ -78,19 +81,41 @@ export default function StepAcceptanceAndReview({
           </div>
         </div>
 
-        {/* Explicit Test Proposal Framing Notice */}
+        {/* Dynamic Acceptance Criteria Derived From Visitor Choices */}
+        {report.decisionLinkedCriteria.length > 0 && (
+          <div className="p-5 border border-[#13E1BC]/35 bg-[#13E1BC]/[0.04] space-y-3">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#13E1BC] block font-semibold">
+              {isEn
+                ? "Acceptance Criteria Derived From Your Choices"
+                : "Critérios de Aceite Correspondentes às Decisões Tomadas"}
+            </span>
+            <ul className="space-y-2 text-xs text-neutral-200 leading-relaxed font-mono">
+              {report.decisionLinkedCriteria.map((crit, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-[#13E1BC] shrink-0">›</span>
+                  <span>{crit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Explicit Test Proposal Disclaimer */}
         <div className="p-4 border border-neutral-800 bg-neutral-950 text-xs font-mono text-neutral-300 flex items-start gap-2.5">
           <ClipboardCheck className="w-4 h-4 text-[#13E1BC] shrink-0 mt-0.5" />
           <span>
             {isEn
-              ? "Test Coverage Proposal: this selection defines expected UI & API acceptance behavior for QA — no automated test suite is executed inside this simulator."
-              : "Proposta de Cobertura de Testes: esta seleção especifica o comportamento esperado para validação com QA — testes automatizados não são executados nesta demonstração."}
+              ? "Test Coverage Proposal: selected items form a specification proposal for QA — automated tests are not executed in this browser simulator."
+              : "Proposta de Cobertura de Testes: os itens selecionados compõem uma especificação proposta para QA — testes automatizados não são executados neste simulador."}
           </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {scenario.qaScenarios.map((qa) => {
             const selected = selectedQaIds.includes(qa.id);
+            const matchesVisitorChoice = qa.linkedProblemCodes.some((c) =>
+              prioritizedCodeSet.has(c)
+            );
             return (
               <button
                 key={qa.id}
@@ -104,22 +129,29 @@ export default function StepAcceptanceAndReview({
                 }`}
               >
                 <div className="space-y-2.5">
-                  <div className="flex items-center justify-between gap-2 text-[10px] font-mono">
-                    <span
-                      className={`px-2 py-0.5 border uppercase tracking-wider ${
-                        qa.recommendedCriticality === "essential"
-                          ? "border-rose-500/40 bg-rose-950/30 text-rose-300"
-                          : "border-neutral-700 bg-neutral-900 text-neutral-300"
-                      }`}
-                    >
-                      {qa.recommendedCriticality === "essential"
-                        ? isEn
-                          ? "Essential Risk Case"
-                          : "Risco Crítico"
-                        : isEn
-                        ? "Recommended"
-                        : "Recomendado"}
-                    </span>
+                  <div className="flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span
+                        className={`px-2 py-0.5 border uppercase tracking-wider ${
+                          qa.recommendedCriticality === "essential"
+                            ? "border-rose-500/40 bg-rose-950/30 text-rose-300"
+                            : "border-neutral-700 bg-neutral-900 text-neutral-300"
+                        }`}
+                      >
+                        {qa.recommendedCriticality === "essential"
+                          ? isEn
+                            ? "Essential Risk"
+                            : "Risco Crítico"
+                          : isEn
+                          ? "Recommended"
+                          : "Recomendado"}
+                      </span>
+                      {matchesVisitorChoice && (
+                        <span className="px-2 py-0.5 border border-[#13E1BC]/40 bg-[#13E1BC]/10 text-[#13E1BC]">
+                          {isEn ? "Linked to Priority" : "Ligado à Sua Prioridade"}
+                        </span>
+                      )}
+                    </div>
                     {selected ? (
                       <CheckSquare className="w-4 h-4 text-[#13E1BC]" />
                     ) : (
@@ -154,15 +186,15 @@ export default function StepAcceptanceAndReview({
     );
   }
 
-  // STAGE 08: DECISION REVIEW REPORT
+  // STAGE 08: DYNAMIC DECISION REPORT WITH DISCARDED ALTERNATIVES & JUSTIFICATION
   return (
     <div className="space-y-8">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-surface-borderSubtle pb-6">
         <div className="space-y-2 max-w-3xl">
           <span className="text-xs font-mono uppercase tracking-widest text-[#13E1BC] block">
             {isEn
-              ? `Stage 08 // Final Strategy Report (${scenario.code})`
-              : `Etapa 08 // Relatório Visual da Decisão (${scenario.code})`}
+              ? `Stage 08 // Dynamic Final Report (${scenario.code})`
+              : `Etapa 08 // Relatório Dinâmico Final (${scenario.code})`}
           </span>
           <h2 className="text-2xl sm:text-4xl font-medium text-white tracking-tight">
             {scenario.name}
@@ -178,67 +210,117 @@ export default function StepAcceptanceAndReview({
           className="inline-flex items-center gap-2 px-5 py-3 bg-[#13E1BC] text-[#080808] font-mono text-xs font-semibold uppercase tracking-wider hover:bg-white transition-colors shrink-0 self-start lg:self-end"
         >
           <RotateCcw className="w-3.5 h-3.5" />
-          <span>{isEn ? "Restart This Scenario" : "Reiniciar Simulação"}</span>
+          <span>{isEn ? "Restart Scenario" : "Reiniciar Cenário"}</span>
         </button>
       </div>
 
-      {/* 1. Visitor Chosen Priorities & Solutions */}
+      {scenario.domainDisclaimer && (
+        <div className="p-4 border border-amber-500/40 bg-amber-950/20 text-amber-200 text-xs font-mono flex items-start gap-2.5 leading-relaxed">
+          <ShieldAlert className="w-4 h-4 text-amber-300 shrink-0 mt-0.5" />
+          <span>{scenario.domainDisclaimer}</span>
+        </div>
+      )}
+
+      {/* 1. Chosen Decisions vs Discarded Alternatives */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-7 space-y-4">
           <h3 className="text-xs font-mono uppercase tracking-widest text-[#13E1BC]">
             {isEn
-              ? "Prioritized Problems & Chosen Solutions"
-              : "Problemas Priorizados & Soluções Escolhidas"}
+              ? "Prioritized Problems, Chosen Solutions & Discarded Options"
+              : "Prioridades, Solução Escolhida & Alternativas Descartadas"}
           </h3>
 
-          <div className="space-y-3">
-            {report.decisions.map(({ problem, chosenAlternative }) => (
-              <div
-                key={problem.id}
-                className="p-5 border border-surface-border bg-[#080808] space-y-2.5"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono">
-                  <span className="text-white font-semibold">
-                    {problem.code} — {problem.title}
-                  </span>
-                  <span className="px-2 py-0.5 border border-[#13E1BC]/40 bg-[#13E1BC]/10 text-[#13E1BC]">
-                    {isEn ? `Option ${chosenAlternative.label}` : `Alternativa ${chosenAlternative.label}`}
-                  </span>
+          <div className="space-y-4">
+            {report.decisions.map(
+              ({ problem, priorityOrder, chosenAlternative, discardedAlternatives }) => (
+                <div
+                  key={problem.id}
+                  className="p-5 border border-surface-border bg-[#080808] space-y-4"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono border-b border-surface-borderSubtle pb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="px-2 py-0.5 bg-[#13E1BC] text-[#080808] font-bold">
+                        {priorityOrder}º
+                      </span>
+                      <span className="text-white font-semibold">
+                        {problem.code} — {problem.title}
+                      </span>
+                    </div>
+                    <span className="px-2 py-0.5 border border-[#13E1BC]/40 bg-[#13E1BC]/10 text-[#13E1BC]">
+                      {isEn ? `Chosen: Option ${chosenAlternative.label}` : `Escolhida: Alt. ${chosenAlternative.label}`}
+                    </span>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <p className="text-sm text-white font-medium">{chosenAlternative.title}</p>
+                    <p className="text-xs text-neutral-300 leading-relaxed">
+                      {chosenAlternative.consequenceAnalysis}
+                    </p>
+                  </div>
+
+                  {/* Discarded Alternatives List */}
+                  <div className="pt-3 border-t border-surface-borderSubtle space-y-2">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block">
+                      {isEn ? "Discarded Alternatives in This Scope:" : "Alternativas Descartadas neste Recorte:"}
+                    </span>
+                    <div className="space-y-1.5">
+                      {discardedAlternatives.map((disc) => (
+                        <div
+                          key={disc.id}
+                          className="p-2.5 border border-neutral-850 bg-neutral-950 text-xs flex items-start gap-2"
+                        >
+                          <XCircle className="w-3.5 h-3.5 text-neutral-500 shrink-0 mt-0.5" />
+                          <div className="space-y-0.5">
+                            <span className="text-neutral-300 font-medium block">
+                              [{disc.label}] {disc.title}
+                            </span>
+                            <span className="text-[11px] text-neutral-400 block">
+                              {disc.limitation}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <p className="text-sm text-white font-medium">{chosenAlternative.title}</p>
-                <p className="text-xs text-neutral-300 leading-relaxed">
-                  {chosenAlternative.consequenceAnalysis}
-                </p>
-              </div>
-            ))}
+              )
+            )}
           </div>
 
-          {/* Optional Strategy Justification Note */}
-          <div className="p-5 border border-surface-border bg-[#080808] space-y-2">
-            <label
-              htmlFor="strategy-notes"
-              className="text-xs font-mono uppercase tracking-wider text-neutral-300 block"
-            >
-              {isEn
-                ? "Your Strategy Rationale (Optional Note)"
-                : "Justificativa da Estratégia (Nota Opcional)"}
-            </label>
-            <textarea
-              id="strategy-notes"
-              rows={3}
-              value={strategyNotes}
-              onChange={(e) => onChangeNotes(e.target.value)}
-              placeholder={
-                isEn
-                  ? "Summarize why you favored speed, control, or incremental rollout..."
-                  : "Registre brevemente por que priorizou agilidade, controle ou mitigação de risco..."
-              }
-              className="w-full p-3 bg-neutral-950 border border-neutral-800 text-xs text-white placeholder:text-neutral-600 focus:border-[#13E1BC] focus:outline-none"
-            />
+          {/* Final Justification Card + Optional Strategy Note */}
+          <div className="p-5 border border-surface-border bg-[#080808] space-y-3">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#13E1BC] block">
+              {isEn ? "Final Decision Justification" : "Justificativa Final da Estratégia"}
+            </span>
+            <p className="text-xs sm:text-sm text-neutral-200 leading-relaxed">
+              {report.synthesizedStrategySummary}
+            </p>
+            <div className="pt-2 border-t border-surface-borderSubtle space-y-1.5">
+              <label
+                htmlFor="strategy-notes"
+                className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 block"
+              >
+                {isEn
+                  ? "Customize Your Rationale Note (Optional)"
+                  : "Personalizar Nota de Justificativa (Opcional)"}
+              </label>
+              <textarea
+                id="strategy-notes"
+                rows={2}
+                value={strategyNotes}
+                onChange={(e) => onChangeNotes(e.target.value)}
+                placeholder={
+                  isEn
+                    ? "Document why you prioritized this sequence and trade-offs..."
+                    : "Registre por que priorizou essa sequência e esses trade-offs..."
+                }
+                className="w-full p-3 bg-neutral-950 border border-neutral-800 text-xs text-white placeholder:text-neutral-600 focus:border-[#13E1BC] focus:outline-none"
+              />
+            </div>
           </div>
         </div>
 
-        {/* 2. Trade-offs & QA Coverage Column */}
+        {/* 2. Trade-offs, Acceptance Criteria & Proposed QA Coverage */}
         <div className="lg:col-span-5 space-y-4">
           <div className="p-5 border border-surface-border bg-[#080808] space-y-3">
             <h3 className="text-xs font-mono uppercase tracking-widest text-[#13E1BC]">
@@ -256,7 +338,21 @@ export default function StepAcceptanceAndReview({
 
           <div className="p-5 border border-surface-border bg-[#080808] space-y-3">
             <h3 className="text-xs font-mono uppercase tracking-widest text-[#13E1BC]">
-              {isEn ? "Proposed QA Test Coverage" : "Proposta de Cobertura QA"}
+              {isEn ? "Acceptance Criteria Tied to Decisions" : "Critérios de Aceite das Decisões"}
+            </h3>
+            <ul className="space-y-2 text-[11px] font-mono text-neutral-200 leading-relaxed">
+              {report.decisionLinkedCriteria.map((c, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-[#13E1BC]">•</span>
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="p-5 border border-surface-border bg-[#080808] space-y-3">
+            <h3 className="text-xs font-mono uppercase tracking-widest text-[#13E1BC]">
+              {isEn ? "Proposed QA Scenarios" : "Cenários de QA Selecionados"}
             </h3>
             <ul className="space-y-2 text-xs text-neutral-200">
               {report.selectedQaScenarios.map((qa) => (
@@ -273,8 +369,8 @@ export default function StepAcceptanceAndReview({
                   <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
                   <span>
                     {isEn
-                      ? "Critical risk scenarios left outside this proposal:"
-                      : "Cenários críticos não incluídos nesta proposta:"}
+                      ? "Critical risks outside this QA proposal:"
+                      : "Riscos críticos fora desta proposta:"}
                   </span>
                 </div>
                 <ul className="space-y-1 text-neutral-400 pl-5 list-disc">
@@ -295,8 +391,8 @@ export default function StepAcceptanceAndReview({
             <ShieldCheck className="w-4 h-4 shrink-0" />
             <span>
               {isEn
-                ? "Comparative Reference Strategy (Educational Benchmark)"
-                : "Comparação com Estratégia de Referência (Análise Educacional)"}
+                ? "Reference Recommendation & Reasoning Contrast"
+                : "Recomendação de Referência & Diferenças de Raciocínio"}
             </span>
           </div>
           <h3 className="text-xl font-medium text-white">{scenario.referenceStrategy.title}</h3>
@@ -308,7 +404,7 @@ export default function StepAcceptanceAndReview({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2 border-t border-surface-borderSubtle">
           <div className="space-y-2">
             <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-300 block">
-              {isEn ? "Reasoning Differences vs Your Path" : "Diferenças de Raciocínio"}
+              {isEn ? "Reasoning Contrast (No Right/Wrong Labels)" : "Diferenças de Raciocínio vs Suas Escolhas"}
             </span>
             <ul className="space-y-2 text-xs text-neutral-200 leading-relaxed">
               {report.reasoningDifferences.map((diff, i) => (
@@ -322,7 +418,7 @@ export default function StepAcceptanceAndReview({
 
           <div className="space-y-2">
             <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-300 block">
-              {isEn ? "Reference Rationale" : "Fundamentos da Trilha de Referência"}
+              {isEn ? "Reference Rationale" : "Fundamentos da Recomendação"}
             </span>
             <ul className="space-y-2 text-xs text-neutral-300 leading-relaxed">
               {scenario.referenceStrategy.reasoning.map((reason) => (
@@ -340,7 +436,7 @@ export default function StepAcceptanceAndReview({
       <div className="p-6 border border-surface-border bg-[#080808] flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs font-mono text-neutral-400 mr-2">
-            {isEn ? "Test another scenario:" : "Explorar outro cenário:"}
+            {isEn ? "Switch & reset scenario:" : "Explorar outro cenário:"}
           </span>
           {scenarios.map((sc) => (
             <button

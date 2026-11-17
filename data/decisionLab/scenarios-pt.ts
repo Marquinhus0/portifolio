@@ -1,6 +1,6 @@
-import type { DecisionScenarioConfig } from "./types";
+import type { RawDecisionScenarioConfig } from "./types";
 
-export const SCENARIOS_PT: DecisionScenarioConfig[] = [
+export const SCENARIOS_PT: RawDecisionScenarioConfig[] = [
   // =========================================================================
   // CENÁRIO 01 — PDV: Operação de vendas em um ponto de venda
   // =========================================================================

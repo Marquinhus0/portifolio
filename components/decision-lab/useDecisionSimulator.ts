@@ -127,6 +127,19 @@ export function useDecisionSimulator(locale: Locale) {
     });
   }, [locale]);
 
+  const movePriorityOrder = useCallback((problemId: string, direction: "up" | "down") => {
+    setState((prev) => {
+      const idx = prev.prioritizedProblemIds.indexOf(problemId);
+      if (idx < 0) return prev;
+      const targetIdx = direction === "up" ? idx - 1 : idx + 1;
+      if (targetIdx < 0 || targetIdx >= prev.prioritizedProblemIds.length) return prev;
+      const next = [...prev.prioritizedProblemIds];
+      const [item] = next.splice(idx, 1);
+      next.splice(targetIdx, 0, item);
+      return { ...prev, prioritizedProblemIds: next };
+    });
+  }, []);
+
   const selectSolutionForProblem = useCallback(
     (problemId: string, alternativeId: string) => {
       setState((prev) => ({
@@ -281,6 +294,7 @@ export function useDecisionSimulator(locale: Locale) {
     markProblemInspected,
     toggleCompareProblem,
     togglePrioritizedProblem,
+    movePriorityOrder,
     selectSolutionForProblem,
     toggleTradeOffAcknowledged,
     toggleQaScenario,

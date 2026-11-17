@@ -113,6 +113,13 @@ export default function StepScenarioAndContext({
         </p>
       </div>
 
+      {selectedScenario.domainDisclaimer && (
+        <div className="p-4 border border-amber-500/40 bg-amber-950/20 text-amber-200 text-xs font-mono flex items-start gap-3 leading-relaxed">
+          <ShieldAlert className="w-4 h-4 text-amber-300 shrink-0 mt-0.5" />
+          <span>{selectedScenario.domainDisclaimer}</span>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Scale & Stakeholders */}
         <div className="lg:col-span-6 space-y-4">

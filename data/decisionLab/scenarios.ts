@@ -1,11 +1,60 @@
 import type { Locale } from "@/context/LanguageContext";
-import type { DecisionScenarioConfig, StepDefinition } from "./types";
+import type {
+  DecisionScenarioConfig,
+  RawDecisionScenarioConfig,
+  ScenarioProblem,
+  SolutionAlternative,
+  StepDefinition,
+} from "./types";
 import { SCENARIOS_PT } from "./scenarios-pt";
 import { SCENARIOS_EN } from "./scenarios-en";
+import { ENRICHMENTS_PT, type ScenarioEnrichment } from "./enrichments-pt";
+import { ENRICHMENTS_EN } from "./enrichments-en";
+
+function composeScenarioList(
+  rawList: RawDecisionScenarioConfig[],
+  enrichMap: Record<DecisionScenarioConfig["code"], ScenarioEnrichment>
+): DecisionScenarioConfig[] {
+  return rawList.map((raw) => {
+    const enrich = enrichMap[raw.code];
+    const problems: ScenarioProblem[] = raw.problems.map((p) => {
+      const baseAlts: SolutionAlternative[] = p.alternatives.map((a) => ({
+        ...a,
+        risks: a.risks || enrich.risksByAlternative[a.id] || [a.limitation],
+      }));
+      const extraAlt = enrich.extraAlternativesByProblem[p.id];
+      const allAlts = extraAlt ? [...baseAlts, extraAlt] : baseAlts;
+
+      return {
+        ...p,
+        justification:
+          p.justification || enrich.problemJustifications[p.id] || p.operationalImpactDetail,
+        alternatives: allAlts,
+      };
+    });
+
+    const qaScenarios = [
+      ...raw.qaScenarios.map((q) => ({
+        ...q,
+        linkedProblemCodes:
+          q.linkedProblemCodes || enrich.qaLinkedProblems[q.id] || ["P-01"],
+      })),
+      enrich.extraQaScenario,
+    ];
+
+    return {
+      ...raw,
+      domainDisclaimer: enrich.domainDisclaimer,
+      asIsToBe: raw.asIsToBe || enrich.asIsToBe,
+      problems,
+      qaScenarios,
+    };
+  });
+}
 
 export const DECISION_SIMULATOR_SCENARIOS: Record<Locale, DecisionScenarioConfig[]> = {
-  pt: SCENARIOS_PT,
-  en: SCENARIOS_EN,
+  pt: composeScenarioList(SCENARIOS_PT, ENRICHMENTS_PT),
+  en: composeScenarioList(SCENARIOS_EN, ENRICHMENTS_EN),
 };
 
 export const SIMULATOR_STEPS: Record<Locale, StepDefinition[]> = {
@@ -29,42 +78,42 @@ export const SIMULATOR_STEPS: Record<Locale, StepDefinition[]> = {
       number: "03",
       title: "Investigação de Problemas",
       shortTitle: "Investigação",
-      purpose: "Inspecione sintomas, impacto humano e risco antes de priorizar.",
+      purpose: "Inspecione sintomas, frequência, impacto humano e justificativa antes de priorizar.",
     },
     {
       id: "prioritization",
       number: "04",
-      title: "Priorização Explicável",
+      title: "Priorização Interativa",
       shortTitle: "Priorização",
-      purpose: "Compare dimensões e escolha quais problemas atacar neste ciclo.",
+      purpose: "Construa e ordene sua fila prioritária e compare com a referência.",
     },
     {
       id: "solution",
       number: "05",
-      title: "Decisão de Solução",
+      title: "Alternativas de Solução",
       shortTitle: "Soluções",
-      purpose: "Avalie alternativas e inspecione consequências específicas.",
+      purpose: "Compare 3 alternativas por problema (benefícios, riscos, dependências) e escolha.",
     },
     {
       id: "tradeoffs",
       number: "06",
-      title: "Análise de Trade-offs",
-      shortTitle: "Trade-offs",
-      purpose: "Visualize as tensões e concessões geradas pelas suas escolhas.",
+      title: "Fluxo As-Is → To-Be & Trade-offs",
+      shortTitle: "As-Is/To-Be",
+      purpose: "Compare fluxo visual, pontos de fricção, mudanças de estado e conflitos de objetivos.",
     },
     {
       id: "acceptance",
       number: "07",
       title: "Critérios de Aceite & QA",
       shortTitle: "QA & Aceite",
-      purpose: "Defina a proposta de cobertura de testes e estados de erro.",
+      purpose: "Selecione cenários de erro/carregamento alinhados às decisões tomadas.",
     },
     {
       id: "review",
       number: "08",
-      title: "Relatório de Decisão",
-      shortTitle: "Revisão",
-      purpose: "Compare sua estratégia com a trilha de referência sem julgamento.",
+      title: "Relatório Dinâmico",
+      shortTitle: "Relatório",
+      purpose: "Revise decisões, alternativas descartadas, QA e diferenças vs referência.",
     },
   ],
   en: [
@@ -87,42 +136,42 @@ export const SIMULATOR_STEPS: Record<Locale, StepDefinition[]> = {
       number: "03",
       title: "Problem Investigation",
       shortTitle: "Investigate",
-      purpose: "Inspect symptoms, user impact, and operational risk.",
+      purpose: "Inspect symptoms, frequency, user impact, and rationale.",
     },
     {
       id: "prioritization",
       number: "04",
-      title: "Problem Prioritization",
+      title: "Interactive Prioritization",
       shortTitle: "Prioritize",
-      purpose: "Compare explainable rubric factors and select cycle priorities.",
+      purpose: "Build and rank your own priority list and compare against reference.",
     },
     {
       id: "solution",
       number: "05",
-      title: "Solution Decision",
+      title: "Solution Alternatives",
       shortTitle: "Solutions",
-      purpose: "Evaluate solution options and read contextual consequences.",
+      purpose: "Compare 3 options per problem (benefits, risks, dependencies) and select.",
     },
     {
       id: "tradeoffs",
       number: "06",
-      title: "Trade-off Analysis",
-      shortTitle: "Trade-offs",
-      purpose: "Examine objective conflicts created by your choices.",
+      title: "As-Is → To-Be Flow & Trade-offs",
+      shortTitle: "As-Is/To-Be",
+      purpose: "Inspect visual flow nodes, friction hotspots, state transitions, and conflicts.",
     },
     {
       id: "acceptance",
       number: "07",
       title: "Acceptance Criteria & QA",
       shortTitle: "QA Suite",
-      purpose: "Define which edge cases belong in the proposed test suite.",
+      purpose: "Select validation scenarios matching your prioritized product decisions.",
     },
     {
       id: "review",
       number: "08",
-      title: "Decision Review",
-      shortTitle: "Review",
-      purpose: "Compare your strategy objectively against the reference path.",
+      title: "Dynamic Decision Report",
+      shortTitle: "Report",
+      purpose: "Inspect choices, discarded options, QA specs, and reference contrast.",
     },
   ],
 };
